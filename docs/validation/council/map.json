@@ -1,0 +1,11 @@
+{
+  "seed": 932301073,
+  "created": "2026-11-10",
+  "label_to_lens": {
+    "A": "executor",
+    "B": "outsider",
+    "C": "expansionist",
+    "D": "contrarian",
+    "E": "first-principles"
+  }
+}
