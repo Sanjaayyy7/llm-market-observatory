@@ -1,0 +1,300 @@
+# design.md — LLM Market Observatory
+
+**Status:** v1 draft, waiting on builder check and user approval (HARD GATE) · **Date:** 2026-11-11 · **Deadline:** Sun 2026-11-15
+**Reads with:** `PRD.md` (what/why, requirement IDs), `validation/council/chair-verdict.md` (scope, gates).
+*(my call)* marks defaults Claude chose; everything else comes from the user, the council, or the evidence (E/R IDs in `validation/research-brief.md`).
+
+## 0. Intent in one paragraph
+A new grad with an AI-evals background needs one project that a FAANG or AI-startup hiring team reads as real Product Analyst + DE + Product DS work, and that the candidate can defend without AI.
+The project rebuilds a **governed history of LLM API list prices since 2023** from LiteLLM's git history. It answers **how long top-tier models keep their launch price**, then tests honestly, under pre-registration, **whether the first cut moves developer adoption**.
+Everything is built by AI, verified by tests, and stated with its limits.
+
+## 1. Architecture
+
+```
+SOURCES (licensed)                 INGEST (Python, idempotent)        WAREHOUSE (DuckDB + dbt)              OUTPUTS
+LiteLLM git history (MIT) ──────▶ replay_litellm.py ─┐              staging  → intermediate → marts   ┌▶ analysis/*.py (KM, Epoch, event study)
+LMArena HF parquet (CC BY) ─────▶ fetch_arena.py ────┤ data/raw/*.parquet   (tests, contracts,       ├▶ exports/*.parquet ─▶ site/ (Observable
+Epoch AI CSV (CC BY) ───────────▶ fetch_epoch.py ────┤ (gitignored)          freshness, grain)        │                        Framework) ─▶ GitHub Pages
+ClickPy SQL/HTTP (CC BY 4.0) ───▶ fetch_clickpy.py ──┤                                                 └▶ evals/ (static, offline-tested; Gemini once, approved)
+OpenRouter API (CC BY, optional)▶ fetch_openrouter.py┘
+tokencanopy/price (MIT) ────────▶ fetch_tokencanopy.py (level spot-check only)
+```
+
+**Rules**
+- Every fetcher writes Parquet to `data/raw/<source>/` and appends one row to `data/raw/_freshness.parquet`.
+- Fetchers are idempotent: re-running a run date overwrites that run's partition.
+- dbt never calls the network. All network I/O lives in fetchers.
+- One command, `make all`, runs: fetch → `dbt build` → analysis → export → site build.
+
+## 2. Repo layout (*my call*)
+
+```
+llm-market-observatory/
+  Makefile                 # all, fetch, build, analyze, export, site, test, ci
+  pyproject.toml uv.lock   # Python 3.12, pinned
+  ingest/                  # fetchers + replay (stdlib + duckdb + httpx)
+  dbt/                     # dbt project (profiles: dev, ci)
+    seeds/                 # crosswalk, models, provider map, cut audit, fixtures (ci)
+    models/{staging,intermediate,marts}/
+    semantic_models/       # MetricFlow (G10 only)
+  analysis/                # survival.py, epoch_check.py, event_study.py (+ tests)
+  evals/                   # questions.yaml, harness.py, scorer.py, cache/, ledger.csv
+  site/                    # Observable Framework app (src/*.md, data/*.parquet)
+  tests/                   # pytest: ingest, analysis, evals
+  docs/                    # PRD, design, STATUS, DECISIONS, AI_USAGE, DATA, prereg/, drills/, validation/
+  .github/workflows/       # ci.yml, refresh.yml, pages.yml
+```
+
+## 3. Stack and pins (E28, E29, E10)
+
+| Layer | Choice | Pin / note |
+|---|---|---|
+| Runtime | Python 3.12, `uv` | `uv.lock` committed |
+| Engine | DuckDB | `duckdb>=1.5,<2` (DuckDB 2.0 file-compat risk, E10a/E28) |
+| Transform | dbt-core + dbt-duckdb | `dbt-core~=1.12.6`, `dbt-duckdb~=1.11.1` |
+| Semantic layer | dbt-metricflow (G10 only) | `dbt-metricflow~=0.15.0`; G10 probe proves `mf query` works first |
+| Analysis | pandas, statsmodels, lifelines | lifelines for Kaplan–Meier (well tested; no hand-rolled survival math) |
+| Site | Observable Framework (Node 20 LTS) | Static build; ships Parquet, never `.duckdb` (bundled DuckDB-WASM 1.1.1, E29) |
+| CI | GitHub Actions, public repo | Free standard runners (E15) |
+| Lint/test | ruff, pytest | — |
+
+**No dlt, Airflow, Dagster or Elementary** *(my call, in DECISIONS.md)*. There are 5 small sources, and cron in Actions covers scheduling. That gives fewer moving parts to defend. Elementary is cut outright (E10b).
+
+## 4. Sources and ingestion
+
+| Source | Fetcher | Method | Lands as | License / attribution |
+|---|---|---|---|---|
+| LiteLLM price file | `replay_litellm.py` | Blobless clone + git replay (§5) | `raw/litellm/snapshot_date=*/part.parquet` | MIT; credit BerriAI/litellm |
+| LMArena leaderboard | `fetch_arena.py` | HF parquet via `huggingface_hub` / `hf://` (text configs only) | `raw/arena/` | CC BY 4.0; cite lmarena-ai |
+| Epoch AI | `fetch_epoch.py` | HTTPS CSV from `epoch.ai/data/*.csv` (models + benchmark files if present) | `raw/epoch/` | CC BY; cite Epoch AI |
+| ClickPy | `fetch_clickpy.py` | HTTPS SQL to `sql-clickhouse.clickhouse.com` (user `play`), table `pypi.pypi_downloads_per_day` (installer-level table if present) | `raw/pypi/` | PyPI data CC BY 4.0 |
+| OpenRouter (optional) | `fetch_openrouter.py` | `GET /api/v1/datasets/rankings-daily`, key from env `OPENROUTER_API_KEY` | `raw/openrouter/` | CC BY 4.0; citation required |
+| tokencanopy | `fetch_tokencanopy.py` | Latest snapshot from repo (MIT) | `raw/tokencanopy/` | MIT; spot-check only |
+
+**G1 source probes** (`make probe`): each fetcher runs in probe mode and records row count, min/max date and schema hash to `_freshness`. The probe must also confirm three things the design depends on:
+1. The Arena config names and columns, including the post-2026-10-20 display names.
+2. Whether Epoch publishes benchmark scores usable for §9.2. If not, G5 escalates to the user.
+3. The ClickPy table and the installer/country columns.
+
+It also verifies that GitHub disables scheduled workflows on idle public repos (chair: verify). If so, the refresh workflow commits a heartbeat (§11).
+
+**Freshness SLA** = the measured cadence per source from G1, never claimed "daily" (R10). Expected: LiteLLM several commits a day, Arena irregular, Epoch daily, ClickPy daily.
+
+## 5. Git-replay SCD2 algorithm (the DE centerpiece)
+
+**Replay** (`replay_litellm.py`, deterministic):
+1. Clone with `git clone --filter=blob:none --no-checkout https://github.com/BerriAI/litellm` into `data/cache/litellm.git`. Later runs use `git fetch`.
+2. Run `git log --follow --format='%H|%cI' --name-status -- model_prices_and_context_window.json` to list commits with the file's path *at each commit*. `--follow` crosses the 2023-09-06 rename (E20).
+3. Keep the **last commit per UTC day** → `(snapshot_date, sha, commit_ts, path)`.
+4. For each day, run `git show <sha>:<path>` and parse the JSON.
+   - Invalid JSON → log the sha to `_replay_errors` and skip that day. Never guess.
+   - Drop the `sample_spec` key.
+5. Normalize across schema versions → `model_key, litellm_provider, mode, input_cost_per_token, output_cost_per_token`. Missing fields → null. Unknown extra fields are ignored. The mapping lives in a code table, unit-tested on historical samples.
+6. Write one Parquet partition per `snapshot_date`. A model *absent* from a snapshot is how deletions are detected downstream.
+7. **Incremental:** `data/cache/replay_state.json` stores the last processed sha. A run replays only newer days.
+8. **Determinism:** write sorted rows; `replay_hash` = sha256 over the sorted partition files. **G3 requires two clean runs to produce the same hash.**
+
+**SCD2 in dbt** (`dim_model_price`, gaps-and-islands SQL — the hand-written drill target):
+1. `stg_litellm__snapshots`: one row per `(snapshot_date, model_key)`, filtered to `mode in ('chat','completion')`.
+2. `int_price_versions`:
+   - Compute `price_sig = (input, output)`.
+   - Flag a change when `price_sig` differs from the previous snapshot for the same key, or the key reappears after an absence.
+   - `version_id` = running sum of change flags.
+3. `dim_model_price`: one row per `(model_key, valid_from)`:
+   - `valid_from` = first `commit_ts` of the version.
+   - `valid_to` = next version's `valid_from`, or the first snapshot where the key is absent (`delisted = true`), or null if current.
+   - `is_current` = `valid_to is null`.
+4. Tests:
+   - unique `(model_key, valid_from)`;
+   - no overlapping intervals per key (custom test);
+   - exactly one `is_current` row per non-delisted key;
+   - `valid_from < valid_to`;
+   - dbt unit tests on a hand-built 6-snapshot fixture covering change, revert, deletion, reappearance and rename.
+
+## 6. Crosswalk (G2, R2, E30)
+
+**Seeds**
+- `seed_models.csv`: one row per `canonical_model_id`. Columns: `provider, family, display_name, open_weights, announce_date, announce_url, approved_by`.
+- `seed_model_crosswalk.csv`: one row per `(source, source_key)`. Columns: `canonical_model_id, match_method ∈ {exact, hf_id, manual}, approved_by`. `source ∈ {litellm, arena, epoch, openrouter}`.
+- `seed_provider_map.csv`: `litellm_provider → provider, is_first_party, sdk_group`.
+
+**Workflow**
+1. Claude drafts the rows. It seeds from OpenRouter `hugging_face_id` / `canonical_slug` (if a key is available) and Epoch's HF developer id, then adds manual matches for closed models.
+2. The candidate approves each row by setting `approved_by` (decision pending, PRD §12).
+3. Only approved rows flow downstream.
+
+**Scope:** every model that is ever top-tier (PRD §6) in the Arena text history since 2023-05, plus each one's first-party LiteLLM keys.
+
+**Tests**
+- unique `(source, source_key)`;
+- not-null `canonical_model_id`;
+- `relationships` to `seed_models`;
+- coverage ≥90% of in-scope top-tier models, and ≥80% of closed ones.
+
+If coverage fails: panel-only scope. The headline is restricted to the mapped set and the coverage is shown in the README.
+
+## 7. Data model (grain declared, each enforced by a uniqueness test)
+
+| Model | Grain (one row per) | Notes |
+|---|---|---|
+| `stg_litellm__snapshots` | snapshot_date × model_key | from replay |
+| `stg_arena__leaderboard` | snapshot_date × arena_model × category | text configs; rank recomputed within snapshot |
+| `stg_epoch__models` / `stg_epoch__benchmarks` | epoch model / model × benchmark | |
+| `stg_pypi__downloads` | date × package (× installer if available) | |
+| `stg_openrouter__rankings` | date × openrouter_slug | optional |
+| `dim_model` | canonical_model_id | from seeds |
+| `dim_model_price` | model_key × valid_from | SCD2 (§5) |
+| `fct_model_price_daily` | canonical_model_id × date | first-party, standard tier, blended 3:1; date spine from listing to delist/today |
+| `fct_price_change` | canonical_model_id × change_ts | pct change, `is_cut` (≥10%), `is_correction` |
+| `fct_arena_rank` | canonical_model_id × snapshot_date | rank, rank_percentile, method_era (splits at Jan-2024, May-2025, Jul-2025; E21) |
+| `mart_launch_price_survival` | top-tier canonical_model_id | listed_at, first_cut_at, days_at_launch_price, censored |
+| `mart_cut_audit` | audited cut | observed_ts, announced_date, lag_days, source_url (seed `seed_cut_audit.csv`) |
+| `fct_sdk_downloads_daily` | sdk_group × date | Google SDKs summed (E24) |
+| `mart_event_study_panel` | event_id × sdk_group × rel_day | built only after prereg commit (G8) |
+| `source_freshness` | source × run_ts | rows, max_date, sla_days, is_stale |
+
+**Event-date audit (G4):**
+- Sample: 20 cuts stratified by provider *(my call)*. For each, Claude finds the provider's announcement (changelog or pricing page) and records its URL. The candidate spot-checks.
+- Output: the commit-lag distribution `±d` in the headline.
+
+## 8. Metric definitions (one definition each; README + site "Methods" page)
+
+| Metric | Definition |
+|---|---|
+| `blended_price_per_mtok` | `(3·input + 1·output)/4 × 1e6`, first-party standard tier |
+| `days_at_launch_price` | first_cut_at − listed_at (days); censored at today or at delisting |
+| `km_median_days_at_launch_price` | Kaplan–Meier median over top-tier models, with IQR and n |
+| `share_cut_within_365d` | KM-estimated 1 − S(365) (the fallback headline) |
+| `cut_depth_pct` | price drop at the first cut |
+| `commit_lag_days` | announced − observed, over the audited sample |
+| `sdk_downloads_7d` | trailing 7-day sum of downloads, per SDK group |
+
+MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definitions still live in dbt docs and the Methods page.
+
+## 9. Analyses (`analysis/`, each with pytest on fixtures)
+
+1. **Survival (G6):**
+   - lifelines `KaplanMeierFitter` on `mart_launch_price_survival`, producing the median, IQR and n.
+   - **Drill check:** a hand-written SQL version of the headline inputs (listed_at, first_cut_at, censored) must equal the mart row for row.
+   - Sensitivity checks reported, not headlined: all models vs top-tier; cut thresholds of 5% and 20%.
+2. **Epoch check (G5):**
+   - Reproduce Epoch's "cost of a fixed performance level" decline with our price panel × Epoch benchmark scores. Fit a log-linear trend on the cheapest qualifying price over time.
+   - Pass if our annual factor is within ×/÷2 of Epoch's ~13×/yr (6.5–26×).
+   - If Epoch benchmark data is unavailable (G1), **stop and ask the user** rather than substituting Arena rank (that would no longer be a replication).
+   - Level spot-check: our current blended price vs tokencanopy's first-party price for 20 models, within 5%.
+3. **Event study (G8–G9):**
+   - The pre-registration (`docs/prereg/event-study.md`, from PRD §8) is committed **before** `event_study.py` exists. CI enforces this with a check that the prereg commit predates the first commit touching `analysis/event_study.py`.
+   - Spec: OLS with event-window dummies, SDK-group and day-of-week fixed effects, HAC standard errors. Placebos: 100 random pseudo-dates per group, plus the control package.
+   - All results are published, including nulls. Below the power floor: descriptive plot plus one placebo only.
+
+## 10. Freshness and quality
+- `source_freshness` is computed every run.
+- `dbt source freshness`-style checks plus a singular test fail the build when any source is past its SLA.
+- CI on `main` therefore goes red when data is stale (chair: decay).
+- Replay errors and schema drift are counted and surfaced on the Methods page.
+
+## 11. CI/CD
+- **`ci.yml`** (PR + push): `uv sync --frozen` → ruff → pytest → `dbt build --target ci` against the committed **fixture seeds** (small sampled raw data) → site build → prereg-order check → secret scan (gitleaks action) *(my call)*. **No network to data sources and no Gemini in CI.**
+- **`refresh.yml`** (weekly cron, Mon 06:00 UTC, plus `workflow_dispatch`) *(my call)*:
+  - `actions/cache` restores the git clone and raw Parquet → incremental fetch → `dbt build --target dev` → analysis → export → commits `site/data/*.parquet` and the freshness stamp → triggers Pages.
+  - Fails loudly if freshness fails. No Gemini.
+- **`pages.yml`:** builds Observable Framework and deploys to GitHub Pages.
+- **Keep-alive:** if G1 confirms idle-repo cron disabling, the refresh commit itself is the activity.
+
+## 12. Dashboard: visual direction, components, UX (Bloom design.md scope)
+**Direction:** editorial data journalism (FT / Economist tone).
+- One idea per screen; annotation over decoration.
+- Neutral greys with **one accent color**, used for the highlighted series only.
+- Light and dark themes via CSS variables.
+- System font stack for UI, tabular numerals for figures.
+- No 3D, no gauges, no gradients.
+
+**Pages** (Observable Framework, static):
+1. **Home (first screen, G7):**
+   - The question as the title.
+   - The headline number in large type with its CI/IQR and n.
+   - A Kaplan–Meier step chart with a censoring tick-mark legend.
+   - A data stamp: "Data as of <max dates> · LiteLLM commit <sha7> · rebuilt <run_ts>".
+   - One-line caveat with a link to Methods.
+2. **Price explorer:**
+   - Per-model step chart of blended price (SCD2 intervals), with cut markers.
+   - Provider filter; table of cuts with depth and audit lag.
+3. **Adoption:**
+   - Event-study coefficient plot (−28…+28) with a 95% band.
+   - Placebo distribution histogram with the observed estimate marked.
+   - Bold verdict line: "effect / no detectable effect at MDE x%".
+   - Link to the pre-registration commit.
+4. **Methods & data:**
+   - Metric definitions (§8), grain table (§7) and freshness table.
+   - Coverage %, the Epoch check result, sources and licenses (DATA.md).
+5. **Eval** (only if G10 ships): per-arm accuracy with CI, failure taxonomy table, spend total.
+
+**Components:** `HeadlineStat` (number, interval, n, stamp), `StepChart`, `CoefPlot`, `PlaceboHist`, `DataStamp`, `CaveatNote`. All built with Observable Plot.
+
+**UX patterns**
+- Every number is clickable through to its definition on the Methods page.
+- Every chart has a one-sentence takeaway above it and its source below.
+- Mobile works at 375 px (single column).
+- Charts carry `aria-label` summaries; colors pass WCAG AA; nothing is conveyed by color alone (censoring uses a tick mark).
+
+## 13. Eval harness and Gemini guardrails (G10; last, first to cut)
+**Questions:**
+- `evals/questions.yaml` holds 30 fixed questions *(my call)* about the marts, e.g. "median days at launch price for Anthropic top-tier models".
+- Each question has a gold answer from hand-verified SQL, stored with that SQL.
+- Answer types: number with tolerance, date, or entity list.
+
+**Arms:**
+- **A (semantic layer):** Gemini returns a JSON MetricFlow query spec (metrics, group_by, where), validated against a JSON Schema. The harness runs it via `mf query`.
+- **B (text-to-SQL):** Gemini returns SQL over the staging schema. It runs on a **read-only** DuckDB connection with a statement allow-list (SELECT only) and a timeout.
+
+**Scorer:** pure functions, unit-tested on fixtures for correct, wrong, malformed, timeout and empty results. The **failure taxonomy** (wrong metric, wrong filter, wrong grain, hallucinated column, malformed output) is auto-tagged where possible and hand-reviewed.
+
+**Guardrails** (real money; R7, R12, E27):
+1. **Order:** nothing runs before G9. Never from CI, cron or the site.
+2. **Offline first:** the full harness runs against `FakeLLM` and recorded fixtures. All tests pass with zero API calls.
+3. **Model:** free tier first. Pin the exact non-deprecated model ID, verified on ai.google.dev at G10, because deprecated IDs auto-route from 2026-12-01. Temperature 0, structured output.
+4. **Approval:** `count_tokens` over all prompts, times live prices, gives a cost estimate. **The user approves it before the first paid call.**
+5. **Smoke test:** 1 question × 2 arms. Parse and grade must succeed before the batch.
+6. **Cache:** responses keyed by sha256(model_id, prompt, params), so nothing is paid twice.
+7. **Limits:** hard cap on calls and estimated $ per run. A cap hit stops the run. Fail fast on any unexpected error; at most 2 retries with backoff, on 429 only.
+8. **Ledger:** `evals/ledger.csv` with ts, model_id, arm, question_id, in/out tokens, est_cost_usd, cache_hit.
+9. **Key:** `GEMINI_API_KEY` in env / `.env` (gitignored). It is never logged, and gitleaks runs in CI.
+10. **Disclosure:** free-tier prompts may be used for training (E27). The questions are about public data, and this is stated in AI_USAGE.md.
+
+**Honest bar:** the harness is verified correct. LLM accuracy is *measured*, not promised.
+
+## 14. Defensibility artifacts
+- **DECISIONS.md:** `choice | rejected alternative | why | E-ID`. Seeded with the council's cuts and every *(my call)* in this doc.
+- **AI_USAGE.md:** what each AI wrote, what was rejected or changed, how it was verified (tests and gates).
+- **DATA.md:** sources, licenses, attribution text, what is republished (only derived marts and Parquet exports).
+- **Drills** (pending user decision): `docs/drills/<slice>.md`. Before merging a slice, the candidate writes, without AI, its grain, one test it relies on and one failure mode. Separately, they hand-write the SCD2 and headline SQL, and `make drill-check` diffs it against the models.
+
+## 15. Working protocol under usage limits
+- `docs/STATUS.md` is updated at the end of every session: done, next, blockers, resume prompt.
+- `main` is always shippable. Each slice goes on a branch and merges when its gate passes.
+- A gate failing twice triggers the next item in the PRD §11 cut order.
+- No new slice starts after Sat 2026-11-14. Sunday is for finishing, drills and docs only.
+- The order of work is the gate order G0 → G10.
+
+## 16. Left to the builder
+- Library choices inside fetchers, and exact SQL formatting.
+- Fixture sizes.
+- Chart styling details within §12.
+- Statsmodels spec details consistent with the pre-registration.
+- File naming inside folders.
+- Whether a fetcher uses httpx or stdlib.
+
+## 17. My calls for the user to check
+1. 3:1 blend.
+2. 10% cut threshold and the correction rules.
+3. Top-tier = Arena rank percentile ≤25% within 60 days of listing.
+4. Coverage thresholds of 90% and 80%.
+5. Epoch tolerance ×/÷2.
+6. Event-study window and power floor.
+7. 20-cut audit sample.
+8. 30 eval questions.
+9. Weekly cron.
+10. No orchestrator.
+11. gitleaks in CI.
+12. Repo layout.
