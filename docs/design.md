@@ -1,8 +1,21 @@
 # design.md — LLM Market Observatory
 
-**Status:** v1 draft, waiting on builder check and user approval (HARD GATE) · **Date:** 2026-11-11 · **Deadline:** Sun 2026-11-15
+**Status:** v1.1, waiting on user approval (HARD GATE) · **Date:** 2026-11-11 · **Deadline:** Sun 2026-11-15
 **Reads with:** `PRD.md` (what/why, requirement IDs), `validation/council/chair-verdict.md` (scope, gates).
 *(my call)* marks defaults Claude chose; everything else comes from the user, the council, or the evidence (E/R IDs in `validation/research-brief.md`).
+
+**What changed in v1.1**
+- **Builder-check resolutions (my calls):**
+  - The Epoch check target is now the 2025 list-price paper (§9.2).
+  - One canonical model = one versioned API ID; moving aliases are excluded (§6).
+  - Event = each top-tier model's first cut, clustered per SDK group (PRD §8).
+  - Eval arm B queries the same marts as arm A (§13).
+- **User decisions:**
+  - Drills batched at the end.
+  - The user approves the model list plus judgment matches.
+  - No OpenRouter key, so the rankings source is dropped.
+  - Gemini free tier only.
+  - Public repo, Pages and weekly refresh approved.
 
 ## 0. Intent in one paragraph
 A new grad with an AI-evals background needs one project that a FAANG or AI-startup hiring team reads as real Product Analyst + DE + Product DS work, and that the candidate can defend without AI.
@@ -16,8 +29,7 @@ SOURCES (licensed)                 INGEST (Python, idempotent)        WAREHOUSE 
 LiteLLM git history (MIT) ──────▶ replay_litellm.py ─┐              staging  → intermediate → marts   ┌▶ analysis/*.py (KM, Epoch, event study)
 LMArena HF parquet (CC BY) ─────▶ fetch_arena.py ────┤ data/raw/*.parquet   (tests, contracts,       ├▶ exports/*.parquet ─▶ site/ (Observable
 Epoch AI CSV (CC BY) ───────────▶ fetch_epoch.py ────┤ (gitignored)          freshness, grain)        │                        Framework) ─▶ GitHub Pages
-ClickPy SQL/HTTP (CC BY 4.0) ───▶ fetch_clickpy.py ──┤                                                 └▶ evals/ (static, offline-tested; Gemini once, approved)
-OpenRouter API (CC BY, optional)▶ fetch_openrouter.py┘
+ClickPy SQL/HTTP (CC BY 4.0) ───▶ fetch_clickpy.py ──┘                                                 └▶ evals/ (static, offline-tested; Gemini free tier, once)
 tokencanopy/price (MIT) ────────▶ fetch_tokencanopy.py (level spot-check only)
 ```
 
@@ -69,7 +81,6 @@ llm-market-observatory/
 | LMArena leaderboard | `fetch_arena.py` | HF parquet via `huggingface_hub` / `hf://` (text configs only) | `raw/arena/` | CC BY 4.0; cite lmarena-ai |
 | Epoch AI | `fetch_epoch.py` | HTTPS CSV from `epoch.ai/data/*.csv` (models + benchmark files if present) | `raw/epoch/` | CC BY; cite Epoch AI |
 | ClickPy | `fetch_clickpy.py` | HTTPS SQL to `sql-clickhouse.clickhouse.com` (user `play`), table `pypi.pypi_downloads_per_day` (installer-level table if present) | `raw/pypi/` | PyPI data CC BY 4.0 |
-| OpenRouter (optional) | `fetch_openrouter.py` | `GET /api/v1/datasets/rankings-daily`, key from env `OPENROUTER_API_KEY` | `raw/openrouter/` | CC BY 4.0; citation required |
 | tokencanopy | `fetch_tokencanopy.py` | Latest snapshot from repo (MIT) | `raw/tokencanopy/` | MIT; spot-check only |
 
 **G1 source probes** (`make probe`): each fetcher runs in probe mode and records row count, min/max date and schema hash to `_freshness`. The probe must also confirm three things the design depends on:
@@ -116,15 +127,30 @@ It also verifies that GitHub disables scheduled workflows on idle public repos (
 
 **Seeds**
 - `seed_models.csv`: one row per `canonical_model_id`. Columns: `provider, family, display_name, open_weights, announce_date, announce_url, approved_by`.
-- `seed_model_crosswalk.csv`: one row per `(source, source_key)`. Columns: `canonical_model_id, match_method ∈ {exact, hf_id, manual}, approved_by`. `source ∈ {litellm, arena, epoch, openrouter}`.
+- `seed_model_crosswalk.csv`: one row per `(source, source_key)`. Columns: `canonical_model_id, match_method ∈ {exact, hf_id, manual}, approved_by`. `source ∈ {litellm, arena, epoch}`.
 - `seed_provider_map.csv`: `litellm_provider → provider, is_first_party, sdk_group`.
 
 **Workflow**
-1. Claude drafts the rows. It seeds from OpenRouter `hugging_face_id` / `canonical_slug` (if a key is available) and Epoch's HF developer id, then adds manual matches for closed models.
-2. The candidate approves each row by setting `approved_by` (decision pending, PRD §12).
-3. Only approved rows flow downstream.
+1. Claude drafts the rows. It seeds from:
+   - OpenRouter's public `/api/v1/models` (`hugging_face_id`, `canonical_slug`). No key is needed; it is used as a matching aid at draft time only, never fetched in the pipeline and never republished.
+   - Epoch's HF developer id.
+   - Manual matches for closed models.
+2. **Approval (user decision v1.1):**
+   - The candidate approves every row of `seed_models` (the canonical list) and every `match_method = manual` row, by setting `approved_by`.
+   - `exact` and `hf_id` rows are approved by tests: string or ID equality, plus the coverage tests.
+3. Dev builds may run on draft rows.
+4. The export step (and therefore Pages and the README numbers) refuses to run while any required row is unapproved.
 
 **Scope:** every model that is ever top-tier (PRD §6) in the Arena text history since 2023-05, plus each one's first-party LiteLLM keys.
+
+**What one canonical model is** (builder-check resolution, my call):
+- **One canonical model = one versioned API model**, i.e. a dated or explicitly versioned ID such as `gpt-4o-2024-08-06` or `claude-3-5-sonnet-20241022`.
+- **Moving aliases are flagged and excluded from the headline population.** These are unversioned keys that repoint over time: `gpt-4o`, `o3`, `*-latest`, `deepseek-reasoner`. Flag them with `is_moving_alias = true` in `seed_model_crosswalk`. They appear only in a sensitivity analysis.
+  - An alias repointing to a cheaper snapshot is **never** counted as a cut.
+  - So the crosswalk needs no validity dates.
+- **Several first-party keys for one canonical model** (e.g. `gemini/gemini-2.5-flash` vs `gemini-2.5-flash`): use the key whose `litellm_provider` is the provider's own first-party value (`seed_provider_map.is_first_party`).
+  - If two first-party keys disagree on the same day, a warn-level test fires. The earlier-listed key wins, and the conflict count goes on the Methods page.
+- **Arena variants** of the same API model ("thinking", "(high)") map to one canonical model. Its rank is the best variant's rank within the snapshot. Variants that are separate API IDs stay separate.
 
 **Tests**
 - unique `(source, source_key)`;
@@ -142,7 +168,6 @@ If coverage fails: panel-only scope. The headline is restricted to the mapped se
 | `stg_arena__leaderboard` | snapshot_date × arena_model × category | text configs; rank recomputed within snapshot |
 | `stg_epoch__models` / `stg_epoch__benchmarks` | epoch model / model × benchmark | |
 | `stg_pypi__downloads` | date × package (× installer if available) | |
-| `stg_openrouter__rankings` | date × openrouter_slug | optional |
 | `dim_model` | canonical_model_id | from seeds |
 | `dim_model_price` | model_key × valid_from | SCD2 (§5) |
 | `fct_model_price_daily` | canonical_model_id × date | first-party, standard tier, blended 3:1; date spine from listing to delist/today |
@@ -178,11 +203,19 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
    - lifelines `KaplanMeierFitter` on `mart_launch_price_survival`, producing the median, IQR and n.
    - **Drill check:** a hand-written SQL version of the headline inputs (listed_at, first_cut_at, censored) must equal the mart row for row.
    - Sensitivity checks reported, not headlined: all models vs top-tier; cut thresholds of 5% and 20%.
-2. **Epoch check (G5):**
-   - Reproduce Epoch's "cost of a fixed performance level" decline with our price panel × Epoch benchmark scores. Fit a log-linear trend on the cheapest qualifying price over time.
-   - Pass if our annual factor is within ×/÷2 of Epoch's ~13×/yr (6.5–26×).
-   - If Epoch benchmark data is unavailable (G1), **stop and ask the user** rather than substituting Arena rank (that would no longer be a replication).
-   - Level spot-check: our current blended price vs tokencanopy's first-party price for 20 models, within 5%.
+2. **Epoch check (G5)**. *Builder-check resolution, my call:* replicate the method that matches ours.
+   - **Not** "The plunging price of thought" (13×/yr). That paper uses transcript costs, not list prices.
+   - The target is Epoch's **2025 Data Insight** "LLM inference prices have fallen rapidly but unequally across tasks" (2025-03-12). Its method matches ours: 3:1 blend, list prices, first-party, reasoning models excluded.
+   - **Pre-committed spec** (`docs/prereg/epoch-check.md`, committed before the code). Read the exact threshold value and date window from Epoch's repo `epoch-research/llm-benchmark-efficiency` at G1 and freeze them in the prereg:
+     - **Milestone:** GPT-4-level on GPQA Diamond.
+     - **Target:** ~40×/yr.
+     - **Window:** Epoch's own.
+     - **Tolerance:** ×/÷2 (20–80×/yr).
+   - **Method:** for each date, take the cheapest blended price among non-reasoning models scoring ≥ the threshold, using Epoch's benchmark scores joined through the crosswalk. Fit log price vs time and annualize the slope.
+   - The independent part is our price source (LiteLLM git history); Epoch's prices come from Artificial Analysis.
+   - **If G5 fails:** one diagnosis pass. If it still fails, escalate to the user before G7. Until resolved, the Home page shows "validation pending", not the number.
+   - If Epoch's benchmark scores or thresholds can't be obtained at G1, **stop and ask the user**. Do not substitute Arena rank; that would no longer be a replication.
+   - **Level spot-check:** our current blended price vs tokencanopy's first-party price for 20 models, within 5%.
 3. **Event study (G8–G9):**
    - The pre-registration (`docs/prereg/event-study.md`, from PRD §8) is committed **before** `event_study.py` exists. CI enforces this with a check that the prereg commit predates the first commit touching `analysis/event_study.py`.
    - Spec: OLS with event-window dummies, SDK-group and day-of-week fixed effects, HAC standard errors. Placebos: 100 random pseudo-dates per group, plus the control package.
@@ -246,18 +279,24 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
 
 **Arms:**
 - **A (semantic layer):** Gemini returns a JSON MetricFlow query spec (metrics, group_by, where), validated against a JSON Schema. The harness runs it via `mf query`.
-- **B (text-to-SQL):** Gemini returns SQL over the staging schema. It runs on a **read-only** DuckDB connection with a statement allow-list (SELECT only) and a timeout.
+- **B (text-to-SQL):** Gemini returns SQL over the **same marts the semantic models sit on**. This way the eval isolates the query method and doesn't also test the data modeling (builder-check resolution, my call). It runs on a **read-only** DuckDB connection with a statement allow-list (SELECT only) and a timeout.
 
 **Scorer:** pure functions, unit-tested on fixtures for correct, wrong, malformed, timeout and empty results. The **failure taxonomy** (wrong metric, wrong filter, wrong grain, hallucinated column, malformed output) is auto-tagged where possible and hand-reviewed.
 
 **Guardrails** (real money; R7, R12, E27):
 1. **Order:** nothing runs before G9. Never from CI, cron or the site.
 2. **Offline first:** the full harness runs against `FakeLLM` and recorded fixtures. All tests pass with zero API calls.
-3. **Model:** free tier first. Pin the exact non-deprecated model ID, verified on ai.google.dev at G10, because deprecated IDs auto-route from 2026-12-01. Temperature 0, structured output.
-4. **Approval:** `count_tokens` over all prompts, times live prices, gives a cost estimate. **The user approves it before the first paid call.**
+3. **Model, free tier only ($0, user decision v1.1):** the key must come from a Google project **with no billing enabled**, because with billing on, calls are charged. The user confirms this when providing the key. Pin the exact non-deprecated model ID, verified on ai.google.dev at G10, because deprecated IDs auto-route from 2026-12-01. Temperature 0, structured output.
+4. **Pre-run check:**
+   - `count_tokens` over all prompts, plus the request count, compared with the free-tier limits the user's AI Studio shows. Those limits are not published (E27).
+   - The user confirms the run fits before the batch.
+   - A billing/quota error mid-run stops the run, leaves the cache intact, and the run resumes later from the cache.
 5. **Smoke test:** 1 question × 2 arms. Parse and grade must succeed before the batch.
 6. **Cache:** responses keyed by sha256(model_id, prompt, params), so nothing is paid twice.
-7. **Limits:** hard cap on calls and estimated $ per run. A cap hit stops the run. Fail fast on any unexpected error; at most 2 retries with backoff, on 429 only.
+7. **Limits:**
+   - A hard cap on calls per run, plus an estimated-$ cap of **$0**: any non-free-tier pricing signal stops the run.
+   - Fail fast on any unexpected error.
+   - A 429 gets at most 2 retries with backoff. After that, stop and resume later from the cache.
 8. **Ledger:** `evals/ledger.csv` with ts, model_id, arm, question_id, in/out tokens, est_cost_usd, cache_hit.
 9. **Key:** `GEMINI_API_KEY` in env / `.env` (gitignored). It is never logged, and gitleaks runs in CI.
 10. **Disclosure:** free-tier prompts may be used for training (E27). The questions are about public data, and this is stated in AI_USAGE.md.
@@ -268,13 +307,21 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
 - **DECISIONS.md:** `choice | rejected alternative | why | E-ID`. Seeded with the council's cuts and every *(my call)* in this doc.
 - **AI_USAGE.md:** what each AI wrote, what was rejected or changed, how it was verified (tests and gates).
 - **DATA.md:** sources, licenses, attribution text, what is republished (only derived marts and Parquet exports).
-- **Drills** (pending user decision): `docs/drills/<slice>.md`. Before merging a slice, the candidate writes, without AI, its grain, one test it relies on and one failure mode. Separately, they hand-write the SCD2 and headline SQL, and `make drill-check` diffs it against the models.
+- **Drills (batched at the end, user decision v1.1):** `docs/drills/<slice>.md`, one per slice, written by the candidate without AI: its grain, one test it relies on, one failure mode.
+  - They also hand-write the SCD2 and headline SQL in `docs/drills/sql/`, and `make drill-check` diffs the results against the models.
+  - Drills never block merges. They block the **v1.0 release tag** and the candidate sharing the link.
+  - Claude prepares a drill sheet per slice, with questions only and no answers, as each slice merges.
 
 ## 15. Working protocol under usage limits
 - `docs/STATUS.md` is updated at the end of every session: done, next, blockers, resume prompt.
 - `main` is always shippable. Each slice goes on a branch and merges when its gate passes.
 - A gate failing twice triggers the next item in the PRD §11 cut order.
 - No new slice starts after Sat 2026-11-14. Sunday is for finishing, drills and docs only.
+- **User touchpoints, in build order:**
+  1. G2: approve the crosswalk.
+  2. G7: OK to create the repo and enable Pages, already approved in principle; Claude confirms before the first push.
+  3. G10: the no-billing Gemini key and the pre-run check.
+  4. Release: the drills.
 - The order of work is the gate order G0 → G10.
 
 ## 16. Left to the builder
@@ -298,3 +345,7 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
 10. No orchestrator.
 11. gitleaks in CI.
 12. Repo layout.
+13. *(v1.1)* Epoch target: 2025 paper, GPT-4-level GPQA Diamond, about 40×/yr ×/÷2.
+14. *(v1.1)* Versioned IDs only; aliases go to sensitivity analysis.
+15. *(v1.1)* Events are per-model first cuts, clustered at ±28 days.
+16. *(v1.1)* Eval arm B queries the marts.

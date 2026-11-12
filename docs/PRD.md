@@ -1,6 +1,6 @@
 # PRD: LLM Market Observatory
 
-**Status:** v1 draft, waiting on builder check and user approval · **Date:** 2026-11-11 · **Deadline:** Sun 2026-11-15
+**Status:** v1.1, builder check resolved and user decisions applied, waiting on user approval of design.md · **Date:** 2026-11-11 · **Deadline:** Sun 2026-11-15
 **Inputs:** `validation/research-brief.md` (E1–E31, R1–R12) · `validation/council/chair-verdict.md` (go-with-changes, gates G0–G10)
 **Traceability:** every requirement cites the evidence it rests on (E/R) and the gate that proves it (G). Items marked *(my call)* are defaults set by Claude for the user to check.
 
@@ -71,7 +71,7 @@
 | D2 | Ingest LMArena leaderboard history (text configs), handling the 2026-10-20 slug→display rename | E21 | G1 |
 | D3 | Ingest Epoch AI CSVs (models + benchmark data if available) | E22 | G1, G5 |
 | D4 | Ingest ClickPy daily downloads for provider SDKs; sum the two Google SDKs | E23, E24 | G1, G8 |
-| D5 | *Optional:* OpenRouter `rankings-daily` (needs the user's free API key) | E25, R11 | G1 |
+| D5 | ~~OpenRouter `rankings-daily`~~ **Dropped (v1.1):** the user chose not to provide a key, so adoption = PyPI only (R11) | E25, R11 | — |
 | D6 | Freshness table: rows + max date per source per run; SLA = measured cadence | R10 | G1 |
 | D7 | DATA.md: license and attribution per source; only CC BY / MIT / Apache sources | E8a–e, R5 | G1 |
 
@@ -103,24 +103,25 @@
 |---|---|---|---|
 | V1 | Fixed question set with hand-verified gold answers; scorer unit-tested offline | E3c, E11 | G10 |
 | V2 | Two arms on the same questions: MetricFlow (`mf query`) vs text-to-SQL; report accuracy plus a failure taxonomy | E11, E4 | G10 |
-| V3 | Gemini guardrails per design.md §13: no calls before G9 or from CI/cron/page; user-approved `count_tokens` estimate; hard cap | R7, R12, E27 | G10 |
+| V3 | Gemini guardrails per design.md §13. **Free tier only, $0 (user decision v1.1):** key from a project with no billing; no calls before G9 or from CI/cron/page; `count_tokens` check that the run fits free-tier limits; hard stop on any billing signal | R7, R12, E27 | G10 |
 
 **Defensibility and ops**
 | ID | Requirement | Evidence | Gate |
 |---|---|---|---|
 | X1 | DECISIONS.md: each choice, the rejected alternative, and the E-ID | E5a–c | all |
 | X2 | AI_USAGE.md: honest account of what AI wrote and how it was verified | E5a | all |
-| X3 | No-AI drill per slice before merge: explain grain, one test, one failure mode. Hand-write the SCD2 and headline SQL. **(Pending user decision, §12)** | E5b, E5c, E16 | G6 |
+| X3 | No-AI drills, **batched at the end (user decision v1.1)**: for each slice, explain grain, one test, one failure mode; hand-write the SCD2 and headline SQL, and `make drill-check` matches it to the models. Required before the v1.0 release tag and before the link is shared. Never blocks a merge | E5b, E5c, E16 | release |
 | O1 | STATUS.md updated every session; `main` stays shippable; a gate failing twice triggers the next cut; no new slice starts after Sat 2026-11-14 | R6 | all |
 
 ## 8. Pre-registration skeleton (filled in and committed at G8, before any code)
 - **Unit:** provider SDK group (`openai`, `anthropic`, `google-genai`+`google-generativeai`, `mistralai`, …). Providers without their own SDK are excluded.
-- **Event:** first cut of a top-tier model by that provider.
+- **Event:** **each top-tier model's first cut**, assigned to its provider's SDK group. Cuts in the same group within ±28 days merge into one clustered event, dated by the earliest cut. *(Builder-check resolution, my call; one event per provider would cap n at about 5–6 and make the floor impossible.)*
+- **MDE:** computed **before** the prereg commit, from download variance at placebo dates only. Event windows are never looked at before the prereg is committed.
 - **Window:** −28…+28 days. Outcome: log daily downloads with day-of-week fixed effects; installer filter fixed after the G1 probe.
 - **Comparison:** other SDK groups with no event within ±28 days.
 - **Power floor:** ≥8 non-clustered events (no other event for the same group within ±28 days) and MDE ≤20%. Otherwise descriptive only.
 - **Placebos:** 100 random pseudo-dates per group, plus one non-AI control package.
-- **Optional secondary outcome:** OpenRouter model-level token share, which addresses the unit mismatch.
+- **Known limitation (disclosed):** events are model-level but the outcome is provider-level (SDK downloads). The OpenRouter model-level outcome was dropped in v1.1.
 
 ## 9. Success metrics
 - G0–G9 pass by the deadline; G10 if not cut.
@@ -135,18 +136,21 @@ G0–G10 exactly as in `chair-verdict.md` §Gates; design.md defines each check.
 
 ## 11. Cut order
 Under usage limits, cut in this order:
-1. Paid Gemini run
-2. MetricFlow and the eval
-3. OpenRouter
-4. Event-study inference (keep the descriptive plot and one placebo)
-5. Cron (fall back to a static snapshot)
+1. MetricFlow and the eval (there is no paid run: free tier only)
+2. Event-study inference (keep the descriptive plot and one placebo)
+3. Cron (fall back to a static snapshot)
 
 Never cut: crosswalk tests, the panel, the Epoch check.
 
-## 12. Needs the user
+## 12. User decisions (v1.1, 2026-11-11)
+- **Drills:** batched at the end, before the release tag (X3).
+- **Crosswalk:** the user approves the canonical model list plus `manual` (judgment) matches. `exact`/`hf_id` matches are approved by tests. Dev builds may run on draft rows. Published outputs require approval to be complete (M1).
+- **OpenRouter:** no key, so D5 is dropped.
+- **Gemini:** free tier only, $0 (V3).
+- **Approved at the time they're reached:** a public repo `llm-market-observatory` under the user's GitHub account, GitHub Pages, and the weekly auto-refresh Action.
+
+**Still needs the user:**
 - Approve design.md (hard gate).
-- Decide on the no-AI drill (X3).
-- Approve crosswalk rows (M1).
-- Optional OpenRouter key (D5).
-- Gemini spend cap and the go before the first paid call (V3).
-- Go for creating the public GitHub repo and Pages.
+- Approve the crosswalk at G2.
+- Provide a Gemini key from a no-billing project at G10.
+- Do the drills before release.

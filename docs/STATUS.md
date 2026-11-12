@@ -21,9 +21,11 @@
 - Pins: Python 3.12, `duckdb<2`, dbt-core 1.12.x + dbt-duckdb 1.11.x + dbt-metricflow 0.15.x (E28). Dashboard: Observable Framework + Parquet on GitHub Pages (E29).
 
 ## Blockers / needs user
-- OpenRouter rankings dataset needs a free API key (user account action) — ask at build time (R11).
-- First paid Gemini call needs explicit user go (plan guardrail).
-- Public GitHub repo creation/push needs explicit user go.
+- Approve design.md (now).
+- G2: approve canonical model list + manual matches.
+- G7: repo + Pages approved in principle; Claude confirms before first push.
+- G10: Gemini key from a **no-billing** project (free tier only, $0).
+- Release: drills.
 
 ## Resume prompt
 "Resume LLM Market Observatory from docs/STATUS.md; continue the 'Next' list in order."
