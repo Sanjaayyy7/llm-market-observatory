@@ -3,7 +3,7 @@ import hashlib
 import json
 import shutil
 import subprocess
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import NamedTuple
 
@@ -55,7 +55,7 @@ def list_commits(repo: Path) -> list[Commit]:
     for line in log.splitlines():
         if line.startswith("C|"):
             _, sha, ts = line.split("|")
-            cur = [sha, datetime.fromisoformat(ts).astimezone(timezone.utc), None]
+            cur = [sha, datetime.fromisoformat(ts).astimezone(UTC), None]
             commits.append(cur)
         elif line and cur is not None:
             cur[2] = line.split("\t")[-1]  # path at this commit (new name on rename)
@@ -95,7 +95,7 @@ def _infer_provider(key):
 
 def normalize(doc: dict) -> list[dict]:
     if not isinstance(doc, dict):
-        raise ValueError("price file is not a JSON object")
+        raise TypeError("price file is not a JSON object")
     return [{
         "model_key": key,
         "litellm_provider": _str(v.get("litellm_provider")) or _infer_provider(key),
@@ -121,7 +121,7 @@ def _resolve_blobs(repo, days):
     if len(lines) != len(days) or any(" " in line for line in lines):
         raise RuntimeError("blob resolve failed")
     if subprocess.run(["git", "-C", str(repo), "config", "--get", "remote.origin.promisor"],
-                      capture_output=True, text=True).stdout.strip() == "true":
+                      check=False, capture_output=True, text=True).stdout.strip() == "true":
         # one batched fetch; per-blob lazy fetch is far slower
         _git(repo, "-c", "fetch.negotiationAlgorithm=noop", "fetch", "origin", "--no-tags", "--no-write-fetch-head",
              "--filter=blob:none", "--stdin", data="\n".join(sorted(set(lines))).encode())
@@ -161,7 +161,7 @@ def replay(repo: Path, raw_dir: Path, state_path: Path) -> ReplayResult:
     for (day, commit), oid in zip(todo.items(), blobs):
         try:
             rows = normalize(json.loads(_git(repo, "cat-file", "blob", oid)))
-        except ValueError as exc:  # JSONDecodeError and UnicodeDecodeError are ValueErrors
+        except (ValueError, TypeError) as exc:  # JSON/Unicode decode errors are ValueErrors
             errors.append((day, commit.sha, str(exc)[:200]))
             continue
         _write_partition(out, day, commit, rows)

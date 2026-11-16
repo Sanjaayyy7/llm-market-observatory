@@ -1,5 +1,5 @@
 """Append-only freshness log: one row per fetch run."""
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 import pyarrow as pa
@@ -20,7 +20,7 @@ def append_freshness(raw_dir: Path, source: str, rows: int, min_date: date, max_
                      schema_hash: str, probe: bool = False) -> None:
     path = raw_dir / "_freshness.parquet"
     new = pa.Table.from_pylist([{
-        "source": source, "run_ts": datetime.now(timezone.utc), "rows": rows,
+        "source": source, "run_ts": datetime.now(UTC), "rows": rows,
         "min_date": min_date, "max_date": max_date, "schema_hash": schema_hash, "probe": probe,
     }], SCHEMA)
     if path.exists():

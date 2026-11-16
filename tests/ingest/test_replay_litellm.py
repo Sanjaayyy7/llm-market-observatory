@@ -1,6 +1,6 @@
 import json
 import subprocess
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from unittest.mock import ANY
 
 import pyarrow.parquet as pq
@@ -28,7 +28,7 @@ def test_follow_crosses_rename(price_repo):
 def test_last_commit_per_utc_day(price_repo):
     days = rl.last_per_day(rl.list_commits(price_repo))
     assert sorted(days) == [D[i] for i in range(1, 6)]
-    assert days[D[3]].commit_ts == datetime(2024, 1, 3, 7, 30, tzinfo=timezone.utc)
+    assert days[D[3]].commit_ts == datetime(2024, 1, 3, 7, 30, tzinfo=UTC)
 
 
 def test_invalid_json_logged_and_skipped(price_repo, tmp_path):
@@ -50,7 +50,7 @@ def test_partition_carries_commit(price_repo, tmp_path):
     t = pq.ParquetFile(part(raw, D[3])).read()
     assert t.schema == rl.SCHEMA
     assert t["commit_sha"].to_pylist() == [rl.last_per_day(rl.list_commits(price_repo))[D[3]].sha]
-    assert t["commit_ts"].to_pylist() == [datetime(2024, 1, 3, 7, 30, tzinfo=timezone.utc)]
+    assert t["commit_ts"].to_pylist() == [datetime(2024, 1, 3, 7, 30, tzinfo=UTC)]
     assert t["input_cost_per_token"].to_pylist() == [2e-05]
 
 
@@ -75,7 +75,7 @@ def test_normalize_coercion():
                                   "input_cost_per_token": 1e-5, "output_cost_per_token": None}]
     assert rl.normalize({"m": {"input_cost_per_token": "abc", "output_cost_per_token": 2}})[0][
         "output_cost_per_token"] == 2.0
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         rl.normalize([])
 
 
