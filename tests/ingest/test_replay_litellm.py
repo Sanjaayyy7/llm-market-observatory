@@ -173,3 +173,22 @@ def test_missing_partitions_forces_full_replay(price_repo, tmp_path):
     res = rl.replay(price_repo, raw, state)
     assert res.days_written == first.days_written
     assert res.replay_hash == first.replay_hash
+
+
+def test_branch_commit_not_used_merge_dated(price_repo, add_commit, tmp_path):
+    from tests.ingest.conftest import _git
+    claude = {"claude-2": {"input_cost_per_token": 1e-05}}
+    add_commit(price_repo, "2024-01-05T13:00:00+00:00", {NEW: json.dumps(claude, indent=1)})
+    _git(price_repo, "checkout", "-q", "-b", "feat")
+    feat = {"gpt-4": {"input_cost_per_token": 9e-05}, **claude}
+    add_commit(price_repo, "2024-01-06T12:00:00+00:00", {NEW: json.dumps(feat, indent=1)})
+    _git(price_repo, "checkout", "-q", "main")
+    add_commit(price_repo, "2024-01-07T12:00:00+00:00", {NEW: json.dumps({**claude, "zzz": {}}, indent=1)})
+    _git(price_repo, "merge", "--no-ff", "-m", "merge", "feat", when="2024-01-08T12:00:00+00:00")
+    days = rl.last_per_day(rl.list_commits(price_repo))
+    assert date(2024, 1, 6) not in days
+    assert days[date(2024, 1, 8)].sha == _git(price_repo, "rev-parse", "HEAD")
+    raw, _, _ = run(price_repo, tmp_path)
+    rows = {r["model_key"]: r for r in pq.read_table(part(raw, date(2024, 1, 8))).to_pylist()}
+    assert rows["gpt-4"]["input_cost_per_token"] == 9e-05
+    assert "zzz" in rows

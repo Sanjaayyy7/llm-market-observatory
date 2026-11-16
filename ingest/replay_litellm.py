@@ -50,7 +50,7 @@ def _git(repo, *args, data=None):
 
 
 def list_commits(repo: Path) -> list[Commit]:
-    log = _git(repo, "log", "HEAD", "--follow", "--format=C|%H|%cI", "--name-status", "--", PRICE_FILE).decode()
+    log = _git(repo, "log", "HEAD", "--first-parent", "--follow", "--format=C|%H|%cI", "--name-status", "--", PRICE_FILE).decode()
     commits, cur = [], None
     for line in log.splitlines():
         if line.startswith("C|"):
@@ -59,6 +59,7 @@ def list_commits(repo: Path) -> list[Commit]:
             commits.append(cur)
         elif line and cur is not None:
             cur[2] = line.split("\t")[-1]  # path at this commit (new name on rename)
+    # --first-parent: main's line is the published price; merged branch commits carry their own dates
     # --follow also reaches a max_tokens.json ancestor with no prices
     return [Commit(*c) for c in commits if c[2] and c[2].endswith(PRICE_FILE)]
 
