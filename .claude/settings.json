@@ -1,7 +1,8 @@
 {
   "agent": "cofounder",
   "env": {
-    "GATEGUARD_EXEMPT_GLOBS": "*,docs/**,ingest/**,dbt/**,analysis/**,site/**,tests/**,.github/**,.claude/**"
+    "GATEGUARD_EXEMPT_GLOBS": "*,docs/**,ingest/**,dbt/**,analysis/**,site/**,tests/**,.github/**,.claude/**",
+    "PONYTAIL_DEFAULT_MODE": "ultra"
   },
   "permissions": {
     "ask": [
