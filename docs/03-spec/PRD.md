@@ -1,7 +1,7 @@
 # PRD: LLM Market Observatory
 
-**Status:** v1.2, feasibility spike applied (`validation/feasibility-spike.md`); design approved by delegation (user, 2026-11-15: "take over from here") · **Date:** 2026-11-15 · **Deadline:** original Sun 2026-11-15 passed; the user sets the new date
-**Inputs:** `validation/research-brief.md` (E1–E31, R1–R12) · `validation/council/chair-verdict.md` (go-with-changes, gates G0–G10)
+**Status:** v1.2, feasibility spike applied (`docs/04-feasibility-spike/feasibility-spike.md`); design approved by delegation (user, 2026-11-15: "take over from here") · **Date:** 2026-11-15 · **Deadline:** original Sun 2026-11-15 passed; the user sets the new date
+**Inputs:** `docs/01-research/research-brief.md` (E1–E31, R1–R12) · `docs/02-council/04-chair-verdict.md` (go-with-changes, gates G0–G10)
 **Traceability:** every requirement cites the evidence it rests on (E/R) and the gate that proves it (G). Items marked *(my call)* are defaults set by Claude for the user to check.
 
 ## 1. Problem and why now
@@ -21,7 +21,7 @@
 ## 3. Headline
 - **Question (v1.2):** Do top-tier LLMs ever cut their launch price, and what happens to developer adoption when one does?
 - **Number shape (v1.2):** "**Y%** of top-tier models cut their list price within 365 days of listing (Kaplan–Meier 1 − S(365), 95% CI, n=k, commit lag ±d)". Models never cut are censored.
-  - The spike (`validation/feasibility-spike.md`) found most top-tier models never cut, so the KM median is undefined and the v1.1 fallback becomes the headline. If a median exists at G6, it is a secondary number.
+  - The spike (`docs/04-feasibility-spike/feasibility-spike.md`) found most top-tier models never cut, so the KM median is undefined and the v1.1 fallback becomes the headline. If a median exists at G6, it is a secondary number.
   - Framing, paired with the Epoch check (A2): the price at fixed capability falls fast, yet same-model list prices rarely move, so the decline arrives through new models. Stated as consistent with both results, not as a separately tested claim.
 - The value is unknown until G6. It is never invented, and any placeholder is visibly marked TBD.
 
@@ -158,7 +158,7 @@ Under usage limits, cut in this order:
 - Do the drills before release.
 
 ## 13. v1.2 decisions (2026-11-15, delegated by the user: "take over from here")
-Source: `validation/feasibility-spike.md`.
+Source: `docs/04-feasibility-spike/feasibility-spike.md`.
 - **D1 ID rule:** versioned IDs **and** stable undated IDs count as canonical models; moving aliases are excluded by rule (design.md §6). Reason: since 2025-11 only 25/139 big-4 chat models have dated IDs, so v1.1 dropped the 2026 frontier.
 - **D2 Headline:** §3 v1.2 (KM 365-day cut share).
 - **D3 Event study:** descriptive only (A4, §11 cut 2).

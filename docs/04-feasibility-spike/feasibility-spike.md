@@ -1,6 +1,6 @@
 # Feasibility spike (2026-11-15)
 
-Throwaway, read-only check run before design approval. No product code. Scripts lived in the session scratchpad and are not kept; this file records the numbers.
+Throwaway, read-only check run before design approval. No product code. Scripts and the two small outputs were rescued from the session scratchpad on 2026-11-16 into `scripts/` and `outputs/` (kept as run, not linted). The 100 MB `snapshots.csv` is not kept; `replay.py` regenerates it from a LiteLLM clone.
 
 ## What was run
 

@@ -1,10 +1,10 @@
 # design.md — LLM Market Observatory
 
 **Status:** v1.2, approved by delegation (user, 2026-11-15: "take over from here") · **Date:** 2026-11-15 · **Deadline:** original 2026-11-15 passed; the user sets the new date
-**Reads with:** `PRD.md` (what/why, requirement IDs), `validation/council/chair-verdict.md` (scope, gates).
-*(my call)* marks defaults Claude chose; everything else comes from the user, the council, or the evidence (E/R IDs in `validation/research-brief.md`).
+**Reads with:** `PRD.md` (what/why, requirement IDs), `docs/02-council/04-chair-verdict.md` (scope, gates).
+*(my call)* marks defaults Claude chose; everything else comes from the user, the council, or the evidence (E/R IDs in `docs/01-research/research-brief.md`).
 
-**What changed in v1.2** (from `validation/feasibility-spike.md`)
+**What changed in v1.2** (from `docs/04-feasibility-spike/feasibility-spike.md`)
 - Canonical ID rule relaxed: stable undated IDs count; moving aliases excluded by rule (§6).
 - Headline is the KM 365-day cut share; the median is secondary (PRD §3).
 - Event study descriptive only; the G10 eval is deferred past v1.0 (PRD §11).
@@ -60,7 +60,7 @@ llm-market-observatory/
   evals/                   # questions.yaml, harness.py, scorer.py, cache/, ledger.csv
   site/                    # Observable Framework app (src/*.md, data/*.parquet)
   tests/                   # pytest: ingest, analysis, evals
-  docs/                    # PRD, design, STATUS, DECISIONS, AI_USAGE, DATA, prereg/, drills/, validation/
+  docs/                    # STATUS, DECISIONS, AI_USAGE, DATA, prereg/, drills/; phase history 00-charter/ … 05-build-plan/ (see docs/README.md)
   .github/workflows/       # ci.yml, refresh.yml, pages.yml
 ```
 

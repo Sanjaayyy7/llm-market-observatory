@@ -1,7 +1,7 @@
 # Research Brief: LLM Market Observatory
 
 **Stage:** 01 Research (Bloom-style). **Date:** 2026-11-10. **Status:** v1, verification pass appended below.
-**Raw reports:** `research/01-hiring-bar.md`, `research/02-landscape-datasets.md`, `research/03-method-and-stack.md`, `research/04-verification.md`.
+**Raw reports:** `reports/01-hiring-bar.md`, `reports/02-landscape-datasets.md`, `reports/03-method-and-stack.md`, `reports/04-verification.md`.
 
 ## Decision question
 Should a new-grad AI-engineering/evals candidate targeting **Product Analyst, Data Engineer (analytics), and Product Data Scientist** roles at FAANG and top AI startups build the **LLM Market Observatory** this week, fully AI-assisted? Or pivot to (B) Arena preference lab or (C) synthetic AI-app analytics + A/B? What scope survives?
@@ -27,7 +27,7 @@ Confidence: H = primary source, read directly. M = mirror, vendor-run survey, or
 
 | ID | Claim | Source | Date | Conf |
 |---|---|---|---|---|
-| E1 | Across 42 postings, all four role flavors share SQL, data modeling and one-definition metrics. Product DS postings: experimentation 11/12, causal 8/12, LLM/AI 8/12 (evals 4/12). | `research/01-hiring-bar.md` (42 postings, tallied by hand, ±1) | 2025-26 | M |
+| E1 | Across 42 postings, all four role flavors share SQL, data modeling and one-definition metrics. Product DS postings: experimentation 11/12, causal 8/12, LLM/AI 8/12 (evals 4/12). | `reports/01-hiring-bar.md` (42 postings, tallied by hand, ±1) | 2025-26 | M |
 | E2 | Meta DE Product Analytics asks for SQL/ETL/modeling, owning SLAs, logging frameworks and "cost-benefit tradeoffs". AI appears only as a preferred skill. | https://jobfound.org/job/meta-is-hiring-for-data-engineer-product-analytics-united-states-remote-usa-3-november-2026 | 2026-11-03 | M |
 | E3a | Anthropic Recruiting Analytics DE asks for dimensional models with SCDs, dbt and "semantic layers for data agents". | https://job-boards.greenhouse.io/anthropic/jobs/5424111008 | 2026-09-17 | H |
 | E3b | Anthropic DS Product asks for experiments and synthetic controls, plus defining core metrics. | https://job-boards.greenhouse.io/anthropic/jobs/5182605008 | 2026-08-24 | H |
@@ -79,7 +79,7 @@ Confidence: H = primary source, read directly. M = mirror, vendor-run survey, or
 | E12 | Bloom's council uses five lenses (Contrarian, First principles, Expansionist, Outsider, Executor), anonymized A-E peer review and a chair verdict. Karpathy's llm-council: parallel answers -> anonymized ranking -> chairman synthesis. | https://bloom-beta.com/features ; https://github.com/karpathy/llm-council | 2026-11-10 | H |
 
 ## Competitors and alternatives
-Source: `research/04-verification.md` §10, all accessed 2026-11-10. The gap is **narrower than assumed**.
+Source: `reports/04-verification.md` §10, all accessed 2026-11-10. The gap is **narrower than assumed**.
 
 | Competitor | What it already shows | What it lacks |
 |---|---|---|
@@ -117,7 +117,7 @@ See the verification pass below. Also unverified:
 - Stripe and Ramp live postings.
 - Meta's official DE prep pages.
 
-## Verification pass (from `research/04-verification.md`, endpoints called live 2026-11-10)
+## Verification pass (from `reports/04-verification.md`, endpoints called live 2026-11-10)
 | ID | Claim | Source | Conf |
 |---|---|---|---|
 | E20 | LiteLLM `model_prices_and_context_window.json`: MIT (outside `enterprise/`), 5,870 entries, 2,940 commits since 2023-09-06. The first commit was a rename, so use `--follow`. Retired models are deleted from today's file, so history requires git. Commit time = *observed* time, not the provider's effective date. | https://github.com/BerriAI/litellm | H |

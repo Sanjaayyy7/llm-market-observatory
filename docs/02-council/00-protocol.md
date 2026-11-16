@@ -3,7 +3,7 @@
 **Purpose:** attack the idea before users (hiring managers) do. This file is the audit trail: "we ran it through council" refers to this exact process.
 
 ## Inputs
-- Decision question + idea: `../research-brief.md` (the only document each advisor sees).
+- Decision question + idea: `../01-research/research-brief.md` (the only document each advisor sees).
 - Each advisor sees the brief and nothing else. No conversation history and no other memos.
 
 ## Stage 1: Independent perspectives (parallel)
@@ -38,4 +38,4 @@ The chair reads the de-anonymized memos, all reviews and the rank table, and ret
 - Confidence
 
 ## Outputs
-`memo-<lens>.md` ×5 · `map.json` · `review-<lens>.md` ×5 · `ranks.md` · `chair-verdict.md`
+`01-memos/memo-<lens>.md` ×5 · `02-blind-review/map.json` · `02-blind-review/review-<lens>.md` ×5 · `03-ranks.md` · `04-chair-verdict.md`
