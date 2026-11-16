@@ -113,7 +113,7 @@ It also verifies that GitHub disables scheduled workflows on idle public repos (
 8. **Determinism:** write sorted rows; `replay_hash` = sha256 over the sorted partition files. **G3 requires two clean runs to produce the same hash.**
 
 **SCD2 in dbt** (`dim_model_price`, gaps-and-islands SQL — the hand-written drill target):
-1. `stg_litellm__snapshots`: one row per `(snapshot_date, model_key)`, filtered to `mode in ('chat','completion')`.
+1. `stg_litellm__snapshots`: one row per `(snapshot_date, model_key)`, filtered to `mode in ('chat','completion','responses')`. A null `mode` takes the key's next non-null mode; a key never given a mode is kept. *(v1.2, spike: the v1.1 filter dropped the whole 2023-09-06 snapshot, where all 19 keys have null mode, and `responses`-only models such as `gpt-5.4` and `gpt-5.2-pro`.)*
 2. `int_price_versions`:
    - Compute `price_sig = (input, output)`.
    - Flag a change when `price_sig` differs from the previous snapshot for the same key, or the key reappears after an absence.
@@ -226,6 +226,7 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
    - The pre-registration (`docs/prereg/event-study.md`, from PRD §8) is committed **before** `event_study.py` exists. CI enforces this with a check that the prereg commit predates the first commit touching `analysis/event_study.py`.
    - Spec: OLS with event-window dummies, SDK-group and day-of-week fixed effects, HAC standard errors. Placebos: 100 random pseudo-dates per group, plus the control package.
    - All results are published, including nulls. Below the power floor: descriptive plot plus one placebo only.
+   - **v1.2: the floor is not met (spike: 3–6 isolated events).** The shipped analysis is descriptive: per-event download paths −28…+28 normalized to the pre-window mean, plus the placebo distribution. The OLS/HAC spec above is not run.
 
 ## 10. Freshness and quality
 - `source_freshness` is computed every run.
@@ -260,16 +261,16 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
    - Per-model step chart of blended price (SCD2 intervals), with cut markers.
    - Provider filter; table of cuts with depth and audit lag.
 3. **Adoption:**
-   - Event-study coefficient plot (−28…+28) with a 95% band.
-   - Placebo distribution histogram with the observed estimate marked.
-   - Bold verdict line: "effect / no detectable effect at MDE x%".
+   - *(v1.2, descriptive)* One line per event: downloads −28…+28 normalized to the pre-window mean, with the first cut marked.
+   - Placebo distribution histogram with the observed post/pre ratio marked.
+   - Bold verdict line: "Descriptive only: n=k events, below the pre-registered floor of 8."
    - Link to the pre-registration commit.
 4. **Methods & data:**
    - Metric definitions (§8), grain table (§7) and freshness table.
    - Coverage %, the Epoch check result, sources and licenses (DATA.md).
 5. **Eval** (only if G10 ships): per-arm accuracy with CI, failure taxonomy table, spend total.
 
-**Components:** `HeadlineStat` (number, interval, n, stamp), `StepChart`, `CoefPlot`, `PlaceboHist`, `DataStamp`, `CaveatNote`. All built with Observable Plot.
+**Components:** `HeadlineStat` (number, interval, n, stamp), `StepChart`, `EventLines` *(v1.2; replaces CoefPlot)*, `PlaceboHist`, `DataStamp`, `CaveatNote`. All built with Observable Plot.
 
 **UX patterns**
 - Every number is clickable through to its definition on the Methods page.

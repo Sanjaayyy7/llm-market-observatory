@@ -11,8 +11,8 @@
 - [x] Spec v1.2 (PRD §13): relaxed ID rule, KM 365-day headline, descriptive event study, eval deferred, kill criteria (design §18). Design approved by delegation 2026-11-15.
 
 ## Next
-1. Build plan → `docs/plans/`
-2. Build G0 → G7, then descriptive G8–G9. G10 deferred.
+1. Review build plan `docs/plans/2026-11-15-v1-ship-line.md` (12 tasks), pick execution mode
+2. Execute Task 1 (G0) → Task 12, in order. G10 deferred.
 
 ## Blockers / needs user
 - New deadline date.
