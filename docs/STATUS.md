@@ -1,30 +1,23 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-11 · **Milestone:** M0 Validate, awaiting design approval · **Deadline:** Sun 2026-11-15
+**Updated:** 2026-11-15 · **Milestone:** M1 Build (G0 next) · **Deadline:** original 2026-11-15 passed; the user sets the new date
 **Grand plan:** `~/.claude/plans/https-www-datacamp-com-blog-data-analyti-jazzy-peach.md`
 
 ## Done
-- [x] Research sprint: `docs/validation/research/01-04*.md` (raw, cited) → `docs/validation/research-brief.md` (E1–E31, R1–R12)
-- [x] Council: 5 memos → anonymized A–E → 5 blind reviews → `ranks.md` (5/5 support) → `chair-verdict.md` (go-with-changes)
-- [x] `docs/PRD.md` + `docs/design.md` v1.1 (builder check resolved, user decisions applied)
-
-## In progress
-- [ ] User approval of `docs/design.md` (HARD GATE)
+- [x] Research sprint → `docs/validation/research-brief.md` (E1–E31, R1–R12)
+- [x] Council → `docs/validation/council/chair-verdict.md` (go-with-changes)
+- [x] PRD + design v1.1 (builder check, user decisions)
+- [x] Feasibility spike → `docs/validation/feasibility-spike.md`: replay works; ~10% of top-tier models cut within 365 days; event study below the power floor
+- [x] Spec v1.2 (PRD §13): relaxed ID rule, KM 365-day headline, descriptive event study, eval deferred, kill criteria (design §18). Design approved by delegation 2026-11-15.
 
 ## Next
-1. superpowers:writing-plans → `docs/plans/` build plan (gates G0–G10, TDD tasks)
-2. Build in gate order G0 → G10; drills batched before the v1.0 tag
-
-## Key decisions so far
-- Lead idea: Observatory. Pivots B (Arena preference lab), C (synthetic app + A/B).
-- Verification shifted the centerpiece to **adoption response**. Epoch's ~13×/yr price decline becomes a ground-truth check, not the headline (E22, E31).
-- Pins: Python 3.12, `duckdb<2`, dbt-core 1.12.x + dbt-duckdb 1.11.x + dbt-metricflow 0.15.x (E28). Dashboard: Observable Framework + Parquet on GitHub Pages (E29).
+1. Build plan → `docs/plans/`
+2. Build G0 → G7, then descriptive G8–G9. G10 deferred.
 
 ## Blockers / needs user
-- Approve design.md (now).
-- G2: approve canonical model list + manual matches.
-- G7: repo + Pages approved in principle; Claude confirms before first push.
-- G10: Gemini key from a **no-billing** project (free tier only, $0).
+- New deadline date.
+- G2: approve the canonical model list + manual matches.
+- G7: Claude confirms before the first push (repo + Pages approved in principle).
 - Release: drills.
 
 ## Resume prompt

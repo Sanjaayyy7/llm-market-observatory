@@ -1,8 +1,14 @@
 # design.md — LLM Market Observatory
 
-**Status:** v1.1, waiting on user approval (HARD GATE) · **Date:** 2026-11-11 · **Deadline:** Sun 2026-11-15
+**Status:** v1.2, approved by delegation (user, 2026-11-15: "take over from here") · **Date:** 2026-11-15 · **Deadline:** original 2026-11-15 passed; the user sets the new date
 **Reads with:** `PRD.md` (what/why, requirement IDs), `validation/council/chair-verdict.md` (scope, gates).
 *(my call)* marks defaults Claude chose; everything else comes from the user, the council, or the evidence (E/R IDs in `validation/research-brief.md`).
+
+**What changed in v1.2** (from `validation/feasibility-spike.md`)
+- Canonical ID rule relaxed: stable undated IDs count; moving aliases excluded by rule (§6).
+- Headline is the KM 365-day cut share; the median is secondary (PRD §3).
+- Event study descriptive only; the G10 eval is deferred past v1.0 (PRD §11).
+- Kill criteria added (§18).
 
 **What changed in v1.1**
 - **Builder-check resolutions (my calls):**
@@ -144,8 +150,8 @@ It also verifies that GitHub disables scheduled workflows on idle public repos (
 **Scope:** every model that is ever top-tier (PRD §6) in the Arena text history since 2023-05, plus each one's first-party LiteLLM keys.
 
 **What one canonical model is** (builder-check resolution, my call):
-- **One canonical model = one versioned API model**, i.e. a dated or explicitly versioned ID such as `gpt-4o-2024-08-06` or `claude-3-5-sonnet-20241022`.
-- **Moving aliases are flagged and excluded from the headline population.** These are unversioned keys that repoint over time: `gpt-4o`, `o3`, `*-latest`, `deepseek-reasoner`. Flag them with `is_moving_alias = true` in `seed_model_crosswalk`. They appear only in a sensitivity analysis.
+- **One canonical model = one pinned API model** *(v1.2)*: a dated or versioned ID (`gpt-4o-2024-08-06`, `claude-3-5-sonnet-20241022`) **or** a stable undated ID with no dated twin (`gpt-5.4`, `gemini-3-pro-preview`).
+- **Moving aliases are flagged and excluded from the headline population.** A key is a moving alias if (a) it contains `latest`; (b) it is undated and a key in the same group equals it plus a date suffix (`gpt-4o` → `gpt-4o-2024-08-06`, `o3` → `o3-2025-04-16`; dedupe to the dated twin); or (c) the provider documents it as repointing (`deepseek-chat`, `deepseek-reasoner`; listed by hand). Flag them with `is_moving_alias = true` in `seed_model_crosswalk`. They appear only in a sensitivity analysis.
   - An alias repointing to a cheaper snapshot is **never** counted as a cut.
   - So the crosswalk needs no validity dates.
 - **Several first-party keys for one canonical model** (e.g. `gemini/gemini-2.5-flash` vs `gemini-2.5-flash`): use the key whose `litellm_provider` is the provider's own first-party value (`seed_provider_map.is_first_party`).
@@ -316,13 +322,13 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
 - `docs/STATUS.md` is updated at the end of every session: done, next, blockers, resume prompt.
 - `main` is always shippable. Each slice goes on a branch and merges when its gate passes.
 - A gate failing twice triggers the next item in the PRD §11 cut order.
-- No new slice starts after Sat 2026-11-14. Sunday is for finishing, drills and docs only.
+- *(v1.2)* The original Sat 2026-11-14 slice cutoff passed. Ship line: G0–G7 plus descriptive G8–G9 (PRD §11). The user sets the new date.
 - **User touchpoints, in build order:**
   1. G2: approve the crosswalk.
   2. G7: OK to create the repo and enable Pages, already approved in principle; Claude confirms before the first push.
-  3. G10: the no-billing Gemini key and the pre-run check.
+  3. G10: the no-billing Gemini key and the pre-run check *(deferred with G10, v1.2)*.
   4. Release: the drills.
-- The order of work is the gate order G0 → G10.
+- The order of work is the gate order G0 → G9 (G10 deferred, v1.2).
 
 ## 16. Left to the builder
 - Library choices inside fetchers, and exact SQL formatting.
@@ -346,6 +352,20 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
 11. gitleaks in CI.
 12. Repo layout.
 13. *(v1.1)* Epoch target: 2025 paper, GPT-4-level GPQA Diamond, about 40×/yr ×/÷2.
-14. *(v1.1)* Versioned IDs only; aliases go to sensitivity analysis.
+14. *(v1.1, superseded by 17)* Versioned IDs only; aliases go to sensitivity analysis.
 15. *(v1.1)* Events are per-model first cuts, clustered at ±28 days.
 16. *(v1.1)* Eval arm B queries the marts.
+17. *(v1.2)* Stable undated IDs count; moving aliases by rule (§6).
+18. *(v1.2)* Headline = KM 1 − S(365); median secondary.
+19. *(v1.2)* Event study descriptive only; eval deferred.
+20. *(v1.2)* Kill criteria in §18.
+
+## 18. Kill criteria (v1.2, written before any product data is analysed)
+| Gate | Trigger | Action |
+|---|---|---|
+| G3 | >2% of replay days fail to parse, or the replay hash differs across two runs | Stop; fix the replay before building any model |
+| G2 | <30 top-tier canonical models after the crosswalk, or closed coverage <80% | Panel-only scope: no headline number; the dashboard shows the panel |
+| G4 | >25% of audited cuts are data fixes, not real price changes | Tighten the correction rules and re-audit once; if it fails again, the headline reports observed changes with the audit rate |
+| G5 | Epoch check outside ×/÷2 | No headline (unchanged) |
+| G6 | <3 observed cuts among top-tier models | Report Y with an exact CI and say "too few cuts for a curve"; drop the KM chart |
+| G8 | <8 isolated events | Descriptive only (already true per the spike: 3–6) |

@@ -1,6 +1,6 @@
 # PRD: LLM Market Observatory
 
-**Status:** v1.1, builder check resolved and user decisions applied, waiting on user approval of design.md · **Date:** 2026-11-11 · **Deadline:** Sun 2026-11-15
+**Status:** v1.2, feasibility spike applied (`validation/feasibility-spike.md`); design approved by delegation (user, 2026-11-15: "take over from here") · **Date:** 2026-11-15 · **Deadline:** original Sun 2026-11-15 passed; the user sets the new date
 **Inputs:** `validation/research-brief.md` (E1–E31, R1–R12) · `validation/council/chair-verdict.md` (go-with-changes, gates G0–G10)
 **Traceability:** every requirement cites the evidence it rests on (E/R) and the gate that proves it (G). Items marked *(my call)* are defaults set by Claude for the user to check.
 
@@ -19,9 +19,10 @@
 | Memo reader (persona) | Reads the decision memo | A product lead deciding: "buy at launch price, or wait for the first cut?" |
 
 ## 3. Headline
-- **Question:** How long does a newly listed top-tier LLM keep its launch price, and does the first cut move developer adoption?
-- **Number shape:** "**X days** (IQR a–b, n=k, commit lag ±d)". This is the Kaplan–Meier median from first observed listing to first observed cut; models never cut are censored.
-  - Fallback if the median is undefined (most models never cut): "**Y%** of top-tier models cut price within 365 days."
+- **Question (v1.2):** Do top-tier LLMs ever cut their launch price, and what happens to developer adoption when one does?
+- **Number shape (v1.2):** "**Y%** of top-tier models cut their list price within 365 days of listing (Kaplan–Meier 1 − S(365), 95% CI, n=k, commit lag ±d)". Models never cut are censored.
+  - The spike (`validation/feasibility-spike.md`) found most top-tier models never cut, so the KM median is undefined and the v1.1 fallback becomes the headline. If a median exists at G6, it is a secondary number.
+  - Framing, paired with the Epoch check (A2): the price at fixed capability falls fast, yet same-model list prices rarely move, so the decline arrives through new models. Stated as consistent with both results, not as a separately tested claim.
 - The value is unknown until G6. It is never invented, and any placeholder is visibly marked TBD.
 
 ## 4. Goals, non-goals, anti-goals
@@ -89,7 +90,7 @@
 | A1 | Headline survival analysis per §3. The hand-written SQL equals the model output | E7, R1 | G6 |
 | A2 | Epoch check: reproduced fixed-capability decline within ×/÷2 of Epoch's ~13×/yr (*my call*); otherwise no headline. Plus a price-level spot-check against tokencanopy | E22, E31 | G5 |
 | A3 | Pre-registration committed before any event-study code | R4 | G8 |
-| A4 | Event study, results and placebos published whatever they show; below the power floor, descriptive only | R4, E24 | G9 |
+| A4 | Event study, results and placebos published whatever they show; below the power floor, descriptive only. **v1.2: the spike counted 3–6 isolated events vs the floor of 8, so descriptive case studies only (per-event download plots, one placebo), no inference** | R4, E24 | G9 |
 
 **Surface**
 | ID | Requirement | Evidence | Gate |
@@ -111,7 +112,7 @@
 | X1 | DECISIONS.md: each choice, the rejected alternative, and the E-ID | E5a–c | all |
 | X2 | AI_USAGE.md: honest account of what AI wrote and how it was verified | E5a | all |
 | X3 | No-AI drills, **batched at the end (user decision v1.1)**: for each slice, explain grain, one test, one failure mode; hand-write the SCD2 and headline SQL, and `make drill-check` matches it to the models. Required before the v1.0 release tag and before the link is shared. Never blocks a merge | E5b, E5c, E16 | release |
-| O1 | STATUS.md updated every session; `main` stays shippable; a gate failing twice triggers the next cut; no new slice starts after Sat 2026-11-14 | R6 | all |
+| O1 | STATUS.md updated every session; `main` stays shippable; a gate failing twice triggers the next cut; one gate per merge; the v1.0 ship line is §11 (the original Sat 2026-11-14 cutoff passed) | R6 | all |
 
 ## 8. Pre-registration skeleton (filled in and committed at G8, before any code)
 - **Unit:** provider SDK group (`openai`, `anthropic`, `google-genai`+`google-generativeai`, `mistralai`, …). Providers without their own SDK are excluded.
@@ -122,6 +123,7 @@
 - **Power floor:** ≥8 non-clustered events (no other event for the same group within ±28 days) and MDE ≤20%. Otherwise descriptive only.
 - **Placebos:** 100 random pseudo-dates per group, plus one non-AI control package.
 - **Known limitation (disclosed):** events are model-level but the outcome is provider-level (SDK downloads). The OpenRouter model-level outcome was dropped in v1.1.
+- **v1.2 spike result (event counts only; no download data seen):** 3 isolated events under the versioned rule, 6 under the relaxed rule. Below the floor, so the G8 commit pre-registers a descriptive plan.
 
 ## 9. Success metrics
 - G0–G9 pass by the deadline; G10 if not cut.
@@ -136,11 +138,11 @@ G0–G10 exactly as in `chair-verdict.md` §Gates; design.md defines each check.
 
 ## 11. Cut order
 Under usage limits, cut in this order:
-1. MetricFlow and the eval (there is no paid run: free tier only)
-2. Event-study inference (keep the descriptive plot and one placebo)
+1. MetricFlow and the eval (there is no paid run: free tier only). **Applied v1.2: G10 deferred past v1.0.**
+2. Event-study inference (keep the descriptive plot and one placebo). **Applied v1.2: triggered by the spike's event count.**
 3. Cron (fall back to a static snapshot)
 
-Never cut: crosswalk tests, the panel, the Epoch check.
+**v1.0 ship line (v1.2):** G0–G7 plus descriptive G8–G9. Never cut: crosswalk tests, the panel, the Epoch check.
 
 ## 12. User decisions (v1.1, 2026-11-11)
 - **Drills:** batched at the end, before the release tag (X3).
@@ -150,7 +152,16 @@ Never cut: crosswalk tests, the panel, the Epoch check.
 - **Approved at the time they're reached:** a public repo `llm-market-observatory` under the user's GitHub account, GitHub Pages, and the weekly auto-refresh Action.
 
 **Still needs the user:**
-- Approve design.md (hard gate).
+- ~~Approve design.md (hard gate)~~ delegated 2026-11-15 (§13).
 - Approve the crosswalk at G2.
-- Provide a Gemini key from a no-billing project at G10.
+- Provide a Gemini key from a no-billing project at G10 *(deferred with G10)*.
 - Do the drills before release.
+
+## 13. v1.2 decisions (2026-11-15, delegated by the user: "take over from here")
+Source: `validation/feasibility-spike.md`.
+- **D1 ID rule:** versioned IDs **and** stable undated IDs count as canonical models; moving aliases are excluded by rule (design.md §6). Reason: since 2025-11 only 25/139 big-4 chat models have dated IDs, so v1.1 dropped the 2026 frontier.
+- **D2 Headline:** §3 v1.2 (KM 365-day cut share).
+- **D3 Event study:** descriptive only (A4, §11 cut 2).
+- **D4 Eval:** deferred past v1.0 (§11 cut 1). The design stays in design.md §13.
+- **D5 Kill criteria:** design.md §18, written before any product data is analysed.
+- **Unchanged:** the user approves the crosswalk at G2, confirms before the first push, and does the drills.
