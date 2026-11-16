@@ -1,0 +1,35 @@
+{
+  "agent": "cofounder",
+  "env": {
+    "GATEGUARD_EXEMPT_GLOBS": "*,docs/**,ingest/**,dbt/**,analysis/**,site/**,tests/**,.github/**,.claude/**"
+  },
+  "permissions": {
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git push)",
+      "Bash(git -C * push *)",
+      "Bash(gh *)",
+      "Bash(git tag *)",
+      "Bash(brew *)",
+      "Bash(npm install -g *)",
+      "Bash(npm i -g *)",
+      "Bash(npm install --global *)",
+      "Bash(nvm *)",
+      "Bash(fnm *)",
+      "Bash(uv tool *)",
+      "Bash(pipx *)",
+      "Edit(./.claude/**)",
+      "Write(./.claude/**)"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/**)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(sudo *)"
+    ]
+  }
+}
