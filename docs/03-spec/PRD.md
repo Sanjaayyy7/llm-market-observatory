@@ -88,7 +88,7 @@
 | ID | Requirement | Evidence | Gate |
 |---|---|---|---|
 | A1 | Headline survival analysis per §3. The hand-written SQL equals the model output | E7, R1 | G6 |
-| A2 | Epoch check: reproduced fixed-capability decline within ×/÷2 of Epoch's ~13×/yr (*my call*); otherwise no headline. Plus a price-level spot-check against tokencanopy | E22, E31 | G5 |
+| A2 | *Superseded 2026-11-16 (DECISIONS "G5 replan"; plan Task 8: dated price agreement with Epoch's data, with Epoch's 42×/yr attributed to Epoch).* Was: Epoch check: reproduced fixed-capability decline within ×/÷2 of Epoch's ~13×/yr (*my call*); otherwise no headline. Plus a price-level spot-check against tokencanopy | E22, E31 | G5 |
 | A3 | Pre-registration committed before any event-study code | R4 | G8 |
 | A4 | Event study, results and placebos published whatever they show; below the power floor, descriptive only. **v1.2: the spike counted 3–6 isolated events vs the floor of 8, so descriptive case studies only (per-event download plots, one placebo), no inference** | R4, E24 | G9 |
 

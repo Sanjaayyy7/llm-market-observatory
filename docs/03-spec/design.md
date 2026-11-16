@@ -209,7 +209,7 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
    - lifelines `KaplanMeierFitter` on `mart_launch_price_survival`, producing the median, IQR and n.
    - **Drill check:** a hand-written SQL version of the headline inputs (listed_at, first_cut_at, censored) must equal the mart row for row.
    - Sensitivity checks reported, not headlined: all models vs top-tier; cut thresholds of 5% and 20%.
-2. **Epoch check (G5)**. *Builder-check resolution, my call:* replicate the method that matches ours.
+2. **Epoch check (G5)**. *Superseded 2026-11-16 by DECISIONS "G5 replan" (plan Task 8): we reproduce Epoch's 42×/yr from their own data and check our prices against theirs observation by observation. The trend band below is kept for history.* *Builder-check resolution, my call:* replicate the method that matches ours.
    - **Not** "The plunging price of thought" (13×/yr). That paper uses transcript costs, not list prices.
    - The target is Epoch's **2025 Data Insight** "LLM inference prices have fallen rapidly but unequally across tasks" (2025-03-12). Its method matches ours: 3:1 blend, list prices, first-party, reasoning models excluded.
    - **Pre-committed spec** (`docs/prereg/epoch-check.md`, committed before the code). Read the exact threshold value and date window from Epoch's repo `epoch-research/llm-benchmark-efficiency` at G1 and freeze them in the prereg:
@@ -367,6 +367,6 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
 | G3 | >2% of replay days fail to parse, or the replay hash differs across two runs | Stop; fix the replay before building any model |
 | G2 | <30 top-tier canonical models after the crosswalk, or closed coverage <80% | Panel-only scope: no headline number; the dashboard shows the panel |
 | G4 | >25% of audited cuts are data fixes, not real price changes | Tighten the correction rules and re-audit once; if it fails again, the headline reports observed changes with the audit rate |
-| G5 | Epoch check outside ×/÷2 | No headline (unchanged) |
+| G5 | ~~Epoch check outside ×/÷2~~ *Superseded 2026-11-16 (DECISIONS "G5 replan"): dated price agreement on Epoch's 36 GPQA-Diamond candidates fails its pre-registered pass rule after one audit pass* | No headline (unchanged) |
 | G6 | <3 observed cuts among top-tier models | Report Y with an exact CI and say "too few cuts for a curve"; drop the KM chart |
 | G8 | <8 isolated events | Descriptive only (already true per the spike: 3–6) |
