@@ -116,10 +116,8 @@ def _write_partition(out: Path, day: date, commit: Commit, rows: list[dict]) -> 
 
 
 def _resolve_blobs(repo, days):
-    spec = "".join(f"{c.sha}:{c.path}\n" for c in days.values()).encode()
-    lines = _git(repo, "cat-file", "--batch-check=%(objectname)", data=spec).decode().splitlines()
-    if len(lines) != len(days) or any(" " in line for line in lines):
-        raise RuntimeError("blob resolve failed")
+    # rev-parse, not cat-file --batch-check: in a blobless clone batch-check lazy-fetches each blob one by one
+    lines = _git(repo, "rev-parse", *[f"{c.sha}:{c.path}" for c in days.values()]).decode().splitlines()
     if subprocess.run(["git", "-C", str(repo), "config", "--get", "remote.origin.promisor"],
                       check=False, capture_output=True, text=True).stdout.strip() == "true":
         # one batched fetch; per-blob lazy fetch is far slower
