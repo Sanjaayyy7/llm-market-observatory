@@ -154,3 +154,14 @@ def test_freshness_appended_per_run(price_repo, tmp_path):
     assert {r["source"] for r in rows} == {"litellm"}
     assert all(r["run_ts"].tzinfo is not None and r["run_ts"].utcoffset().total_seconds() == 0 for r in rows)
     assert [r["probe"] for r in rows] == [False, False]
+
+
+def test_error_day_fixed_same_day_clears_error(price_repo, add_commit, tmp_path):
+    raw, state, _ = run(price_repo, tmp_path)
+    add_commit(price_repo, "2024-01-06T10:00:00+00:00", {NEW: "{not json"})
+    assert len(rl.replay(price_repo, raw, state).errors) == 1
+    add_commit(price_repo, "2024-01-06T14:00:00+00:00", {NEW: json.dumps({"gpt-4": {}})})
+    rl.replay(price_repo, raw, state)
+    errs = pq.read_table(raw / "litellm" / "_replay_errors.parquet").to_pylist()
+    assert [e["snapshot_date"] for e in errs] == [D[4]]
+    assert part(raw, D[6]).exists()

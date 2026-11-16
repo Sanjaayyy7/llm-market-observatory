@@ -118,7 +118,7 @@ def _write_partition(out: Path, day: date, commit: Commit, rows: list[dict]) -> 
 def _resolve_blobs(repo, days):
     # rev-parse, not cat-file --batch-check: in a blobless clone batch-check lazy-fetches each blob one by one
     lines = _git(repo, "rev-parse", *[f"{c.sha}:{c.path}" for c in days.values()]).decode().splitlines()
-    if subprocess.run(["git", "-C", str(repo), "config", "--get", "remote.origin.promisor"],
+    if lines and subprocess.run(["git", "-C", str(repo), "config", "--get", "remote.origin.promisor"],
                       check=False, capture_output=True, text=True).stdout.strip() == "true":
         # one batched fetch; per-blob lazy fetch is far slower
         _git(repo, "-c", "fetch.negotiationAlgorithm=noop", "fetch", "origin", "--no-tags", "--no-write-fetch-head",
@@ -126,14 +126,14 @@ def _resolve_blobs(repo, days):
     return lines
 
 
-def _write_errors(out: Path, errors, full: bool) -> None:
+def _write_errors(out: Path, errors, start: date | None) -> None:
     path = out / "_replay_errors.parquet"
-    old = pq.read_table(path).to_pylist() if path.exists() and not full else []
+    # rows for days at/after `start` are superseded by this run; full replay (start None) keeps none
+    old = [r for r in pq.read_table(path).to_pylist() if start and r["snapshot_date"] < start] if path.exists() else []
     new = [{"snapshot_date": d, "commit_sha": s, "error": e} for d, s, e in errors]
-    merged = list({(r["snapshot_date"], r["commit_sha"]): r for r in reversed(old + new)}.values())[::-1]
-    if full or new:
+    if start is None or new or path.exists():
         out.mkdir(parents=True, exist_ok=True)
-        pq.write_table(pa.Table.from_pylist(merged, ERRORS_SCHEMA), path)
+        pq.write_table(pa.Table.from_pylist(old + new, ERRORS_SCHEMA), path)
 
 
 def _replay_hash(out: Path) -> str:
@@ -169,7 +169,7 @@ def replay(repo: Path, raw_dir: Path, state_path: Path) -> ReplayResult:
         for stale in out.glob("snapshot_date=*"):
             if stale.name not in keep:
                 shutil.rmtree(stale)
-    _write_errors(out, errors, full=start is None)
+    _write_errors(out, errors, start)
     parts = sorted(out.glob("snapshot_date=*/part.parquet"))
     if parts:
         dates = [date.fromisoformat(p.parent.name.split("=")[1]) for p in parts]
