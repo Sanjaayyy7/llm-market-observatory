@@ -150,7 +150,7 @@ def replay(repo: Path, raw_dir: Path, state_path: Path) -> ReplayResult:
     by_sha = {c.sha: c for c in commits}
     state_sha = json.loads(state_path.read_text())["last_sha"] if state_path.exists() else None
     start = None  # None = full replay
-    if state_sha in by_sha:
+    if state_sha in by_sha and out.is_dir():  # partitions deleted but state kept -> full replay
         last = by_sha[state_sha].commit_ts.date()
         start = last if days[last].sha != state_sha else last + timedelta(days=1)
     todo = {d: c for d, c in days.items() if start is None or d >= start}

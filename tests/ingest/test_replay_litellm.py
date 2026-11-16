@@ -165,3 +165,11 @@ def test_error_day_fixed_same_day_clears_error(price_repo, add_commit, tmp_path)
     errs = pq.read_table(raw / "litellm" / "_replay_errors.parquet").to_pylist()
     assert [e["snapshot_date"] for e in errs] == [D[4]]
     assert part(raw, D[6]).exists()
+
+
+def test_missing_partitions_forces_full_replay(price_repo, tmp_path):
+    raw, state, first = run(price_repo, tmp_path)
+    subprocess.run(["rm", "-rf", str(raw / "litellm")], check=True)  # state kept, partitions gone
+    res = rl.replay(price_repo, raw, state)
+    assert res.days_written == first.days_written
+    assert res.replay_hash == first.replay_hash
