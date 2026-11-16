@@ -1,0 +1,10 @@
+data/
+.env
+exports/
+site/dist/
+site/node_modules/
+site/src/.observablehq/cache/
+dbt/target/
+dbt/logs/
+.venv/
+__pycache__/

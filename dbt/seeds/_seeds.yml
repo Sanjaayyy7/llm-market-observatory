@@ -1,0 +1,10 @@
+version: 2
+seeds:
+  - name: seed_provider_map
+    columns:
+      - name: litellm_provider
+        data_tests: [unique]
+      - name: provider
+        data_tests: [not_null]
+      - name: is_first_party
+        data_tests: [not_null]

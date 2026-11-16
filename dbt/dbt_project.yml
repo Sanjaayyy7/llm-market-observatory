@@ -1,0 +1,9 @@
+name: llm_market_observatory
+version: "0.1.0"
+profile: llm_market_observatory
+config-version: 2
+
+# dbt never calls the network: no anonymous usage stats.
+flags:
+  send_anonymous_usage_stats: false
+

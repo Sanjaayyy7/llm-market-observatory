@@ -1,0 +1,13 @@
+litellm_provider,provider,is_first_party,sdk_group
+openai,openai,true,openai
+text-completion-openai,openai,true,openai
+anthropic,anthropic,true,anthropic
+gemini,google,true,google
+vertex_ai-language-models,google,false,google
+xai,xai,true,xai
+mistral,mistral,true,mistral
+deepseek,deepseek,true,
+cohere_chat,cohere,true,cohere
+cohere,cohere,true,cohere
+moonshot,moonshot,true,
+dashscope,qwen,true,
