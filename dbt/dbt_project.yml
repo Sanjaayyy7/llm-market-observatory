@@ -6,4 +6,3 @@ config-version: 2
 # dbt never calls the network: no anonymous usage stats.
 flags:
   send_anonymous_usage_stats: false
-
