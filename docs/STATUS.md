@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-17 · **Now:** G5 Task 8 Epoch ground-truth check (next). Before G6: the reroute sweep and the observed + verified-only headline (plan Task 9 note) · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-17 · **Now:** G6 Task 9 KM, built as a dataset measurement shown on Methods only. G5 failed and its kill applies: no market headline in v1.0 (plan Task 9 note 3). Before G6: the reroute sweep (plan Task 9 note 2) · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Active assistant:** Claude Code, on `g5-epoch-check` (resumed after Codex handoff `b41285b`). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
@@ -22,6 +22,14 @@
 - [x] G3b risk close-out (2026-11-17). Mode-rule mini-council: per-row scope kept, `delisted` redefined, Task 6 guard + final-delisting censoring added (design §5/§8 v1.2.1); Epoch ISO date parse; dead `raw_root()` macro removed. `make ci` → 30 passed, `PASS=58`
 - [x] Task 6: price facts + survival mart, with the S3 crosswalk top-up and the S8 reroute ruling (2026-11-17). `make ci` → ruff clean, 45 passed, dbt ci `PASS=133`; `make build` → `PASS=135 WARN=1` (`crosswalk_coverage_overall`, disclosed). Screen 124 canonicals: 105 top-tier (≥30, §18 kill not tripped), 7 unranked, 6 never priced; survival 105 rows, 11 first cuts, 10 within 365 days (spike ≈9), 94 censored. An independent co-founder SQL re-derivation matches the top-tier set and the 12 real cuts exactly. Negative controls: reroute censor removed → `reroute_cut_is_censored_not_scored` FAIL 1, then PASS; S3 off-domain URL → `crosswalk_manual_evidence` ERROR, then PASS; screen fix removed → `screen_counts_never_priced_and_unranked` ERROR. S8 mini-council (A′), S3 reviewer pass (no findings). Drills in `docs/drills/t6-survival-mart.md`
 - [x] G4: cut-date audit (2026-11-17). Kill tripped (7/12 data fixes) → council (3 Opus lenses) tightened the correction rules, fixed the S8 xAI seed gap → re-audit once: 4/9 scored events = 44% → fallback (observed headline with the audit rate, verified-only KM as a lower bound). Announced-cut lag median −1 day. `make ci` PASS=156, `make build` PASS=160 WARN=1. Red/green on both new correction tests. Drills in `docs/drills/g4-cut-audit.md`
+- [x] G5: Epoch ground-truth check (2026-11-17). **Kill tripped.**
+  - Prereg `bd9ea16` was committed alone, after the mini-council plus an evidence reviewer resolved the comparison base (`c525b10`).
+  - Result: `reproduced_factor` 42.0190 (Epoch 42.02); 27/30 compared (12 agree, 6 agree_late, 3 changed_then_agrees, 6 mismatch, 3 not_in_panel); `spot_check` ok.
+  - After one audit pass (Opus reviewer APPROVE): `passed: false`, `n_panel_error_headline` 4/19. LiteLLM missed Google's 2024-10-01 Gemini 1.5 Pro cut (`-001`, `-002`) and Mistral's 2024-09-17 Large 2 cut; `mistral-large-2402` is unverifiable.
+  - Kill council (3 Opus lenses): no market headline in v1.0; the KM ships as a labelled dataset measurement on Methods.
+  - Negative control: a planted `changed_then_agrees` removal → `test_changed_then_agrees_needs_audit` FAIL, reverted → pass.
+  - `make ci`: ruff clean, 78 passed, dbt ci `PASS=167`; dev build `PASS=171 WARN=1`.
+  - Drills in `docs/drills/g5-epoch-check.md`.
 
 ## Roadmap
 
@@ -38,7 +46,9 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G2 | 5 | Crosswalk + Arena rank | Coverage ≥90% in-scope top-tier, ≥80% closed. The evidence test passes (URL + match score on every manual row). Reviewer pass on low-score rows | kill: <30 top-tier → panel-only | done (closed 85.3%, overall 71.9% disclosed, top-tier 111) |
 | — | 6 | Price facts + survival mart | `dbt build --target dev` passes; ~9 real first cuts | — | done (top-tier 105; 10 real first cuts ≤365 d; S3 + S8 closed) |
 | G4 | 7 | 20-cut audit (runs alone) | `mart_cut_audit` passes | kill: >25% data fixes → re-audit once | done with fallback (kill 7/12 → council → re-audit 4/9 → observed headline + audit rate + verified-only bound) |
-| G5 → G6 | 8 → 9 | Epoch check, then KM headline | G5: `reproduced_factor` = 42.02 ± 0.01 and `passed` (dated price agreement; DECISIONS "G5 replan"). G6: Y ≈ 10% at n ≈ 91; `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; reviewer pass | G5 fails after one diagnosis → "validation pending" + mini-council replan | todo |
+| G5 | 8 | Epoch check | `reproduced_factor` = 42.02 ± 0.01 and `passed` (dated price agreement; DECISIONS "G5 replan") | G5 fails after one diagnosis → "validation pending" + mini-council replan | done: **kill tripped**. Factor 42.0190; `passed: false`, 4/19 headline panel errors → council → no market headline in v1.0 (DECISIONS "G5 kill action") |
+| G6 | 9 | KM as a dataset measurement (Methods only) | `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; `headline.json` has `scope = "dataset_measurement"` and `validation = "failed"`; reviewer pass | design §18 G6 (fewer than 3 cuts → exact) | todo |
+| G5b (v1.1) | — | Pre-registered census of provider-announced list-price changes for a frozen headline set | A recall bar fixed before our series is read; this is the only route to a market headline | — | later (after R) |
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | todo |
 | G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` prints the "Descriptive only" verdict line | kill: <8 events → descriptive | todo |
 | — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit | **S1: push** | todo |
