@@ -119,3 +119,33 @@ seeds:
         data_tests:
           - accepted_values: {arguments: {values: [announced, real_undated, unannounced, no_evidence, reroute]}}
           - not_null: {arguments: {column_name: "case when is_data_fix = (verdict != 'announced') then 1 end"}}
+  - name: seed_epoch_candidate_status
+    description: G5 - the 36 Epoch GPQA candidates with provider, scope and first-party api_id (co-founder, frozen by the prereg sha256).
+    config:
+      column_types:
+        model_name: varchar
+        obs_date: varchar
+        provider: varchar
+        scope: varchar
+        api_id: varchar
+        evidence_url: varchar
+        note: varchar
+    columns:
+      - name: scope
+        data_tests:
+          - accepted_values: {arguments: {values: [in_scope, out_of_scope]}}
+    data_tests:
+      - unique: {arguments: {column_name: "(model_name || '|' || obs_date)"}}
+  - name: seed_epoch_mismatch_audit
+    description: G5 audit verdicts for mismatch and changed_then_agrees rows (co-founder, after an Opus reviewer pass).
+    config:
+      column_types:
+        model_name: varchar
+        obs_date: varchar
+        verdict: varchar
+        source_url: varchar
+        approved_by: varchar
+    columns:
+      - name: verdict
+        data_tests:
+          - accepted_values: {arguments: {values: [epoch_non_list_price, real_change, panel_error]}}

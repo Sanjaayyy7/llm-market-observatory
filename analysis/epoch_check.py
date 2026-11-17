@@ -102,7 +102,7 @@ def our_series(con, api_id: str, provider: str) -> pd.DataFrame:
         return out
     g = per_key.groupby("snapshot_date")["price"].agg(["min", "max"]).reset_index().sort_values("snapshot_date")
     res = pd.DataFrame({"snapshot_date": g["snapshot_date"], "price": g["min"], "series": "key"}).reset_index(drop=True)
-    res.attrs["key_conflicts"] = [str(x) for x in g.loc[(g["max"] - g["min"]) > 1e-6, "snapshot_date"]]
+    res.attrs["key_conflicts"] = [str(_d(x)) for x in g.loc[(g["max"] - g["min"]) > 1e-6, "snapshot_date"]]
     return res
 
 
@@ -244,8 +244,15 @@ def level_spot_check(ours: pd.DataFrame, tokencanopy: pd.DataFrame) -> pd.DataFr
 
 # ---- run ----
 
+def _clean(v):
+    if v is None or v is pd.NA or (isinstance(v, float) and math.isnan(v)):
+        return None
+    return v.isoformat() if isinstance(v, date) else v
+
+
 def _records(df: pd.DataFrame) -> list:
-    return json.loads(df.to_json(orient="records", date_format="iso"))
+    rows = [{k: _clean(v) for k, v in r.items()} for r in df.astype(object).to_dict("records")]
+    return [{**r, "lag_days": int(r["lag_days"])} if r.get("lag_days") is not None else r for r in rows]
 
 
 def main(db: Path = ROOT / "data/warehouse.duckdb", out: Path = ROOT / "exports/epoch_check.json") -> dict:
