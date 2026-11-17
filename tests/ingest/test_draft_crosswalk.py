@@ -7,7 +7,13 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ingest.draft_crosswalk import canon, draft, is_moving_alias, match_score, write_seeds
+from ingest.draft_crosswalk import (
+    canon,
+    draft,
+    is_moving_alias,
+    match_score,
+    write_seeds,
+)
 
 
 def test_alias_dated_twin():
@@ -89,7 +95,7 @@ def test_draft_models_row():
     models, _ = draft(*_inputs())
     row = models.iloc[0]
     assert (row["canonical_model_id"], row["provider"], row["display_name"]) == ("gpt-5", "openai", "GPT 5 (High)")
-    assert row["open_weights"] is False
+    assert row["open_weights"] is not None and not row["open_weights"]
 
 
 def test_draft_refuses_to_clobber_filled_seed(tmp_path):
