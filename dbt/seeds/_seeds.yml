@@ -74,6 +74,24 @@ seeds:
       - name: target_model_id
         data_tests:
           - relationships: {arguments: {to: ref('seed_models'), field: canonical_model_id}}
+  - name: seed_temporary_price
+    description: G4 council - provider-documented temporary prices (an end date is stated); a change into one is a correction.
+    config:
+      column_types:
+        observed_ts: timestamptz
+        ends_on: date
+        evidence_url: varchar
+        evidence_quote: varchar
+        approved_by: varchar
+    columns:
+      - name: canonical_model_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('seed_models'), field: canonical_model_id}}
+      - name: observed_ts
+        data_tests: [not_null]
+      - name: ends_on
+        data_tests: [not_null]
   - name: seed_cut_audit
     description: G4 hand audit of every real cut (or 20 stratified); announced_date and source_url from provider doc domains only.
     config:
@@ -84,6 +102,7 @@ seeds:
         source_url: varchar
         is_data_fix: boolean
         evidence_quote: varchar
+        verdict: varchar
     columns:
       - name: canonical_model_id
         data_tests:
@@ -95,3 +114,8 @@ seeds:
       - name: announced_date
         data_tests:
           - not_null: {arguments: {column_name: "coalesce(announced_date::varchar, case when is_data_fix then 'data fix' end)"}}
+      - name: verdict
+        description: "G4 council: why a row is or is not a data fix; is_data_fix stays the strict pre-registered flag (verdict != 'announced')"
+        data_tests:
+          - accepted_values: {arguments: {values: [announced, real_undated, unannounced, no_evidence, reroute]}}
+          - not_null: {arguments: {column_name: "case when is_data_fix = (verdict != 'announced') then 1 end"}}

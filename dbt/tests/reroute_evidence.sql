@@ -5,7 +5,12 @@ with rows as (
         r.canonical_model_id, r.target_model_id, r.evidence_url, r.approved_by,
         lower(regexp_extract(r.evidence_url, '^https://([^/:?#]+)', 1)) as host,
         m.provider
-    from {{ ref('seed_model_reroute') }} r
+    from (
+        select canonical_model_id, target_model_id, evidence_url, approved_by from {{ ref('seed_model_reroute') }}
+        union all
+        -- G4: documented temporary prices follow the same evidence rule
+        select canonical_model_id, canonical_model_id, evidence_url, approved_by from {{ ref('seed_temporary_price') }}
+    ) r
     left join {{ ref('seed_models') }} m on m.canonical_model_id = r.canonical_model_id
 )
 

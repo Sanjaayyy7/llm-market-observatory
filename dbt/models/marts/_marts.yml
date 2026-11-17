@@ -56,3 +56,5 @@ models:
       - {name: observed_ts, data_tests: [not_null]}
       - {name: source_url, data_tests: [not_null]}
       - {name: is_data_fix, data_tests: [not_null]}
+      - {name: verdict, data_tests: [not_null]}
+      - {name: is_scored_event, data_tests: [not_null]}

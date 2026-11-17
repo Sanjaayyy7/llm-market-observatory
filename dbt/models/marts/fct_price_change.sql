@@ -39,6 +39,16 @@ changes as (
     from runs r
     join listing l using (canonical_model_id)
     where r.prev_blended is not null
+),
+
+-- the change before each change, for the mirror-revert rule (G4 council)
+paired as (
+    select *,
+        lag(change_ts) over w as prior_ts,
+        lag(prev_blended) over w as prior_prev_blended,
+        lag(pct) over w as prior_pct
+    from changes
+    window w as (partition by canonical_model_id order by change_ts)
 )
 
 select
@@ -53,5 +63,14 @@ select
                 and r.ts > c.change_ts and r.ts <= c.change_ts + interval 14 day
                 and case when c.pct < 0 then r.blended >= c.prev_blended * 0.999
                          else r.blended <= c.prev_blended * 1.001 end
+        )
+        -- G4 council: a drop that undoes a rise made within the previous 14 days
+        -- coalesce: a model's first change has no prior change (null would leak into is_correction)
+        or coalesce(c.pct < 0 and c.prior_pct > 0 and c.change_ts <= c.prior_ts + interval 14 day
+            and abs(c.blended / c.prior_prev_blended - 1) <= 0.001, false)
+        -- G4 council: a provider-documented temporary price (end date stated) is a scheduled revert
+        or exists (
+            select 1 from {{ ref('seed_temporary_price') }} t
+            where t.canonical_model_id = c.canonical_model_id and t.observed_ts = c.change_ts
         ) as is_correction
-from changes c
+from paired c
