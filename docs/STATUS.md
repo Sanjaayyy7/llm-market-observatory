@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-16 · **Now:** G1 source fetchers + probes (Task 3, next) · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-16 · **Now:** G3b staging + SCD2 `dim_model_price` (Task 4, next; co-founder writes the SCD2 golden before dispatch) · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
@@ -15,6 +15,7 @@
 - [x] C1: plan v1.1. Checklist 1–16 closed, mini-council resolved, 11 DECISIONS rows added (2026-11-16)
 - [x] G0: scaffold, pins, CI skeleton (2026-11-16). `uv sync --frozen && make test && make ci` → `1 passed`, dbt `PASS=4`; negative control failed then passed; drills in `docs/drills/g0-scaffold.md`
 - [x] G3a: deterministic LiteLLM replay of `main`'s first-parent history (2026-11-16). Two fresh full replays → equal `replay_hash` `b7eff1c8…d6fe` (also equal to the builder's runs and an independent scratch replay); 646 days from 2023-09-06, 0 error days; `make ci` → 22 passed, `PASS=4`; drills in `docs/drills/g3a-litellm-replay.md`
+- [x] G1: source fetchers + probes (2026-11-17 UTC). `make probe` → one probe row per source with rows > 0 (arena 2,417,362; epoch 3,716; pypi 8,926; tokencanopy 17,291; litellm 1,040,435 from G3a); `make fetch` → a `part.parquet` in all five `data/raw/<source>/`; `make ci` → 29 passed, `PASS=7`; drills in `docs/drills/g1-fetchers.md`
 
 ## Roadmap
 
@@ -26,8 +27,8 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | C1 | — | Plan v1.1: close the C1 checklist, apply DECISIONS rows 1–5, mini-council | Every checklist item is closed with a diff. Pins resolve (`uv pip compile` dry run). Source URLs and the supported Node LTS are verified live, with citations. Every council finding is resolved. Plan v1.1 committed | — | done |
 | G0 | 1 | Scaffold | `uv sync --frozen && make test && make ci` → `1 passed`, `PASS=4` | P3 done 2026-11-16 (`uv python install 3.12` → 3.12.12 arm64) | done |
 | G3a | 2 | LiteLLM replay | `pytest tests/ingest` passes. Two fresh full replays give the same `replay_hash`; error days ≤2% (spike: ~720 days, 2 errors) | kill: >2% error days or hash differs | done |
-| G1 | 3 | Fetchers + probes | `make probe`: one `_freshness` row per source, rows > 0 | — (Epoch GPQA source resolved 2026-11-16: pinned insight CSVs, Task 8) | **next** |
-| G3b | 4 | Staging + SCD2 `dim_model_price` | dbt build passes on ci and dev; `unique(model_key, valid_from)`; hand-worked SCD2 golden rows match; reviewer pass | — | todo |
+| G1 | 3 | Fetchers + probes | `make probe`: one `_freshness` row per source, rows > 0 | — (Epoch GPQA source resolved 2026-11-16: pinned insight CSVs, Task 8) | done |
+| G3b | 4 | Staging + SCD2 `dim_model_price` | dbt build passes on ci and dev; `unique(model_key, valid_from)`; hand-worked SCD2 golden rows match; reviewer pass | — | **next** |
 | G2 | 5 | Crosswalk + Arena rank | Coverage ≥90% in-scope top-tier, ≥80% closed. The evidence test passes (URL + match score on every manual row). Reviewer pass on low-score rows | kill: <30 top-tier → panel-only | todo |
 | — | 6 | Price facts + survival mart | `dbt build --target dev` passes; ~9 real first cuts | — | todo |
 | G4 | 7 | 20-cut audit (runs alone) | `mart_cut_audit` passes | kill: >25% data fixes → re-audit once | todo |
