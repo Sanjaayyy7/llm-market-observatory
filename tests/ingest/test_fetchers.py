@@ -2,12 +2,12 @@ from datetime import date
 from pathlib import Path
 
 import pandas as pd
-import pyarrow.parquet as pq
 import pyarrow as pa
+import pyarrow.parquet as pq
 import pytest
 
-from ingest.freshness import schema_hash
 from ingest import fetch_arena, fetch_clickpy, fetch_epoch, fetch_tokencanopy
+from ingest.freshness import schema_hash
 
 SAMPLES = Path(__file__).resolve().parents[1] / "fixtures" / "samples"
 RUN = date(2026, 11, 16)

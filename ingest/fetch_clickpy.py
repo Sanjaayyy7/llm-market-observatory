@@ -6,6 +6,7 @@ from pathlib import Path
 
 import httpx
 import pandas as pd
+import pyarrow as pa
 import pyarrow.parquet as pq
 
 from ingest.freshness import FetchResult, finish_fetch, run_cli
@@ -34,6 +35,8 @@ def _download(sql: str) -> bytes:
 def fetch(raw_dir: Path, run_date: date, probe: bool = False) -> FetchResult:
     packages = sorted(pd.read_csv(SEED)["package"])
     table = pq.read_table(io.BytesIO(_download(build_query(packages, START))))
+    i = table.schema.get_field_index("date")  # ClickHouse Date arrives as uint16 days
+    table = table.set_column(i, "date", table["date"].cast(pa.int32()).cast(pa.date32()))
     dates = table["date"].to_pylist()
     return finish_fetch(raw_dir, "pypi", run_date, table, min(dates), max(dates), probe)
 

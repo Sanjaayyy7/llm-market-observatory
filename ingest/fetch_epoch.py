@@ -34,7 +34,8 @@ def parse_epoch_models(df: pd.DataFrame) -> pd.DataFrame:
 def fetch(raw_dir: Path, run_date: date, probe: bool = False) -> FetchResult:
     df = parse_epoch_models(pd.read_csv(io.BytesIO(_download())))
     table = pa.Table.from_pandas(df, preserve_index=False)
-    return finish_fetch(raw_dir, "epoch", run_date, table, df["publication_date"].min(), df["publication_date"].max(), probe)
+    dates = df["publication_date"].dropna()
+    return finish_fetch(raw_dir, "epoch", run_date, table, dates.min(), dates.max(), probe)
 
 
 if __name__ == "__main__":

@@ -1,9 +1,10 @@
 """Append-only freshness log: one row per fetch run."""
 import argparse
 import hashlib
+from collections.abc import Callable
 from datetime import UTC, date, datetime
 from pathlib import Path
-from typing import Callable, NamedTuple
+from typing import NamedTuple
 
 import pyarrow as pa
 import pyarrow.parquet as pq
