@@ -14,3 +14,49 @@ seeds:
         data_tests: [unique]
       - name: sdk_group
         data_tests: [not_null]
+  - name: seed_models
+    config:
+      column_types:
+        family: varchar
+        display_name: varchar
+        announce_url: varchar
+        approved_by: varchar
+        announce_date: date
+        open_weights: boolean
+    columns:
+      - name: canonical_model_id
+        data_tests: [unique]
+      - name: provider
+        data_tests: [not_null]
+  - name: seed_model_crosswalk
+    config:
+      column_types:
+        evidence_url: varchar
+        approved_by: varchar
+        match_score: double
+        is_moving_alias: boolean
+    columns:
+      - name: canonical_model_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('seed_models'), field: canonical_model_id}}
+      - name: match_score
+        data_tests: [not_null]
+      - name: match_method
+        data_tests:
+          - accepted_values: {arguments: {values: [exact, hf_id, manual]}}
+      - name: source
+        data_tests:
+          - accepted_values: {arguments: {values: [litellm, arena, epoch, epoch_insight]}}
+    data_tests:
+      - unique: {arguments: {column_name: "(source || '|' || source_key)"}}
+  - name: seed_provider_domains
+    config:
+      column_types:
+        provider: varchar
+        doc_domain: varchar
+    columns:
+      - name: provider
+        data_tests: [not_null]
+      - name: doc_domain
+        data_tests: [unique]

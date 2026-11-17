@@ -12,3 +12,7 @@ models:
     data_tests:
       - unique: {arguments: {column_name: "(model_key || '|' || valid_from)"}}
       - no_overlapping_intervals: {arguments: {key: model_key, from_col: valid_from, to_col: valid_to}}
+  - name: dim_model
+    description: Canonical model list (draft until approved at G2); one row per canonical_model_id.
+    columns:
+      - {name: canonical_model_id, data_tests: [unique, not_null]}
