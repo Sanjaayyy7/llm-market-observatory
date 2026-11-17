@@ -44,11 +44,13 @@ def match_score(source_key: str, canonical_model_id: str) -> float:
     return round(difflib.SequenceMatcher(None, source_key.lower(), canonical_model_id).ratio(), 3)
 
 
+def dated_twins(name: str, group_keys: set[str]) -> list[str]:
+    return sorted(k for k in group_keys
+                  if k.startswith(name + "-") and DATED_TWIN_REST.fullmatch(k[len(name) + 1:]))
+
+
 def is_moving_alias(name: str, group_keys: set[str]) -> bool:
-    if name in MANUAL_ALIASES or name.endswith("-latest"):
-        return True
-    return any(k.startswith(name + "-") and DATED_TWIN_REST.fullmatch(k[len(name) + 1:])
-               for k in group_keys)
+    return name in MANUAL_ALIASES or name.endswith("-latest") or bool(dated_twins(name, group_keys))
 
 
 def _name_facts(arena: pd.DataFrame) -> pd.DataFrame:
@@ -107,10 +109,28 @@ def build(arena, litellm, epoch, provider_map) -> dict:
             notes.append(f"UNMATCHED {matches[n][0]}: {n}")
     # AMBIGUOUS cannot occur: same-norm keys are collapsed to one canonical above.
 
+    # R7b: an alias-by-date canonical with exactly one dated twin re-points arena/epoch rows to it.
+    multi = []
+
+    def repoint(name, prov, c, how):
+        if c in MANUAL_ALIASES or c.endswith("-latest"):
+            return c, how
+        twins = dated_twins(c, group_keys[prov])
+        if len(twins) == 1:
+            return twins[0], "manual"
+        if twins:
+            multi.append(f"MULTI_TWIN {prov}: {name} -> {c} twins={twins}")
+        return c, how
+
+    twin_of = {(p, c): dated_twins(c, group_keys[p]) for p, c in in_scope}
+    in_scope = in_scope | {(p, t[0]) for (p, c), t in twin_of.items()
+                           if len(t) == 1 and c not in MANUAL_ALIASES and not c.endswith("-latest")}
+    prov_by_canon = {c: p for p, c in in_scope}
+
     rows = []
     for n, (prov, c, how) in matches.items():
         if c and (prov, c) in in_scope:
-            rows.append(("arena", n, c, how))
+            rows.append(("arena", n, *repoint(n, prov, c, how)))
     for r in keys.itertuples():
         c = canon_of[(r.provider, r.norm)]
         if (r.provider, c) in in_scope:
@@ -119,9 +139,9 @@ def build(arena, litellm, epoch, provider_map) -> dict:
     for m in sorted(set(epoch["model"].dropna())):
         c = by_norm.get(canon(m))
         if c:
-            rows.append(("epoch", m, c, "exact" if m.lower() == c else "manual"))
+            rows.append(("epoch", m, *repoint(m, prov_by_canon[c], c, "exact" if m.lower() == c else "manual")))
+    notes = [n for pre in ("COLLISION", "MULTI_TWIN", "UNMATCHED") for n in notes + multi if n.startswith(pre)]
 
-    prov_by_canon = {c: p for p, c in in_scope}
     xwalk = pd.DataFrame(rows, columns=["source", "source_key", "canonical_model_id", "match_method"])
     xwalk["is_moving_alias"] = [is_moving_alias(c, group_keys[prov_by_canon[c]])
                                 for c in xwalk["canonical_model_id"]]
@@ -139,9 +159,9 @@ def _models(arena, facts, xwalk, prov_by_canon):
     arena_x = xwalk[xwalk["source"] == "arena"]
     last_date = arena.groupby("model_name")["publish_date"].max()
     out = []
-    for c, grp in arena_x.groupby("canonical_model_id"):
-        names = list(grp["source_key"])
-        best = min(names, key=lambda n: (-last_date[n].toordinal(), n))  # latest, then name order
+    for c in sorted(prov_by_canon):
+        names = list(arena_x.loc[arena_x["canonical_model_id"] == c, "source_key"])
+        best = min(names, key=lambda n: (-last_date[n].toordinal(), n)) if names else c  # latest, then name order
         closed = [facts.at[n, "closed"] for n in names if facts.at[n, "closed"] is not None]
         out.append((c, prov_by_canon[c], None, best, (not any(closed)) if closed else None, None, None, None))
     return pd.DataFrame(out, columns=MODEL_COLS).sort_values("canonical_model_id").reset_index(drop=True)

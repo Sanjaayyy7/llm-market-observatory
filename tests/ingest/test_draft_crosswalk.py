@@ -8,6 +8,7 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ingest.draft_crosswalk import (
+    build,
     canon,
     draft,
     is_moving_alias,
@@ -59,9 +60,9 @@ def test_match_score_uses_raw_name():
 
 
 PROVIDER_MAP = pd.DataFrame({
-    "litellm_provider": ["openai", "vertex_ai-language-models"],
-    "provider": ["openai", "google"],
-    "is_first_party": [True, False],
+    "litellm_provider": ["openai", "vertex_ai-language-models", "mistral"],
+    "provider": ["openai", "google", "mistral"],
+    "is_first_party": [True, False, True],
 })
 
 
@@ -114,3 +115,33 @@ def test_write_seeds_writes_when_unfilled(tmp_path):
     write_seeds(tmp_path, models, xwalk)
     write_seeds(tmp_path, models, xwalk)  # re-draft over an unfilled seed is allowed
     assert (tmp_path / "seed_models.csv").read_text().startswith("canonical_model_id,provider,")
+
+
+def _alias_inputs(keys, arena_name, provider="openai"):
+    ts = pd.Timestamp("2025-01-01", tz="UTC")
+    litellm = pd.DataFrame([(k, provider, ts) for k in keys],
+                           columns=["model_key", "litellm_provider", "first_ts"])
+    arena = pd.DataFrame([(arena_name, provider, date(2025, 2, 1), 0.1, True)],
+                         columns=["model_name", "organization", "publish_date", "rank_percentile", "closed"])
+    return arena, litellm, pd.DataFrame({"model": []}), PROVIDER_MAP
+
+
+def test_arena_alias_repoints_to_single_dated_twin():
+    models, xwalk = draft(*_alias_inputs(["gpt-5.1", "gpt-5.1-2025-11-13"], "GPT-5.1"))
+    row = xwalk[xwalk["source"] == "arena"].iloc[0]
+    assert (row["canonical_model_id"], row["match_method"]) == ("gpt-5.1-2025-11-13", "manual")
+    assert not row["is_moving_alias"]
+    assert row["match_score"] == match_score("GPT-5.1", "gpt-5.1-2025-11-13")
+    lit = xwalk[xwalk["source"] == "litellm"].set_index("source_key")
+    assert lit.loc["gpt-5.1", "is_moving_alias"] and lit.loc["gpt-5.1", "canonical_model_id"] == "gpt-5.1"
+    assert lit.loc["gpt-5.1-2025-11-13", "canonical_model_id"] == "gpt-5.1-2025-11-13"
+    assert set(models["canonical_model_id"]) == {"gpt-5.1", "gpt-5.1-2025-11-13"}
+
+
+def test_multi_twin_alias_not_repointed():
+    built = build(*_alias_inputs(["mistral-medium", "mistral-medium-2312", "mistral-medium-2505"],
+                                 "mistral-medium", provider="mistral"))
+    xwalk = built["xwalk"]
+    row = xwalk[xwalk["source"] == "arena"].iloc[0]
+    assert row["canonical_model_id"] == "mistral-medium" and row["is_moving_alias"]
+    assert any(n.startswith("MULTI_TWIN mistral: mistral-medium -> mistral-medium twins=") for n in built["notes"])
