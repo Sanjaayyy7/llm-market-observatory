@@ -3,3 +3,7 @@ gemini-2.5-flash,2026-11-17,gemini-3.5-flash-lite,https://aistudio.google.com/do
 gemini-2.5-pro,2026-11-17,gemini-3.8-flash,https://aistudio.google.com/docs/deprecations,cofounder
 gemini-3.5-flash,,gemini-3.6-flash,https://aistudio.google.com/docs/deprecations,cofounder
 gemini-3.7-flash,,gemini-3.8-flash,https://aistudio.google.com/docs/deprecations,cofounder
+grok-4-0709,2026-05-15,grok-4.3,https://docs.x.ai/developers/migration/may-15-retirement,cofounder
+grok-4-1-fast-reasoning,2026-05-15,grok-4.3,https://docs.x.ai/developers/migration/may-15-retirement,cofounder
+grok-4-fast-non-reasoning,2026-05-15,grok-4.3,https://docs.x.ai/developers/migration/may-15-retirement,cofounder
+grok-4-fast-reasoning,2026-05-15,grok-4.3,https://docs.x.ai/developers/migration/may-15-retirement,cofounder
