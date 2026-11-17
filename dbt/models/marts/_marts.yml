@@ -16,3 +16,36 @@ models:
     description: Canonical model list (draft until approved at G2); one row per canonical_model_id.
     columns:
       - {name: canonical_model_id, data_tests: [unique, not_null]}
+  - name: fct_model_price_daily
+    description: Blended USD per Mtok per canonical model and snapshot day (first-party, non-alias keys).
+    columns:
+      - {name: canonical_model_id, data_tests: [not_null]}
+      - {name: date, data_tests: [not_null]}
+      - {name: blended_per_mtok, data_tests: [not_null]}
+    data_tests:
+      - unique: {arguments: {column_name: "(canonical_model_id || '|' || date)"}}
+  - name: fct_price_change
+    description: One row per change in a canonical model's blended price; is_cut is the raw -10% flag, is_correction the spike rule.
+    columns:
+      - {name: canonical_model_id, data_tests: [not_null]}
+      - {name: change_ts, data_tests: [not_null]}
+      - {name: pct, data_tests: [not_null]}
+      - {name: is_cut, data_tests: [not_null]}
+      - {name: is_correction, data_tests: [not_null]}
+    data_tests:
+      - unique: {arguments: {column_name: "(canonical_model_id || '|' || change_ts)"}}
+  - name: mart_top_tier_screen
+    description: One row per canonical model in the key set; unranked ones are excluded from survival and counted.
+    columns:
+      - {name: canonical_model_id, data_tests: [unique, not_null]}
+      - {name: listed_at, data_tests: [not_null]}
+      - {name: is_top_tier, data_tests: [not_null]}
+      - {name: is_unranked, data_tests: [not_null]}
+  - name: mart_launch_price_survival
+    description: Top-tier canonical models, time at launch price, censored at the final delisting, a reroute or the run date.
+    columns:
+      - {name: canonical_model_id, data_tests: [unique, not_null]}
+      - {name: provider, data_tests: [not_null]}
+      - {name: listed_at, data_tests: [not_null]}
+      - {name: days_at_launch_price, data_tests: [not_null]}
+      - {name: censored, data_tests: [not_null]}
