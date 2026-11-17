@@ -1,0 +1,40 @@
+source,platform,model_key,model_name,author,open_weight,variant,region,metric,usd_per_1m,context_length,effective_date
+aws,AWS Bedrock,bedrock:claude 2.0,Claude 2.0,Anthropic,,standard,us-east-1,input,8.0,,2026-11-01
+aws,AWS Bedrock,bedrock:claude 2.0,Claude 2.0,Anthropic,,standard,us-west-2,input,8.0,,2026-11-01
+aws,AWS Bedrock,bedrock:claude 2.1,Claude 2.1,Anthropic,,standard,us-east-1,input,8.0,,2026-11-01
+aws,AWS Bedrock,bedrock:claude 2.1,Claude 2.1,Anthropic,,standard,us-west-2,input,8.0,,2026-11-01
+aws,AWS Bedrock,bedrock:claude 3 haiku,Claude 3 Haiku,Anthropic,,standard,us-east-1,input,0.25,,2026-11-01
+aws,AWS Bedrock,bedrock:claude 3 haiku,Claude 3 Haiku,Anthropic,,standard,us-west-2,input,0.25,,2026-11-01
+aws,AWS Bedrock,bedrock:claude 3 sonnet,Claude 3 Sonnet,Anthropic,,standard,us-east-1,input,3.0,,2026-11-01
+aws,AWS Bedrock,bedrock:claude 3 sonnet,Claude 3 Sonnet,Anthropic,,standard,us-west-2,input,3.0,,2026-11-01
+aws,AWS Bedrock,bedrock:claude instant,Claude Instant,Anthropic,,standard,us-east-1,input,0.8,,2026-11-01
+aws,AWS Bedrock,bedrock:claude instant,Claude Instant,Anthropic,,standard,us-west-2,input,0.8,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,batch,eu-west-1,input,0.348,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,batch,eu-west-1,output,1.008,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,batch,us-east-1,input,0.29,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,batch,us-east-1,output,0.84,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,batch,us-west-2,input,0.29,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,batch,us-west-2,output,0.84,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,priority,eu-west-1,input,1.218,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,priority,eu-west-1,output,3.528,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,priority,us-east-1,input,1.015,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,priority,us-east-1,output,2.94,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,priority,us-west-2,input,1.015,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,priority,us-west-2,output,2.94,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,standard,eu-west-1,input,0.348,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,standard,eu-west-1,output,1.008,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,standard,us-east-1,input,0.29,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,standard,us-east-1,output,0.84,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,standard,us-west-2,input,0.29,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.1,DeepSeek V3.1,DeepSeek,,standard,us-west-2,output,0.84,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,batch,eu-west-1,input,0.37,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,batch,eu-west-1,output,1.11,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,batch,us-east-1,input,0.31,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,batch,us-east-1,output,0.925,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,batch,us-west-2,input,0.31,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,batch,us-west-2,output,0.925,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,priority,eu-west-1,input,1.295,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,priority,eu-west-1,output,3.885,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,priority,us-east-1,input,1.085,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,priority,us-east-1,output,3.2375,,2026-11-01
+aws,AWS Bedrock,bedrock:deepseek v3.2,DeepSeek v3.2,DeepSeek,,priority,us-west-2,input,1.085,,2026-11-01
