@@ -127,14 +127,19 @@ def build(arena, litellm, epoch, provider_map) -> dict:
                            if len(t) == 1 and c not in MANUAL_ALIASES and not c.endswith("-latest")}
     prov_by_canon = {c: p for p, c in in_scope}
 
-    rows = []
+    rows, alias_keys = [], set()
     for n, (prov, c, how) in matches.items():
         if c and (prov, c) in in_scope:
             rows.append(("arena", n, *repoint(n, prov, c, how)))
     for r in keys.itertuples():
         c = canon_of[(r.provider, r.norm)]
         if (r.provider, c) in in_scope:
-            rows.append(("litellm", r.model_key, c, "exact" if r.bare == c else "manual"))
+            how = "exact" if r.bare == c else "manual"
+            twins = [] if c in MANUAL_ALIASES or c.endswith("-latest") else dated_twins(c, group_keys[r.provider])
+            if len(twins) == 1:  # B7: the alias key itself dedupes to its dated twin, but stays flagged
+                c, how = twins[0], "manual"
+                alias_keys.add(r.model_key)
+            rows.append(("litellm", r.model_key, c, how))
     by_norm = {norm(c): c for _, c in in_scope}
     for m in sorted(set(epoch["model"].dropna())):
         c = by_norm.get(canon(m))
@@ -143,8 +148,9 @@ def build(arena, litellm, epoch, provider_map) -> dict:
     notes = [n for pre in ("COLLISION", "MULTI_TWIN", "UNMATCHED") for n in notes + multi if n.startswith(pre)]
 
     xwalk = pd.DataFrame(rows, columns=["source", "source_key", "canonical_model_id", "match_method"])
-    xwalk["is_moving_alias"] = [is_moving_alias(c, group_keys[prov_by_canon[c]])
-                                for c in xwalk["canonical_model_id"]]
+    xwalk["is_moving_alias"] = [k in alias_keys or is_moving_alias(c, group_keys[prov_by_canon[c]])
+                                for k, c in zip(xwalk["source_key"], xwalk["canonical_model_id"])]
+    prov_by_canon = {c: p for c, p in prov_by_canon.items() if c in set(xwalk["canonical_model_id"])}
     xwalk["match_score"] = [match_score(k, c) for k, c in zip(xwalk["source_key"], xwalk["canonical_model_id"])]
     xwalk["evidence_url"] = None
     xwalk["approved_by"] = None

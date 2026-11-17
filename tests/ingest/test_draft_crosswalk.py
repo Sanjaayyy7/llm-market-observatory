@@ -133,9 +133,12 @@ def test_arena_alias_repoints_to_single_dated_twin():
     assert not row["is_moving_alias"]
     assert row["match_score"] == match_score("GPT-5.1", "gpt-5.1-2025-11-13")
     lit = xwalk[xwalk["source"] == "litellm"].set_index("source_key")
-    assert lit.loc["gpt-5.1", "is_moving_alias"] and lit.loc["gpt-5.1", "canonical_model_id"] == "gpt-5.1"
+    alias = lit.loc["gpt-5.1"]
+    assert (alias["canonical_model_id"], alias["match_method"]) == ("gpt-5.1-2025-11-13", "manual")
+    assert alias["is_moving_alias"]
+    assert alias["match_score"] == match_score("gpt-5.1", "gpt-5.1-2025-11-13")
     assert lit.loc["gpt-5.1-2025-11-13", "canonical_model_id"] == "gpt-5.1-2025-11-13"
-    assert set(models["canonical_model_id"]) == {"gpt-5.1", "gpt-5.1-2025-11-13"}
+    assert set(models["canonical_model_id"]) == {"gpt-5.1-2025-11-13"}
 
 
 def test_multi_twin_alias_not_repointed():
