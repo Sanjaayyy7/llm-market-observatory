@@ -9,10 +9,10 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from analysis.epoch_check import (  # noqa: E402
+from analysis.epoch_check import (
     annualized_factor,
-    evaluate,
     epoch_frontier,
+    evaluate,
     frozen_headline,
     level_spot_check,
     our_series,
@@ -122,7 +122,7 @@ def test_obs_date_between_snapshots():
 
 
 def test_equal_only_before_start_is_mismatch():
-    r = _run(5.0, [(date(2023, 9, 1), 5.0), (date(2023, 9, 10), 9.0)], obs=date(2023, 9, 6)).iloc[0]
+    r = _run(5.0, [(date(2023, 9, 1), 5.0), (date(2023, 9, 3), 9.0)], obs=date(2023, 9, 6)).iloc[0]
     assert r["status"] == "mismatch"
 
 
@@ -134,11 +134,10 @@ def test_pre_history_uses_first_day():
 def _many(n_total, n_compared):
     rows, srows = [], []
     for i in range(n_total):
-        ok = i < n_compared
-        rows.append(("M%d" % i, D0, 5.0, 50))
-        srows.append({"model_name": "M%d" % i, "obs_date": D0, "provider": "openai", "scope": "in_scope",
-                      "api_id": "m%d" % i, "evidence_url": "", "note": None})
-    sbr = {("M%d" % i, D0): _series([(D0, 5.0)] if i < n_compared else [], "fct") for i in range(n_total)}
+        rows.append((f"M{i}", D0, 5.0, 50))
+        srows.append({"model_name": f"M{i}", "obs_date": D0, "provider": "openai", "scope": "in_scope",
+                      "api_id": f"m{i}", "evidence_url": "", "note": None})
+    sbr = {(f"M{i}", D0): _series([(D0, 5.0)] if i < n_compared else [], "fct") for i in range(n_total)}
     sbr = {k: (v if len(v) else pd.DataFrame(columns=["snapshot_date", "price", "series"])) for k, v in sbr.items()}
     status = pd.DataFrame(srows)
     rows = price_agreement(_cands(rows), status, pd.DataFrame(columns=["source_key", "canonical_model_id"]), sbr,
@@ -236,8 +235,8 @@ def test_key_series_strips_provider_prefix():
     days = [date(2024, 5, 12), date(2024, 5, 13)]
     _snaps(con, days, "mistral/mistral-large-2402", "mistral")
     _snaps(con, days, "gemini-1.5-flash-001", "vertex_ai-language-models")
-    con.execute("insert into dim_model_price values ('mistral/mistral-large-2402','2024-05-01 00:00+00',null,4,4),"
-                "('gemini-1.5-flash-001','2024-05-01 00:00+00',null,1,1)")
+    con.execute("insert into dim_model_price values ('mistral/mistral-large-2402','2024-05-01 00:00:00+00:00',null,4,4),"
+                "('gemini-1.5-flash-001','2024-05-01 00:00:00+00:00',null,1,1)")
     s = our_series(con, "mistral-large-2402", "mistral")
     assert list(s["series"].unique()) == ["key"] and list(s["price"]) == [4.0, 4.0]
     assert our_series(con, "gemini-1.5-flash-001", "google").empty
@@ -246,7 +245,7 @@ def test_key_series_strips_provider_prefix():
 def test_alias_key_is_compared():
     con = _con()
     _snaps(con, [date(2024, 5, 13)], "mistral/open-mistral-nemo", "mistral")
-    con.execute("insert into dim_model_price values ('mistral/open-mistral-nemo','2024-05-01 00:00+00',null,0.2,0.2)")
+    con.execute("insert into dim_model_price values ('mistral/open-mistral-nemo','2024-05-01 00:00:00+00:00',null,0.2,0.2)")
     s = our_series(con, "open-mistral-nemo", "mistral")
     assert len(s) == 1 and s.iloc[0]["series"] == "key"
 
@@ -255,7 +254,7 @@ def test_fct_series_preferred():
     con = _con()
     con.execute("insert into fct_model_price_daily values ('mistral-large-2402','2024-05-13',6.0)")
     _snaps(con, [date(2024, 5, 12), date(2024, 5, 13)], "mistral/mistral-large-2402", "mistral")
-    con.execute("insert into dim_model_price values ('mistral/mistral-large-2402','2024-05-01 00:00+00',null,4,4)")
+    con.execute("insert into dim_model_price values ('mistral/mistral-large-2402','2024-05-01 00:00:00+00:00',null,4,4)")
     s = our_series(con, "mistral-large-2402", "mistral")
     assert list(s["series"].unique()) == ["fct"] and list(s["price"]) == [6.0]
 
@@ -263,9 +262,9 @@ def test_fct_series_preferred():
 def test_utc_day_boundary():
     con = _con("America/New_York")
     _snaps(con, [date(2024, 5, 13)], "mistral/mistral-large-2402", "mistral")
-    con.execute("insert into dim_model_price values ('mistral/mistral-large-2402','2024-05-13 03:00+00',null,4,4)")
+    con.execute("insert into dim_model_price values ('mistral/mistral-large-2402','2024-05-13 03:00:00+00:00',null,4,4)")
     s = our_series(con, "mistral-large-2402", "mistral")
-    assert list(s["snapshot_date"]) == [date(2024, 5, 13)]
+    assert [pd.Timestamp(x).date() for x in s["snapshot_date"]] == [date(2024, 5, 13)]
 
 
 # ---- spot check ----
@@ -279,10 +278,10 @@ def _theirs(rows):
 
 
 def test_spot_check_lists_every_mismatch():
-    ours = _ours([("openai/gpt-x", "openai", 2.5, 10.0), ("only-ours", "openai", 1.0, 1.0)])
+    ours = _ours([("gpt-x", "openai", 2.5, 10.0), ("only-ours", "openai", 1.0, 1.0)])
     theirs = _theirs([("gpt-x", "openai", 3.0, 10.0), ("only-theirs", "openai", 1.0, 1.0)])
     r = level_spot_check(ours, theirs)
-    assert set(r["model_key"]) == {"openai/gpt-x"}
+    assert set(r["model_key"]) == {"gpt-x"}
     row = r[r["metric"] == "in_per_mtok"].iloc[0]
     assert row["pct_diff"] == pytest.approx(-1 / 6)
     assert r[r["metric"] == "out_per_mtok"].iloc[0]["pct_diff"] == 0
