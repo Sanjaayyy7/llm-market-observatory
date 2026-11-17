@@ -68,6 +68,7 @@ def test_fetch_idempotent_overwrites_run_partition(tmp_path, monkeypatch):
     first = fetch_tokencanopy.fetch(tmp_path, RUN)
     again = fetch_tokencanopy.fetch(tmp_path, RUN)
     assert first == again and pq.read_table(part).num_rows == first.rows
+    assert first.min_date == first.max_date == RUN  # current-prices snapshot: run_date is the date key
     assert len(list(part.parent.iterdir())) == 1  # no stray tmp file
     fresh = pq.read_table(tmp_path / "_freshness.parquet").to_pylist()
     assert [r["probe"] for r in fresh] == [False, False]

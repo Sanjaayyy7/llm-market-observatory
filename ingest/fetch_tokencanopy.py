@@ -35,8 +35,8 @@ def parse_tokencanopy(df: pd.DataFrame, run_date: date) -> pd.DataFrame:
 def fetch(raw_dir: Path, run_date: date, probe: bool = False) -> FetchResult:
     df = parse_tokencanopy(pd.read_csv(io.BytesIO(_download())), run_date)
     table = pa.Table.from_pandas(df, preserve_index=False)
-    stamps = df["effective_date"].where(df["effective_date"].notna(), run_date)  # key date when effective_date is empty
-    return finish_fetch(raw_dir, "tokencanopy", run_date, table, stamps.min(), stamps.max(), probe)
+    # current-prices snapshot: run_date is the date key (effective_date is often empty)
+    return finish_fetch(raw_dir, "tokencanopy", run_date, table, run_date, run_date, probe)
 
 
 if __name__ == "__main__":
