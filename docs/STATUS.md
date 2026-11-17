@@ -2,6 +2,7 @@
 
 **Updated:** 2026-11-17 · **Now:** G5 Task 8 Epoch ground-truth check (next). Before G6: the reroute sweep and the observed + verified-only headline (plan Task 9 note) · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
+**Active assistant:** Codex, resuming Claude Code checkpoint `3a3d5f5` on `g5-epoch-check`. See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
 ## Done
@@ -54,4 +55,4 @@ Closed 2026-11-16 in plan v1.1 (`30d6f0b`, plus council fixes in `89be1be`). Eac
 - Release: the owner writes the drills without AI.
 
 ## Resume
-Open `claude` in this repo. The co-founder orients from this file and continues with the `Now:` stage. After a `/clear`, type `go` if it doesn't start on its own (whether `initialPrompt` re-fires after `/clear` is UNVERIFIED).
+Open Claude Code or Codex in this repo. Read `AGENTS.md` and `HANDOFF.md`, check Git state, then continue with the `Now:` stage. Use one writer at a time. In Claude Code after `/clear`, type `go` if it does not start on its own (whether `initialPrompt` re-fires after `/clear` is UNVERIFIED).

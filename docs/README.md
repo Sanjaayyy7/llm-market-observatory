@@ -2,6 +2,8 @@
 
 Everything written so far, in the order it happened. Start with [STATUS.md](STATUS.md) for where things stand now.
 
+[HANDOFF.md](HANDOFF.md) is the shared Codex/Claude checkpoint: assistant attribution, commits, checks, unresolved findings, and the exact next action. Both assistants use the same specification and branch.
+
 ## How this folder is organized
 
 - **Numbered folders (`00-` … `05-`)** are project phases, in the order they happened. Each one holds that phase's record. The spec (03) and the plan (05) can still get versioned revisions; each doc keeps its own change log.

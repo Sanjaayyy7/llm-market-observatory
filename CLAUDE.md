@@ -2,7 +2,7 @@
 
 Governed SCD2 history of first-party LLM API list prices, rebuilt from LiteLLM git history. Headline: Kaplan–Meier share of top-tier models that cut list price within 365 days.
 
-- **Start here:** `docs/STATUS.md` (Now, Roadmap). Every doc is mapped in `docs/README.md`.
+- **Start here:** `docs/STATUS.md` (Now, Roadmap), then `docs/HANDOFF.md` (shared Codex/Claude checkpoint). `AGENTS.md` applies to both assistants. Every doc is mapped in `docs/README.md`.
 - **Roles** (`.claude/agents/`):
   - `cofounder` runs every session and owns the project.
   - `builder` (Sonnet) implements one plan task.
