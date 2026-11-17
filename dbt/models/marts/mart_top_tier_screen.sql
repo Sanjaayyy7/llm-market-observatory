@@ -1,6 +1,6 @@
 -- One row per canonical model in the key set. Top tier = Arena text/overall rank percentile
 -- <= 25% on the first snapshot within 60 days after listing; unranked ones are excluded from
--- survival and counted (PRD §6).
+-- survival and counted (PRD §6). listed_at is null when no version was ever priced.
 with keys as (
     -- first-party, non-alias LiteLLM keys per canonical model (Task 6 ruling 1)
     select distinct x.canonical_model_id, x.source_key as model_key
@@ -19,7 +19,12 @@ priced as (
     where round((3 * v.in_per_mtok + v.out_per_mtok) / 4, 6) > 0
 ),
 
-listing as (select canonical_model_id, min(valid_from) as listed_at from priced group by canonical_model_id),
+-- never-priced canonicals (free or null price) keep a row with null listed_at: counted, never screened
+listing as (
+    select k.canonical_model_id, min(p.valid_from) as listed_at
+    from keys k left join priced p using (canonical_model_id)
+    group by k.canonical_model_id
+),
 
 first_rank as (
     select l.canonical_model_id, arg_min(r.rank_percentile, r.publish_date) as first_rank_pct
@@ -35,6 +40,6 @@ select
     l.listed_at,
     f.first_rank_pct,
     coalesce(f.first_rank_pct <= 0.25, false) as is_top_tier,
-    f.first_rank_pct is null as is_unranked
+    l.listed_at is not null and f.first_rank_pct is null as is_unranked
 from listing l
 left join first_rank f using (canonical_model_id)

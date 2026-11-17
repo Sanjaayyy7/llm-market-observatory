@@ -35,10 +35,10 @@ models:
     data_tests:
       - unique: {arguments: {column_name: "(canonical_model_id || '|' || change_ts)"}}
   - name: mart_top_tier_screen
-    description: One row per canonical model in the key set; unranked ones are excluded from survival and counted.
+    description: One row per canonical model in the key set; unranked and never-priced ones are excluded from survival and counted.
     columns:
       - {name: canonical_model_id, data_tests: [unique, not_null]}
-      - {name: listed_at, data_tests: [not_null]}
+      - {name: listed_at, description: null when the model was never list-priced (free or null price)}
       - {name: is_top_tier, data_tests: [not_null]}
       - {name: is_unranked, data_tests: [not_null]}
   - name: mart_launch_price_survival

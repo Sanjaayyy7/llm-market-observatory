@@ -679,3 +679,42 @@ unit_tests:
       rows:
         - {canonical_model_id: a, provider: google, listed_at: "2026-05-19 10:00:00+00", first_cut_at: null, days_at_launch_price: 63, censored: true, cut_depth_pct: null}
         - {canonical_model_id: b, provider: google, listed_at: "2026-07-21 10:00:00+00", first_cut_at: "2026-08-18 10:00:00+00", days_at_launch_price: 28, censored: false, cut_depth_pct: 0.5}
+
+  - name: screen_counts_never_priced_and_unranked
+    description: "every key-set canonical gets a row: never-priced → listed_at null, not unranked; no rank within 60 days → unranked; the first snapshot decides"
+    model: mart_top_tier_screen
+    given:
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: ka, canonical_model_id: a, is_moving_alias: false}
+          - {source: litellm, source_key: kb, canonical_model_id: b, is_moving_alias: false}
+          - {source: litellm, source_key: kc, canonical_model_id: c, is_moving_alias: false}
+          - {source: litellm, source_key: kd, canonical_model_id: d, is_moving_alias: false}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {model_key: ka, litellm_provider: p}
+          - {model_key: kb, litellm_provider: p}
+          - {model_key: kc, litellm_provider: p}
+          - {model_key: kd, litellm_provider: p}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: ka, valid_from: "2026-01-01 10:00:00+00", valid_to: null, in_per_mtok: 1, out_per_mtok: 1, delisted: false, is_current: true}
+          - {model_key: kb, valid_from: "2026-01-01 10:00:00+00", valid_to: null, in_per_mtok: 0, out_per_mtok: 0, delisted: false, is_current: true}
+          - {model_key: kc, valid_from: "2026-01-01 10:00:00+00", valid_to: null, in_per_mtok: 1, out_per_mtok: 1, delisted: false, is_current: true}
+          - {model_key: kd, valid_from: "2026-01-01 10:00:00+00", valid_to: null, in_per_mtok: 1, out_per_mtok: 1, delisted: false, is_current: true}
+      - input: ref('fct_arena_rank')
+        rows:
+          - {canonical_model_id: a, publish_date: "2026-01-11", rank_percentile: 0.1}
+          - {canonical_model_id: b, publish_date: "2026-01-11", rank_percentile: 0.1}
+          - {canonical_model_id: c, publish_date: "2026-03-05", rank_percentile: 0.1}
+          - {canonical_model_id: d, publish_date: "2026-01-05", rank_percentile: 0.5}
+          - {canonical_model_id: d, publish_date: "2026-01-30", rank_percentile: 0.1}
+    expect:
+      rows:
+        - {canonical_model_id: a, listed_at: "2026-01-01 10:00:00+00", first_rank_pct: 0.1, is_top_tier: true, is_unranked: false}
+        - {canonical_model_id: b, listed_at: null, first_rank_pct: null, is_top_tier: false, is_unranked: false}
+        - {canonical_model_id: c, listed_at: "2026-01-01 10:00:00+00", first_rank_pct: null, is_top_tier: false, is_unranked: true}
+        - {canonical_model_id: d, listed_at: "2026-01-01 10:00:00+00", first_rank_pct: 0.5, is_top_tier: false, is_unranked: false}
