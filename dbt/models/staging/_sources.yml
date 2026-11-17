@@ -1,0 +1,23 @@
+version: 2
+sources:
+  - name: raw
+    description: Parquet written by ingest/ (never by dbt). Paths resolve through raw_root().
+    tables:
+      - name: litellm
+        config:
+          external_location: "read_parquet('{{ var('raw_root', '../tests/fixtures/raw' if target.name == 'ci' else '../data/raw') }}/litellm/*/part.parquet', hive_partitioning=true)"
+      - name: arena
+        config:
+          external_location: "read_parquet('{{ var('raw_root', '../tests/fixtures/raw' if target.name == 'ci' else '../data/raw') }}/arena/*/part.parquet', hive_partitioning=true)"
+      - name: epoch
+        config:
+          external_location: "read_parquet('{{ var('raw_root', '../tests/fixtures/raw' if target.name == 'ci' else '../data/raw') }}/epoch/*/part.parquet', hive_partitioning=true)"
+      - name: pypi
+        config:
+          external_location: "read_parquet('{{ var('raw_root', '../tests/fixtures/raw' if target.name == 'ci' else '../data/raw') }}/pypi/*/part.parquet', hive_partitioning=true)"
+      - name: tokencanopy
+        config:
+          external_location: "read_parquet('{{ var('raw_root', '../tests/fixtures/raw' if target.name == 'ci' else '../data/raw') }}/tokencanopy/*/part.parquet', hive_partitioning=true)"
+      - name: freshness
+        config:
+          external_location: "read_parquet('{{ var('raw_root', '../tests/fixtures/raw' if target.name == 'ci' else '../data/raw') }}/_freshness.parquet')"

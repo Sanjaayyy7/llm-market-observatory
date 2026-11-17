@@ -1,0 +1,20 @@
+version: 2
+models:
+  - name: stg_litellm__snapshots
+    data_tests:
+      - unique: {arguments: {column_name: "(snapshot_date || '|' || model_key)"}}
+  - name: stg_arena__leaderboard
+    data_tests:
+      - unique: {arguments: {column_name: "(config || '|' || publish_date || '|' || model_name || '|' || category)"}}
+  - name: stg_epoch__models
+    columns:
+      - {name: model, data_tests: [unique]}
+  - name: stg_pypi__downloads
+    data_tests:
+      - unique: {arguments: {column_name: "(date || '|' || project)"}}
+  - name: stg_tokencanopy__prices
+    data_tests:
+      - unique: {arguments: {column_name: "(run_date || '|' || platform || '|' || model_slug)"}}
+  - name: source_freshness
+    columns:
+      - {name: source, data_tests: [unique, not_null]}

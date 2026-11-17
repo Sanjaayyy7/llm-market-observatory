@@ -1,0 +1,6 @@
+version: 2
+models:
+  - name: dim_model_price
+    data_tests:
+      - unique: {arguments: {column_name: "(model_key || '|' || valid_from)"}}
+      - no_overlapping_intervals: {arguments: {key: model_key, from_col: valid_from, to_col: valid_to}}

@@ -4,6 +4,8 @@ llm_market_observatory:
     dev:
       type: duckdb
       path: ../data/warehouse.duckdb
+      settings: {TimeZone: UTC}
     ci:
       type: duckdb
       path: ":memory:"
+      settings: {TimeZone: UTC}
