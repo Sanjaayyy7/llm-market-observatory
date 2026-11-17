@@ -38,11 +38,18 @@ unfinished changes. This avoids maintaining a second, stale file inventory.
 
 ## Next action and known limits
 
-Finish G5 Step 0. Review the proposed key-level comparison and provider-prefix
-normalization with three independent council lenses before freezing the prereg.
-Complete the Epoch identity crosswalk without adding missing models to the headline
-population merely to make validation pass. Then follow Task 8 Steps 1–5, including
-the mismatch audit, negative control, independent review, and fresh CI evidence.
+Claude Code, 2026-11-17. G5 Steps 0–4 are done:
+- council resolution `c525b10`;
+- prereg `bd9ea16`, a single commit;
+- builder `5346cb1`..`6912a00`.
+
+Analysis: factor 42.0190; 27 of 30 rows compared; 9 audit rows (5 of them headline).
+
+Step 4a is in progress. `seed_epoch_mismatch_audit.csv` has draft verdicts, with `approved_by` blank until the Opus reviewer passes. Three headline rows are verified LiteLLM misses of real provider cuts:
+- `gemini-1.5-pro-001` and `-002`: Google, −64% input / −52% output, effective 2024-10-01;
+- `mistral-large-2407`: Mistral, $3/$9 → $2/$6 on 2024-09-17.
+
+`mistral-large-2402` is unaudited, because no provider page states its price. Expected: `passed: false` after one audit pass. That is the G5 kill: a mini-council (3 Opus lenses), an owner FYI, and the site shows "validation pending". Next: the reviewer result, then set `approved_by`, re-run `python -m analysis.epoch_check`, then the kill council.
 
 Prior audit findings (not repaired by the audit): incremental replay does not
 restore missing historical partitions when its directory and checkpoint remain;
