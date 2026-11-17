@@ -2,7 +2,7 @@
 
 **Updated:** 2026-11-17 · **Now:** G5 Task 8 Epoch ground-truth check (next). Before G6: the reroute sweep and the observed + verified-only headline (plan Task 9 note) · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
-**Active assistant:** Codex, resuming Claude Code checkpoint `3a3d5f5` on `g5-epoch-check`. See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
+**Active assistant:** Claude Code, on `g5-epoch-check` (resumed after Codex handoff `b41285b`). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
 ## Done

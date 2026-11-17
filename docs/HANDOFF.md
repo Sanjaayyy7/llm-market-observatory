@@ -2,7 +2,7 @@
 
 ## Current ownership
 
-- Assistant: **Codex**, acting as cofounder, from 2026-11-17.
+- Assistant: **Claude Code**, acting as cofounder, resumed 2026-11-17 after Codex handoff `b41285b` (no Codex writer active).
 - Checkout: `/Users/sanjaym/Projects/llm-market-observatory`.
 - Branch: `g5-epoch-check`.
 - Claude Code checkpoint: `3a3d5f5d7d8fcbabfcfe82718fec2c2c11b30b46`.
