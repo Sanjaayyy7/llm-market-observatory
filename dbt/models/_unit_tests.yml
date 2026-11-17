@@ -292,3 +292,48 @@ unit_tests:
     expect:
       rows:
         - {run_date: "2026-11-16", platform: Anthropic, provider: anthropic, model_slug: claude-x, in_per_mtok: 3, out_per_mtok: 15}
+
+  # ---- fct_arena_rank (mocks ref('stg_arena__leaderboard'), ref('seed_model_crosswalk')) ----
+  - name: test_rank_is_best_variant
+    description: variants of one canonical model collapse to the best rank and its percentile; other models are untouched
+    model: fct_arena_rank
+    given:
+      - input: ref('stg_arena__leaderboard')
+        format: sql
+        rows: |
+            select cast('text' as varchar) as config, cast('2026-11-01' as date) as publish_date, cast('Model A (High)' as varchar) as model_name, cast('overall' as varchar) as category, cast(1300 as double) as rating, cast(2 as bigint) as rank, cast(0.4 as double) as rank_percentile, cast(true as boolean) as closed union all
+            select cast('text' as varchar) as config, cast('2026-11-01' as date) as publish_date, cast('model-a' as varchar) as model_name, cast('overall' as varchar) as category, cast(1200 as double) as rating, cast(5 as bigint) as rank, cast(1.0 as double) as rank_percentile, cast(true as boolean) as closed union all
+            select cast('text' as varchar) as config, cast('2026-11-01' as date) as publish_date, cast('other' as varchar) as model_name, cast('overall' as varchar) as category, cast(1400 as double) as rating, cast(1 as bigint) as rank, cast(0.2 as double) as rank_percentile, cast(true as boolean) as closed union all
+            select cast('text' as varchar) as config, cast('2026-11-01' as date) as publish_date, cast('Model A (High)' as varchar) as model_name, cast('coding' as varchar) as category, cast(1100 as double) as rating, cast(1 as bigint) as rank, cast(0.1 as double) as rank_percentile, cast(true as boolean) as closed
+      - input: ref('seed_model_crosswalk')
+        format: sql
+        rows: |
+            select cast('arena' as varchar) as source, cast('Model A (High)' as varchar) as source_key, cast('model-a' as varchar) as canonical_model_id union all
+            select cast('arena' as varchar) as source, cast('model-a' as varchar) as source_key, cast('model-a' as varchar) as canonical_model_id union all
+            select cast('arena' as varchar) as source, cast('other' as varchar) as source_key, cast('other' as varchar) as canonical_model_id
+    expect:
+      rows:
+        - {canonical_model_id: model-a, publish_date: "2026-11-01", rank: 2, rank_percentile: 0.4, method_era: 4}
+        - {canonical_model_id: other, publish_date: "2026-11-01", rank: 1, rank_percentile: 0.2, method_era: 4}
+
+  - name: test_method_era_boundaries
+    description: eras split at 2024-01-09, 2025-05-16 and 2025-07-23 (the boundary day opens the new era)
+    model: fct_arena_rank
+    given:
+      - input: ref('stg_arena__leaderboard')
+        format: sql
+        rows: |
+            select cast('text' as varchar) as config, cast('2024-01-08' as date) as publish_date, cast('m' as varchar) as model_name, cast('overall' as varchar) as category, cast(1 as double) as rating, cast(1 as bigint) as rank, cast(0.5 as double) as rank_percentile, cast(true as boolean) as closed union all
+            select cast('text' as varchar) as config, cast('2024-01-09' as date) as publish_date, cast('m' as varchar) as model_name, cast('overall' as varchar) as category, cast(1 as double) as rating, cast(1 as bigint) as rank, cast(0.5 as double) as rank_percentile, cast(true as boolean) as closed union all
+            select cast('text' as varchar) as config, cast('2025-05-16' as date) as publish_date, cast('m' as varchar) as model_name, cast('overall' as varchar) as category, cast(1 as double) as rating, cast(1 as bigint) as rank, cast(0.5 as double) as rank_percentile, cast(true as boolean) as closed union all
+            select cast('text' as varchar) as config, cast('2025-07-23' as date) as publish_date, cast('m' as varchar) as model_name, cast('overall' as varchar) as category, cast(1 as double) as rating, cast(1 as bigint) as rank, cast(0.5 as double) as rank_percentile, cast(true as boolean) as closed
+      - input: ref('seed_model_crosswalk')
+        format: sql
+        rows: |
+            select cast('arena' as varchar) as source, cast('m' as varchar) as source_key, cast('m' as varchar) as canonical_model_id
+    expect:
+      rows:
+        - {canonical_model_id: m, publish_date: "2024-01-08", rank: 1, rank_percentile: 0.5, method_era: 1}
+        - {canonical_model_id: m, publish_date: "2024-01-09", rank: 1, rank_percentile: 0.5, method_era: 2}
+        - {canonical_model_id: m, publish_date: "2025-05-16", rank: 1, rank_percentile: 0.5, method_era: 3}
+        - {canonical_model_id: m, publish_date: "2025-07-23", rank: 1, rank_percentile: 0.5, method_era: 4}
