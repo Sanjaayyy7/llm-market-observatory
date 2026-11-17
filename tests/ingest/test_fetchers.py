@@ -1,3 +1,4 @@
+import warnings
 from datetime import date
 from pathlib import Path
 
@@ -48,6 +49,18 @@ def test_parse_epoch_models_dates():
     assert all(isinstance(d, date) for d in out["publication_date"].iloc[1:])
     with pytest.raises(ValueError, match="Organization"):
         fetch_epoch.parse_epoch_models(raw.drop(columns="Organization"))
+
+
+def test_parse_epoch_dates_iso_only():
+    # format inference from row 1 let a non-ISO value fall back to dateutil (month-first guess)
+    raw = pd.read_csv(SAMPLES / "epoch" / "all_ai_models.csv")
+    raw.loc[0, "Publication date"] = "not a date"
+    raw.loc[1, "Publication date"] = "03/02/2024"
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        out = fetch_epoch.parse_epoch_models(raw)
+    assert out["publication_date"].isna().sum() == 2
+    assert date(2024, 3, 2) not in set(out["publication_date"])
 
 
 def test_parse_tokencanopy_columns():

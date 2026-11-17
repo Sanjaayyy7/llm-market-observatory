@@ -17,6 +17,7 @@
 - [x] G3a: deterministic LiteLLM replay of `main`'s first-parent history (2026-11-16). Two fresh full replays → equal `replay_hash` `b7eff1c8…d6fe` (also equal to the builder's runs and an independent scratch replay); 646 days from 2023-09-06, 0 error days; `make ci` → 22 passed, `PASS=4`; drills in `docs/drills/g3a-litellm-replay.md`
 - [x] G1: source fetchers + probes (2026-11-17 UTC). `make probe` → one probe row per source with rows > 0 (arena 2,417,362; epoch 3,716; pypi 8,926; tokencanopy 17,291; litellm 1,040,435 from G3a); `make fetch` → a `part.parquet` in all five `data/raw/<source>/`; `make ci` → 29 passed, `PASS=7`; drills in `docs/drills/g1-fetchers.md`
 - [x] G3b: staging + SCD2 `dim_model_price` (2026-11-17). Hand-worked golden (`f97f7ce`, 16 rows) matches; `make ci` → 29 passed, dbt `PASS=58`; fresh dev build `PASS=58`; dev `dim_model_price` 6,270 rows / 5,128 keys, `gpt-4` $3→$30/M at 2023-09-18 22:10:45Z; no source stale; negative controls (naive `valid_to`, PyPI `sum`→`max`) failed then passed; reviewer pass, 2 fix rounds; drills in `docs/drills/g3b-staging-scd2.md`
+- [x] G3b risk close-out (2026-11-17). Mode-rule mini-council: per-row scope kept, `delisted` redefined, Task 6 guard + final-delisting censoring added (design §5/§8 v1.2.1); Epoch ISO date parse; dead `raw_root()` macro removed. `make ci` → 30 passed, `PASS=58`
 
 ## Roadmap
 

@@ -26,7 +26,7 @@ def parse_epoch_models(df: pd.DataFrame) -> pd.DataFrame:
     if missing:
         raise ValueError(f"epoch input missing columns: {missing}")
     out = df[list(RENAME)].rename(columns=RENAME)
-    dates = pd.to_datetime(out["publication_date"], errors="coerce").dt.date
+    dates = pd.to_datetime(out["publication_date"], errors="coerce", format="%Y-%m-%d").dt.date
     out["publication_date"] = dates.astype(object).where(dates.notna(), None)
     return out.sort_values(["publication_date", "model"], na_position="first").reset_index(drop=True)
 

@@ -113,14 +113,14 @@ It also verifies that GitHub disables scheduled workflows on idle public repos (
 8. **Determinism:** write sorted rows; `replay_hash` = sha256 over the sorted partition files. **G3 requires two clean runs to produce the same hash.**
 
 **SCD2 in dbt** (`dim_model_price`, gaps-and-islands SQL — the hand-written drill target):
-1. `stg_litellm__snapshots`: one row per `(snapshot_date, model_key)`, filtered to `mode in ('chat','completion','responses')`. A null `mode` takes the key's next non-null mode; a key never given a mode is kept. *(v1.2, spike: the v1.1 filter dropped the whole 2023-09-06 snapshot, where all 19 keys have null mode, and `responses`-only models such as `gpt-5.4` and `gpt-5.2-pro`.)*
+1. `stg_litellm__snapshots`: one row per `(snapshot_date, model_key)`, filtered to `mode in ('chat','completion','responses')`. A null `mode` takes the key's next non-null mode; a key never given a mode is kept. *(v1.2, spike: the v1.1 filter dropped the whole 2023-09-06 snapshot, where all 19 keys have null mode, and `responses`-only models such as `gpt-5.4` and `gpt-5.2-pro`.)* *(v1.2.1, G3b mini-council: the filter is per row. A null mode fills from the next non-null mode, else the previous one. A key reclassified out of scope leaves the set there; 41 keys on 2026-11-16, all realtime, image or TTS. Judging scope by a key's latest mode was rejected: it erased `gemini/gemini-1.5-flash` and its real 2024-09-10 cut after a 2026-03 relabel to `embedding`.)*
 2. `int_price_versions`:
    - Compute `price_sig = (input, output)`.
    - Flag a change when `price_sig` differs from the previous snapshot for the same key, or the key reappears after an absence.
    - `version_id` = running sum of change flags.
 3. `dim_model_price`: one row per `(model_key, valid_from)`:
    - `valid_from` = first `commit_ts` of the version.
-   - `valid_to` = next version's `valid_from`, or the first snapshot where the key is absent (`delisted = true`), or null if current.
+   - `valid_to` = next version's `valid_from`, or the first snapshot where the key is absent (`delisted = true`), or null if current. `delisted` means the key left the in-scope set: removed upstream, or reclassified out of scope. A later version means it returned (122 such returns, median gap 2 days).
    - `is_current` = `valid_to is null`.
 4. Tests:
    - unique `(model_key, valid_from)`;
@@ -194,7 +194,7 @@ If coverage fails: panel-only scope. The headline is restricted to the mapped se
 | Metric | Definition |
 |---|---|
 | `blended_price_per_mtok` | `(3·input + 1·output)/4 × 1e6`, first-party standard tier |
-| `days_at_launch_price` | first_cut_at − listed_at (days); censored at today or at delisting |
+| `days_at_launch_price` | first_cut_at − listed_at (days); censored at today or at the final delisting (the model's last version is `delisted` and no later version exists; a temporary absence does not censor, v1.2.1) |
 | `km_median_days_at_launch_price` | Kaplan–Meier median over top-tier models, with IQR and n |
 | `share_cut_within_365d` | KM-estimated 1 − S(365) (the fallback headline) |
 | `cut_depth_pct` | price drop at the first cut |

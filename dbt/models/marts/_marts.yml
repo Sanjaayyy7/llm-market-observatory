@@ -4,6 +4,11 @@ models:
     columns:
       - {name: model_key, data_tests: [not_null]}
       - {name: valid_from, data_tests: [not_null]}
+      - name: delisted
+        description: >-
+          The version ended because the key left the in-scope set: removed from LiteLLM, or
+          reclassified out of chat/completion/responses (41 keys on 2026-11-16). A later version of
+          the same key means it returned. Survival censors only at a final delisting (Task 6).
     data_tests:
       - unique: {arguments: {column_name: "(model_key || '|' || valid_from)"}}
       - no_overlapping_intervals: {arguments: {key: model_key, from_col: valid_from, to_col: valid_to}}
