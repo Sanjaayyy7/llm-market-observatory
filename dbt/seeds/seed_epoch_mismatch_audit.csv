@@ -1,6 +1,7 @@
 model_name,obs_date,verdict,source_url,approved_by
-Gemini-1.5-Pro-2024-05,2024-05-23,panel_error,https://developers.googleblog.com/en/updated-gemini-models-reduced-15-pro-pricing-increased-rate-limits-and-more/,
-Mistral-NeMo,2024-07-18,epoch_non_list_price,https://mistral.ai/news/september-24-release/,
-Mistral-Large-2-2024-07,2024-07-24,panel_error,https://mistral.ai/news/september-24-release/,
-Gemini-1.5-Pro-2024-09,2024-09-24,panel_error,https://developers.googleblog.com/en/updated-gemini-models-reduced-15-pro-pricing-increased-rate-limits-and-more/,
-Claude-3.5-Haiku,2024-10-22,real_change,https://www.anthropic.com/news/3-5-models-and-computer-use,
+Gemini-1.5-Pro-2024-05,2024-05-23,panel_error,https://developers.googleblog.com/en/updated-gemini-models-reduced-15-pro-pricing-increased-rate-limits-and-more/,cofounder
+Mistral-NeMo,2024-07-18,epoch_non_list_price,https://mistral.ai/news/september-24-release/,cofounder
+Mistral-Large-2-2024-07,2024-07-24,panel_error,https://mistral.ai/news/september-24-release/,cofounder
+Gemini-1.5-Pro-2024-09,2024-09-24,panel_error,https://developers.googleblog.com/en/updated-gemini-models-reduced-15-pro-pricing-increased-rate-limits-and-more/,cofounder
+Claude-3.5-Haiku,2024-10-22,real_change,https://www.anthropic.com/news/3-5-models-and-computer-use,cofounder
+DeepSeek-V3,2024-12-26,real_change,https://api-docs.deepseek.com/news/news1226,cofounder
