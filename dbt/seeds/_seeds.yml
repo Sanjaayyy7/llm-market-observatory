@@ -8,3 +8,9 @@ seeds:
         data_tests: [not_null]
       - name: is_first_party
         data_tests: [not_null]
+  - name: seed_sdk_packages
+    columns:
+      - name: package
+        data_tests: [unique]
+      - name: sdk_group
+        data_tests: [not_null]

@@ -10,7 +10,7 @@ from typing import NamedTuple
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from ingest.freshness import append_freshness
+from ingest.freshness import append_freshness, schema_hash
 
 REPO_URL = "https://github.com/BerriAI/litellm.git"
 PRICE_FILE = "model_prices_and_context_window.json"
@@ -24,7 +24,7 @@ SCHEMA = pa.schema([
     ("commit_ts", pa.timestamp("us", tz="UTC")),
 ])
 ERRORS_SCHEMA = pa.schema([("snapshot_date", pa.date32()), ("commit_sha", pa.string()), ("error", pa.string())])
-SCHEMA_HASH = hashlib.sha256(SCHEMA.to_string(show_schema_metadata=False).encode()).hexdigest()
+SCHEMA_HASH = schema_hash(SCHEMA)
 PROVIDER_BY_PREFIX = {
     "gpt": "openai", "o1": "openai", "o3": "openai", "o4": "openai", "text-davinci": "openai",
     "claude": "anthropic",

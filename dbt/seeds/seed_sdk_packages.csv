@@ -1,0 +1,9 @@
+sdk_group,package
+openai,openai
+anthropic,anthropic
+google,google-genai
+google,google-generativeai
+mistral,mistralai
+cohere,cohere
+xai,xai-sdk
+control,requests

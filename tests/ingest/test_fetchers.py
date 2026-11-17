@@ -3,8 +3,10 @@ from pathlib import Path
 
 import pandas as pd
 import pyarrow.parquet as pq
+import pyarrow as pa
 import pytest
 
+from ingest.freshness import schema_hash
 from ingest import fetch_arena, fetch_clickpy, fetch_epoch, fetch_tokencanopy
 
 SAMPLES = Path(__file__).resolve().parents[1] / "fixtures" / "samples"
@@ -24,7 +26,7 @@ def test_parse_arena_keeps_text_configs():
 
 def test_parse_arena_schema_hash_stable():
     raw = pd.read_parquet(SAMPLES / "arena" / "text.parquet")
-    hashes = {fetch_arena.table_schema_hash(fetch_arena.parse_arena(raw, "text")) for _ in range(2)}
+    hashes = {schema_hash(pa.Table.from_pandas(fetch_arena.parse_arena(raw, "text"), preserve_index=False).schema) for _ in range(2)}
     assert len(hashes) == 1
 
 
