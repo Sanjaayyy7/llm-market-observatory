@@ -60,3 +60,17 @@ seeds:
         data_tests: [not_null]
       - name: doc_domain
         data_tests: [unique]
+  - name: seed_model_reroute
+    config:
+      column_types:
+        reroute_date: date
+        evidence_url: varchar
+        approved_by: varchar
+    columns:
+      - name: canonical_model_id
+        data_tests:
+          - unique
+          - relationships: {arguments: {to: ref('seed_models'), field: canonical_model_id}}
+      - name: target_model_id
+        data_tests:
+          - relationships: {arguments: {to: ref('seed_models'), field: canonical_model_id}}

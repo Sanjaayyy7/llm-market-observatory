@@ -337,3 +337,345 @@ unit_tests:
         - {canonical_model_id: m, publish_date: "2024-01-09", rank: 1, rank_percentile: 0.5, method_era: 2}
         - {canonical_model_id: m, publish_date: "2025-05-16", rank: 1, rank_percentile: 0.5, method_era: 3}
         - {canonical_model_id: m, publish_date: "2025-07-23", rank: 1, rank_percentile: 0.5, method_era: 4}
+
+  - name: cut_boundary
+    description: -9.9% is not a cut; -10.0% is a cut
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: ka, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-31 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: ka, valid_from: "2024-01-31 10:00:00+00", valid_to: null, in_per_mtok: 90.1, out_per_mtok: 90.1, delisted: false, is_current: true}
+          - {model_key: kb, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-31 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: kb, valid_from: "2024-01-31 10:00:00+00", valid_to: null, in_per_mtok: 90, out_per_mtok: 90, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: ka, canonical_model_id: a, is_moving_alias: false}
+          - {source: litellm, source_key: kb, canonical_model_id: b, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: ka, litellm_provider: p}
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: kb, litellm_provider: p}
+    expect:
+      rows:
+        - {canonical_model_id: a, change_ts: "2024-01-31 10:00:00+00", prev_blended: 100, blended: 90.1, is_cut: false, is_correction: false}
+        - {canonical_model_id: b, change_ts: "2024-01-31 10:00:00+00", prev_blended: 100, blended: 90, is_cut: true, is_correction: false}
+
+  - name: revert_13d_is_correction
+    description: a cut reverted 13 days later is a correction
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-02-01 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-02-01 10:00:00+00", valid_to: "2024-02-14 10:00:00+00", in_per_mtok: 50, out_per_mtok: 50, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-02-14 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: c, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+    expect:
+      rows:
+        - {canonical_model_id: c, change_ts: "2024-02-01 10:00:00+00", prev_blended: 100, blended: 50, pct: -0.5, is_cut: true, is_correction: true}
+        - {canonical_model_id: c, change_ts: "2024-02-14 10:00:00+00", prev_blended: 50, blended: 100, pct: 1.0, is_cut: false, is_correction: false}
+
+  - name: revert_20d_is_real_cut
+    description: a cut reverted 20 days later is a real cut
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-02-01 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-02-01 10:00:00+00", valid_to: "2024-02-21 10:00:00+00", in_per_mtok: 50, out_per_mtok: 50, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-02-21 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: c, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+    expect:
+      rows:
+        - {canonical_model_id: c, change_ts: "2024-02-01 10:00:00+00", prev_blended: 100, blended: 50, pct: -0.5, is_cut: true, is_correction: false}
+        - {canonical_model_id: c, change_ts: "2024-02-21 10:00:00+00", prev_blended: 50, blended: 100, pct: 1.0, is_cut: false, is_correction: false}
+
+  - name: cut_day5_after_listing_is_correction
+    description: a cut 5 days after listing is a correction
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-06 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-01-06 10:00:00+00", valid_to: null, in_per_mtok: 50, out_per_mtok: 50, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: c, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+    expect:
+      rows:
+        - {canonical_model_id: c, change_ts: "2024-01-06 10:00:00+00", prev_blended: 100, blended: 50, pct: -0.5, is_cut: true, is_correction: true}
+
+  - name: zero_to_price_not_cut
+    description: a zero-priced first version is excluded, so the move to a price is no change
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-31 10:00:00+00", in_per_mtok: 0, out_per_mtok: 0, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-01-31 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: c, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+    expect:
+      rows: []
+
+  - name: price_to_zero_not_cut
+    description: a move to a zero price is excluded, so no change
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-31 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-01-31 10:00:00+00", valid_to: null, in_per_mtok: 0, out_per_mtok: 0, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: c, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+    expect:
+      rows: []
+
+  - name: null_output_excluded
+    description: a null output price drops the version
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-31 10:00:00+00", in_per_mtok: 100, out_per_mtok: null, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2024-01-31 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: c, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+    expect:
+      rows: []
+
+  - name: multi_key_counts_one_change
+    description: two keys of one canonical cutting together give one change
+    model: fct_price_change
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k1, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-31 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: k1, valid_from: "2024-01-31 10:00:00+00", valid_to: null, in_per_mtok: 50, out_per_mtok: 50, delisted: false, is_current: true}
+          - {model_key: k2, valid_from: "2024-01-02 10:00:00+00", valid_to: "2024-01-31 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: k2, valid_from: "2024-01-31 10:00:00+00", valid_to: null, in_per_mtok: 50, out_per_mtok: 50, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k1, canonical_model_id: c, is_moving_alias: false}
+          - {source: litellm, source_key: k2, canonical_model_id: c, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k1, litellm_provider: p}
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k2, litellm_provider: p}
+    expect:
+      rows:
+        - {canonical_model_id: c, change_ts: "2024-01-31 10:00:00+00", prev_blended: 100, blended: 50, pct: -0.5, is_cut: true, is_correction: false}
+
+  - name: never_cut_is_censored
+    description: "no real cut: first_cut_at null, censored at the run date"
+    model: mart_launch_price_survival
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2026-01-01 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: n, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+      - input: ref('dim_model')
+        rows:
+          - {canonical_model_id: n, provider: google}
+      - input: ref('seed_model_reroute')
+        rows: []
+      - input: ref('fct_price_change')
+        rows: []
+      - input: ref('mart_top_tier_screen')
+        rows:
+          - {canonical_model_id: n, listed_at: "2026-01-01 10:00:00+00", first_rank_pct: 0.1, is_top_tier: true, is_unranked: false}
+    expect:
+      rows:
+        - {canonical_model_id: n, provider: google, listed_at: "2026-01-01 10:00:00+00", first_cut_at: null, days_at_launch_price: 333, censored: true, cut_depth_pct: null}
+
+  - name: relisted_model_not_censored
+    description: "delisted on day 50, relisted day 52, cut on day 200: scored at day 200, not censored at day 50"
+    model: mart_launch_price_survival
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2026-01-01 10:00:00+00", valid_to: "2026-02-20 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: true, is_current: false}
+          - {model_key: k, valid_from: "2026-02-22 10:00:00+00", valid_to: "2026-07-20 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: false}
+          - {model_key: k, valid_from: "2026-07-20 10:00:00+00", valid_to: null, in_per_mtok: 50, out_per_mtok: 50, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: r, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+      - input: ref('dim_model')
+        rows:
+          - {canonical_model_id: r, provider: google}
+      - input: ref('seed_model_reroute')
+        rows: []
+      - input: ref('fct_price_change')
+        rows:
+          - {canonical_model_id: r, change_ts: "2026-07-20 10:00:00+00", pct: -0.5, is_cut: true, is_correction: false}
+      - input: ref('mart_top_tier_screen')
+        rows:
+          - {canonical_model_id: r, listed_at: "2026-01-01 10:00:00+00", first_rank_pct: 0.1, is_top_tier: true, is_unranked: false}
+    expect:
+      rows:
+        - {canonical_model_id: r, provider: google, listed_at: "2026-01-01 10:00:00+00", first_cut_at: "2026-07-20 10:00:00+00", days_at_launch_price: 200, censored: false, cut_depth_pct: 0.5}
+
+  - name: final_delisting_censors
+    description: a cut after the final delisting is not scored; observation ends at the delisting
+    model: mart_launch_price_survival
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2026-01-01 10:00:00+00", valid_to: "2026-03-02 10:00:00+00", in_per_mtok: 100, out_per_mtok: 100, delisted: true, is_current: false}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: d, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+      - input: ref('dim_model')
+        rows:
+          - {canonical_model_id: d, provider: google}
+      - input: ref('seed_model_reroute')
+        rows: []
+      - input: ref('fct_price_change')
+        rows:
+          - {canonical_model_id: d, change_ts: "2026-06-01 10:00:00+00", pct: -0.5, is_cut: true, is_correction: false}
+      - input: ref('mart_top_tier_screen')
+        rows:
+          - {canonical_model_id: d, listed_at: "2026-01-01 10:00:00+00", first_rank_pct: 0.1, is_top_tier: true, is_unranked: false}
+    expect:
+      rows:
+        - {canonical_model_id: d, provider: google, listed_at: "2026-01-01 10:00:00+00", first_cut_at: null, days_at_launch_price: 60, censored: true, cut_depth_pct: null}
+
+  - name: correction_cut_not_scored
+    description: a flagged correction is not a first cut
+    model: mart_launch_price_survival
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: k, valid_from: "2026-01-01 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: k, canonical_model_id: x, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: k, litellm_provider: p}
+      - input: ref('dim_model')
+        rows:
+          - {canonical_model_id: x, provider: google}
+      - input: ref('seed_model_reroute')
+        rows: []
+      - input: ref('fct_price_change')
+        rows:
+          - {canonical_model_id: x, change_ts: "2026-01-04 10:00:00+00", pct: -0.5, is_cut: true, is_correction: true}
+      - input: ref('mart_top_tier_screen')
+        rows:
+          - {canonical_model_id: x, listed_at: "2026-01-01 10:00:00+00", first_rank_pct: 0.1, is_top_tier: true, is_unranked: false}
+    expect:
+      rows:
+        - {canonical_model_id: x, provider: google, listed_at: "2026-01-01 10:00:00+00", first_cut_at: null, days_at_launch_price: 333, censored: true, cut_depth_pct: null}
+
+  - name: reroute_cut_is_censored_not_scored
+    description: "A listed 2026-05-19, target B listed 2026-07-21, seed (A, null, B); A -50% on 2026-11-24, B -50% on 2026-08-18; run 2026-11-30: A censored at 2026-07-21, B scored"
+    model: mart_launch_price_survival
+    given:
+      - input: ref('dim_model_price')
+        rows:
+          - {model_key: ka, valid_from: "2026-05-19 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+          - {model_key: kb, valid_from: "2026-07-21 10:00:00+00", valid_to: null, in_per_mtok: 100, out_per_mtok: 100, delisted: false, is_current: true}
+      - input: ref('seed_model_crosswalk')
+        rows:
+          - {source: litellm, source_key: ka, canonical_model_id: a, is_moving_alias: false}
+          - {source: litellm, source_key: kb, canonical_model_id: b, is_moving_alias: false}
+      - input: ref('seed_provider_map')
+        rows:
+          - {litellm_provider: p, is_first_party: true}
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: ka, litellm_provider: p}
+          - {snapshot_date: "2026-11-30", commit_ts: "2026-11-30 10:00:00+00", model_key: kb, litellm_provider: p}
+      - input: ref('dim_model')
+        rows:
+          - {canonical_model_id: a, provider: google}
+          - {canonical_model_id: b, provider: google}
+      - input: ref('seed_model_reroute')
+        rows:
+          - {canonical_model_id: a, reroute_date: null, target_model_id: b}
+      - input: ref('fct_price_change')
+        rows:
+          - {canonical_model_id: a, change_ts: "2026-11-24 10:00:00+00", pct: -0.5, is_cut: true, is_correction: false}
+          - {canonical_model_id: b, change_ts: "2026-08-18 10:00:00+00", pct: -0.5, is_cut: true, is_correction: false}
+      - input: ref('mart_top_tier_screen')
+        rows:
+          - {canonical_model_id: a, listed_at: "2026-05-19 10:00:00+00", first_rank_pct: 0.1, is_top_tier: true, is_unranked: false}
+          - {canonical_model_id: b, listed_at: "2026-07-21 10:00:00+00", first_rank_pct: 0.1, is_top_tier: true, is_unranked: false}
+    expect:
+      rows:
+        - {canonical_model_id: a, provider: google, listed_at: "2026-05-19 10:00:00+00", first_cut_at: null, days_at_launch_price: 63, censored: true, cut_depth_pct: null}
+        - {canonical_model_id: b, provider: google, listed_at: "2026-07-21 10:00:00+00", first_cut_at: "2026-08-18 10:00:00+00", days_at_launch_price: 28, censored: false, cut_depth_pct: 0.5}
