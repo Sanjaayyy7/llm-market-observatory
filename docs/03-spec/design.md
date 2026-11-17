@@ -166,6 +166,8 @@ It also verifies that GitHub disables scheduled workflows on idle public repos (
 
 If coverage fails: panel-only scope. The headline is restricted to the mapped set and the coverage is shown in the README.
 
+*v1.2.2 (G2 council, 2026-11-17):* only closed coverage <80% (or <30 top-tier) is the §18 kill, which means no headline. When overall coverage is below 90%, a warn-level test fires, and the shortfall is disclosed on README and Methods. The canonical ID is the bare first-party API ID, and `canon()` applies to Arena and Epoch names only (DECISIONS 2026-11-17).
+
 ## 7. Data model (grain declared, each enforced by a uniqueness test)
 
 | Model | Grain (one row per) | Notes |

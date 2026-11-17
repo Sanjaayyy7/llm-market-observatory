@@ -1,93 +1,93 @@
 source,source_key,canonical_model_id,match_method,is_moving_alias,match_score,evidence_url,approved_by
-arena,ChatGPT-4o Latest (20250326),chatgpt-4o-latest,manual,true,0.711,https://developers.openai.com/api/docs/deprecations,
-arena,Claude Fable 5 (High),claude-fable-5,manual,false,0.686,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Fable 5.1 (Max),claude-fable-5-1,manual,false,0.684,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 4.5 (20251101),claude-opus-4-5-20251101,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,"Claude Opus 4.5 (High, 32K, 20251101)",claude-opus-4-5-20251101,manual,false,0.656,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 4.6,claude-opus-4-6,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 4.6 (High),claude-opus-4-6,manual,false,0.649,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 4.7,claude-opus-4-7,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 4.7 (High),claude-opus-4-7,manual,false,0.649,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 4.8,claude-opus-4-8,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 4.8 (High),claude-opus-4-8,manual,false,0.649,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 5 (High),claude-opus-5,manual,false,0.667,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 5 (Max),claude-opus-5,manual,false,0.688,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Opus 5.5 (High),claude-opus-5-5,manual,false,0.649,https://platform.claude.com/docs/en/models/overview,
-arena,Claude Sonnet 4.5 (20250929),claude-sonnet-4-5-20250929,manual,false,0.815,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,"Claude Sonnet 4.5 (High, 32K, 20250929)",claude-sonnet-4-5-20250929,manual,false,0.677,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Sonnet 4.6,claude-sonnet-4-6,manual,false,0.824,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Sonnet 5 (High),claude-sonnet-5,manual,false,0.703,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,Claude Sonnet 5.5 (xHigh),claude-sonnet-5-5,manual,false,0.667,https://platform.claude.com/docs/en/models/overview,
-arena,Command R,command-r,manual,true,0.889,https://docs.cohere.com/docs/models,
-arena,Command R (08-2024),command-r-08-2024,manual,false,0.833,https://docs.cohere.com/docs/models,
-arena,Command R+ (08-2024),command-r-plus-08-2024,manual,false,0.714,https://docs.cohere.com/docs/models,
+arena,ChatGPT-4o Latest (20250326),chatgpt-4o-latest,manual,true,0.711,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,Claude Fable 5 (High),claude-fable-5,manual,false,0.686,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Fable 5.1 (Max),claude-fable-5-1,manual,false,0.684,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 4.5 (20251101),claude-opus-4-5-20251101,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,"Claude Opus 4.5 (High, 32K, 20251101)",claude-opus-4-5-20251101,manual,false,0.656,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 4.6,claude-opus-4-6,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 4.6 (High),claude-opus-4-6,manual,false,0.649,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 4.7,claude-opus-4-7,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 4.7 (High),claude-opus-4-7,manual,false,0.649,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 4.8,claude-opus-4-8,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 4.8 (High),claude-opus-4-8,manual,false,0.649,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 5 (High),claude-opus-5,manual,false,0.667,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 5 (Max),claude-opus-5,manual,false,0.688,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 5.5 (High),claude-opus-5-5,manual,false,0.649,https://platform.claude.com/docs/en/models/overview,cofounder
+arena,Claude Sonnet 4.5 (20250929),claude-sonnet-4-5-20250929,manual,false,0.815,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,"Claude Sonnet 4.5 (High, 32K, 20250929)",claude-sonnet-4-5-20250929,manual,false,0.677,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Sonnet 4.6,claude-sonnet-4-6,manual,false,0.824,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Sonnet 5 (High),claude-sonnet-5,manual,false,0.703,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Sonnet 5.5 (xHigh),claude-sonnet-5-5,manual,false,0.667,https://platform.claude.com/docs/en/models/overview,cofounder
+arena,Command R,command-r,manual,true,0.889,https://docs.cohere.com/docs/models,cofounder
+arena,Command R (08-2024),command-r-08-2024,manual,false,0.833,https://docs.cohere.com/docs/models,cofounder
+arena,Command R+ (08-2024),command-r-plus-08-2024,manual,false,0.714,https://docs.cohere.com/docs/models,cofounder
 arena,DeepSeek-R1,deepseek-r1,exact,true,1.0,,
 arena,DeepSeek-V3,deepseek-v3,exact,true,1.0,,
 arena,DeepSeek-V3.2,deepseek-v3.2,exact,true,1.0,,
 arena,DeepSeek-V4-Flash,deepseek-v4-flash,exact,true,1.0,,
 arena,DeepSeek-V4-Pro,deepseek-v4-pro,exact,true,1.0,,
-arena,"DeepSeek-V4-Pro (High, 20260813)",deepseek-v4-pro,manual,true,0.638,https://api-docs.deepseek.com/quick_start/pricing/,
-arena,GPT-4 Turbo (2024-04-09),gpt-4-turbo-2024-04-09,manual,false,0.87,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-4.1 (2025-04-14),gpt-4.1-2025-04-14,manual,false,0.895,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-4.1 mini (2025-04-14),gpt-4.1-mini-2025-04-14,manual,false,0.875,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-4.1 nano (2025-04-14),gpt-4.1-nano-2025-04-14,manual,false,0.875,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-4.5 Preview (2025-02-27),gpt-4.5-preview-2025-02-27,manual,false,0.889,https://developers.openai.com/api/docs/models/gpt-4.5-preview,
-arena,GPT-4o (2024-05-13),gpt-4o-2024-05-13,manual,false,0.889,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-4o (2024-08-06),gpt-4o-2024-08-06,manual,false,0.889,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-4o mini (2024-07-18),gpt-4o-mini-2024-07-18,manual,false,0.87,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5 (High),gpt-5-2025-08-07,manual,false,0.357,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5 Chat,gpt-5-chat-latest,manual,true,0.667,https://developers.openai.com/api/docs/models/gpt-5-chat-latest,
-arena,GPT-5 mini (High),gpt-5-mini-2025-08-07,manual,false,0.474,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5 nano (High),gpt-5-nano-2025-08-07,manual,false,0.474,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5.1,gpt-5.1-2025-11-13,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5.1 (High),gpt-5.1-2025-11-13,manual,false,0.438,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5.2,gpt-5.2-2025-12-11,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,
-arena,GPT-5.2 (High),gpt-5.2-2025-12-11,manual,false,0.438,https://developers.openai.com/api/docs/models/gpt-5.2,
-arena,GPT-5.2 Chat (20260210),gpt-5.2-chat-latest,manual,true,0.524,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5.4,gpt-5.4-2026-03-05,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,
-arena,GPT-5.4 (High),gpt-5.4-2026-03-05,manual,false,0.438,https://developers.openai.com/api/docs/models/gpt-5.4,
-arena,GPT-5.4 mini (High),gpt-5.4-mini-2026-03-17,manual,false,0.524,https://developers.openai.com/api/docs/models/gpt-5.4-mini,
-arena,GPT-5.5,gpt-5.5-2026-04-23,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,
-arena,GPT-5.5 (High),gpt-5.5-2026-04-23,manual,false,0.438,https://developers.openai.com/api/docs/models/gpt-5.5,
-arena,GPT-5.6 Luna (xHigh),gpt-5.6-luna,manual,false,0.688,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5.6 Sol (xHigh),gpt-5.6-sol,manual,false,0.667,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-5.6 Terra (xHigh),gpt-5.6-terra,manual,false,0.706,https://developers.openai.com/api/docs/deprecations,
-arena,GPT-6 Astra (Max),gpt-6-astra,manual,false,0.714,https://developers.openai.com/api/docs/models,
-arena,GPT-6.1 Sol (Max),gpt-6.1-sol,manual,false,0.714,https://developers.openai.com/api/docs/models,
-arena,Gemini 2.0 Flash-Lite Preview (02-05),gemini-2.0-flash-lite-preview-02-05,manual,false,0.861,https://aistudio.google.com/docs/deprecations,
-arena,Gemini 2.5 Flash,gemini-2.5-flash,manual,false,0.875,https://aistudio.google.com/docs/models,
-arena,Gemini 2.5 Pro,gemini-2.5-pro,manual,false,0.857,https://aistudio.google.com/docs/models,
-arena,Gemini 3 Flash,gemini-3-flash-preview,manual,false,0.667,https://aistudio.google.com/docs/models,
-arena,Gemini 3 Flash (Minimal),gemini-3-flash-preview,manual,false,0.565,https://aistudio.google.com/docs/models,
-arena,Gemini 3 Pro,gemini-3-pro-preview,manual,false,0.625,https://aistudio.google.com/docs/models,
-arena,Gemini 3.1 Flash-Lite Preview,gemini-3.1-flash-lite-preview,manual,false,0.897,https://aistudio.google.com/docs/models,
-arena,Gemini 3.1 Pro Preview,gemini-3.1-pro-preview,manual,false,0.864,https://aistudio.google.com/docs/models,
-arena,Gemini 3.5 Flash (High),gemini-3.5-flash,manual,false,0.718,https://aistudio.google.com/docs/deprecations,
-arena,Gemini 3.5 Flash (Medium),gemini-3.5-flash,manual,false,0.683,https://aistudio.google.com/docs/deprecations,
-arena,Gemini 3.5 Flash-Lite,gemini-3.5-flash-lite,manual,false,0.905,https://aistudio.google.com/docs/models,
-arena,Gemini 3.6 Flash (High),gemini-3.6-flash,manual,false,0.718,https://aistudio.google.com/docs/models,
-arena,Gemini 3.7 Flash (High),gemini-3.7-flash,manual,false,0.718,https://aistudio.google.com/docs/deprecations,
-arena,Gemini 3.8 Flash (High),gemini-3.8-flash,manual,false,0.718,https://aistudio.google.com/docs/models,
-arena,Gemini 4 Argon (High),gemini-4-argon,manual,false,0.686,https://aistudio.google.com/docs/models,
-arena,Gemini 4 Carbon (High),gemini-4-carbon,manual,false,0.703,https://aistudio.google.com/docs/models,
-arena,Gemini 4 Hydrogen (High),gemini-4-hydrogen,manual,false,0.732,https://aistudio.google.com/docs/models,
-arena,Gemini Pro,gemini-pro,manual,false,0.9,https://aistudio.google.com/docs/changelog,
-arena,Gemini Pro (Dev API),gemini-pro,manual,false,0.6,https://aistudio.google.com/docs/changelog,
-arena,Gemma 3 27B IT,gemma-3-27b-it,manual,false,0.786,https://aistudio.google.com/docs/changelog,
-arena,Gemma 4 26B A4B,gemma-4-26b-a4b-it,manual,false,0.727,https://aistudio.google.com/docs/changelog,
-arena,Gemma 4 31B,gemma-4-31b-it,manual,false,0.72,https://aistudio.google.com/docs/changelog,
-arena,"Grok 4.20 Beta (Reasoning, 0309)",grok-4.20-0309-reasoning,manual,false,0.607,https://docs.x.ai/developers/models,
-arena,Grok 4.20 Multi-Agent Beta (0309),grok-4.20-multi-agent-beta-0309,manual,false,0.844,https://docs.x.ai/developers/models,
-arena,Grok 4.3,grok-4.3,manual,false,0.875,https://docs.x.ai/developers/models,
-arena,Grok 4.5,grok-4.5,manual,false,0.875,https://docs.x.ai/developers/models,
-arena,Grok 4.6 (High),grok-4.6,manual,false,0.609,https://docs.x.ai/developers/models,
-arena,Kimi K2.6,kimi-k2.6,manual,false,0.889,https://platform.kimi.ai/docs/pricing/chat,
-arena,Kimi K3 (Max),kimi-k3,manual,false,0.6,https://platform.kimi.ai/docs/pricing/chat,
-arena,Kimi K3.1 Pro (Max),kimi-k3.1-pro,manual,false,0.688,https://platform.kimi.ai/docs/pricing/chat,
-arena,Mistral Large 3,mistral-large-2512,manual,false,0.727,https://docs.mistral.ai/models,
-arena,Mistral Large 4,mistral-large-4,manual,false,0.867,https://docs.mistral.ai/models,
-arena,Mistral Medium,mistral-medium-2312,manual,false,0.788,https://docs.mistral.ai/models,
-arena,Mistral Medium 3.5,mistral-medium-3-5,manual,false,0.833,https://docs.mistral.ai/models,
+arena,"DeepSeek-V4-Pro (High, 20260813)",deepseek-v4-pro,manual,true,0.638,https://api-docs.deepseek.com/quick_start/pricing/,cofounder
+arena,GPT-4 Turbo (2024-04-09),gpt-4-turbo-2024-04-09,manual,false,0.87,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-4.1 (2025-04-14),gpt-4.1-2025-04-14,manual,false,0.895,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-4.1 mini (2025-04-14),gpt-4.1-mini-2025-04-14,manual,false,0.875,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-4.1 nano (2025-04-14),gpt-4.1-nano-2025-04-14,manual,false,0.875,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-4.5 Preview (2025-02-27),gpt-4.5-preview-2025-02-27,manual,false,0.889,https://developers.openai.com/api/docs/models/gpt-4.5-preview,cofounder
+arena,GPT-4o (2024-05-13),gpt-4o-2024-05-13,manual,false,0.889,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-4o (2024-08-06),gpt-4o-2024-08-06,manual,false,0.889,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-4o mini (2024-07-18),gpt-4o-mini-2024-07-18,manual,false,0.87,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5 (High),gpt-5-2025-08-07,manual,false,0.357,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5 Chat,gpt-5-chat-latest,manual,true,0.667,https://developers.openai.com/api/docs/models/gpt-5-chat-latest,cofounder
+arena,GPT-5 mini (High),gpt-5-mini-2025-08-07,manual,false,0.474,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5 nano (High),gpt-5-nano-2025-08-07,manual,false,0.474,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5.1,gpt-5.1-2025-11-13,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5.1 (High),gpt-5.1-2025-11-13,manual,false,0.438,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5.2,gpt-5.2-2025-12-11,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,cofounder
+arena,GPT-5.2 (High),gpt-5.2-2025-12-11,manual,false,0.438,https://developers.openai.com/api/docs/models/gpt-5.2,cofounder
+arena,GPT-5.2 Chat (20260210),gpt-5.2-chat-latest,manual,true,0.524,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5.4,gpt-5.4-2026-03-05,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,cofounder
+arena,GPT-5.4 (High),gpt-5.4-2026-03-05,manual,false,0.438,https://developers.openai.com/api/docs/models/gpt-5.4,cofounder
+arena,GPT-5.4 mini (High),gpt-5.4-mini-2026-03-17,manual,false,0.524,https://developers.openai.com/api/docs/models/gpt-5.4-mini,cofounder
+arena,GPT-5.5,gpt-5.5-2026-04-23,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,cofounder
+arena,GPT-5.5 (High),gpt-5.5-2026-04-23,manual,false,0.438,https://developers.openai.com/api/docs/models/gpt-5.5,cofounder
+arena,GPT-5.6 Luna (xHigh),gpt-5.6-luna,manual,false,0.688,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5.6 Sol (xHigh),gpt-5.6-sol,manual,false,0.667,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-5.6 Terra (xHigh),gpt-5.6-terra,manual,false,0.706,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,GPT-6 Astra (Max),gpt-6-astra,manual,false,0.714,https://developers.openai.com/api/docs/models,cofounder
+arena,GPT-6.1 Sol (Max),gpt-6.1-sol,manual,false,0.714,https://developers.openai.com/api/docs/models,cofounder
+arena,Gemini 2.0 Flash-Lite Preview (02-05),gemini-2.0-flash-lite-preview-02-05,manual,false,0.861,https://aistudio.google.com/docs/deprecations,cofounder
+arena,Gemini 2.5 Flash,gemini-2.5-flash,manual,false,0.875,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 2.5 Pro,gemini-2.5-pro,manual,false,0.857,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3 Flash,gemini-3-flash-preview,manual,false,0.667,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3 Flash (Minimal),gemini-3-flash-preview,manual,false,0.565,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3 Pro,gemini-3-pro-preview,manual,false,0.625,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3.1 Flash-Lite Preview,gemini-3.1-flash-lite-preview,manual,false,0.897,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3.1 Pro Preview,gemini-3.1-pro-preview,manual,false,0.864,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3.5 Flash (High),gemini-3.5-flash,manual,false,0.718,https://aistudio.google.com/docs/deprecations,cofounder
+arena,Gemini 3.5 Flash (Medium),gemini-3.5-flash,manual,false,0.683,https://aistudio.google.com/docs/deprecations,cofounder
+arena,Gemini 3.5 Flash-Lite,gemini-3.5-flash-lite,manual,false,0.905,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3.6 Flash (High),gemini-3.6-flash,manual,false,0.718,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 3.7 Flash (High),gemini-3.7-flash,manual,false,0.718,https://aistudio.google.com/docs/deprecations,cofounder
+arena,Gemini 3.8 Flash (High),gemini-3.8-flash,manual,false,0.718,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 4 Argon (High),gemini-4-argon,manual,false,0.686,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 4 Carbon (High),gemini-4-carbon,manual,false,0.703,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini 4 Hydrogen (High),gemini-4-hydrogen,manual,false,0.732,https://aistudio.google.com/docs/models,cofounder
+arena,Gemini Pro,gemini-pro,manual,false,0.9,https://aistudio.google.com/docs/changelog,cofounder
+arena,Gemini Pro (Dev API),gemini-pro,manual,false,0.6,https://aistudio.google.com/docs/changelog,cofounder
+arena,Gemma 3 27B IT,gemma-3-27b-it,manual,false,0.786,https://aistudio.google.com/docs/changelog,cofounder
+arena,Gemma 4 26B A4B,gemma-4-26b-a4b-it,manual,false,0.727,https://aistudio.google.com/docs/changelog,cofounder
+arena,Gemma 4 31B,gemma-4-31b-it,manual,false,0.72,https://aistudio.google.com/docs/changelog,cofounder
+arena,"Grok 4.20 Beta (Reasoning, 0309)",grok-4.20-0309-reasoning,manual,false,0.607,https://docs.x.ai/developers/models,cofounder
+arena,Grok 4.20 Multi-Agent Beta (0309),grok-4.20-multi-agent-beta-0309,manual,false,0.844,https://docs.x.ai/developers/models,cofounder
+arena,Grok 4.3,grok-4.3,manual,false,0.875,https://docs.x.ai/developers/models,cofounder
+arena,Grok 4.5,grok-4.5,manual,false,0.875,https://docs.x.ai/developers/models,cofounder
+arena,Grok 4.6 (High),grok-4.6,manual,false,0.609,https://docs.x.ai/developers/models,cofounder
+arena,Kimi K2.6,kimi-k2.6,manual,false,0.889,https://platform.kimi.ai/docs/pricing/chat,cofounder
+arena,Kimi K3 (Max),kimi-k3,manual,false,0.6,https://platform.kimi.ai/docs/pricing/chat,cofounder
+arena,Kimi K3.1 Pro (Max),kimi-k3.1-pro,manual,false,0.688,https://platform.kimi.ai/docs/pricing/chat,cofounder
+arena,Mistral Large 3,mistral-large-2512,manual,false,0.727,https://docs.mistral.ai/models,cofounder
+arena,Mistral Large 4,mistral-large-4,manual,false,0.867,https://docs.mistral.ai/models,cofounder
+arena,Mistral Medium,mistral-medium-2312,manual,false,0.788,https://docs.mistral.ai/models,cofounder
+arena,Mistral Medium 3.5,mistral-medium-3-5,manual,false,0.833,https://docs.mistral.ai/models,cofounder
 arena,Qwen3-30B-A3B,qwen3-30b-a3b,exact,false,1.0,,
 arena,Qwen3-Max-Preview,qwen3-max-preview,exact,false,1.0,,
 arena,Qwen3-Next-80B-A3B-Instruct,qwen3-next-80b-a3b-instruct,exact,false,1.0,,
@@ -97,45 +97,45 @@ arena,Qwen3-VL-235B-A22B-Thinking,qwen3-vl-235b-a22b-thinking,exact,false,1.0,,
 arena,Qwen3.7-Plus,qwen3.7-plus,exact,true,1.0,,
 arena,Qwen3.8-Max,qwen3.8-max,exact,false,1.0,,
 arena,chatgpt-4o-latest,chatgpt-4o-latest,exact,true,1.0,,
-arena,chatgpt-4o-latest-20250326,chatgpt-4o-latest,manual,true,0.791,https://developers.openai.com/api/docs/deprecations,
+arena,chatgpt-4o-latest-20250326,chatgpt-4o-latest,manual,true,0.791,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,claude-3-5-haiku-20241022,claude-3-5-haiku-20241022,exact,false,1.0,,
 arena,claude-3-5-sonnet-20240620,claude-3-5-sonnet-20240620,exact,false,1.0,,
 arena,claude-3-5-sonnet-20241022,claude-3-5-sonnet-20241022,exact,false,1.0,,
 arena,claude-3-7-sonnet-20250219,claude-3-7-sonnet-20250219,exact,false,1.0,,
-arena,claude-3-7-sonnet-20250219-thinking-32k,claude-3-7-sonnet-20250219,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+arena,claude-3-7-sonnet-20250219-thinking-32k,claude-3-7-sonnet-20250219,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-3-haiku-20240307,claude-3-haiku-20240307,exact,false,1.0,,
 arena,claude-3-opus-20240229,claude-3-opus-20240229,exact,false,1.0,,
 arena,claude-3-sonnet-20240229,claude-3-sonnet-20240229,exact,false,1.0,,
 arena,claude-fable-5,claude-fable-5,exact,false,1.0,,
-arena,claude-fable-5-high,claude-fable-5,manual,false,0.848,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+arena,claude-fable-5-high,claude-fable-5,manual,false,0.848,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-haiku-4-5-20251001,claude-haiku-4-5-20251001,exact,false,1.0,,
 arena,claude-opus-4-1-20250805,claude-opus-4-1-20250805,exact,false,1.0,,
-arena,claude-opus-4-1-20250805-thinking-16k,claude-opus-4-1-20250805,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+arena,claude-opus-4-1-20250805-thinking-16k,claude-opus-4-1-20250805,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-opus-4-20250514,claude-opus-4-20250514,exact,false,1.0,,
-arena,claude-opus-4-20250514-thinking-16k,claude-opus-4-20250514,manual,false,0.772,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+arena,claude-opus-4-20250514-thinking-16k,claude-opus-4-20250514,manual,false,0.772,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-opus-4-5-20251101,claude-opus-4-5-20251101,exact,false,1.0,,
-arena,claude-opus-4-5-20251101-high-32k,claude-opus-4-5-20251101,manual,false,0.842,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-5-20251101-thinking-32k,claude-opus-4-5-20251101,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-6,claude-opus-4-6,manual,false,1.0,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-6-high,claude-opus-4-6,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-6-thinking,claude-opus-4-6,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-7,claude-opus-4-7,manual,false,1.0,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-7-high,claude-opus-4-7,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-7-thinking,claude-opus-4-7,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+arena,claude-opus-4-5-20251101-high-32k,claude-opus-4-5-20251101,manual,false,0.842,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-5-20251101-thinking-32k,claude-opus-4-5-20251101,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-6,claude-opus-4-6,manual,false,1.0,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-6-high,claude-opus-4-6,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-6-thinking,claude-opus-4-6,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-7,claude-opus-4-7,manual,false,1.0,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-7-high,claude-opus-4-7,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-7-thinking,claude-opus-4-7,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-opus-4-8,claude-opus-4-8,exact,false,1.0,,
-arena,claude-opus-4-8-high,claude-opus-4-8,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-4-8-thinking,claude-opus-4-8,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-5-high,claude-opus-5,manual,false,0.839,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-opus-5.5-high,claude-opus-5-5,manual,false,0.8,https://platform.claude.com/docs/en/models/overview,
+arena,claude-opus-4-8-high,claude-opus-4-8,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-4-8-thinking,claude-opus-4-8,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-5-high,claude-opus-5,manual,false,0.839,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-5.5-high,claude-opus-5-5,manual,false,0.8,https://platform.claude.com/docs/en/models/overview,cofounder
 arena,claude-sonnet-4-20250514,claude-sonnet-4-20250514,exact,false,1.0,,
-arena,claude-sonnet-4-20250514-thinking-32k,claude-sonnet-4-20250514,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+arena,claude-sonnet-4-20250514-thinking-32k,claude-sonnet-4-20250514,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-sonnet-4-5-20250929,claude-sonnet-4-5-20250929,exact,false,1.0,,
-arena,claude-sonnet-4-5-20250929-high-32k,claude-sonnet-4-5-20250929,manual,false,0.852,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-sonnet-4-5-20250929-thinking-32k,claude-sonnet-4-5-20250929,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+arena,claude-sonnet-4-5-20250929-high-32k,claude-sonnet-4-5-20250929,manual,false,0.852,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-sonnet-4-5-20250929-thinking-32k,claude-sonnet-4-5-20250929,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-sonnet-4-6,claude-sonnet-4-6,exact,false,1.0,,
-arena,claude-sonnet-5-high,claude-sonnet-5,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-sonnet-5-thinking,claude-sonnet-5,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-arena,claude-sonnet-5.5-xhigh,claude-sonnet-5-5,manual,false,0.8,https://platform.claude.com/docs/en/models/overview,
+arena,claude-sonnet-5-high,claude-sonnet-5,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-sonnet-5-thinking,claude-sonnet-5,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-sonnet-5.5-xhigh,claude-sonnet-5-5,manual,false,0.8,https://platform.claude.com/docs/en/models/overview,cofounder
 arena,command-a-03-2025,command-a-03-2025,exact,false,1.0,,
 arena,command-r,command-r,exact,true,1.0,,
 arena,command-r-08-2024,command-r-08-2024,exact,false,1.0,,
@@ -145,42 +145,42 @@ arena,deepseek-r1,deepseek-r1,exact,true,1.0,,
 arena,deepseek-v3,deepseek-v3,exact,true,1.0,,
 arena,deepseek-v3.2,deepseek-v3.2,exact,true,1.0,,
 arena,deepseek-v4-flash,deepseek-v4-flash,exact,true,1.0,,
-arena,deepseek-v4-flash-thinking,deepseek-v4-flash,manual,true,0.791,https://api-docs.deepseek.com/quick_start/pricing/,
+arena,deepseek-v4-flash-thinking,deepseek-v4-flash,manual,true,0.791,https://api-docs.deepseek.com/quick_start/pricing/,cofounder
 arena,deepseek-v4-pro,deepseek-v4-pro,exact,true,1.0,,
-arena,deepseek-v4-pro-thinking,deepseek-v4-pro,manual,true,0.769,https://api-docs.deepseek.com/quick_start/pricing/,
+arena,deepseek-v4-pro-thinking,deepseek-v4-pro,manual,true,0.769,https://api-docs.deepseek.com/quick_start/pricing/,cofounder
 arena,gemini-1.5-flash-001,gemini-1.5-flash-001,exact,false,1.0,,
 arena,gemini-1.5-flash-002,gemini-1.5-flash-002,exact,false,1.0,,
-arena,gemini-1.5-flash-8b-001,gemini-1.5-flash-8b,manual,false,0.905,https://aistudio.google.com/docs/changelog,
-arena,gemini-1.5-flash-api-0514,gemini-1.5-flash-001,manual,false,0.844,https://aistudio.google.com/docs/changelog,
+arena,gemini-1.5-flash-8b-001,gemini-1.5-flash-8b,manual,false,0.905,https://aistudio.google.com/docs/changelog,cofounder
+arena,gemini-1.5-flash-api-0514,gemini-1.5-flash-001,manual,false,0.844,https://aistudio.google.com/docs/changelog,cofounder
 arena,gemini-1.5-pro-001,gemini-1.5-pro-001,exact,false,1.0,,
 arena,gemini-1.5-pro-002,gemini-1.5-pro-002,exact,false,1.0,,
-arena,gemini-1.5-pro-api-0514,gemini-1.5-pro-001,manual,false,0.829,https://aistudio.google.com/docs/changelog,
+arena,gemini-1.5-pro-api-0514,gemini-1.5-pro-001,manual,false,0.829,https://aistudio.google.com/docs/changelog,cofounder
 arena,gemini-2.0-flash-001,gemini-2.0-flash-001,exact,false,1.0,,
 arena,gemini-2.0-flash-lite-preview-02-05,gemini-2.0-flash-lite-preview-02-05,exact,false,1.0,,
 arena,gemini-2.5-flash,gemini-2.5-flash,exact,false,1.0,,
-arena,gemini-2.5-flash-lite-preview-06-17-thinking,gemini-2.5-flash-lite-preview-06-17,manual,false,0.886,https://aistudio.google.com/docs/changelog,
-arena,gemini-2.5-flash-lite-preview-09-2025-no-thinking,gemini-2.5-flash-lite-preview-09-2025,manual,false,0.86,https://aistudio.google.com/docs/deprecations,
+arena,gemini-2.5-flash-lite-preview-06-17-thinking,gemini-2.5-flash-lite-preview-06-17,manual,false,0.886,https://aistudio.google.com/docs/changelog,cofounder
+arena,gemini-2.5-flash-lite-preview-09-2025-no-thinking,gemini-2.5-flash-lite-preview-09-2025,manual,false,0.86,https://aistudio.google.com/docs/deprecations,cofounder
 arena,gemini-2.5-flash-preview-09-2025,gemini-2.5-flash-preview-09-2025,exact,false,1.0,,
 arena,gemini-2.5-pro,gemini-2.5-pro,exact,false,1.0,,
-arena,gemini-3-flash,gemini-3-flash-preview,manual,false,0.778,https://aistudio.google.com/docs/models,
-arena,gemini-3-flash (thinking-minimal),gemini-3-flash-preview,manual,false,0.545,https://aistudio.google.com/docs/models,
-arena,gemini-3-pro,gemini-3-pro-preview,manual,false,0.75,https://aistudio.google.com/docs/models,
+arena,gemini-3-flash,gemini-3-flash-preview,manual,false,0.778,https://aistudio.google.com/docs/models,cofounder
+arena,gemini-3-flash (thinking-minimal),gemini-3-flash-preview,manual,false,0.545,https://aistudio.google.com/docs/models,cofounder
+arena,gemini-3-pro,gemini-3-pro-preview,manual,false,0.75,https://aistudio.google.com/docs/models,cofounder
 arena,gemini-3.1-flash-lite-preview,gemini-3.1-flash-lite-preview,exact,false,1.0,,
 arena,gemini-3.1-pro-preview,gemini-3.1-pro-preview,exact,false,1.0,,
 arena,gemini-3.5-flash,gemini-3.5-flash,exact,false,1.0,,
-arena,gemini-3.5-flash-high,gemini-3.5-flash,manual,false,0.865,https://aistudio.google.com/docs/deprecations,
+arena,gemini-3.5-flash-high,gemini-3.5-flash,manual,false,0.865,https://aistudio.google.com/docs/deprecations,cofounder
 arena,gemini-3.5-flash-lite,gemini-3.5-flash-lite,exact,false,1.0,,
-arena,gemini-3.5-flash-medium,gemini-3.5-flash,manual,false,0.821,https://aistudio.google.com/docs/deprecations,
+arena,gemini-3.5-flash-medium,gemini-3.5-flash,manual,false,0.821,https://aistudio.google.com/docs/deprecations,cofounder
 arena,gemini-3.6-flash,gemini-3.6-flash,exact,false,1.0,,
-arena,gemini-3.6-flash-high,gemini-3.6-flash,manual,false,0.865,https://aistudio.google.com/docs/models,
-arena,gemini-3.7-flash-high,gemini-3.7-flash,manual,false,0.865,https://aistudio.google.com/docs/deprecations,
-arena,gemini-3.8-flash-high,gemini-3.8-flash,manual,false,0.865,https://aistudio.google.com/docs/models,
-arena,gemini-4-argon-high,gemini-4-argon,manual,false,0.848,https://aistudio.google.com/docs/models,
+arena,gemini-3.6-flash-high,gemini-3.6-flash,manual,false,0.865,https://aistudio.google.com/docs/models,cofounder
+arena,gemini-3.7-flash-high,gemini-3.7-flash,manual,false,0.865,https://aistudio.google.com/docs/deprecations,cofounder
+arena,gemini-3.8-flash-high,gemini-3.8-flash,manual,false,0.865,https://aistudio.google.com/docs/models,cofounder
+arena,gemini-4-argon-high,gemini-4-argon,manual,false,0.848,https://aistudio.google.com/docs/models,cofounder
 arena,gemini-pro,gemini-pro,exact,false,1.0,,
-arena,gemini-pro-dev-api,gemini-pro,manual,false,0.714,https://aistudio.google.com/docs/changelog,
+arena,gemini-pro-dev-api,gemini-pro,manual,false,0.714,https://aistudio.google.com/docs/changelog,cofounder
 arena,gemma-3-27b-it,gemma-3-27b-it,exact,false,1.0,,
-arena,gemma-4-26b-a4b,gemma-4-26b-a4b-it,manual,false,0.909,https://aistudio.google.com/docs/changelog,
-arena,gemma-4-31b,gemma-4-31b-it,manual,false,0.88,https://aistudio.google.com/docs/changelog,
+arena,gemma-4-26b-a4b,gemma-4-26b-a4b-it,manual,false,0.909,https://aistudio.google.com/docs/changelog,cofounder
+arena,gemma-4-31b,gemma-4-31b-it,manual,false,0.88,https://aistudio.google.com/docs/changelog,cofounder
 arena,gpt-3.5-turbo-0125,gpt-3.5-turbo-0125,exact,false,1.0,,
 arena,gpt-3.5-turbo-1106,gpt-3.5-turbo-1106,exact,false,1.0,,
 arena,gpt-4-0125-preview,gpt-4-0125-preview,exact,false,1.0,,
@@ -195,33 +195,33 @@ arena,gpt-4.5-preview-2025-02-27,gpt-4.5-preview-2025-02-27,exact,false,1.0,,
 arena,gpt-4o-2024-05-13,gpt-4o-2024-05-13,exact,false,1.0,,
 arena,gpt-4o-2024-08-06,gpt-4o-2024-08-06,exact,false,1.0,,
 arena,gpt-4o-mini-2024-07-18,gpt-4o-mini-2024-07-18,exact,false,1.0,,
-arena,gpt-5-chat,gpt-5-chat-latest,manual,true,0.741,https://developers.openai.com/api/docs/models/gpt-5-chat-latest,
-arena,gpt-5-high,gpt-5-2025-08-07,manual,false,0.462,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5-mini-high,gpt-5-mini-2025-08-07,manual,false,0.611,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5-nano-high,gpt-5-nano-2025-08-07,manual,false,0.611,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5.1,gpt-5.1-2025-11-13,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5.1-high,gpt-5.1-2025-11-13,manual,false,0.533,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5.2,gpt-5.2-2025-12-11,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,
-arena,gpt-5.2-chat-latest-20260210,gpt-5.2-chat-latest,manual,true,0.809,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5.2-high,gpt-5.2-2025-12-11,manual,false,0.533,https://developers.openai.com/api/docs/models/gpt-5.2,
+arena,gpt-5-chat,gpt-5-chat-latest,manual,true,0.741,https://developers.openai.com/api/docs/models/gpt-5-chat-latest,cofounder
+arena,gpt-5-high,gpt-5-2025-08-07,manual,false,0.462,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5-mini-high,gpt-5-mini-2025-08-07,manual,false,0.611,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5-nano-high,gpt-5-nano-2025-08-07,manual,false,0.611,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5.1,gpt-5.1-2025-11-13,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5.1-high,gpt-5.1-2025-11-13,manual,false,0.533,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5.2,gpt-5.2-2025-12-11,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,cofounder
+arena,gpt-5.2-chat-latest-20260210,gpt-5.2-chat-latest,manual,true,0.809,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5.2-high,gpt-5.2-2025-12-11,manual,false,0.533,https://developers.openai.com/api/docs/models/gpt-5.2,cofounder
 arena,gpt-5.3-chat-latest,gpt-5.3-chat-latest,exact,true,1.0,,
-arena,gpt-5.4,gpt-5.4-2026-03-05,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,
-arena,gpt-5.4-high,gpt-5.4-2026-03-05,manual,false,0.533,https://developers.openai.com/api/docs/models/gpt-5.4,
-arena,gpt-5.4-mini-high,gpt-5.4-mini-2026-03-17,manual,false,0.65,https://developers.openai.com/api/docs/models/gpt-5.4-mini,
-arena,gpt-5.5,gpt-5.5-2026-04-23,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,
-arena,gpt-5.5-high,gpt-5.5-2026-04-23,manual,false,0.533,https://developers.openai.com/api/docs/models/gpt-5.5,
-arena,gpt-5.6-luna-xhigh,gpt-5.6-luna,manual,false,0.8,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5.6-sol-xhigh,gpt-5.6-sol,manual,false,0.786,https://developers.openai.com/api/docs/deprecations,
-arena,gpt-5.6-terra-xhigh,gpt-5.6-terra,manual,false,0.812,https://developers.openai.com/api/docs/deprecations,
+arena,gpt-5.4,gpt-5.4-2026-03-05,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,cofounder
+arena,gpt-5.4-high,gpt-5.4-2026-03-05,manual,false,0.533,https://developers.openai.com/api/docs/models/gpt-5.4,cofounder
+arena,gpt-5.4-mini-high,gpt-5.4-mini-2026-03-17,manual,false,0.65,https://developers.openai.com/api/docs/models/gpt-5.4-mini,cofounder
+arena,gpt-5.5,gpt-5.5-2026-04-23,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,cofounder
+arena,gpt-5.5-high,gpt-5.5-2026-04-23,manual,false,0.533,https://developers.openai.com/api/docs/models/gpt-5.5,cofounder
+arena,gpt-5.6-luna-xhigh,gpt-5.6-luna,manual,false,0.8,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5.6-sol-xhigh,gpt-5.6-sol,manual,false,0.786,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-5.6-terra-xhigh,gpt-5.6-terra,manual,false,0.812,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,grok-3-mini-beta,grok-3-mini-beta,exact,false,1.0,,
 arena,grok-4-0709,grok-4-0709,exact,false,1.0,,
 arena,grok-4-1-fast-reasoning,grok-4-1-fast-reasoning,exact,false,1.0,,
 arena,grok-4-fast-reasoning,grok-4-fast-reasoning,exact,false,1.0,,
-arena,grok-4.20-beta-0309-reasoning,grok-4.20-0309-reasoning,manual,false,0.906,https://docs.x.ai/developers/models,
+arena,grok-4.20-beta-0309-reasoning,grok-4.20-0309-reasoning,manual,false,0.906,https://docs.x.ai/developers/models,cofounder
 arena,grok-4.20-multi-agent-beta-0309,grok-4.20-multi-agent-beta-0309,exact,false,1.0,,
 arena,grok-4.3,grok-4.3,exact,false,1.0,,
 arena,grok-4.5,grok-4.5,exact,false,1.0,,
-arena,grok-4.6-high,grok-4.6,manual,false,0.762,https://docs.x.ai/developers/models,
+arena,grok-4.6-high,grok-4.6,manual,false,0.762,https://docs.x.ai/developers/models,cofounder
 arena,kimi-k2-0711-preview,kimi-k2-0711-preview,exact,false,1.0,,
 arena,kimi-k2-0905-preview,kimi-k2-0905-preview,exact,false,1.0,,
 arena,kimi-k2-thinking-turbo,kimi-k2-thinking-turbo,exact,false,1.0,,
@@ -230,26 +230,26 @@ arena,kimi-k3,kimi-k3,exact,false,1.0,,
 arena,mistral-large-2402,mistral-large-2402,exact,false,1.0,,
 arena,mistral-large-2407,mistral-large-2407,exact,false,1.0,,
 arena,mistral-large-2411,mistral-large-2411,exact,false,1.0,,
-arena,mistral-large-3,mistral-large-2512,manual,false,0.848,https://docs.mistral.ai/models,
+arena,mistral-large-3,mistral-large-2512,manual,false,0.848,https://docs.mistral.ai/models,cofounder
 arena,mistral-large-4,mistral-large-4,exact,false,1.0,,
-arena,mistral-medium,mistral-medium-2312,manual,false,0.848,https://docs.mistral.ai/models,
+arena,mistral-medium,mistral-medium-2312,manual,false,0.848,https://docs.mistral.ai/models,cofounder
 arena,mistral-medium-2505,mistral-medium-2505,exact,false,1.0,,
 arena,mistral-medium-2508,mistral-medium-2508,exact,false,1.0,,
-arena,mistral-medium-3.5,mistral-medium-3-5,manual,false,0.944,https://docs.mistral.ai/models,
-arena,mixtral-8x22b-instruct-v0.1,open-mixtral-8x22b,manual,false,0.578,https://docs.mistral.ai/models,
-arena,mixtral-8x7b-instruct-v0.1,open-mixtral-8x7b,manual,false,0.558,https://docs.mistral.ai/models,
-arena,o1 (2024-12-17),o1-2024-12-17,manual,false,0.857,https://developers.openai.com/api/docs/deprecations,
+arena,mistral-medium-3.5,mistral-medium-3-5,manual,false,0.944,https://docs.mistral.ai/models,cofounder
+arena,mixtral-8x22b-instruct-v0.1,open-mixtral-8x22b,manual,false,0.578,https://docs.mistral.ai/models,cofounder
+arena,mixtral-8x7b-instruct-v0.1,open-mixtral-8x7b,manual,false,0.558,https://docs.mistral.ai/models,cofounder
+arena,o1 (2024-12-17),o1-2024-12-17,manual,false,0.857,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,o1-2024-12-17,o1-2024-12-17,exact,false,1.0,,
-arena,o1-mini,o1-mini-2024-09-12,manual,false,0.56,https://developers.openai.com/api/docs/models/o1-mini,
-arena,o1-preview,o1-preview-2024-09-12,manual,false,0.645,https://developers.openai.com/api/docs/models/o1-preview,
-arena,o3 (2025-04-16),o3-2025-04-16,manual,false,0.857,https://developers.openai.com/api/docs/deprecations,
+arena,o1-mini,o1-mini-2024-09-12,manual,false,0.56,https://developers.openai.com/api/docs/models/o1-mini,cofounder
+arena,o1-preview,o1-preview-2024-09-12,manual,false,0.645,https://developers.openai.com/api/docs/models/o1-preview,cofounder
+arena,o3 (2025-04-16),o3-2025-04-16,manual,false,0.857,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,o3-2025-04-16,o3-2025-04-16,exact,false,1.0,,
-arena,o3-mini,o3-mini-2025-01-31,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,
-arena,o3-mini (High),o3-mini-2025-01-31,manual,false,0.438,https://developers.openai.com/api/docs/deprecations,
-arena,o3-mini-high,o3-mini-2025-01-31,manual,false,0.533,https://developers.openai.com/api/docs/deprecations,
-arena,o4-mini (2025-04-16),o4-mini-2025-04-16,manual,false,0.895,https://developers.openai.com/api/docs/deprecations,
+arena,o3-mini,o3-mini-2025-01-31,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,o3-mini (High),o3-mini-2025-01-31,manual,false,0.438,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,o3-mini-high,o3-mini-2025-01-31,manual,false,0.533,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,o4-mini (2025-04-16),o4-mini-2025-04-16,manual,false,0.895,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,o4-mini-2025-04-16,o4-mini-2025-04-16,exact,false,1.0,,
-arena,qwen-plus-0125,qwen-plus-2025-01-25,manual,false,0.824,https://www.alibabacloud.com/help/en/model-studio/model-pricing,
+arena,qwen-plus-0125,qwen-plus-2025-01-25,manual,false,0.824,https://www.alibabacloud.com/help/en/model-studio/model-pricing,cofounder
 arena,qwen3-30b-a3b,qwen3-30b-a3b,exact,false,1.0,,
 arena,qwen3-max-preview,qwen3-max-preview,exact,false,1.0,,
 arena,qwen3-next-80b-a3b-instruct,qwen3-next-80b-a3b-instruct,exact,false,1.0,,
@@ -258,62 +258,62 @@ arena,qwen3-vl-235b-a22b-instruct,qwen3-vl-235b-a22b-instruct,exact,false,1.0,,
 arena,qwen3-vl-235b-a22b-thinking,qwen3-vl-235b-a22b-thinking,exact,false,1.0,,
 arena,qwen3.7-plus,qwen3.7-plus,exact,true,1.0,,
 arena,qwen3.8-max,qwen3.8-max,exact,false,1.0,,
-epoch,Claude Fable 5,claude-fable-5,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Fable 5.1,claude-fable-5-1,manual,false,0.812,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Opus 4.5,claude-opus-4-5-20251101,manual,false,0.615,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Opus 4.6,claude-opus-4-6,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Opus 4.7,claude-opus-4-7,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Opus 4.8,claude-opus-4-8,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Opus 5,claude-opus-5,manual,false,0.846,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Opus 5.5,claude-opus-5-5,manual,false,0.8,https://platform.claude.com/docs/en/models/overview,
-epoch,Claude Sonnet 4.5,claude-sonnet-4-5-20250929,manual,false,0.651,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Sonnet 4.6,claude-sonnet-4-6,manual,false,0.824,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Sonnet 5,claude-sonnet-5,manual,false,0.867,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-epoch,Claude Sonnet 5.5,claude-sonnet-5-5,manual,false,0.824,https://platform.claude.com/docs/en/models/overview,
-epoch,Command R,command-r,manual,true,0.889,https://docs.cohere.com/docs/models,
+epoch,Claude Fable 5,claude-fable-5,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Fable 5.1,claude-fable-5-1,manual,false,0.812,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Opus 4.5,claude-opus-4-5-20251101,manual,false,0.615,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Opus 4.6,claude-opus-4-6,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Opus 4.7,claude-opus-4-7,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Opus 4.8,claude-opus-4-8,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Opus 5,claude-opus-5,manual,false,0.846,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Opus 5.5,claude-opus-5-5,manual,false,0.8,https://platform.claude.com/docs/en/models/overview,cofounder
+epoch,Claude Sonnet 4.5,claude-sonnet-4-5-20250929,manual,false,0.651,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Sonnet 4.6,claude-sonnet-4-6,manual,false,0.824,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Sonnet 5,claude-sonnet-5,manual,false,0.867,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+epoch,Claude Sonnet 5.5,claude-sonnet-5-5,manual,false,0.824,https://platform.claude.com/docs/en/models/overview,cofounder
+epoch,Command R,command-r,manual,true,0.889,https://docs.cohere.com/docs/models,cofounder
 epoch,DeepSeek-R1,deepseek-r1,exact,true,1.0,,
 epoch,DeepSeek-V3,deepseek-v3,exact,true,1.0,,
 epoch,DeepSeek-V3.2,deepseek-v3.2,exact,true,1.0,,
 epoch,DeepSeek-V4-Flash,deepseek-v4-flash,exact,true,1.0,,
 epoch,DeepSeek-V4-Pro,deepseek-v4-pro,exact,true,1.0,,
-epoch,GPT-5,gpt-5-2025-08-07,manual,false,0.476,https://developers.openai.com/api/docs/deprecations,
-epoch,GPT-5 mini,gpt-5-mini-2025-08-07,manual,false,0.581,https://developers.openai.com/api/docs/deprecations,
-epoch,GPT-5 nano,gpt-5-nano-2025-08-07,manual,false,0.581,https://developers.openai.com/api/docs/deprecations,
-epoch,GPT-5.1,gpt-5.1-2025-11-13,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,
-epoch,GPT-5.2,gpt-5.2-2025-12-11,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,
-epoch,GPT-5.4,gpt-5.4-2026-03-05,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,
-epoch,GPT-5.4 Mini,gpt-5.4-mini-2026-03-17,manual,false,0.629,https://developers.openai.com/api/docs/models/gpt-5.4-mini,
-epoch,GPT-5.5,gpt-5.5-2026-04-23,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,
-epoch,GPT-5.6 Luna,gpt-5.6-luna,manual,false,0.917,https://developers.openai.com/api/docs/deprecations,
-epoch,GPT-5.6 Sol,gpt-5.6-sol,manual,false,0.909,https://developers.openai.com/api/docs/deprecations,
-epoch,GPT-5.6 Terra,gpt-5.6-terra,manual,false,0.923,https://developers.openai.com/api/docs/deprecations,
-epoch,GPT-6 Astra,gpt-6-astra,manual,false,0.909,https://developers.openai.com/api/docs/models,
-epoch,GPT-6.1 Sol,gpt-6.1-sol,manual,false,0.909,https://developers.openai.com/api/docs/models,
-epoch,Gemini 2.5 Flash,gemini-2.5-flash,manual,false,0.875,https://aistudio.google.com/docs/models,
-epoch,Gemini 2.5 Pro (Jun 2025),gemini-2.5-pro,manual,false,0.615,https://aistudio.google.com/docs/models,
-epoch,Gemini 3.5 Flash,gemini-3.5-flash,manual,false,0.875,https://aistudio.google.com/docs/deprecations,
-epoch,Gemini 3.5 Flash-Lite,gemini-3.5-flash-lite,manual,false,0.905,https://aistudio.google.com/docs/models,
-epoch,Gemini 3.6 Flash,gemini-3.6-flash,manual,false,0.875,https://aistudio.google.com/docs/models,
-epoch,Gemini 3.7 Flash,gemini-3.7-flash,manual,false,0.875,https://aistudio.google.com/docs/deprecations,
-epoch,Gemini 3.8 Flash,gemini-3.8-flash,manual,false,0.875,https://aistudio.google.com/docs/models,
-epoch,Gemini 4 Argon,gemini-4-argon,manual,false,0.857,https://aistudio.google.com/docs/models,
-epoch,Gemini 4 Carbon,gemini-4-carbon,manual,false,0.867,https://aistudio.google.com/docs/models,
-epoch,Gemini 4 Hydrogen,gemini-4-hydrogen,manual,false,0.882,https://aistudio.google.com/docs/models,
-epoch,Grok 4.5,grok-4.5,manual,false,0.875,https://docs.x.ai/developers/models,
-epoch,Grok 4.6,grok-4.6,manual,false,0.875,https://docs.x.ai/developers/models,
-epoch,Kimi K2.6,kimi-k2.6,manual,false,0.889,https://platform.kimi.ai/docs/pricing/chat,
-epoch,Kimi K3,kimi-k3,manual,false,0.857,https://platform.kimi.ai/docs/pricing/chat,
-epoch,Kimi K3.1 Pro,kimi-k3.1-pro,manual,false,0.846,https://platform.kimi.ai/docs/pricing/chat,
-epoch,Mistral Large 3,mistral-large-2512,manual,false,0.727,https://docs.mistral.ai/models,
-epoch,Mistral Large 4,mistral-large-4,manual,false,0.867,https://docs.mistral.ai/models,
-epoch,Mistral Medium 3.5,mistral-medium-3-5,manual,false,0.833,https://docs.mistral.ai/models,
+epoch,GPT-5,gpt-5-2025-08-07,manual,false,0.476,https://developers.openai.com/api/docs/deprecations,cofounder
+epoch,GPT-5 mini,gpt-5-mini-2025-08-07,manual,false,0.581,https://developers.openai.com/api/docs/deprecations,cofounder
+epoch,GPT-5 nano,gpt-5-nano-2025-08-07,manual,false,0.581,https://developers.openai.com/api/docs/deprecations,cofounder
+epoch,GPT-5.1,gpt-5.1-2025-11-13,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,cofounder
+epoch,GPT-5.2,gpt-5.2-2025-12-11,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,cofounder
+epoch,GPT-5.4,gpt-5.4-2026-03-05,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,cofounder
+epoch,GPT-5.4 Mini,gpt-5.4-mini-2026-03-17,manual,false,0.629,https://developers.openai.com/api/docs/models/gpt-5.4-mini,cofounder
+epoch,GPT-5.5,gpt-5.5-2026-04-23,manual,false,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,cofounder
+epoch,GPT-5.6 Luna,gpt-5.6-luna,manual,false,0.917,https://developers.openai.com/api/docs/deprecations,cofounder
+epoch,GPT-5.6 Sol,gpt-5.6-sol,manual,false,0.909,https://developers.openai.com/api/docs/deprecations,cofounder
+epoch,GPT-5.6 Terra,gpt-5.6-terra,manual,false,0.923,https://developers.openai.com/api/docs/deprecations,cofounder
+epoch,GPT-6 Astra,gpt-6-astra,manual,false,0.909,https://developers.openai.com/api/docs/models,cofounder
+epoch,GPT-6.1 Sol,gpt-6.1-sol,manual,false,0.909,https://developers.openai.com/api/docs/models,cofounder
+epoch,Gemini 2.5 Flash,gemini-2.5-flash,manual,false,0.875,https://aistudio.google.com/docs/models,cofounder
+epoch,Gemini 2.5 Pro (Jun 2025),gemini-2.5-pro,manual,false,0.615,https://aistudio.google.com/docs/models,cofounder
+epoch,Gemini 3.5 Flash,gemini-3.5-flash,manual,false,0.875,https://aistudio.google.com/docs/deprecations,cofounder
+epoch,Gemini 3.5 Flash-Lite,gemini-3.5-flash-lite,manual,false,0.905,https://aistudio.google.com/docs/models,cofounder
+epoch,Gemini 3.6 Flash,gemini-3.6-flash,manual,false,0.875,https://aistudio.google.com/docs/models,cofounder
+epoch,Gemini 3.7 Flash,gemini-3.7-flash,manual,false,0.875,https://aistudio.google.com/docs/deprecations,cofounder
+epoch,Gemini 3.8 Flash,gemini-3.8-flash,manual,false,0.875,https://aistudio.google.com/docs/models,cofounder
+epoch,Gemini 4 Argon,gemini-4-argon,manual,false,0.857,https://aistudio.google.com/docs/models,cofounder
+epoch,Gemini 4 Carbon,gemini-4-carbon,manual,false,0.867,https://aistudio.google.com/docs/models,cofounder
+epoch,Gemini 4 Hydrogen,gemini-4-hydrogen,manual,false,0.882,https://aistudio.google.com/docs/models,cofounder
+epoch,Grok 4.5,grok-4.5,manual,false,0.875,https://docs.x.ai/developers/models,cofounder
+epoch,Grok 4.6,grok-4.6,manual,false,0.875,https://docs.x.ai/developers/models,cofounder
+epoch,Kimi K2.6,kimi-k2.6,manual,false,0.889,https://platform.kimi.ai/docs/pricing/chat,cofounder
+epoch,Kimi K3,kimi-k3,manual,false,0.857,https://platform.kimi.ai/docs/pricing/chat,cofounder
+epoch,Kimi K3.1 Pro,kimi-k3.1-pro,manual,false,0.846,https://platform.kimi.ai/docs/pricing/chat,cofounder
+epoch,Mistral Large 3,mistral-large-2512,manual,false,0.727,https://docs.mistral.ai/models,cofounder
+epoch,Mistral Large 4,mistral-large-4,manual,false,0.867,https://docs.mistral.ai/models,cofounder
+epoch,Mistral Medium 3.5,mistral-medium-3-5,manual,false,0.833,https://docs.mistral.ai/models,cofounder
 epoch,Qwen3-30B-A3B,qwen3-30b-a3b,exact,false,1.0,,
 epoch,Qwen3.7-Plus,qwen3.7-plus,exact,true,1.0,,
-epoch,o1-mini,o1-mini-2024-09-12,manual,false,0.56,https://developers.openai.com/api/docs/models/o1-mini,
-epoch,o1-preview,o1-preview-2024-09-12,manual,false,0.645,https://developers.openai.com/api/docs/models/o1-preview,
-epoch,o3-mini,o3-mini-2025-01-31,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,
+epoch,o1-mini,o1-mini-2024-09-12,manual,false,0.56,https://developers.openai.com/api/docs/models/o1-mini,cofounder
+epoch,o1-preview,o1-preview-2024-09-12,manual,false,0.645,https://developers.openai.com/api/docs/models/o1-preview,cofounder
+epoch,o3-mini,o3-mini-2025-01-31,manual,false,0.56,https://developers.openai.com/api/docs/deprecations,cofounder
 litellm,anthropic/claude-3-5-sonnet-20241022,claude-3-5-sonnet-20241022,exact,false,0.839,,
-litellm,anthropic/claude-sonnet-4-5,claude-sonnet-4-5-20250929,manual,true,0.642,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+litellm,anthropic/claude-sonnet-4-5,claude-sonnet-4-5-20250929,manual,true,0.642,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 litellm,chatgpt-4o-latest,chatgpt-4o-latest,exact,true,1.0,,
 litellm,claude-3-5-haiku-20241022,claude-3-5-haiku-20241022,exact,false,1.0,,
 litellm,claude-3-5-sonnet-20240620,claude-3-5-sonnet-20240620,exact,false,1.0,,
@@ -327,17 +327,17 @@ litellm,claude-fable-5-1,claude-fable-5-1,exact,false,1.0,,
 litellm,claude-haiku-4-5-20251001,claude-haiku-4-5-20251001,exact,false,1.0,,
 litellm,claude-opus-4-1-20250805,claude-opus-4-1-20250805,exact,false,1.0,,
 litellm,claude-opus-4-20250514,claude-opus-4-20250514,exact,false,1.0,,
-litellm,claude-opus-4-5,claude-opus-4-5-20251101,manual,true,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+litellm,claude-opus-4-5,claude-opus-4-5-20251101,manual,true,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 litellm,claude-opus-4-5-20251101,claude-opus-4-5-20251101,exact,false,1.0,,
 litellm,claude-opus-4-6,claude-opus-4-6,exact,false,1.0,,
-litellm,claude-opus-4-6-20260205,claude-opus-4-6,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+litellm,claude-opus-4-6-20260205,claude-opus-4-6,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 litellm,claude-opus-4-7,claude-opus-4-7,exact,false,1.0,,
-litellm,claude-opus-4-7-20260416,claude-opus-4-7,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+litellm,claude-opus-4-7-20260416,claude-opus-4-7,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 litellm,claude-opus-4-8,claude-opus-4-8,exact,false,1.0,,
 litellm,claude-opus-5,claude-opus-5,exact,false,1.0,,
 litellm,claude-opus-5-5,claude-opus-5-5,exact,false,1.0,,
 litellm,claude-sonnet-4-20250514,claude-sonnet-4-20250514,exact,false,1.0,,
-litellm,claude-sonnet-4-5,claude-sonnet-4-5-20250929,manual,true,0.791,https://platform.claude.com/docs/en/about-claude/model-deprecations,
+litellm,claude-sonnet-4-5,claude-sonnet-4-5-20250929,manual,true,0.791,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 litellm,claude-sonnet-4-5-20250929,claude-sonnet-4-5-20250929,exact,false,1.0,,
 litellm,claude-sonnet-4-6,claude-sonnet-4-6,exact,false,1.0,,
 litellm,claude-sonnet-5,claude-sonnet-5,exact,false,1.0,,
@@ -406,25 +406,25 @@ litellm,gpt-4.5-preview-2025-02-27,gpt-4.5-preview-2025-02-27,exact,false,1.0,,
 litellm,gpt-4o-2024-05-13,gpt-4o-2024-05-13,exact,false,1.0,,
 litellm,gpt-4o-2024-08-06,gpt-4o-2024-08-06,exact,false,1.0,,
 litellm,gpt-4o-mini-2024-07-18,gpt-4o-mini-2024-07-18,exact,false,1.0,,
-litellm,gpt-5,gpt-5-2025-08-07,manual,true,0.476,https://developers.openai.com/api/docs/deprecations,
+litellm,gpt-5,gpt-5-2025-08-07,manual,true,0.476,https://developers.openai.com/api/docs/deprecations,cofounder
 litellm,gpt-5-2025-08-07,gpt-5-2025-08-07,exact,false,1.0,,
-litellm,gpt-5-chat,gpt-5-chat-latest,manual,true,0.741,https://developers.openai.com/api/docs/models/gpt-5-chat-latest,
+litellm,gpt-5-chat,gpt-5-chat-latest,manual,true,0.741,https://developers.openai.com/api/docs/models/gpt-5-chat-latest,cofounder
 litellm,gpt-5-chat-latest,gpt-5-chat-latest,exact,true,1.0,,
-litellm,gpt-5-mini,gpt-5-mini-2025-08-07,manual,true,0.645,https://developers.openai.com/api/docs/deprecations,
+litellm,gpt-5-mini,gpt-5-mini-2025-08-07,manual,true,0.645,https://developers.openai.com/api/docs/deprecations,cofounder
 litellm,gpt-5-mini-2025-08-07,gpt-5-mini-2025-08-07,exact,false,1.0,,
-litellm,gpt-5-nano,gpt-5-nano-2025-08-07,manual,true,0.645,https://developers.openai.com/api/docs/deprecations,
+litellm,gpt-5-nano,gpt-5-nano-2025-08-07,manual,true,0.645,https://developers.openai.com/api/docs/deprecations,cofounder
 litellm,gpt-5-nano-2025-08-07,gpt-5-nano-2025-08-07,exact,false,1.0,,
-litellm,gpt-5.1,gpt-5.1-2025-11-13,manual,true,0.56,https://developers.openai.com/api/docs/deprecations,
+litellm,gpt-5.1,gpt-5.1-2025-11-13,manual,true,0.56,https://developers.openai.com/api/docs/deprecations,cofounder
 litellm,gpt-5.1-2025-11-13,gpt-5.1-2025-11-13,exact,false,1.0,,
-litellm,gpt-5.2,gpt-5.2-2025-12-11,manual,true,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,
+litellm,gpt-5.2,gpt-5.2-2025-12-11,manual,true,0.56,https://developers.openai.com/api/docs/models/gpt-5.2,cofounder
 litellm,gpt-5.2-2025-12-11,gpt-5.2-2025-12-11,exact,false,1.0,,
 litellm,gpt-5.2-chat-latest,gpt-5.2-chat-latest,exact,true,1.0,,
 litellm,gpt-5.3-chat-latest,gpt-5.3-chat-latest,exact,true,1.0,,
-litellm,gpt-5.4,gpt-5.4-2026-03-05,manual,true,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,
+litellm,gpt-5.4,gpt-5.4-2026-03-05,manual,true,0.56,https://developers.openai.com/api/docs/models/gpt-5.4,cofounder
 litellm,gpt-5.4-2026-03-05,gpt-5.4-2026-03-05,exact,false,1.0,,
-litellm,gpt-5.4-mini,gpt-5.4-mini-2026-03-17,manual,true,0.686,https://developers.openai.com/api/docs/models/gpt-5.4-mini,
+litellm,gpt-5.4-mini,gpt-5.4-mini-2026-03-17,manual,true,0.686,https://developers.openai.com/api/docs/models/gpt-5.4-mini,cofounder
 litellm,gpt-5.4-mini-2026-03-17,gpt-5.4-mini-2026-03-17,exact,false,1.0,,
-litellm,gpt-5.5,gpt-5.5-2026-04-23,manual,true,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,
+litellm,gpt-5.5,gpt-5.5-2026-04-23,manual,true,0.56,https://developers.openai.com/api/docs/models/gpt-5.5,cofounder
 litellm,gpt-5.5-2026-04-23,gpt-5.5-2026-04-23,exact,false,1.0,,
 litellm,gpt-5.6-luna,gpt-5.6-luna,exact,false,1.0,,
 litellm,gpt-5.6-sol,gpt-5.6-sol,exact,false,1.0,,
@@ -435,14 +435,14 @@ litellm,mistral/mistral-large-2402,mistral-large-2402,exact,false,0.818,,
 litellm,mistral/mistral-large-2407,mistral-large-2407,exact,false,0.818,,
 litellm,mistral/mistral-large-2411,mistral-large-2411,exact,false,0.818,,
 litellm,mistral/mistral-large-2512,mistral-large-2512,exact,false,0.818,,
-litellm,mistral/mistral-large-3,mistral-large-2512,manual,false,0.683,https://docs.mistral.ai/models,
+litellm,mistral/mistral-large-3,mistral-large-2512,manual,false,0.683,https://docs.mistral.ai/models,cofounder
 litellm,mistral/mistral-large-4,mistral-large-4,exact,false,0.789,,
 litellm,mistral/mistral-medium,mistral-medium,exact,true,0.778,,
 litellm,mistral/mistral-medium-2312,mistral-medium-2312,exact,false,0.826,,
 litellm,mistral/mistral-medium-2505,mistral-medium-2505,exact,false,0.826,,
 litellm,mistral/mistral-medium-2508,mistral-medium-2508,exact,false,0.826,,
 litellm,mistral/mistral-medium-3-5,mistral-medium-3-5,exact,false,0.818,,
-litellm,mistral/mistral-medium-3.5,mistral-medium-3-5,manual,false,0.773,https://docs.mistral.ai/models,
+litellm,mistral/mistral-medium-3.5,mistral-medium-3-5,manual,false,0.773,https://docs.mistral.ai/models,cofounder
 litellm,mistral/open-mixtral-8x22b,open-mixtral-8x22b,exact,false,0.818,,
 litellm,mistral/open-mixtral-8x7b,open-mixtral-8x7b,exact,false,0.81,,
 litellm,moonshot/kimi-k2-0711-preview,kimi-k2-0711-preview,exact,false,0.816,,
@@ -453,12 +453,12 @@ litellm,moonshot/kimi-k2.6,kimi-k2.6,exact,false,0.667,,
 litellm,moonshot/kimi-k3,kimi-k3,exact,false,0.609,,
 litellm,moonshot/kimi-k3.1-pro,kimi-k3.1-pro,exact,false,0.743,,
 litellm,o1-2024-12-17,o1-2024-12-17,exact,false,1.0,,
-litellm,o1-mini,o1-mini-2024-09-12,manual,true,0.56,https://developers.openai.com/api/docs/models/o1-mini,
+litellm,o1-mini,o1-mini-2024-09-12,manual,true,0.56,https://developers.openai.com/api/docs/models/o1-mini,cofounder
 litellm,o1-mini-2024-09-12,o1-mini-2024-09-12,exact,false,1.0,,
-litellm,o1-preview,o1-preview-2024-09-12,manual,true,0.645,https://developers.openai.com/api/docs/models/o1-preview,
+litellm,o1-preview,o1-preview-2024-09-12,manual,true,0.645,https://developers.openai.com/api/docs/models/o1-preview,cofounder
 litellm,o1-preview-2024-09-12,o1-preview-2024-09-12,exact,false,1.0,,
 litellm,o3-2025-04-16,o3-2025-04-16,exact,false,1.0,,
-litellm,o3-mini,o3-mini-2025-01-31,manual,true,0.56,https://developers.openai.com/api/docs/deprecations,
+litellm,o3-mini,o3-mini-2025-01-31,manual,true,0.56,https://developers.openai.com/api/docs/deprecations,cofounder
 litellm,o3-mini-2025-01-31,o3-mini-2025-01-31,exact,false,1.0,,
 litellm,o4-mini-2025-04-16,o4-mini-2025-04-16,exact,false,1.0,,
 litellm,xai/grok-3-mini,grok-3-mini,exact,false,0.846,,
@@ -467,11 +467,11 @@ litellm,xai/grok-4-0709,grok-4-0709,exact,false,0.846,,
 litellm,xai/grok-4-1-fast-reasoning,grok-4-1-fast-reasoning,exact,false,0.92,,
 litellm,xai/grok-4-fast-non-reasoning,grok-4-fast-non-reasoning,exact,false,0.926,,
 litellm,xai/grok-4-fast-reasoning,grok-4-fast-reasoning,exact,false,0.913,,
-litellm,xai/grok-4.20-0309,grok-4.20-0309-reasoning,manual,false,0.667,https://docs.x.ai/developers/models,
+litellm,xai/grok-4.20-0309,grok-4.20-0309-reasoning,manual,false,0.667,https://docs.x.ai/developers/models,cofounder
 litellm,xai/grok-4.20-0309-reasoning,grok-4.20-0309-reasoning,exact,false,0.923,,
-litellm,xai/grok-4.20-beta,grok-4.20-0309-reasoning,manual,true,0.571,https://docs.x.ai/developers/models,
-litellm,xai/grok-4.20-beta-0309,grok-4.20-0309-reasoning,manual,false,0.596,https://docs.x.ai/developers/models,
-litellm,xai/grok-4.20-beta-0309-reasoning,grok-4.20-0309-reasoning,manual,false,0.842,https://docs.x.ai/developers/models,
+litellm,xai/grok-4.20-beta,grok-4.20-0309-reasoning,manual,true,0.571,https://docs.x.ai/developers/models,cofounder
+litellm,xai/grok-4.20-beta-0309,grok-4.20-0309-reasoning,manual,false,0.596,https://docs.x.ai/developers/models,cofounder
+litellm,xai/grok-4.20-beta-0309-reasoning,grok-4.20-0309-reasoning,manual,false,0.842,https://docs.x.ai/developers/models,cofounder
 litellm,xai/grok-4.20-multi-agent-beta-0309,grok-4.20-multi-agent-beta-0309,exact,false,0.939,,
 litellm,xai/grok-4.3,grok-4.3,exact,false,0.8,,
 litellm,xai/grok-4.5,grok-4.5,exact,false,0.8,,

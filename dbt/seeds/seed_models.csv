@@ -1,139 +1,139 @@
 canonical_model_id,provider,family,display_name,open_weights,announce_date,announce_url,approved_by
-chatgpt-4o-latest,openai,,ChatGPT-4o Latest (20250326),false,,,
-claude-3-5-haiku-20241022,anthropic,,claude-3-5-haiku-20241022,false,,,
-claude-3-5-sonnet-20240620,anthropic,,claude-3-5-sonnet-20240620,false,,,
-claude-3-5-sonnet-20241022,anthropic,,claude-3-5-sonnet-20241022,false,,,
-claude-3-7-sonnet-20250219,anthropic,,claude-3-7-sonnet-20250219,false,,,
-claude-3-haiku-20240307,anthropic,,claude-3-haiku-20240307,false,,,
-claude-3-opus-20240229,anthropic,,claude-3-opus-20240229,false,,,
-claude-3-sonnet-20240229,anthropic,,claude-3-sonnet-20240229,false,,,
-claude-fable-5,anthropic,,Claude Fable 5 (High),false,,,
-claude-fable-5-1,anthropic,,Claude Fable 5.1 (Max),false,,,
-claude-haiku-4-5-20251001,anthropic,,claude-haiku-4-5-20251001,false,,,
-claude-opus-4-1-20250805,anthropic,,claude-opus-4-1-20250805,false,,,
-claude-opus-4-20250514,anthropic,,claude-opus-4-20250514,false,,,
-claude-opus-4-5-20251101,anthropic,,Claude Opus 4.5 (20251101),false,,,
-claude-opus-4-6,anthropic,,claude-opus-4-6,false,,,
-claude-opus-4-7,anthropic,,claude-opus-4-7,false,,,
-claude-opus-4-8,anthropic,,Claude Opus 4.8,false,,,
-claude-opus-5,anthropic,,Claude Opus 5 (High),false,,,
-claude-opus-5-5,anthropic,,Claude Opus 5.5 (High),false,,,
-claude-sonnet-4-20250514,anthropic,,claude-sonnet-4-20250514,false,,,
-claude-sonnet-4-5-20250929,anthropic,,Claude Sonnet 4.5 (20250929),false,,,
-claude-sonnet-4-6,anthropic,,Claude Sonnet 4.6,false,,,
-claude-sonnet-5,anthropic,,Claude Sonnet 5 (High),false,,,
-claude-sonnet-5-5,anthropic,,Claude Sonnet 5.5 (xHigh),false,,,
-command-a-03-2025,cohere,,command-a-03-2025,true,,,
-command-r,cohere,,Command R,true,,,
-command-r-08-2024,cohere,,Command R (08-2024),false,,,
-command-r-plus,cohere,,command-r-plus,true,,,
-command-r-plus-08-2024,cohere,,command-r-plus-08-2024,true,,,
-deepseek-r1,deepseek,,DeepSeek-R1,true,,,
-deepseek-v3,deepseek,,DeepSeek-V3,true,,,
-deepseek-v3.2,deepseek,,DeepSeek-V3.2,true,,,
-deepseek-v4-flash,deepseek,,DeepSeek-V4-Flash,true,,,
-deepseek-v4-pro,deepseek,,DeepSeek-V4-Pro,true,,,
-gemini-1.5-flash-001,google,,gemini-1.5-flash-001,false,,,
-gemini-1.5-flash-002,google,,gemini-1.5-flash-002,false,,,
-gemini-1.5-flash-8b,google,,gemini-1.5-flash-8b-001,false,,,
-gemini-1.5-pro-001,google,,gemini-1.5-pro-001,false,,,
-gemini-1.5-pro-002,google,,gemini-1.5-pro-002,false,,,
-gemini-2.0-flash-001,google,,gemini-2.0-flash-001,false,,,
-gemini-2.0-flash-lite-preview-02-05,google,,Gemini 2.0 Flash-Lite Preview (02-05),false,,,
-gemini-2.5-flash,google,,Gemini 2.5 Flash,false,,,
-gemini-2.5-flash-lite-preview-06-17,google,,gemini-2.5-flash-lite-preview-06-17-thinking,false,,,
-gemini-2.5-flash-lite-preview-09-2025,google,,gemini-2.5-flash-lite-preview-09-2025-no-thinking,false,,,
-gemini-2.5-flash-preview-09-2025,google,,gemini-2.5-flash-preview-09-2025,false,,,
-gemini-2.5-pro,google,,Gemini 2.5 Pro,false,,,
-gemini-3-flash-preview,google,,Gemini 3 Flash (Minimal),false,,,
-gemini-3-pro-preview,google,,Gemini 3 Pro,false,,,
-gemini-3.1-flash-lite-preview,google,,Gemini 3.1 Flash-Lite Preview,false,,,
-gemini-3.1-pro-preview,google,,Gemini 3.1 Pro Preview,false,,,
-gemini-3.5-flash,google,,Gemini 3.5 Flash (High),false,,,
-gemini-3.5-flash-lite,google,,Gemini 3.5 Flash-Lite,false,,,
-gemini-3.6-flash,google,,Gemini 3.6 Flash (High),false,,,
-gemini-3.7-flash,google,,Gemini 3.7 Flash (High),false,,,
-gemini-3.8-flash,google,,Gemini 3.8 Flash (High),false,,,
-gemini-4-argon,google,,Gemini 4 Argon (High),false,,,
-gemini-4-carbon,google,,Gemini 4 Carbon (High),false,,,
-gemini-4-hydrogen,google,,Gemini 4 Hydrogen (High),false,,,
-gemini-pro,google,,Gemini Pro,false,,,
-gemma-3-27b-it,google,,Gemma 3 27B IT,true,,,
-gemma-4-26b-a4b-it,google,,Gemma 4 26B A4B,true,,,
-gemma-4-31b-it,google,,Gemma 4 31B,true,,,
-gpt-3.5-turbo-0125,openai,,gpt-3.5-turbo-0125,false,,,
-gpt-3.5-turbo-1106,openai,,gpt-3.5-turbo-1106,false,,,
-gpt-4-0125-preview,openai,,gpt-4-0125-preview,false,,,
-gpt-4-0314,openai,,gpt-4-0314,false,,,
-gpt-4-0613,openai,,gpt-4-0613,false,,,
-gpt-4-1106-preview,openai,,gpt-4-1106-preview,false,,,
-gpt-4-turbo-2024-04-09,openai,,GPT-4 Turbo (2024-04-09),false,,,
-gpt-4.1-2025-04-14,openai,,GPT-4.1 (2025-04-14),false,,,
-gpt-4.1-mini-2025-04-14,openai,,GPT-4.1 mini (2025-04-14),false,,,
-gpt-4.1-nano-2025-04-14,openai,,GPT-4.1 nano (2025-04-14),false,,,
-gpt-4.5-preview-2025-02-27,openai,,GPT-4.5 Preview (2025-02-27),false,,,
-gpt-4o-2024-05-13,openai,,GPT-4o (2024-05-13),false,,,
-gpt-4o-2024-08-06,openai,,GPT-4o (2024-08-06),false,,,
-gpt-4o-mini-2024-07-18,openai,,GPT-4o mini (2024-07-18),false,,,
-gpt-5-2025-08-07,openai,,GPT-5 (High),false,,,
-gpt-5-chat-latest,openai,,GPT-5 Chat,false,,,
-gpt-5-mini-2025-08-07,openai,,GPT-5 mini (High),false,,,
-gpt-5-nano-2025-08-07,openai,,GPT-5 nano (High),false,,,
-gpt-5.1-2025-11-13,openai,,GPT-5.1,false,,,
-gpt-5.2-2025-12-11,openai,,GPT-5.2,false,,,
-gpt-5.2-chat-latest,openai,,GPT-5.2 Chat (20260210),false,,,
-gpt-5.3-chat-latest,openai,,gpt-5.3-chat-latest,false,,,
-gpt-5.4-2026-03-05,openai,,GPT-5.4,false,,,
-gpt-5.4-mini-2026-03-17,openai,,GPT-5.4 mini (High),false,,,
-gpt-5.5-2026-04-23,openai,,GPT-5.5,false,,,
-gpt-5.6-luna,openai,,GPT-5.6 Luna (xHigh),false,,,
-gpt-5.6-sol,openai,,GPT-5.6 Sol (xHigh),false,,,
-gpt-5.6-terra,openai,,GPT-5.6 Terra (xHigh),false,,,
-gpt-6-astra,openai,,GPT-6 Astra (Max),false,,,
-gpt-6.1-sol,openai,,GPT-6.1 Sol (Max),false,,,
-grok-3-mini,xai,,Grok 3 Mini (High),false,,,
-grok-3-mini-beta,xai,,Grok 3 Mini Beta,false,,,
-grok-4-0709,xai,,grok-4-0709,false,,,
-grok-4-1-fast-reasoning,xai,,grok-4-1-fast-reasoning,false,,,
-grok-4-fast-non-reasoning,xai,,grok-4-fast-chat,false,,,
-grok-4-fast-reasoning,xai,,grok-4-fast-reasoning,false,,,
-grok-4.20-0309-reasoning,xai,,"Grok 4.20 Beta (Reasoning, 0309)",false,,,
-grok-4.20-multi-agent-beta-0309,xai,,grok-4.20-multi-agent-beta-0309,false,,,
-grok-4.3,xai,,Grok 4.3,false,,,
-grok-4.5,xai,,Grok 4.5,false,,,
-grok-4.6,xai,,Grok 4.6 (High),false,,,
-kimi-k2-0711-preview,moonshot,,kimi-k2-0711-preview,true,,,
-kimi-k2-0905-preview,moonshot,,kimi-k2-0905-preview,true,,,
-kimi-k2-thinking-turbo,moonshot,,kimi-k2-thinking-turbo,true,,,
-kimi-k2.5,moonshot,,Kimi K2.5 (Instant),true,,,
-kimi-k2.6,moonshot,,Kimi K2.6,true,,,
-kimi-k3,moonshot,,Kimi K3 (Max),true,,,
-kimi-k3.1-pro,moonshot,,Kimi K3.1 Pro (Max),true,,,
-mistral-large-2402,mistral,,mistral-large-2402,false,,,
-mistral-large-2407,mistral,,mistral-large-2407,true,,,
-mistral-large-2411,mistral,,mistral-large-2411,true,,,
-mistral-large-2512,mistral,,Mistral Large 3,true,,,
-mistral-large-4,mistral,,Mistral Large 4,true,,,
-mistral-medium,mistral,,mistral-medium,false,,,
-mistral-medium-2312,mistral,,mistral-medium,false,,,
-mistral-medium-2505,mistral,,mistral-medium-2505,false,,,
-mistral-medium-2508,mistral,,mistral-medium-2508,false,,,
-mistral-medium-3-5,mistral,,Mistral Medium 3.5,true,,,
-o1-2024-12-17,openai,,o1 (2024-12-17),false,,,
-o1-mini-2024-09-12,openai,,o1-mini,false,,,
-o1-preview-2024-09-12,openai,,o1-preview,false,,,
-o3-2025-04-16,openai,,o3 (2025-04-16),false,,,
-o3-mini-2025-01-31,openai,,o3-mini,false,,,
-o4-mini-2025-04-16,openai,,o4-mini (2025-04-16),false,,,
-open-mixtral-8x22b,mistral,,mixtral-8x22b-instruct-v0.1,true,,,
-open-mixtral-8x7b,mistral,,mixtral-8x7b-instruct-v0.1,true,,,
-qwen-plus-2025-01-25,qwen,,qwen-plus-0125,false,,,
-qwen3-30b-a3b,qwen,,Qwen3-30B-A3B,true,,,
-qwen3-max,qwen,,qwen3-max,false,,,
-qwen3-max-preview,qwen,,Qwen3-Max-Preview,false,,,
-qwen3-next-80b-a3b-instruct,qwen,,Qwen3-Next-80B-A3B-Instruct,true,,,
-qwen3-next-80b-a3b-thinking,qwen,,Qwen3-Next-80B-A3B-Thinking,true,,,
-qwen3-vl-235b-a22b-instruct,qwen,,Qwen3-VL-235B-A22B-Instruct,true,,,
-qwen3-vl-235b-a22b-thinking,qwen,,Qwen3-VL-235B-A22B-Thinking,true,,,
-qwen3.7-plus,qwen,,Qwen3.7-Plus,false,,,
-qwen3.8-max,qwen,,Qwen3.8-Max,false,,,
+chatgpt-4o-latest,openai,,ChatGPT-4o Latest (20250326),false,,,cofounder
+claude-3-5-haiku-20241022,anthropic,,claude-3-5-haiku-20241022,false,,,cofounder
+claude-3-5-sonnet-20240620,anthropic,,claude-3-5-sonnet-20240620,false,,,cofounder
+claude-3-5-sonnet-20241022,anthropic,,claude-3-5-sonnet-20241022,false,,,cofounder
+claude-3-7-sonnet-20250219,anthropic,,claude-3-7-sonnet-20250219,false,,,cofounder
+claude-3-haiku-20240307,anthropic,,claude-3-haiku-20240307,false,,,cofounder
+claude-3-opus-20240229,anthropic,,claude-3-opus-20240229,false,,,cofounder
+claude-3-sonnet-20240229,anthropic,,claude-3-sonnet-20240229,false,,,cofounder
+claude-fable-5,anthropic,,Claude Fable 5 (High),false,,,cofounder
+claude-fable-5-1,anthropic,,Claude Fable 5.1 (Max),false,,,cofounder
+claude-haiku-4-5-20251001,anthropic,,claude-haiku-4-5-20251001,false,,,cofounder
+claude-opus-4-1-20250805,anthropic,,claude-opus-4-1-20250805,false,,,cofounder
+claude-opus-4-20250514,anthropic,,claude-opus-4-20250514,false,,,cofounder
+claude-opus-4-5-20251101,anthropic,,Claude Opus 4.5 (20251101),false,,,cofounder
+claude-opus-4-6,anthropic,,Claude Opus 4.6,false,,,cofounder
+claude-opus-4-7,anthropic,,Claude Opus 4.7,false,,,cofounder
+claude-opus-4-8,anthropic,,Claude Opus 4.8,false,,,cofounder
+claude-opus-5,anthropic,,Claude Opus 5 (High),false,,,cofounder
+claude-opus-5-5,anthropic,,Claude Opus 5.5 (High),false,,,cofounder
+claude-sonnet-4-20250514,anthropic,,claude-sonnet-4-20250514,false,,,cofounder
+claude-sonnet-4-5-20250929,anthropic,,Claude Sonnet 4.5 (20250929),false,,,cofounder
+claude-sonnet-4-6,anthropic,,Claude Sonnet 4.6,false,,,cofounder
+claude-sonnet-5,anthropic,,Claude Sonnet 5 (High),false,,,cofounder
+claude-sonnet-5-5,anthropic,,Claude Sonnet 5.5 (xHigh),false,,,cofounder
+command-a-03-2025,cohere,,command-a-03-2025,true,,,cofounder
+command-r,cohere,,Command R,true,,,cofounder
+command-r-08-2024,cohere,,Command R (08-2024),true,,,cofounder
+command-r-plus,cohere,,command-r-plus,true,,,cofounder
+command-r-plus-08-2024,cohere,,command-r-plus-08-2024,true,,,cofounder
+deepseek-r1,deepseek,,DeepSeek-R1,true,,,cofounder
+deepseek-v3,deepseek,,DeepSeek-V3,true,,,cofounder
+deepseek-v3.2,deepseek,,DeepSeek-V3.2,true,,,cofounder
+deepseek-v4-flash,deepseek,,DeepSeek-V4-Flash,true,,,cofounder
+deepseek-v4-pro,deepseek,,DeepSeek-V4-Pro,true,,,cofounder
+gemini-1.5-flash-001,google,,gemini-1.5-flash-001,false,,,cofounder
+gemini-1.5-flash-002,google,,gemini-1.5-flash-002,false,,,cofounder
+gemini-1.5-flash-8b,google,,gemini-1.5-flash-8b-001,false,,,cofounder
+gemini-1.5-pro-001,google,,gemini-1.5-pro-001,false,,,cofounder
+gemini-1.5-pro-002,google,,gemini-1.5-pro-002,false,,,cofounder
+gemini-2.0-flash-001,google,,gemini-2.0-flash-001,false,,,cofounder
+gemini-2.0-flash-lite-preview-02-05,google,,Gemini 2.0 Flash-Lite Preview (02-05),false,,,cofounder
+gemini-2.5-flash,google,,Gemini 2.5 Flash,false,,,cofounder
+gemini-2.5-flash-lite-preview-06-17,google,,gemini-2.5-flash-lite-preview-06-17-thinking,false,,,cofounder
+gemini-2.5-flash-lite-preview-09-2025,google,,gemini-2.5-flash-lite-preview-09-2025-no-thinking,false,,,cofounder
+gemini-2.5-flash-preview-09-2025,google,,gemini-2.5-flash-preview-09-2025,false,,,cofounder
+gemini-2.5-pro,google,,Gemini 2.5 Pro,false,,,cofounder
+gemini-3-flash-preview,google,,Gemini 3 Flash (Minimal),false,,,cofounder
+gemini-3-pro-preview,google,,Gemini 3 Pro,false,,,cofounder
+gemini-3.1-flash-lite-preview,google,,Gemini 3.1 Flash-Lite Preview,false,,,cofounder
+gemini-3.1-pro-preview,google,,Gemini 3.1 Pro Preview,false,,,cofounder
+gemini-3.5-flash,google,,Gemini 3.5 Flash (High),false,,,cofounder
+gemini-3.5-flash-lite,google,,Gemini 3.5 Flash-Lite,false,,,cofounder
+gemini-3.6-flash,google,,Gemini 3.6 Flash (High),false,,,cofounder
+gemini-3.7-flash,google,,Gemini 3.7 Flash (High),false,,,cofounder
+gemini-3.8-flash,google,,Gemini 3.8 Flash (High),false,,,cofounder
+gemini-4-argon,google,,Gemini 4 Argon (High),false,,,cofounder
+gemini-4-carbon,google,,Gemini 4 Carbon (High),false,,,cofounder
+gemini-4-hydrogen,google,,Gemini 4 Hydrogen (High),false,,,cofounder
+gemini-pro,google,,Gemini Pro,false,,,cofounder
+gemma-3-27b-it,google,,Gemma 3 27B IT,true,,,cofounder
+gemma-4-26b-a4b-it,google,,Gemma 4 26B A4B,true,,,cofounder
+gemma-4-31b-it,google,,Gemma 4 31B,true,,,cofounder
+gpt-3.5-turbo-0125,openai,,gpt-3.5-turbo-0125,false,,,cofounder
+gpt-3.5-turbo-1106,openai,,gpt-3.5-turbo-1106,false,,,cofounder
+gpt-4-0125-preview,openai,,gpt-4-0125-preview,false,,,cofounder
+gpt-4-0314,openai,,gpt-4-0314,false,,,cofounder
+gpt-4-0613,openai,,gpt-4-0613,false,,,cofounder
+gpt-4-1106-preview,openai,,gpt-4-1106-preview,false,,,cofounder
+gpt-4-turbo-2024-04-09,openai,,GPT-4 Turbo (2024-04-09),false,,,cofounder
+gpt-4.1-2025-04-14,openai,,GPT-4.1 (2025-04-14),false,,,cofounder
+gpt-4.1-mini-2025-04-14,openai,,GPT-4.1 mini (2025-04-14),false,,,cofounder
+gpt-4.1-nano-2025-04-14,openai,,GPT-4.1 nano (2025-04-14),false,,,cofounder
+gpt-4.5-preview-2025-02-27,openai,,GPT-4.5 Preview (2025-02-27),false,,,cofounder
+gpt-4o-2024-05-13,openai,,GPT-4o (2024-05-13),false,,,cofounder
+gpt-4o-2024-08-06,openai,,GPT-4o (2024-08-06),false,,,cofounder
+gpt-4o-mini-2024-07-18,openai,,GPT-4o mini (2024-07-18),false,,,cofounder
+gpt-5-2025-08-07,openai,,GPT-5 (High),false,,,cofounder
+gpt-5-chat-latest,openai,,GPT-5 Chat,false,,,cofounder
+gpt-5-mini-2025-08-07,openai,,GPT-5 mini (High),false,,,cofounder
+gpt-5-nano-2025-08-07,openai,,GPT-5 nano (High),false,,,cofounder
+gpt-5.1-2025-11-13,openai,,GPT-5.1,false,,,cofounder
+gpt-5.2-2025-12-11,openai,,GPT-5.2,false,,,cofounder
+gpt-5.2-chat-latest,openai,,GPT-5.2 Chat (20260210),false,,,cofounder
+gpt-5.3-chat-latest,openai,,gpt-5.3-chat-latest,false,,,cofounder
+gpt-5.4-2026-03-05,openai,,GPT-5.4,false,,,cofounder
+gpt-5.4-mini-2026-03-17,openai,,GPT-5.4 mini (High),false,,,cofounder
+gpt-5.5-2026-04-23,openai,,GPT-5.5,false,,,cofounder
+gpt-5.6-luna,openai,,GPT-5.6 Luna (xHigh),false,,,cofounder
+gpt-5.6-sol,openai,,GPT-5.6 Sol (xHigh),false,,,cofounder
+gpt-5.6-terra,openai,,GPT-5.6 Terra (xHigh),false,,,cofounder
+gpt-6-astra,openai,,GPT-6 Astra (Max),false,,,cofounder
+gpt-6.1-sol,openai,,GPT-6.1 Sol (Max),false,,,cofounder
+grok-3-mini,xai,,Grok 3 Mini (High),false,,,cofounder
+grok-3-mini-beta,xai,,Grok 3 Mini Beta,false,,,cofounder
+grok-4-0709,xai,,grok-4-0709,false,,,cofounder
+grok-4-1-fast-reasoning,xai,,grok-4-1-fast-reasoning,false,,,cofounder
+grok-4-fast-non-reasoning,xai,,grok-4-fast-chat,false,,,cofounder
+grok-4-fast-reasoning,xai,,grok-4-fast-reasoning,false,,,cofounder
+grok-4.20-0309-reasoning,xai,,"Grok 4.20 Beta (Reasoning, 0309)",false,,,cofounder
+grok-4.20-multi-agent-beta-0309,xai,,grok-4.20-multi-agent-beta-0309,false,,,cofounder
+grok-4.3,xai,,Grok 4.3,false,,,cofounder
+grok-4.5,xai,,Grok 4.5,false,,,cofounder
+grok-4.6,xai,,Grok 4.6 (High),false,,,cofounder
+kimi-k2-0711-preview,moonshot,,kimi-k2-0711-preview,true,,,cofounder
+kimi-k2-0905-preview,moonshot,,kimi-k2-0905-preview,true,,,cofounder
+kimi-k2-thinking-turbo,moonshot,,kimi-k2-thinking-turbo,true,,,cofounder
+kimi-k2.5,moonshot,,Kimi K2.5 (Instant),true,,,cofounder
+kimi-k2.6,moonshot,,Kimi K2.6,true,,,cofounder
+kimi-k3,moonshot,,Kimi K3 (Max),true,,,cofounder
+kimi-k3.1-pro,moonshot,,Kimi K3.1 Pro (Max),true,,,cofounder
+mistral-large-2402,mistral,,mistral-large-2402,false,,,cofounder
+mistral-large-2407,mistral,,mistral-large-2407,true,,,cofounder
+mistral-large-2411,mistral,,mistral-large-2411,true,,,cofounder
+mistral-large-2512,mistral,,Mistral Large 3,true,,,cofounder
+mistral-large-4,mistral,,Mistral Large 4,true,,,cofounder
+mistral-medium,mistral,,mistral-medium,false,,,cofounder
+mistral-medium-2312,mistral,,mistral-medium,false,,,cofounder
+mistral-medium-2505,mistral,,mistral-medium-2505,false,,,cofounder
+mistral-medium-2508,mistral,,mistral-medium-2508,false,,,cofounder
+mistral-medium-3-5,mistral,,Mistral Medium 3.5,true,,,cofounder
+o1-2024-12-17,openai,,o1 (2024-12-17),false,,,cofounder
+o1-mini-2024-09-12,openai,,o1-mini,false,,,cofounder
+o1-preview-2024-09-12,openai,,o1-preview,false,,,cofounder
+o3-2025-04-16,openai,,o3 (2025-04-16),false,,,cofounder
+o3-mini-2025-01-31,openai,,o3-mini,false,,,cofounder
+o4-mini-2025-04-16,openai,,o4-mini (2025-04-16),false,,,cofounder
+open-mixtral-8x22b,mistral,,mixtral-8x22b-instruct-v0.1,true,,,cofounder
+open-mixtral-8x7b,mistral,,mixtral-8x7b-instruct-v0.1,true,,,cofounder
+qwen-plus-2025-01-25,qwen,,qwen-plus-0125,false,,,cofounder
+qwen3-30b-a3b,qwen,,Qwen3-30B-A3B,true,,,cofounder
+qwen3-max,qwen,,qwen3-max,false,,,cofounder
+qwen3-max-preview,qwen,,Qwen3-Max-Preview,false,,,cofounder
+qwen3-next-80b-a3b-instruct,qwen,,Qwen3-Next-80B-A3B-Instruct,true,,,cofounder
+qwen3-next-80b-a3b-thinking,qwen,,Qwen3-Next-80B-A3B-Thinking,true,,,cofounder
+qwen3-vl-235b-a22b-instruct,qwen,,Qwen3-VL-235B-A22B-Instruct,true,,,cofounder
+qwen3-vl-235b-a22b-thinking,qwen,,Qwen3-VL-235B-A22B-Thinking,true,,,cofounder
+qwen3.7-plus,qwen,,Qwen3.7-Plus,false,,,cofounder
+qwen3.8-max,qwen,,Qwen3.8-Max,false,,,cofounder
