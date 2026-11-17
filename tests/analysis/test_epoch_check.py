@@ -70,7 +70,8 @@ def _series(rows, kind="fct"):
     return pd.DataFrame({"snapshot_date": [r[0] for r in rows], "price": [r[1] for r in rows], "series": kind})
 
 
-def _run(epoch_price, series_rows, obs=D0, kind="fct", headline=True, audit=None, api="m1", provider="openai"):
+def _run(epoch_price, series_rows, obs=D0, kind="fct", headline=True, audit=None, api="m1", provider="openai",
+         calendar=None):
     cands = _cands([("M", obs, epoch_price, 50)])
     status = pd.DataFrame([{"model_name": "M", "obs_date": obs, "provider": provider, "scope": "in_scope",
                             "api_id": api, "evidence_url": "https://openai.com/x", "note": None}])
@@ -78,7 +79,9 @@ def _run(epoch_price, series_rows, obs=D0, kind="fct", headline=True, audit=None
     sbr = {("M", obs): _series(series_rows, kind)}
     a = audit if audit is not None else pd.DataFrame(
         columns=["model_name", "obs_date", "verdict", "source_url", "approved_by"])
-    return price_agreement(cands, status, xw, sbr, a, {api} if headline else set(), provider_domains=DOMAINS)
+    cal = calendar if calendar is not None else sorted({r[0] for r in series_rows})
+    return price_agreement(cands, status, xw, sbr, a, {api} if headline else set(), provider_domains=DOMAINS,
+                           snapshot_dates=cal)
 
 
 @pytest.mark.parametrize("ours,epoch,equal", [
@@ -126,6 +129,14 @@ def test_equal_only_before_start_is_mismatch():
     assert r["status"] == "mismatch"
 
 
+def test_delisting_gap_is_no_price():
+    cal = [d(i) for i in range(6)]  # D1..D6 global calendar
+    series = [(d(0), 10.0), (d(1), 10.0), (d(2), 10.0), (d(5), 5.0)]  # delisted on D4-D5, relisted at 5 on D6
+    r = _run(10.0, series, obs=d(4), calendar=cal).iloc[0]
+    assert r["our_price_at_start"] is None or pd.isna(r["our_price_at_start"])
+    assert r["status"] == "mismatch"
+
+
 def test_pre_history_uses_first_day():
     r = _run(5.0, [(date(2023, 9, 6), 5.0), (date(2023, 9, 20), 5.0)], obs=date(2023, 3, 14)).iloc[0]
     assert r["status"] == "agrees"
@@ -142,7 +153,7 @@ def _many(n_total, n_compared):
     status = pd.DataFrame(srows)
     rows = price_agreement(_cands(rows), status, pd.DataFrame(columns=["source_key", "canonical_model_id"]), sbr,
                            pd.DataFrame(columns=["model_name", "obs_date", "verdict", "source_url", "approved_by"]),
-                           set(), provider_domains=DOMAINS)
+                           set(), provider_domains=DOMAINS, snapshot_dates=[D0])
     return rows, status
 
 
@@ -207,7 +218,7 @@ def test_same_name_rows_kept_apart():
     sbr = {("Command R+", d(0)): _series([(d(0), 6.0)]), ("Command R+", d(30)): _series([(d(0), 4.375)])}
     rows = price_agreement(cands, status, xw, sbr,
                            pd.DataFrame(columns=["model_name", "obs_date", "verdict", "source_url", "approved_by"]),
-                           set(), provider_domains=DOMAINS)
+                           set(), provider_domains=DOMAINS, snapshot_dates=[d(0), d(30)])
     assert list(rows["api_id"]) == ["a1", "a2"]
     assert list(rows["canonical_model_id"].fillna("none")) == ["none", "a2"]
 

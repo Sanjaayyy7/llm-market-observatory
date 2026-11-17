@@ -112,16 +112,16 @@ def _equal(ours, epoch) -> bool:
     return ours is not None and round(abs(ours - epoch), 6) <= EQUAL_TOL
 
 
-def _compare(series: pd.DataFrame, obs: date, epoch: float) -> dict:
-    # shortcut: price carries forward from the latest series row (no delisting gaps), fine while the window ends at the last row
-    snaps = [_d(x) for x in series["snapshot_date"]]
-    prices = list(series["price"])
+def _compare(series: pd.DataFrame, obs: date, epoch: float, snapshot_dates) -> dict:
+    # price(d) = series price on the latest global snapshot <= d; None if the series has no row on that snapshot
+    by_day = {_d(x): float(p) for x, p in zip(series["snapshot_date"], series["price"])}
+    cal = sorted(_d(x) for x in snapshot_dates)
     start = max(obs, HISTORY_START)
-    days = [start] + [s for s in snaps if s > start]
+    days = [start] + [x for x in cal if x > start]
     at = []
     for day in days:
-        i = sum(1 for s in snaps if s <= day) - 1
-        at.append(None if i < 0 else float(prices[i]))
+        prior = [x for x in cal if x <= day]
+        at.append(by_day.get(prior[-1]) if prior else None)
     out = {"our_price_at_start": at[0], "first_date_ours_equal": None, "lag_days": None}
     if _equal(at[0], epoch):
         return {**out, "status": "agrees", "first_date_ours_equal": start}
@@ -149,8 +149,9 @@ def _verdict(audit_row, provider: str, domains) -> str:
     return "panel_error"
 
 
-def price_agreement(cands, status, xwalk, series_by_row, audit, headline_ids, *, provider_domains=None):
-    """One row per (model_name, obs_date) of the status seed. provider_domains gates audit source_urls."""
+def price_agreement(cands, status, xwalk, series_by_row, audit, headline_ids, *, provider_domains=None, snapshot_dates):
+    """One row per (model_name, obs_date) of the status seed. provider_domains gates audit source_urls.
+    snapshot_dates is the sorted global LiteLLM snapshot calendar (required: no fallback to series dates)."""
     price = {(r.model_name, _d(r.obs_date)): r.usd_per_mtok for r in cands.itertuples(index=False)}
     canon_of = dict(zip(xwalk["source_key"], xwalk["canonical_model_id"]))
     audits = {(r["model_name"], _d(r["obs_date"])): r for _, r in audit.iterrows()}
@@ -167,7 +168,7 @@ def price_agreement(cands, status, xwalk, series_by_row, audit, headline_ids, *,
         elif series is None or len(series) == 0:
             row.update(status="not_in_panel")
         else:
-            row.update(series=series["series"].iloc[0], **_compare(series, key[1], row["epoch_price"]))
+            row.update(series=series["series"].iloc[0], **_compare(series, key[1], row["epoch_price"], snapshot_dates))
         if row["status"] in AUDITED:
             row["verdict"] = _verdict(audits.get(key), s["provider"], provider_domains)
         rows.append(row)
@@ -266,6 +267,7 @@ def main(db: Path = ROOT / "data/warehouse.duckdb", out: Path = ROOT / "exports/
     status = q("select * from seed_epoch_candidate_status")
     audit = q("select * from seed_epoch_mismatch_audit")
     pmap = q("select * from seed_provider_map")
+    calendar = list(q("select distinct snapshot_date from stg_litellm__snapshots order by 1")["snapshot_date"])
     headline_ids = set(q("select canonical_model_id from mart_launch_price_survival")["canonical_model_id"])
     sbr, conflicts = {}, []
     for s in status[status["scope"] == "in_scope"].to_dict("records"):
@@ -274,7 +276,8 @@ def main(db: Path = ROOT / "data/warehouse.duckdb", out: Path = ROOT / "exports/
         conflicts += [{"model_name": k[0], "obs_date": str(k[1]), "api_id": s["api_id"], "date": day}
                       for day in sbr[k].attrs["key_conflicts"]]
     rows = price_agreement(cands, status, q("select * from seed_model_crosswalk where source = 'epoch_insight'"),
-                           sbr, audit, headline_ids, provider_domains=q("select * from seed_provider_domains"))
+                           sbr, audit, headline_ids, provider_domains=q("select * from seed_provider_domains"),
+                           snapshot_dates=calendar)
     frontier = epoch_frontier(cands, 33.0)
 
     ours = q("""select distinct d.model_key, p.provider, d.in_per_mtok, d.out_per_mtok, s.litellm_provider
