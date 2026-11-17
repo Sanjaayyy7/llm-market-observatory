@@ -1,7 +1,7 @@
 source,source_key,canonical_model_id,match_method,is_moving_alias,match_score,evidence_url,approved_by
 arena,ChatGPT-4o Latest (20250326),chatgpt-4o-latest,manual,true,0.711,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,Claude Fable 5 (High),claude-fable-5,manual,false,0.686,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
-arena,Claude Fable 5.1 (Max),claude-fable-5-1,manual,false,0.684,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Fable 5.1 (Max),claude-fable-5-1,manual,false,0.684,https://platform.claude.com/docs/en/build-with-claude/effort,cofounder
 arena,Claude Opus 4.5 (20251101),claude-opus-4-5-20251101,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,"Claude Opus 4.5 (High, 32K, 20251101)",claude-opus-4-5-20251101,manual,false,0.656,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,Claude Opus 4.6,claude-opus-4-6,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
@@ -11,7 +11,7 @@ arena,Claude Opus 4.7 (High),claude-opus-4-7,manual,false,0.649,https://platform
 arena,Claude Opus 4.8,claude-opus-4-8,manual,false,0.8,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,Claude Opus 4.8 (High),claude-opus-4-8,manual,false,0.649,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,Claude Opus 5 (High),claude-opus-5,manual,false,0.667,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
-arena,Claude Opus 5 (Max),claude-opus-5,manual,false,0.688,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,Claude Opus 5 (Max),claude-opus-5,manual,false,0.688,https://platform.claude.com/docs/en/build-with-claude/effort,cofounder
 arena,Claude Opus 5.5 (High),claude-opus-5-5,manual,false,0.649,https://platform.claude.com/docs/en/models/overview,cofounder
 arena,Claude Sonnet 4.5 (20250929),claude-sonnet-4-5-20250929,manual,false,0.815,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,"Claude Sonnet 4.5 (High, 32K, 20250929)",claude-sonnet-4-5-20250929,manual,false,0.677,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
@@ -52,8 +52,8 @@ arena,GPT-5.5 (High),gpt-5.5-2026-04-23,manual,false,0.438,https://developers.op
 arena,GPT-5.6 Luna (xHigh),gpt-5.6-luna,manual,false,0.688,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,GPT-5.6 Sol (xHigh),gpt-5.6-sol,manual,false,0.667,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,GPT-5.6 Terra (xHigh),gpt-5.6-terra,manual,false,0.706,https://developers.openai.com/api/docs/deprecations,cofounder
-arena,GPT-6 Astra (Max),gpt-6-astra,manual,false,0.714,https://developers.openai.com/api/docs/models,cofounder
-arena,GPT-6.1 Sol (Max),gpt-6.1-sol,manual,false,0.714,https://developers.openai.com/api/docs/models,cofounder
+arena,GPT-6 Astra (Max),gpt-6-astra,manual,false,0.714,https://developers.openai.com/api/docs/models/gpt-6-astra,cofounder
+arena,GPT-6.1 Sol (Max),gpt-6.1-sol,manual,false,0.714,https://developers.openai.com/api/docs/models/gpt-6.1-sol,cofounder
 arena,Gemini 2.0 Flash-Lite Preview (02-05),gemini-2.0-flash-lite-preview-02-05,manual,false,0.861,https://aistudio.google.com/docs/deprecations,cofounder
 arena,Gemini 2.5 Flash,gemini-2.5-flash,manual,false,0.875,https://aistudio.google.com/docs/models,cofounder
 arena,Gemini 2.5 Pro,gemini-2.5-pro,manual,false,0.857,https://aistudio.google.com/docs/models,cofounder
@@ -82,7 +82,7 @@ arena,Grok 4.3,grok-4.3,manual,false,0.875,https://docs.x.ai/developers/models,c
 arena,Grok 4.5,grok-4.5,manual,false,0.875,https://docs.x.ai/developers/models,cofounder
 arena,Grok 4.6 (High),grok-4.6,manual,false,0.609,https://docs.x.ai/developers/models,cofounder
 arena,Kimi K2.6,kimi-k2.6,manual,false,0.889,https://platform.kimi.ai/docs/pricing/chat,cofounder
-arena,Kimi K3 (Max),kimi-k3,manual,false,0.6,https://platform.kimi.ai/docs/pricing/chat,cofounder
+arena,Kimi K3 (Max),kimi-k3,manual,false,0.6,https://platform.kimi.ai/docs/guide/kimi-k3-quickstart.md,cofounder
 arena,Kimi K3.1 Pro (Max),kimi-k3.1-pro,manual,false,0.688,https://platform.kimi.ai/docs/pricing/chat,cofounder
 arena,Mistral Large 3,mistral-large-2512,manual,false,0.727,https://docs.mistral.ai/models,cofounder
 arena,Mistral Large 4,mistral-large-4,manual,false,0.867,https://docs.mistral.ai/models,cofounder
@@ -108,6 +108,7 @@ arena,claude-3-opus-20240229,claude-3-opus-20240229,exact,false,1.0,,
 arena,claude-3-sonnet-20240229,claude-3-sonnet-20240229,exact,false,1.0,,
 arena,claude-fable-5,claude-fable-5,exact,false,1.0,,
 arena,claude-fable-5-high,claude-fable-5,manual,false,0.848,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-fable-5.1-max,claude-fable-5-1,manual,false,0.833,https://platform.claude.com/docs/en/build-with-claude/effort,cofounder
 arena,claude-haiku-4-5-20251001,claude-haiku-4-5-20251001,exact,false,1.0,,
 arena,claude-opus-4-1-20250805,claude-opus-4-1-20250805,exact,false,1.0,,
 arena,claude-opus-4-1-20250805-thinking-16k,claude-opus-4-1-20250805,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
@@ -126,6 +127,7 @@ arena,claude-opus-4-8,claude-opus-4-8,exact,false,1.0,,
 arena,claude-opus-4-8-high,claude-opus-4-8,manual,false,0.857,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-opus-4-8-thinking,claude-opus-4-8,manual,false,0.769,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
 arena,claude-opus-5-high,claude-opus-5,manual,false,0.839,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
+arena,claude-opus-5-max,claude-opus-5,manual,false,0.867,https://platform.claude.com/docs/en/build-with-claude/effort,cofounder
 arena,claude-opus-5.5-high,claude-opus-5-5,manual,false,0.8,https://platform.claude.com/docs/en/models/overview,cofounder
 arena,claude-sonnet-4-20250514,claude-sonnet-4-20250514,exact,false,1.0,,
 arena,claude-sonnet-4-20250514-thinking-32k,claude-sonnet-4-20250514,manual,false,0.787,https://platform.claude.com/docs/en/about-claude/model-deprecations,cofounder
@@ -213,6 +215,8 @@ arena,gpt-5.5-high,gpt-5.5-2026-04-23,manual,false,0.533,https://developers.open
 arena,gpt-5.6-luna-xhigh,gpt-5.6-luna,manual,false,0.8,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,gpt-5.6-sol-xhigh,gpt-5.6-sol,manual,false,0.786,https://developers.openai.com/api/docs/deprecations,cofounder
 arena,gpt-5.6-terra-xhigh,gpt-5.6-terra,manual,false,0.812,https://developers.openai.com/api/docs/deprecations,cofounder
+arena,gpt-6-astra-max,gpt-6-astra,manual,false,0.846,https://developers.openai.com/api/docs/models/gpt-6-astra,cofounder
+arena,gpt-6.1-sol-max,gpt-6.1-sol,manual,false,0.846,https://developers.openai.com/api/docs/models/gpt-6.1-sol,cofounder
 arena,grok-3-mini-beta,grok-3-mini-beta,exact,false,1.0,,
 arena,grok-4-0709,grok-4-0709,exact,false,1.0,,
 arena,grok-4-1-fast-reasoning,grok-4-1-fast-reasoning,exact,false,1.0,,
@@ -227,6 +231,7 @@ arena,kimi-k2-0905-preview,kimi-k2-0905-preview,exact,false,1.0,,
 arena,kimi-k2-thinking-turbo,kimi-k2-thinking-turbo,exact,false,1.0,,
 arena,kimi-k2.6,kimi-k2.6,exact,false,1.0,,
 arena,kimi-k3,kimi-k3,exact,false,1.0,,
+arena,kimi-k3-max,kimi-k3,manual,false,0.778,https://platform.kimi.ai/docs/guide/kimi-k3-quickstart.md,cofounder
 arena,mistral-large-2402,mistral-large-2402,exact,false,1.0,,
 arena,mistral-large-2407,mistral-large-2407,exact,false,1.0,,
 arena,mistral-large-2411,mistral-large-2411,exact,false,1.0,,
