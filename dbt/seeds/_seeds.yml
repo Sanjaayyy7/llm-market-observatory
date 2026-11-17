@@ -74,3 +74,24 @@ seeds:
       - name: target_model_id
         data_tests:
           - relationships: {arguments: {to: ref('seed_models'), field: canonical_model_id}}
+  - name: seed_cut_audit
+    description: G4 hand audit of every real cut (or 20 stratified); announced_date and source_url from provider doc domains only.
+    config:
+      column_types:
+        canonical_model_id: varchar
+        observed_ts: timestamptz
+        announced_date: date
+        source_url: varchar
+        is_data_fix: boolean
+        evidence_quote: varchar
+    columns:
+      - name: canonical_model_id
+        data_tests:
+          - not_null
+          - unique
+      - name: source_url
+        data_tests:
+          - not_null: {arguments: {column_name: "nullif(regexp_extract(source_url, '^https://.+', 0), '')"}}
+      - name: announced_date
+        data_tests:
+          - not_null: {arguments: {column_name: "coalesce(announced_date::varchar, case when is_data_fix then 'data fix' end)"}}

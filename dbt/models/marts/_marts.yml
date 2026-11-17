@@ -49,3 +49,10 @@ models:
       - {name: listed_at, data_tests: [not_null]}
       - {name: days_at_launch_price, data_tests: [not_null]}
       - {name: censored, data_tests: [not_null]}
+  - name: mart_cut_audit
+    description: Audited cuts with provider-announced date and commit lag; headline uses the median lag_days over non-data-fix rows.
+    columns:
+      - {name: canonical_model_id, data_tests: [unique, not_null]}
+      - {name: observed_ts, data_tests: [not_null]}
+      - {name: source_url, data_tests: [not_null]}
+      - {name: is_data_fix, data_tests: [not_null]}
