@@ -7,7 +7,7 @@ Claude-3-Haiku,2024-03-04,anthropic,in_scope,claude-3-haiku-20240307,https://pla
 Claude-3-Opus,2024-03-04,anthropic,in_scope,claude-3-opus-20240229,https://platform.claude.com/docs/en/about-claude/model-deprecations,
 Claude-3-Sonnet,2024-03-04,anthropic,in_scope,claude-3-sonnet-20240229,https://platform.claude.com/docs/en/about-claude/model-deprecations,
 Mistral-8x22,2024-04-17,mistral,in_scope,open-mixtral-8x22b,https://docs.mistral.ai/models,
-Llama-3-Instruct-70B,2024-04-18,meta,out_of_scope,,,provider not first-party in seed_provider_map
+Llama-3-Instruct-70B,2024-04-18,meta,out_of_scope,,,provider outside the first-party panel (not in seed_provider_map)
 Gemini-1.5-Flash-2024-05,2024-05-10,google,in_scope,gemini-1.5-flash-001,https://aistudio.google.com/docs/changelog,
 GPT-4o-2024-05,2024-05-13,openai,in_scope,gpt-4o-2024-05-13,https://developers.openai.com/api/docs/deprecations,
 Gemini-1.5-Pro-2024-05,2024-05-23,google,in_scope,gemini-1.5-pro-001,https://aistudio.google.com/docs/changelog,
@@ -15,15 +15,15 @@ Claude-3.5-Sonnet-2024-06,2024-06-20,anthropic,in_scope,claude-3-5-sonnet-202406
 Gemma-2-27B,2024-06-24,google,out_of_scope,,https://aistudio.google.com/docs/pricing,no first-party list price: the Gemini API pricing page lists no Gemma 2 price
 GPT-4o-mini,2024-07-18,openai,in_scope,gpt-4o-mini-2024-07-18,https://developers.openai.com/api/docs/deprecations,
 Mistral-NeMo,2024-07-18,mistral,in_scope,open-mistral-nemo-2407,https://docs.mistral.ai/models,
-Llama-3.1-Instruct-405B,2024-07-23,meta,out_of_scope,,,provider not first-party in seed_provider_map
-Llama-3.1-Instruct-70B,2024-07-23,meta,out_of_scope,,,provider not first-party in seed_provider_map
+Llama-3.1-Instruct-405B,2024-07-23,meta,out_of_scope,,,provider outside the first-party panel (not in seed_provider_map)
+Llama-3.1-Instruct-70B,2024-07-23,meta,out_of_scope,,,provider outside the first-party panel (not in seed_provider_map)
 Mistral-Large-2-2024-07,2024-07-24,mistral,in_scope,mistral-large-2407,https://docs.mistral.ai/models,
 GPT-4o-2024-08,2024-08-06,openai,in_scope,gpt-4o-2024-08-06,https://developers.openai.com/api/docs/deprecations,
 Claude 2,2024-08-12,anthropic,in_scope,claude-2.0,https://platform.claude.com/docs/en/about-claude/model-deprecations,the page names claude-2.0 and claude-2.1; it never names claude-2
 Claude 2.1,2024-08-12,anthropic,in_scope,claude-2.1,https://platform.claude.com/docs/en/about-claude/model-deprecations,
-Gemini 1.0 Pro,2024-08-12,google,in_scope,gemini-pro,https://aistudio.google.com/docs/changelog,"changelog 2023-12-13 names gemini-pro; no page names gemini-1.0-pro; registry canonical is gemini-pro"
-Command R+,2024-08-13,cohere,in_scope,command-r-plus,https://docs.cohere.com/docs/models,"page: command-r-plus is an alias for command-r-plus-04-2024; registry canonical is command-r-plus"
-Jamba 1.5-Large,2024-09-12,ai21,out_of_scope,,,provider not first-party in seed_provider_map
+Gemini 1.0 Pro,2024-08-12,google,in_scope,gemini-pro,https://aistudio.google.com/docs/changelog,changelog 2023-12-13 names gemini-pro; no page names gemini-1.0-pro; registry canonical is gemini-pro
+Command R+,2024-08-13,cohere,in_scope,command-r-plus-04-2024,https://docs.cohere.com/docs/models,"page: command-r-plus is an alias for command-r-plus-04-2024; the registry ID command-r-plus is a moving alias, so the dated ID is used"
+Jamba 1.5-Large,2024-09-12,ai21,out_of_scope,,,provider outside the first-party panel (not in seed_provider_map)
 Command R+,2024-09-13,cohere,in_scope,command-r-plus-08-2024,https://docs.cohere.com/docs/models,
 Gemini-1.5-Flash-2024-09,2024-09-24,google,in_scope,gemini-1.5-flash-002,https://aistudio.google.com/docs/changelog,
 Gemini-1.5-Pro-2024-09,2024-09-24,google,in_scope,gemini-1.5-pro-002,https://aistudio.google.com/docs/changelog,
@@ -31,7 +31,7 @@ Claude-3.5-Haiku,2024-10-22,anthropic,in_scope,claude-3-5-haiku-20241022,https:/
 Claude-3.5-Sonnet-2024-10,2024-10-22,anthropic,in_scope,claude-3-5-sonnet-20241022,https://platform.claude.com/docs/en/about-claude/model-deprecations,
 Mistral-Large-2-2024-11,2024-11-18,mistral,in_scope,mistral-large-2411,https://docs.mistral.ai/models,
 GPT-4o-2024-11,2024-11-20,openai,in_scope,gpt-4o-2024-11-20,https://developers.openai.com/api/docs/deprecations,
-Phi 4,2024-12-13,microsoft,out_of_scope,,,provider not first-party in seed_provider_map
-DeepSeek-V3,2024-12-26,deepseek,in_scope,deepseek-chat,https://api-docs.deepseek.com/updates/,"updates 2024-12-26: deepseek-chat upgraded to DeepSeek-V3; DeepSeek publishes no dated ID"
+Phi 4,2024-12-13,microsoft,out_of_scope,,,provider outside the first-party panel (not in seed_provider_map)
+DeepSeek-V3,2024-12-26,deepseek,in_scope,deepseek-chat,https://api-docs.deepseek.com/updates/,updates 2024-12-26: deepseek-chat upgraded to DeepSeek-V3; DeepSeek publishes no dated ID
 Mistral Small 3,2025-01-30,mistral,in_scope,mistral-small-2501,https://docs.mistral.ai/models,
 Gemini 2.0 Flash,2025-02-05,google,in_scope,gemini-2.0-flash-001,https://aistudio.google.com/docs/changelog,
