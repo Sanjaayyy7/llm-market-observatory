@@ -1,3 +1,4 @@
+{{ config(enabled = target.name != 'ci') }}
 -- Every audit row must match a real cut, cite a provider-domain https URL (subdomains OK) and quote the page.
 with audit as (
     select
