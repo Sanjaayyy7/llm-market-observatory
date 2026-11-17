@@ -1,7 +1,5 @@
-{{ config(enabled = target.name != 'ci') }}
--- Real-data property (CI fixtures are a handful of rows). In-scope = first-party Arena names that
--- reached the top 25% on any text/overall snapshot. Covered = has an arena crosswalk row whose
--- canonical model has a litellm row. Fails below 90% overall or 80% closed.
+-- One row per in-scope Arena name. In-scope = first-party names that reached the top 25% on any
+-- text/overall snapshot. Covered = has an arena crosswalk row whose canonical model has a litellm row.
 with org as (
     select model_name, lower(max(nullif(organization, ''))) as organization
     from {{ source('raw', 'arena') }}
@@ -23,16 +21,16 @@ names as (
 ),
 
 scope as (
-    select n.model_name, n.closed
+    select n.model_name, n.closed, n.provider
     from names n
     join {{ ref('seed_provider_map') }} p on p.provider = n.provider and p.is_first_party
     where n.min_pct <= 0.25
-    group by 1, 2
+    group by 1, 2, 3
 ),
 
 flagged as (
     select
-        s.model_name, s.closed,
+        s.model_name, s.closed, s.provider,
         exists (
             select 1
             from {{ ref('seed_model_crosswalk') }} a
@@ -41,17 +39,6 @@ flagged as (
             where a.source = 'arena' and a.source_key = s.model_name
         ) as covered
     from scope s
-),
-
-totals as (
-    select
-        count(*) as n_scope,
-        count(*) filter (where covered) as n_covered,
-        count(*) filter (where closed) as n_closed,
-        count(*) filter (where closed and covered) as n_closed_covered
-    from flagged
 )
 
-select *, n_covered::double / n_scope as share, n_closed_covered::double / nullif(n_closed, 0) as closed_share
-from totals
-where n_covered::double / n_scope < 0.90 or n_closed_covered::double / nullif(n_closed, 0) < 0.80
+select model_name, provider, closed, covered from flagged

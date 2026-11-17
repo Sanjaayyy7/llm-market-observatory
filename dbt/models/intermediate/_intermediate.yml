@@ -9,3 +9,8 @@ models:
       - {name: method_era, data_tests: [not_null]}
     data_tests:
       - unique: {arguments: {column_name: "(canonical_model_id || '|' || publish_date)"}}
+  - name: int_crosswalk_coverage
+    description: One row per in-scope Arena name with its coverage flag (meaningful on dev only; CI fixtures are a handful of rows).
+    columns:
+      - {name: model_name, data_tests: [unique, not_null]}
+      - {name: covered, data_tests: [not_null]}
