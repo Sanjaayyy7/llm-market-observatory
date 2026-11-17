@@ -8,15 +8,27 @@ models:
     data_tests:
       - unique: {arguments: {column_name: "(snapshot_date || '|' || model_key)"}}
   - name: stg_arena__leaderboard
+    columns:
+      - {name: config, data_tests: [not_null]}
+      - {name: publish_date, data_tests: [not_null]}
+      - {name: model_name, data_tests: [not_null]}
+      - {name: category, data_tests: [not_null]}
     data_tests:
       - unique: {arguments: {column_name: "(config || '|' || publish_date || '|' || model_name || '|' || category)"}}
   - name: stg_epoch__models
     columns:
       - {name: model, data_tests: [unique]}
   - name: stg_pypi__downloads
+    columns:
+      - {name: date, data_tests: [not_null]}
+      - {name: project, data_tests: [not_null]}
     data_tests:
       - unique: {arguments: {column_name: "(date || '|' || project)"}}
   - name: stg_tokencanopy__prices
+    columns:
+      - {name: run_date, data_tests: [not_null]}
+      - {name: platform, data_tests: [not_null]}
+      - {name: model_slug, data_tests: [not_null]}
     data_tests:
       - unique: {arguments: {column_name: "(run_date || '|' || platform || '|' || model_slug)"}}
   - name: source_freshness
