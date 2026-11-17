@@ -6,3 +6,8 @@ config-version: 2
 # dbt never calls the network: no anonymous usage stats.
 flags:
   send_anonymous_usage_stats: false
+
+# Staging reads raw once at build time, so tests see what was built.
+models:
+  llm_market_observatory:
+    +materialized: table

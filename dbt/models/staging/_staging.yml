@@ -1,6 +1,10 @@
 version: 2
 models:
   - name: stg_litellm__snapshots
+    columns:
+      - {name: model_key, data_tests: [not_null]}
+      - {name: commit_ts, data_tests: [not_null]}
+      - {name: snapshot_date, data_tests: [not_null]}
     data_tests:
       - unique: {arguments: {column_name: "(snapshot_date || '|' || model_key)"}}
   - name: stg_arena__leaderboard

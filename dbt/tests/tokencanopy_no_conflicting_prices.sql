@@ -2,7 +2,7 @@
 select run_date, platform, model_key, metric
 from {{ source('raw', 'tokencanopy') }}
 where variant = 'unknown'
-  and platform in ('OpenAI', 'Anthropic', 'Google AI Studio', 'xAI', 'Mistral', 'DeepSeek', 'Cohere', 'Moonshot AI')
+  and platform in (select distinct platform from {{ ref('stg_tokencanopy__prices') }})
   and metric in ('input', 'output')
 group by run_date, platform, model_key, metric
 having count(distinct usd_per_1m) > 1

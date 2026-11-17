@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 -- SCD2 per design §5. Snapshot universe = distinct (snapshot_date, commit_ts) in the input;
 -- calendar gaps between snapshots are not absences (R31).
 with universe as (

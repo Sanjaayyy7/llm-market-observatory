@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 -- Design §5 step 1 + R32: fill a null mode from the key's next non-null mode (else previous),
 -- then filter. A key never given a mode is kept.
 with filled as (

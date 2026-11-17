@@ -98,6 +98,23 @@ unit_tests:
       rows:
         - {model_key: m, valid_from: "2024-01-01 10:00:00+00", valid_to: null, in_per_mtok: 0.15, out_per_mtok: 0.6, delisted: false, is_current: true}
 
+  - name: test_null_to_value_is_a_change
+    description: null to value on one side while the other side is unchanged opens a new version (in and out)
+    model: dim_model_price
+    given:
+      - input: ref('stg_litellm__snapshots')
+        rows:
+          - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: k_in, litellm_provider: p, mode: chat, in_per_mtok: null, out_per_mtok: 2}
+          - {snapshot_date: "2024-01-02", commit_sha: x, commit_ts: "2024-01-02 10:00:00+00", model_key: k_in, litellm_provider: p, mode: chat, in_per_mtok: 0.5, out_per_mtok: 2}
+          - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: k_out, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: null}
+          - {snapshot_date: "2024-01-02", commit_sha: x, commit_ts: "2024-01-02 10:00:00+00", model_key: k_out, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 0.5}
+    expect:
+      rows:
+        - {model_key: k_in, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-02 10:00:00+00", in_per_mtok: null, out_per_mtok: 2, delisted: false, is_current: false}
+        - {model_key: k_in, valid_from: "2024-01-02 10:00:00+00", valid_to: null, in_per_mtok: 0.5, out_per_mtok: 2, delisted: false, is_current: true}
+        - {model_key: k_out, valid_from: "2024-01-01 10:00:00+00", valid_to: "2024-01-02 10:00:00+00", in_per_mtok: 1, out_per_mtok: null, delisted: false, is_current: false}
+        - {model_key: k_out, valid_from: "2024-01-02 10:00:00+00", valid_to: null, in_per_mtok: 1, out_per_mtok: 0.5, delisted: false, is_current: true}
+
   - name: golden_scd2
     description: hand-worked 6-snapshot fixture
     model: dim_model_price
@@ -125,6 +142,38 @@ unit_tests:
         - {snapshot_date: "2024-01-01", commit_sha: a, commit_ts: "2024-01-01 10:00:00+00", model_key: m, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 2}
         - {snapshot_date: "2024-01-02", commit_sha: b, commit_ts: "2024-01-02 10:00:00+00", model_key: m, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 2}
 
+  - name: test_mode_fill_and_filter
+    description: next-fill before previous-fill, previous fallback, null kept, only chat/completion/responses survive
+    model: stg_litellm__snapshots
+    given:
+      - input: source('raw', 'litellm')
+        format: sql
+        rows: |
+            select cast('2024-01-01' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-01 10:00:00+00' as timestamptz) as commit_ts, cast('allnull' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast(null as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-02' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-02 10:00:00+00' as timestamptz) as commit_ts, cast('allnull' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast(null as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-01' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-01 10:00:00+00' as timestamptz) as commit_ts, cast('emb_null' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast('embedding' as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-02' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-02 10:00:00+00' as timestamptz) as commit_ts, cast('emb_null' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast(null as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-01' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-01 10:00:00+00' as timestamptz) as commit_ts, cast('comp' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast('completion' as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-01' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-01 10:00:00+00' as timestamptz) as commit_ts, cast('resp' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast('responses' as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-01' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-01 10:00:00+00' as timestamptz) as commit_ts, cast('nullchat' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast(null as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-02' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-02 10:00:00+00' as timestamptz) as commit_ts, cast('nullchat' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast('chat' as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-01' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-01 10:00:00+00' as timestamptz) as commit_ts, cast('chattrail' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast('chat' as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-02' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-02 10:00:00+00' as timestamptz) as commit_ts, cast('chattrail' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast(null as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-01' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-01 10:00:00+00' as timestamptz) as commit_ts, cast('mid' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast('chat' as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-02' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-02 10:00:00+00' as timestamptz) as commit_ts, cast('mid' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast(null as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token union all
+            select cast('2024-01-03' as date) as snapshot_date, cast('x' as varchar) as commit_sha, cast('2024-01-03 10:00:00+00' as timestamptz) as commit_ts, cast('mid' as varchar) as model_key, cast('p' as varchar) as litellm_provider, cast('embedding' as varchar) as mode, cast(1.0e-06 as double) as input_cost_per_token, cast(2.0e-06 as double) as output_cost_per_token
+    expect:
+      rows:
+        - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: allnull, litellm_provider: p, mode: null, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-02", commit_sha: x, commit_ts: "2024-01-02 10:00:00+00", model_key: allnull, litellm_provider: p, mode: null, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: comp, litellm_provider: p, mode: completion, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: resp, litellm_provider: p, mode: responses, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: nullchat, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-02", commit_sha: x, commit_ts: "2024-01-02 10:00:00+00", model_key: nullchat, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: chattrail, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-02", commit_sha: x, commit_ts: "2024-01-02 10:00:00+00", model_key: chattrail, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 2}
+        - {snapshot_date: "2024-01-01", commit_sha: x, commit_ts: "2024-01-01 10:00:00+00", model_key: mid, litellm_provider: p, mode: chat, in_per_mtok: 1, out_per_mtok: 2}
+
   - name: test_float_noise_rounds_equal
     description: 1.5e-07 and 1.4999999e-07 both give 0.15 per 1M
     model: stg_litellm__snapshots
@@ -138,6 +187,51 @@ unit_tests:
       rows:
         - {snapshot_date: "2024-01-01", commit_sha: a, commit_ts: "2024-01-01 10:00:00+00", model_key: m, litellm_provider: p, mode: chat, in_per_mtok: 0.15, out_per_mtok: 0.6}
         - {snapshot_date: "2024-01-02", commit_sha: b, commit_ts: "2024-01-02 10:00:00+00", model_key: m, litellm_provider: p, mode: chat, in_per_mtok: 0.15, out_per_mtok: 0.6}
+
+  - name: test_freshness_allowance_and_sla
+    description: lag = sla+1 fresh, sla+2 stale; null-SLA lag 1 fresh, lag 2 stale; probe rows ignored; anchored to run_ts
+    model: source_freshness
+    given:
+      - input: ref('stg_litellm__snapshots')
+        format: sql
+        rows: |
+            select cast('2026-11-09' as date) as snapshot_date union all
+            select cast('2026-11-11' as date) as snapshot_date union all
+            select cast('2026-11-13' as date) as snapshot_date
+      - input: ref('stg_arena__leaderboard')
+        format: sql
+        rows: |
+            select cast('2026-11-08' as date) as publish_date union all
+            select cast('2026-11-10' as date) as publish_date union all
+            select cast('2026-11-12' as date) as publish_date
+      - input: ref('stg_epoch__models')
+        format: sql
+        rows: |
+            select cast('2026-11-15' as date) as publication_date
+      - input: ref('stg_pypi__downloads')
+        format: sql
+        rows: |
+            select cast('2026-11-14' as date) as date
+      - input: ref('stg_tokencanopy__prices')
+        format: sql
+        rows: |
+            select cast('2026-11-16' as date) as run_date
+      - input: source('raw', 'freshness')
+        format: sql
+        rows: |
+            select cast('litellm' as varchar) as source, cast('2026-11-16 12:00:00+00' as timestamptz) as run_ts, cast(10 as bigint) as rows, cast('2020-01-01' as date) as min_date, cast('2026-11-13' as date) as max_date, cast(false as boolean) as probe union all
+            select cast('arena' as varchar) as source, cast('2026-11-16 12:00:00+00' as timestamptz) as run_ts, cast(10 as bigint) as rows, cast('2020-01-01' as date) as min_date, cast('2026-11-12' as date) as max_date, cast(false as boolean) as probe union all
+            select cast('arena' as varchar) as source, cast('2026-11-17 12:00:00+00' as timestamptz) as run_ts, cast(10 as bigint) as rows, cast('2020-01-01' as date) as min_date, cast('2026-11-16' as date) as max_date, cast(true as boolean) as probe union all
+            select cast('epoch' as varchar) as source, cast('2026-11-16 12:00:00+00' as timestamptz) as run_ts, cast(10 as bigint) as rows, cast('2020-01-01' as date) as min_date, cast('2026-11-15' as date) as max_date, cast(false as boolean) as probe union all
+            select cast('pypi' as varchar) as source, cast('2026-11-16 12:00:00+00' as timestamptz) as run_ts, cast(10 as bigint) as rows, cast('2020-01-01' as date) as min_date, cast('2026-11-14' as date) as max_date, cast(false as boolean) as probe union all
+            select cast('tokencanopy' as varchar) as source, cast('2026-11-16 12:00:00+00' as timestamptz) as run_ts, cast(10 as bigint) as rows, cast('2020-01-01' as date) as min_date, cast('2026-11-16' as date) as max_date, cast(false as boolean) as probe
+    expect:
+      rows:
+        - {source: litellm, run_ts: "2026-11-16 12:00:00+00", rows: 10, max_date: "2026-11-13", sla_days: 2, is_stale: false}
+        - {source: arena, run_ts: "2026-11-16 12:00:00+00", rows: 10, max_date: "2026-11-12", sla_days: 2, is_stale: true}
+        - {source: epoch, run_ts: "2026-11-16 12:00:00+00", rows: 10, max_date: "2026-11-15", sla_days: null, is_stale: false}
+        - {source: pypi, run_ts: "2026-11-16 12:00:00+00", rows: 10, max_date: "2026-11-14", sla_days: null, is_stale: true}
+        - {source: tokencanopy, run_ts: "2026-11-16 12:00:00+00", rows: 10, max_date: "2026-11-16", sla_days: null, is_stale: false}
 
   # ---- other staging (R26-R30) ----
   - name: test_pypi_sums_duplicates_latest_run_only
@@ -161,13 +255,15 @@ unit_tests:
         rows: |
             select cast('text' as varchar) as config, cast('a' as varchar) as model_name, cast('Proprietary' as varchar) as license, cast(1500 as double) as rating, cast('overall' as varchar) as category, cast('2026-11-11' as date) as publish_date, cast('2026-11-16' as date) as run_date union all
             select cast('text' as varchar) as config, cast('b' as varchar) as model_name, cast('Apache 2.0' as varchar) as license, cast(1400 as double) as rating, cast('overall' as varchar) as category, cast('2026-11-11' as date) as publish_date, cast('2026-11-16' as date) as run_date union all
+            select cast('text' as varchar) as config, cast('b2' as varchar) as model_name, cast('Apache 2.0' as varchar) as license, cast(1400 as double) as rating, cast('overall' as varchar) as category, cast('2026-11-11' as date) as publish_date, cast('2026-11-16' as date) as run_date union all
             select cast('text' as varchar) as config, cast('c' as varchar) as model_name, cast('' as varchar) as license, cast(1300 as double) as rating, cast('overall' as varchar) as category, cast('2026-11-11' as date) as publish_date, cast('2026-11-16' as date) as run_date union all
             select cast('text' as varchar) as config, cast('old' as varchar) as model_name, cast('Proprietary' as varchar) as license, cast(1 as double) as rating, cast('overall' as varchar) as category, cast('2026-11-10' as date) as publish_date, cast('2026-11-15' as date) as run_date
     expect:
       rows:
-        - {config: text, publish_date: "2026-11-11", model_name: a, category: overall, rating: 1500, rank: 1, rank_percentile: 0.3333333333333333, closed: true}
-        - {config: text, publish_date: "2026-11-11", model_name: b, category: overall, rating: 1400, rank: 2, rank_percentile: 0.6666666666666666, closed: false}
-        - {config: text, publish_date: "2026-11-11", model_name: c, category: overall, rating: 1300, rank: 3, rank_percentile: 1, closed: null}
+        - {config: text, publish_date: "2026-11-11", model_name: a, category: overall, rating: 1500, rank: 1, rank_percentile: 0.25, closed: true}
+        - {config: text, publish_date: "2026-11-11", model_name: b, category: overall, rating: 1400, rank: 2, rank_percentile: 0.5, closed: false}
+        - {config: text, publish_date: "2026-11-11", model_name: b2, category: overall, rating: 1400, rank: 2, rank_percentile: 0.5, closed: false}
+        - {config: text, publish_date: "2026-11-11", model_name: c, category: overall, rating: 1300, rank: 4, rank_percentile: 1, closed: null}
 
   - name: test_epoch_latest_run_only
     model: stg_epoch__models

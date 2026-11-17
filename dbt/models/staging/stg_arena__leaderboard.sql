@@ -1,5 +1,4 @@
--- Latest run only: each run is a full re-fetch (R26). qualify, not a scalar subquery: that
--- returned 0 rows on single-partition fixtures (DuckDB 1.5.6).
+-- Latest run only (R26): each run is a full re-fetch.
 with latest as (
     select * from {{ source('raw', 'arena') }} qualify run_date = max(run_date) over ()
 )
