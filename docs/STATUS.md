@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-17 · **Now:** G4 Task 7 cut-date audit (next; sample the LiteLLM-only keys and the N4 suspects; carry the Task 6 FINDING row) · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-17 · **Now:** G4 **kill tripped** (7/12 audited cuts are data fixes under the strict rule; ≥4/11 under any reading; DECISIONS G4 row). Next: mini-council on the correction/audit rules (promos, the S8 seed gap for the xAI 2026-05-15 redirects, unannounced changes on retired models) → add the xAI reroute rows → re-audit once. Work sits on branch `g4-cut-audit` (unmerged) · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
@@ -35,7 +35,7 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G3b | 4 | Staging + SCD2 `dim_model_price` | dbt build passes on ci and dev; `unique(model_key, valid_from)`; hand-worked SCD2 golden rows match; reviewer pass | — | done |
 | G2 | 5 | Crosswalk + Arena rank | Coverage ≥90% in-scope top-tier, ≥80% closed. The evidence test passes (URL + match score on every manual row). Reviewer pass on low-score rows | kill: <30 top-tier → panel-only | done (closed 85.3%, overall 71.9% disclosed, top-tier 111) |
 | — | 6 | Price facts + survival mart | `dbt build --target dev` passes; ~9 real first cuts | — | done (top-tier 105; 10 real first cuts ≤365 d; S3 + S8 closed) |
-| G4 | 7 | 20-cut audit (runs alone) | `mart_cut_audit` passes | kill: >25% data fixes → re-audit once | todo |
+| G4 | 7 | 20-cut audit (runs alone) | `mart_cut_audit` passes | kill: >25% data fixes → re-audit once | **kill tripped 2026-11-17** (7/12); re-audit pending |
 | G5 → G6 | 8 → 9 | Epoch check, then KM headline | G5: `reproduced_factor` = 42.02 ± 0.01 and `passed` (dated price agreement; DECISIONS "G5 replan"). G6: Y ≈ 10% at n ≈ 91; `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; reviewer pass | G5 fails after one diagnosis → "validation pending" + mini-council replan | todo |
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | todo |
 | G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` prints the "Descriptive only" verdict line | kill: <8 events → descriptive | todo |
