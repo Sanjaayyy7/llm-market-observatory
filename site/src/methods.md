@@ -126,7 +126,7 @@ const codeRows = Object.entries(CODES).map(([code, definition]) => ({"reason cod
 display(html`<p>Population: top-tier models with a first-party list price.</p>
 <p>${covered}/${scope} in-scope Arena names map to a priced first-party model (${pct(covered / scope)}).</p>
 <p>${covered / scope < 0.90 ? `Pre-set overall bar 90%: FAILED (${covered}/${scope})` : "Pre-set overall bar 90%: passed"}</p>
-<p>Closed models: ${coveredClosed}/${scopeClosed} (${pct(coveredClosed / scopeClosed)}); 166/211 = 78.7% before the co-founder's hand matches (G2, 2026-11-17).</p>
+<p>Closed models: ${coveredClosed}/${scopeClosed} (${pct(coveredClosed / scopeClosed)}); 166/211 = 78.7% before names were matched by hand (2026-11-17).</p>
 <p>${M.unranked_count} priced models had no Arena rank within 60 days of listing and are left out of the top-tier set.</p>`);
 display(Inputs.table(codeRows, {layout: "auto", width: {definition: 520}}));
 display(html`<details><summary>All ${uncovered.length} uncovered names</summary>${Inputs.table(uncovered.map((u) => ({name: u.model_name, provider: u.provider,
@@ -164,20 +164,20 @@ display(html`<p>LiteLLM replay: ${M.replay_days} daily snapshots from 2023-09-06
 | `stg_tokencanopy__prices` | run_date × platform × model_slug | spot-check only |
 | `stg_pypi__downloads` | date × project | |
 | `dim_model` | canonical_model_id | from seeds |
-| `dim_model_price` | model_key × valid_from | SCD2 (§5) |
+| `dim_model_price` | model_key × valid_from | SCD2: one version per price change |
 | `fct_model_price_daily` | canonical_model_id × date | first-party, standard tier, blended 3:1; date spine from listing to delist/today |
 | `fct_price_change` | canonical_model_id × change_ts | pct change, `is_cut` (≥10%), `is_correction` |
-| `fct_arena_rank` | canonical_model_id × snapshot_date | rank, rank_percentile, method_era (splits at Jan-2024, May-2025, Jul-2025; E21) |
+| `fct_arena_rank` | canonical_model_id × snapshot_date | rank, rank_percentile, method_era (Arena changed its ranking method in Jan-2024, May-2025 and Jul-2025) |
 | `mart_launch_price_survival` | top-tier canonical_model_id | listed_at, first_cut_at, days_at_launch_price, censored |
 | `int_crosswalk_coverage` | in-scope Arena model name | covered or not |
 | `int_model_exposure` | priced canonical_model_id | listed_at, end_ts |
 | `mart_top_tier_screen` | priced canonical_model_id | first rank percentile, top-tier flag |
 | `mart_cut_audit` | audited cut | observed_ts, announced_date, lag_days, source_url (seed `seed_cut_audit.csv`) |
-| `fct_sdk_downloads_daily` | sdk_group × date | Google SDKs summed (E24) |
-| `mart_event_study_panel` | series × event_id × sdk_group × rel_day | built only after the prereg commit (G8) |
+| `fct_sdk_downloads_daily` | sdk_group × date | Google SDKs summed |
+| `mart_event_study_panel` | series × event_id × sdk_group × rel_day | built only after the pre-registration commit |
 | `source_freshness` | source × run_ts | rows, max_date, sla_days, is_stale |
 
-**Event-date audit (G4):** every recorded first cut is checked against the provider's own domain for a dated announcement (seed `seed_cut_audit.csv`, evidence URL per row). A cut with no such statement is a data fix.
+**Event-date audit:** every recorded first cut is checked against the provider's own domain for a dated announcement (seed `seed_cut_audit.csv`, evidence URL per row). A cut with no such statement is a data fix.
 
 ### Metric definitions (one definition each)
 

@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-18 · **Now:** G7 (plan Task 10) on branch `g7-site`, not merged. Steps 1–4 and the README are done: export + 5 tests, site (Home, Price explorer, Methods), Pages workflow, Playwright 33 passed, `make ci` 124 passed / dbt ci PASS=197. Next: Step 5 `gitleaks git -v .` (**owner P3: `brew install gitleaks`**), then Step 6 (`security-review` + Opus reviewer), then **S1**. G8–9 Steps 4–5 follow G7 · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-18 · **Now:** G7 checkpoint holds and is merged to main (local only). Publishing waits on **owner S1**: `gh repo create`, the first push, and enabling Pages, plus a ruling on the commit author email. After S1: G8–9 Steps 4–5 (the Adoption page, then `make all`), then Task 12 (weekly refresh) · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Active assistant:** Claude Code, acting as cofounder (no Codex writer active). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
@@ -59,7 +59,7 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G5 | 8 | Epoch check | `reproduced_factor` = 42.02 ± 0.01 and `passed` (dated price agreement; DECISIONS "G5 replan") | G5 fails after one diagnosis → "validation pending" + mini-council replan | done: **kill tripped**. Factor 42.0190; `passed: false`, 4/19 headline panel errors → council → no market headline in v1.0 (DECISIONS "G5 kill action") |
 | G6 | 9 | KM as a dataset measurement (Methods only) | `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; `headline.json` has `scope = "dataset_measurement"` and `validation = "failed"`; reviewer pass | design §18 G6 (fewer than 3 cuts → exact) | done: 1 − S(365) = 9.54% (95% CI 5.06–17.59%), n=105, 9 events, `scope = dataset_measurement`, `validation = failed`; verified-only 5.14% (5 events); audit data-fix rate 4/9 |
 | G5b (v1.1) | — | Pre-registered census of provider-announced list-price changes for a frozen headline set | A recall bar fixed before our series is read; this is the only route to a market headline | — | later (after R) |
-| G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | in progress on `g7-site`: Steps 1–4 + README done (export tests, Playwright 33 passed at 1280/375/dark, axe contrast 0); waits for P3 gitleaks, then review and S1 |
+| G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | done (merged locally): export tests 6 passed; Playwright 33 passed at 1280/375/dark, axe contrast 0; gitleaks 8.30.1 clean (100+ commits); security review + Opus review (1 BLOCK, 4 SHOULD, all resolved; re-review clean). Publishing awaits S1 |
 | G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` prints the "Descriptive only" verdict line | kill: <8 events → descriptive | in progress: Steps 1–3 done (prereg `67fcfb6` precedes the code; k_a = 6, k_b = 3, `matches_prereg`); Steps 4–5 wait for G7 |
 | — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit | **S1: push** | todo |
 | R | — | v1.0 release | `make drill-check STRICT=1` exits 0; tag | **A1: owner writes the drills without AI. S1: tag push** | todo |
@@ -70,7 +70,8 @@ Closed 2026-11-16 in plan v1.1 (`30d6f0b`, plus council fixes in `89be1be`). Eac
 
 ## Owner gates pending
 - G0 P3 is done: the owner approved it, and `uv python install 3.12` installed 3.12.12 arm64. uv also linked `~/.local/bin/python3.12`, which now comes before the broken x86 `/usr/local/bin/python3.12` on PATH.
-- Later: **G7** P3 (Node 24 default, gitleaks, maybe a Playwright browser) plus S1 (`gh repo create`, first push, Pages).
+- G7 P3 is done: the owner approved `brew install gitleaks` (8.30.1), no Node default change, cached chromium.
+- **Now: G7 S1**: `gh repo create`, the first push, Pages, and the author-email ruling.
 - G2 is delegated to the co-founder (evidence test); the owner gets an FYI.
 - Release: the owner writes the drills without AI.
 

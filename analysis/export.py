@@ -142,7 +142,7 @@ def export_site(warehouse: Path, out: Path, *, exports: Path = ROOT / "exports",
             target = str(out / f"{name}.parquet").replace("'", "''")
             c.execute(f"copy (select * from ({q}) order by all) to '{target}' (format parquet)")
         (out / "methods.json").write_text(json.dumps(methods, indent=2))
-        # stamp last: a failure above leaves the old stamp beside the old data, never a new stamp over old data
+        # stamp last: a failure above never leaves a new stamp beside stale data (the old stamp may then understate)
         (out / "stamp.json").write_text(json.dumps({
             "max_dates": {s: d.isoformat() for s, d in stamp.max_dates.items()},
             "litellm_sha7": stamp.litellm_sha7, "run_ts": stamp.run_ts.isoformat()}, indent=2))

@@ -45,6 +45,7 @@ test("home: question, headline and stamp fit above the fold", async ({page}, inf
   const headline = await page.locator("[data-testid=headline]").innerText();
   expect(headline).toContain("no market estimate");
   expect(headline).not.toMatch(/\d+(\.\d+)?%/);
+  expect(await page.locator("main").innerText()).not.toMatch(/\d+(\.\d+)?%/);
   await page.screenshot({path: `test-results/home-${info.project.name}.png`, fullPage: true});
 });
 
