@@ -24,7 +24,7 @@ const usd = (x) => `$${x.toFixed(2)}`;
 const day = (d) => d.toISOString().slice(0, 10);
 ```
 
-<p class="takeaway" data-testid="takeaway">${cutIds.size} of ${pricedIds.length} priced models had a recorded list-price cut; the rest never changed down.</p>
+<p class="takeaway" data-testid="takeaway">${cutIds.size} of ${pricedIds.length} priced models had a recorded list-price cut; the rest had no recorded cut (corrections, listed below, are not cuts).</p>
 
 ```js
 const provider = view(Inputs.select(providers, {label: "Provider", value: providerOf.get(defaultModel)}));

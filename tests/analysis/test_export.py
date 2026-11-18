@@ -29,7 +29,7 @@ def build_wh(path, *, approved_bad=False, drop_source=None):
     c.execute(f"insert into seed_models values ('m1','me'),('m-bad',{ok})")
     c.execute("create table seed_model_reroute(canonical_model_id varchar, reroute_date date,"
               " target_model_id varchar, evidence_url varchar)")
-    c.execute("insert into seed_model_reroute values ('m1','2024-01-10','m3','u')")
+    c.execute("insert into seed_model_reroute values ('m1','2024-01-10','m3','https://example.org/u')")
     c.execute("create table stg_litellm__snapshots(snapshot_date date, commit_sha varchar,"
               " commit_ts timestamptz, model_key varchar)")
     c.execute("insert into stg_litellm__snapshots values ('2024-01-01','aaaaaaa111','2024-01-01 00:00:00+00','k-ok'),"
@@ -147,3 +147,16 @@ def test_export_bytes_do_not_depend_on_warehouse_row_order(tmp_path):
     out_b = tmp_path / "out_b"
     export_site(wh, out_b, exports=build_exports(tmp_path / "ex_b"), raw=build_raw(tmp_path / "raw_b"))
     assert (out_a / "survival.parquet").read_bytes() == (out_b / "survival.parquet").read_bytes()
+
+
+def test_export_refuses_non_https_url(tmp_path):
+    # Seeds feed <a href>; a javascript: or http: URL must never reach the published data.
+    wh = tmp_path / "wh.duckdb"
+    build_wh(wh)
+    c = duckdb.connect(str(wh))
+    c.execute("update seed_model_reroute set evidence_url = 'javascript:alert(1)'")
+    c.close()
+    out = tmp_path / "out"
+    with pytest.raises(ValueError, match="reroute_lag.evidence_url"):
+        export_site(wh, out, exports=build_exports(tmp_path / "ex"), raw=build_raw(tmp_path / "raw"))
+    assert not out.exists() or not list(out.iterdir())

@@ -103,6 +103,19 @@ def _methods(c, exports: Path, raw: Path) -> dict:
     }
 
 
+def _non_https_urls(c, queries: dict[str, str]) -> list[str]:
+    """Columns named *url* whose non-null values do not start with https://, as 'file.column: n'."""
+    bad = []
+    for name, q in queries.items():
+        cols = [d[0] for d in c.execute(f"select * from ({q}) limit 0").description if "url" in d[0].lower()]
+        for col in cols:
+            n = c.execute(f'select count(*) from ({q}) where "{col}" is not null '
+                          f"and \"{col}\" not like 'https://%'").fetchone()[0]
+            if n:
+                bad.append(f"{name}.{col}: {n}")
+    return bad
+
+
 def export_site(warehouse: Path, out: Path, *, exports: Path = ROOT / "exports",
                 raw: Path = ROOT / "data/raw") -> Stamp:
     c = duckdb.connect(str(warehouse), read_only=True)
@@ -116,18 +129,23 @@ def export_site(warehouse: Path, out: Path, *, exports: Path = ROOT / "exports",
         if gone:
             raise FileNotFoundError(f"{gone} missing in {exports} (run make analyze)")
         methods = _methods(c, exports, raw)
-        out.mkdir(parents=True, exist_ok=True)
-        (out / "stamp.json").write_text(json.dumps({
-            "max_dates": {s: d.isoformat() for s, d in stamp.max_dates.items()},
-            "litellm_sha7": stamp.litellm_sha7, "run_ts": stamp.run_ts.isoformat()}, indent=2))
-        for f in COPIED:
-            shutil.copy2(exports / f, out / f)
         # order by all: a rebuilt warehouse may scan rows in another order; committed Parquet must not churn
         queries = {**{name: f"select * from {rel}" for name, rel in PARQUETS.items()},
                    "reroute_lag": REROUTE_SQL, "uncovered": UNCOVERED_SQL}
+        unsafe = _non_https_urls(c, queries)
+        if unsafe:  # the pages render these as links; only https may reach an href
+            raise ValueError(f"non-https URLs block export: {unsafe}")
+        out.mkdir(parents=True, exist_ok=True)
+        for f in COPIED:
+            shutil.copy2(exports / f, out / f)
         for name, q in queries.items():
-            c.execute(f"copy (select * from ({q}) order by all) to '{out / name}.parquet' (format parquet)")
+            target = str(out / f"{name}.parquet").replace("'", "''")
+            c.execute(f"copy (select * from ({q}) order by all) to '{target}' (format parquet)")
         (out / "methods.json").write_text(json.dumps(methods, indent=2))
+        # stamp last: a failure above leaves the old stamp beside the old data, never a new stamp over old data
+        (out / "stamp.json").write_text(json.dumps({
+            "max_dates": {s: d.isoformat() for s, d in stamp.max_dates.items()},
+            "litellm_sha7": stamp.litellm_sha7, "run_ts": stamp.run_ts.isoformat()}, indent=2))
         return stamp
     finally:
         c.close()

@@ -41,6 +41,10 @@ test("home: question, headline and stamp fit above the fold", async ({page}, inf
     expect(box, id).not.toBeNull();
     expect(box.y + box.height, id).toBeLessThanOrEqual(height);
   }
+  // G5 kill (DECISIONS "G5 kill action"): Home carries no market number in v1.0
+  const headline = await page.locator("[data-testid=headline]").innerText();
+  expect(headline).toContain("no market estimate");
+  expect(headline).not.toMatch(/\d+(\.\d+)?%/);
   await page.screenshot({path: `test-results/home-${info.project.name}.png`, fullPage: true});
 });
 

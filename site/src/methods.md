@@ -95,12 +95,14 @@ display(Inputs.table(reroute.map((r) => ({model: r.canonical_model_id, "reroute 
 const aud = E.audited.map((r) => {
   const a = epochAudit.find((x) => x.model_name === r.model_name && String(x.obs_date).slice(0, 10) === r.obs_date);
   return {model: r.model_name, "observation date": r.obs_date, "Epoch price": r.epoch_price, "our price": r.our_price_at_start ?? "–",
-    verdict: r.verdict, source: a?.source_url ?? null};
+    status: r.status, verdict: r.verdict, source: a?.source_url ?? null};
 });
+const compared = E.rows.filter((r) => ["agrees", "agrees_late", "changed_then_agrees", "mismatch"].includes(r.status));
+const years = compared.map((r) => r.obs_date.slice(0, 4)).sort();
 display(html`<p>Validation: failed (pre-registered, 2026-11-17).</p>
 <p>On the ${E.n_headline} headline models Epoch AI observed, ${E.n_panel_error_headline} rows are panel errors as pre-registered: 3 rows come from 2 provider cuts LiteLLM never recorded (Gemini 1.5 Pro, 2024-10-01, on both versions; Mistral Large 2, 2024-09-17), and 1 row's price change has no provider source. Of the 3 cuts on those models that we verified on provider pages, LiteLLM recorded 1, 87 days late.</p>
-<p>Limits: the check sees a miss only when Epoch's price is post-cut; the sample is 2023–25 models from 5 providers.</p>
-<p>Epoch AI estimates that the price of GPT-4-level GPQA-Diamond performance fell about ${Math.round(E.epoch_published_factor)}× per year (their 90% CI ${E.epoch_ci90[0].toFixed(1)}–${Math.round(E.epoch_ci90[1])}, n=${E.epoch_n}; Epoch AI, 2025). That trend is theirs, not ours. Our panel's list prices agree with Epoch's on ${E.n_compared - E.n_mismatch} of ${E.n_compared} comparable price observations; ${E.n_mismatch} disagreements are listed below with sources. ${E.n_headline} of our headline models are among Epoch's candidates.</p>`);
+<p>Limits: the check sees a miss only when Epoch's price is post-cut; the sample is the ${compared.length} Epoch observations from ${years[0]}–${years.at(-1)} that our panel could compare.</p>
+<p>Epoch AI estimates that the price of GPT-4-level GPQA-Diamond performance fell about ${Math.round(E.epoch_published_factor)}× per year (their 90% CI ${E.epoch_ci90[0].toFixed(1)}–${Math.round(E.epoch_ci90[1])}, n=${E.epoch_n}; Epoch AI, 2025). That trend is theirs, not ours. Our panel's list prices agree with Epoch's on ${E.n_compared - E.n_mismatch} of ${E.n_compared} comparable price observations; ${E.n_mismatch} disagreements are listed below with sources. ${E.n_headline} of our headline models are among Epoch's candidates. The table also lists the ${E.audited.length - E.n_mismatch} rows that agreed only after a price change, which needed the same audit.</p>`);
 display(Inputs.table(aud, {format: {source: link}, layout: "auto"}));
 ```
 
@@ -157,37 +159,37 @@ display(html`<p>LiteLLM replay: ${M.replay_days} daily snapshots from 2023-09-06
 |---|---|---|
 | `stg_litellm__snapshots` | snapshot_date × model_key | from replay |
 | `stg_arena__leaderboard` | snapshot_date × arena_model × category | text configs; rank recomputed within snapshot |
-| `stg_epoch__models` / `stg_epoch__benchmarks` | epoch model / model × benchmark | |
-| `stg_pypi__downloads` | date × package (× installer if available) | |
+| `stg_epoch__models` | epoch model | metadata for the crosswalk |
+| `stg_epoch__gpqa_candidates` | model_name × obs_date | Epoch's GPQA-Diamond price observations (validation only) |
+| `stg_tokencanopy__prices` | run_date × platform × model_slug | spot-check only |
+| `stg_pypi__downloads` | date × project | |
 | `dim_model` | canonical_model_id | from seeds |
 | `dim_model_price` | model_key × valid_from | SCD2 (§5) |
 | `fct_model_price_daily` | canonical_model_id × date | first-party, standard tier, blended 3:1; date spine from listing to delist/today |
 | `fct_price_change` | canonical_model_id × change_ts | pct change, `is_cut` (≥10%), `is_correction` |
 | `fct_arena_rank` | canonical_model_id × snapshot_date | rank, rank_percentile, method_era (splits at Jan-2024, May-2025, Jul-2025; E21) |
 | `mart_launch_price_survival` | top-tier canonical_model_id | listed_at, first_cut_at, days_at_launch_price, censored |
+| `int_crosswalk_coverage` | in-scope Arena model name | covered or not |
+| `int_model_exposure` | priced canonical_model_id | listed_at, end_ts |
+| `mart_top_tier_screen` | priced canonical_model_id | first rank percentile, top-tier flag |
 | `mart_cut_audit` | audited cut | observed_ts, announced_date, lag_days, source_url (seed `seed_cut_audit.csv`) |
 | `fct_sdk_downloads_daily` | sdk_group × date | Google SDKs summed (E24) |
-| `mart_event_study_panel` | event_id × sdk_group × rel_day | built only after prereg commit (G8) |
+| `mart_event_study_panel` | series × event_id × sdk_group × rel_day | built only after the prereg commit (G8) |
 | `source_freshness` | source × run_ts | rows, max_date, sla_days, is_stale |
 
-**Event-date audit (G4):**
-
-- Sample: 20 cuts stratified by provider *(my call)*. For each, Claude finds the provider's announcement (changelog or pricing page) and records its URL. The candidate spot-checks.
-- Output: the commit-lag distribution `±d` in the headline.
+**Event-date audit (G4):** every recorded first cut is checked against the provider's own domain for a dated announcement (seed `seed_cut_audit.csv`, evidence URL per row). A cut with no such statement is a data fix.
 
 ### Metric definitions (one definition each)
 
 | Metric | Definition |
 |---|---|
 | `blended_price_per_mtok` | `(3·input + 1·output)/4 × 1e6`, first-party standard tier |
-| `days_at_launch_price` | first_cut_at − listed_at (days); censored at today or at the final delisting (the model's last version is `delisted` and no later version exists; a temporary absence does not censor, v1.2.1) |
-| `km_median_days_at_launch_price` | Kaplan–Meier median over top-tier models, with IQR and n |
-| `share_cut_within_365d` | KM-estimated 1 − S(365) (the fallback headline) |
+| `days_at_launch_price` | first_cut_at − listed_at (days); censored at the data end, at the final delisting (the model's last version is delisted and no later version exists; a temporary absence does not censor), or at a provider-documented reroute |
+| `share_cut_within_365d` | Kaplan–Meier 1 − S(365) over top-tier models, published here as a dataset measurement of cuts recorded in LiteLLM's price file, not as a market estimate |
+| `km_median_days_at_launch_price` | Kaplan–Meier median; not reached in this data, because fewer than half of the models had a recorded cut |
 | `cut_depth_pct` | price drop at the first cut |
-| `commit_lag_days` | announced − observed, over the audited sample |
+| `commit_lag_days` | announced − observed, over audited cuts; this site shows its negative, the days LiteLLM recorded a cut after the provider announced it |
 | `sdk_downloads_7d` | trailing 7-day sum of downloads, per SDK group |
-
-MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definitions still live in dbt docs and the Methods page.
 
 </section>
 
