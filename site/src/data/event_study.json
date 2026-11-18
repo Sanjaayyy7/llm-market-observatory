@@ -1,0 +1,128 @@
+{
+  "k_a": 6,
+  "k_b": 3,
+  "verdict": "Descriptive only: n=6 events, below the pre-registered floor of 8.",
+  "matches_prereg": true,
+  "prereg_commit": "67fcfb6f799b5dbaae13ce1e234e8709ac8e6b9e",
+  "events": [
+    {
+      "series": "A",
+      "event_id": "A:anthropic:2025-02-28",
+      "event_date": "2025-02-28",
+      "sdk_group": "anthropic",
+      "members": [
+        "claude-3-5-haiku-20241022"
+      ],
+      "ratio": 1.1677646308735616,
+      "incomplete_window": false,
+      "placebo_share_le": 0.41,
+      "control_ratio": 1.0172914748907576
+    },
+    {
+      "series": "A",
+      "event_id": "A:mistral:2024-05-31",
+      "event_date": "2024-05-31",
+      "sdk_group": "mistral",
+      "members": [
+        "mistral-large-2402"
+      ],
+      "ratio": 1.0590018991058294,
+      "incomplete_window": false,
+      "placebo_share_le": 0.3,
+      "control_ratio": 1.0553243963866619
+    },
+    {
+      "series": "A",
+      "event_id": "A:mistral:2026-11-03",
+      "event_date": "2026-11-03",
+      "sdk_group": "mistral",
+      "members": [
+        "mistral-large-4"
+      ],
+      "ratio": null,
+      "incomplete_window": true,
+      "placebo_share_le": null,
+      "control_ratio": null
+    },
+    {
+      "series": "A",
+      "event_id": "A:openai:2025-06-10",
+      "event_date": "2025-06-10",
+      "sdk_group": "openai",
+      "members": [
+        "o3-2025-04-16"
+      ],
+      "ratio": 1.1070767989916597,
+      "incomplete_window": false,
+      "placebo_share_le": 0.46,
+      "control_ratio": 1.1127161638598624
+    },
+    {
+      "series": "A",
+      "event_id": "A:openai:2026-07-31",
+      "event_date": "2026-07-31",
+      "sdk_group": "openai",
+      "members": [
+        "gpt-5.6-luna",
+        "gpt-5.6-sol",
+        "gpt-5.6-terra"
+      ],
+      "ratio": 1.1581813703847792,
+      "incomplete_window": false,
+      "placebo_share_le": 0.74,
+      "control_ratio": 1.0389194174387044
+    },
+    {
+      "series": "A",
+      "event_id": "A:xai:2026-08-12",
+      "event_date": "2026-08-12",
+      "sdk_group": "xai",
+      "members": [
+        "grok-4.20-0309-reasoning",
+        "grok-4.20-multi-agent-beta-0309"
+      ],
+      "ratio": 0.8560852416411312,
+      "incomplete_window": false,
+      "placebo_share_le": 0.26,
+      "control_ratio": 0.8313318466895097
+    },
+    {
+      "series": "B",
+      "event_id": "B:anthropic:2024-12-03",
+      "event_date": "2024-12-03",
+      "sdk_group": "anthropic",
+      "members": [
+        "claude-3-5-haiku-20241022"
+      ],
+      "ratio": 0.972603775550971,
+      "incomplete_window": false,
+      "placebo_share_le": 0.15
+    },
+    {
+      "series": "B",
+      "event_id": "B:openai:2025-06-10",
+      "event_date": "2025-06-10",
+      "sdk_group": "openai",
+      "members": [
+        "o3-2025-04-16"
+      ],
+      "ratio": 1.1070767989916597,
+      "incomplete_window": false,
+      "placebo_share_le": 0.46
+    },
+    {
+      "series": "B",
+      "event_id": "B:openai:2026-07-30",
+      "event_date": "2026-07-30",
+      "sdk_group": "openai",
+      "members": [
+        "gpt-5.6-luna",
+        "gpt-5.6-sol",
+        "gpt-5.6-terra"
+      ],
+      "ratio": 1.1826091483342938,
+      "incomplete_window": false,
+      "placebo_share_le": 0.79
+    }
+  ]
+}

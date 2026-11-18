@@ -27,3 +27,6 @@ analyze:
 
 drill-check:
 	uv run python -m analysis.drill_check $(if $(STRICT),--strict)
+
+export:
+	uv run python -m analysis.export

@@ -1,0 +1,2605 @@
+{
+  "epoch_published_factor": 42.0189988368494,
+  "epoch_ci90": [
+    4.398,
+    401.44
+  ],
+  "epoch_n": 6,
+  "reproduced_factor": 42.018998836824075,
+  "n_candidates": 36,
+  "n_in_scope": 30,
+  "n_compared": 27,
+  "n_agree": 12,
+  "n_agree_late": 6,
+  "n_changed_then_agrees": 3,
+  "n_mismatch": 6,
+  "n_not_in_panel": 3,
+  "n_key_series": 4,
+  "n_panel_error": 6,
+  "n_panel_error_headline": 4,
+  "n_headline": 19,
+  "n_headline_compared": 19,
+  "passed": false,
+  "rows": [
+    {
+      "model_name": "GPT-4-0314",
+      "obs_date": "2023-03-14",
+      "api_id": "gpt-4-0314",
+      "canonical_model_id": "gpt-4-0314",
+      "series": "fct",
+      "is_headline": false,
+      "epoch_price": 37.5,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2023-09-20",
+      "lag_days": 14,
+      "status": "agrees_late",
+      "verdict": null
+    },
+    {
+      "model_name": "GPT-4 Turbo",
+      "obs_date": "2023-11-06",
+      "api_id": "gpt-4-1106-preview",
+      "canonical_model_id": "gpt-4-1106-preview",
+      "series": "fct",
+      "is_headline": false,
+      "epoch_price": 15.0,
+      "our_price_at_start": 15.0,
+      "first_date_ours_equal": "2023-11-06",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "GPT-4-0125",
+      "obs_date": "2024-01-25",
+      "api_id": "gpt-4-0125-preview",
+      "canonical_model_id": "gpt-4-0125-preview",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 15.0,
+      "our_price_at_start": 15.0,
+      "first_date_ours_equal": "2024-01-25",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Mistral-Large-2024-02",
+      "obs_date": "2024-02-26",
+      "api_id": "mistral-large-2402",
+      "canonical_model_id": "mistral-large-2402",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 6.0,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2024-05-31",
+      "lag_days": null,
+      "status": "changed_then_agrees",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Claude-3-Haiku",
+      "obs_date": "2024-03-04",
+      "api_id": "claude-3-haiku-20240307",
+      "canonical_model_id": "claude-3-haiku-20240307",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 0.5,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2024-03-14",
+      "lag_days": 10,
+      "status": "agrees_late",
+      "verdict": null
+    },
+    {
+      "model_name": "Claude-3-Opus",
+      "obs_date": "2024-03-04",
+      "api_id": "claude-3-opus-20240229",
+      "canonical_model_id": "claude-3-opus-20240229",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 30.0,
+      "our_price_at_start": 30.0,
+      "first_date_ours_equal": "2024-03-04",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Claude-3-Sonnet",
+      "obs_date": "2024-03-04",
+      "api_id": "claude-3-sonnet-20240229",
+      "canonical_model_id": "claude-3-sonnet-20240229",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 6.0,
+      "our_price_at_start": 6.0,
+      "first_date_ours_equal": "2024-03-04",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Mistral-8x22",
+      "obs_date": "2024-04-17",
+      "api_id": "open-mixtral-8x22b",
+      "canonical_model_id": "open-mixtral-8x22b",
+      "series": "fct",
+      "is_headline": false,
+      "epoch_price": 1.2,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Llama-3-Instruct-70B",
+      "obs_date": "2024-04-18",
+      "api_id": null,
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 0.89,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "out_of_scope",
+      "verdict": null
+    },
+    {
+      "model_name": "Gemini-1.5-Flash-2024-05",
+      "obs_date": "2024-05-10",
+      "api_id": "gemini-1.5-flash-001",
+      "canonical_model_id": "gemini-1.5-flash-001",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 0.13,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2024-09-15",
+      "lag_days": 128,
+      "status": "agrees_late",
+      "verdict": null
+    },
+    {
+      "model_name": "GPT-4o-2024-05",
+      "obs_date": "2024-05-13",
+      "api_id": "gpt-4o-2024-05-13",
+      "canonical_model_id": "gpt-4o-2024-05-13",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 7.5,
+      "our_price_at_start": 7.5,
+      "first_date_ours_equal": "2024-05-13",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Gemini-1.5-Pro-2024-05",
+      "obs_date": "2024-05-23",
+      "api_id": "gemini-1.5-pro-001",
+      "canonical_model_id": "gemini-1.5-pro-001",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 2.19,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Claude-3.5-Sonnet-2024-06",
+      "obs_date": "2024-06-20",
+      "api_id": "claude-3-5-sonnet-20240620",
+      "canonical_model_id": "claude-3-5-sonnet-20240620",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 6.0,
+      "our_price_at_start": 6.0,
+      "first_date_ours_equal": "2024-06-20",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Gemma-2-27B",
+      "obs_date": "2024-06-24",
+      "api_id": null,
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 0.26,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "out_of_scope",
+      "verdict": null
+    },
+    {
+      "model_name": "GPT-4o-mini",
+      "obs_date": "2024-07-18",
+      "api_id": "gpt-4o-mini-2024-07-18",
+      "canonical_model_id": "gpt-4o-mini-2024-07-18",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 0.26,
+      "our_price_at_start": 0.2625,
+      "first_date_ours_equal": "2024-07-18",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Mistral-NeMo",
+      "obs_date": "2024-07-18",
+      "api_id": "open-mistral-nemo-2407",
+      "canonical_model_id": null,
+      "series": "key",
+      "is_headline": false,
+      "epoch_price": 0.13,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "epoch_non_list_price"
+    },
+    {
+      "model_name": "Llama-3.1-Instruct-405B",
+      "obs_date": "2024-07-23",
+      "api_id": null,
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 3.5,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "out_of_scope",
+      "verdict": null
+    },
+    {
+      "model_name": "Llama-3.1-Instruct-70B",
+      "obs_date": "2024-07-23",
+      "api_id": null,
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 0.72,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "out_of_scope",
+      "verdict": null
+    },
+    {
+      "model_name": "Mistral-Large-2-2024-07",
+      "obs_date": "2024-07-24",
+      "api_id": "mistral-large-2407",
+      "canonical_model_id": "mistral-large-2407",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 3.0,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "GPT-4o-2024-08",
+      "obs_date": "2024-08-06",
+      "api_id": "gpt-4o-2024-08-06",
+      "canonical_model_id": "gpt-4o-2024-08-06",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 4.38,
+      "our_price_at_start": 4.375,
+      "first_date_ours_equal": "2024-08-06",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Claude 2",
+      "obs_date": "2024-08-12",
+      "api_id": "claude-2.0",
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 12.0,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "not_in_panel",
+      "verdict": null
+    },
+    {
+      "model_name": "Claude 2.1",
+      "obs_date": "2024-08-12",
+      "api_id": "claude-2.1",
+      "canonical_model_id": null,
+      "series": "key",
+      "is_headline": false,
+      "epoch_price": 12.0,
+      "our_price_at_start": 12.0,
+      "first_date_ours_equal": "2024-08-12",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Gemini 1.0 Pro",
+      "obs_date": "2024-08-12",
+      "api_id": "gemini-pro",
+      "canonical_model_id": "gemini-pro",
+      "series": "fct",
+      "is_headline": false,
+      "epoch_price": 0.75,
+      "our_price_at_start": 0.525,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Command R+",
+      "obs_date": "2024-08-13",
+      "api_id": "command-r-plus-04-2024",
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 6.0,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "not_in_panel",
+      "verdict": null
+    },
+    {
+      "model_name": "Jamba 1.5-Large",
+      "obs_date": "2024-09-12",
+      "api_id": null,
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 3.5,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "out_of_scope",
+      "verdict": null
+    },
+    {
+      "model_name": "Command R+",
+      "obs_date": "2024-09-13",
+      "api_id": "command-r-plus-08-2024",
+      "canonical_model_id": "command-r-plus-08-2024",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 4.375,
+      "our_price_at_start": 4.375,
+      "first_date_ours_equal": "2024-09-13",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Gemini-1.5-Flash-2024-09",
+      "obs_date": "2024-09-24",
+      "api_id": "gemini-1.5-flash-002",
+      "canonical_model_id": "gemini-1.5-flash-002",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 0.13,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2024-09-26",
+      "lag_days": 2,
+      "status": "agrees_late",
+      "verdict": null
+    },
+    {
+      "model_name": "Gemini-1.5-Pro-2024-09",
+      "obs_date": "2024-09-24",
+      "api_id": "gemini-1.5-pro-002",
+      "canonical_model_id": "gemini-1.5-pro-002",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 2.19,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Claude-3.5-Haiku",
+      "obs_date": "2024-10-22",
+      "api_id": "claude-3-5-haiku-20241022",
+      "canonical_model_id": "claude-3-5-haiku-20241022",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 1.6,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2025-02-28",
+      "lag_days": null,
+      "status": "changed_then_agrees",
+      "verdict": "real_change"
+    },
+    {
+      "model_name": "Claude-3.5-Sonnet-2024-10",
+      "obs_date": "2024-10-22",
+      "api_id": "claude-3-5-sonnet-20241022",
+      "canonical_model_id": "claude-3-5-sonnet-20241022",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 6.0,
+      "our_price_at_start": 6.0,
+      "first_date_ours_equal": "2024-10-22",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Mistral-Large-2-2024-11",
+      "obs_date": "2024-11-18",
+      "api_id": "mistral-large-2411",
+      "canonical_model_id": "mistral-large-2411",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 3.0,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2025-01-07",
+      "lag_days": 50,
+      "status": "agrees_late",
+      "verdict": null
+    },
+    {
+      "model_name": "GPT-4o-2024-11",
+      "obs_date": "2024-11-20",
+      "api_id": "gpt-4o-2024-11-20",
+      "canonical_model_id": null,
+      "series": "key",
+      "is_headline": false,
+      "epoch_price": 4.38,
+      "our_price_at_start": 4.375,
+      "first_date_ours_equal": "2024-11-20",
+      "lag_days": null,
+      "status": "agrees",
+      "verdict": null
+    },
+    {
+      "model_name": "Phi 4",
+      "obs_date": "2024-12-13",
+      "api_id": null,
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 0.1225,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "out_of_scope",
+      "verdict": null
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "canonical_model_id": null,
+      "series": "key",
+      "is_headline": false,
+      "epoch_price": 0.4775,
+      "our_price_at_start": 0.175,
+      "first_date_ours_equal": "2025-02-07",
+      "lag_days": null,
+      "status": "changed_then_agrees",
+      "verdict": "real_change"
+    },
+    {
+      "model_name": "Mistral Small 3",
+      "obs_date": "2025-01-30",
+      "api_id": "mistral-small-2501",
+      "canonical_model_id": null,
+      "series": null,
+      "is_headline": false,
+      "epoch_price": 0.475,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "not_in_panel",
+      "verdict": null
+    },
+    {
+      "model_name": "Gemini 2.0 Flash",
+      "obs_date": "2025-02-05",
+      "api_id": "gemini-2.0-flash-001",
+      "canonical_model_id": "gemini-2.0-flash-001",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 0.175,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2025-02-07",
+      "lag_days": 2,
+      "status": "agrees_late",
+      "verdict": null
+    }
+  ],
+  "audited": [
+    {
+      "model_name": "Mistral-Large-2024-02",
+      "obs_date": "2024-02-26",
+      "api_id": "mistral-large-2402",
+      "canonical_model_id": "mistral-large-2402",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 6.0,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2024-05-31",
+      "lag_days": null,
+      "status": "changed_then_agrees",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Mistral-8x22",
+      "obs_date": "2024-04-17",
+      "api_id": "open-mixtral-8x22b",
+      "canonical_model_id": "open-mixtral-8x22b",
+      "series": "fct",
+      "is_headline": false,
+      "epoch_price": 1.2,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Gemini-1.5-Pro-2024-05",
+      "obs_date": "2024-05-23",
+      "api_id": "gemini-1.5-pro-001",
+      "canonical_model_id": "gemini-1.5-pro-001",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 2.19,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Mistral-NeMo",
+      "obs_date": "2024-07-18",
+      "api_id": "open-mistral-nemo-2407",
+      "canonical_model_id": null,
+      "series": "key",
+      "is_headline": false,
+      "epoch_price": 0.13,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "epoch_non_list_price"
+    },
+    {
+      "model_name": "Mistral-Large-2-2024-07",
+      "obs_date": "2024-07-24",
+      "api_id": "mistral-large-2407",
+      "canonical_model_id": "mistral-large-2407",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 3.0,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Gemini 1.0 Pro",
+      "obs_date": "2024-08-12",
+      "api_id": "gemini-pro",
+      "canonical_model_id": "gemini-pro",
+      "series": "fct",
+      "is_headline": false,
+      "epoch_price": 0.75,
+      "our_price_at_start": 0.525,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Gemini-1.5-Pro-2024-09",
+      "obs_date": "2024-09-24",
+      "api_id": "gemini-1.5-pro-002",
+      "canonical_model_id": "gemini-1.5-pro-002",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 2.19,
+      "our_price_at_start": null,
+      "first_date_ours_equal": null,
+      "lag_days": null,
+      "status": "mismatch",
+      "verdict": "panel_error"
+    },
+    {
+      "model_name": "Claude-3.5-Haiku",
+      "obs_date": "2024-10-22",
+      "api_id": "claude-3-5-haiku-20241022",
+      "canonical_model_id": "claude-3-5-haiku-20241022",
+      "series": "fct",
+      "is_headline": true,
+      "epoch_price": 1.6,
+      "our_price_at_start": null,
+      "first_date_ours_equal": "2025-02-28",
+      "lag_days": null,
+      "status": "changed_then_agrees",
+      "verdict": "real_change"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "canonical_model_id": null,
+      "series": "key",
+      "is_headline": false,
+      "epoch_price": 0.4775,
+      "our_price_at_start": 0.175,
+      "first_date_ours_equal": "2025-02-07",
+      "lag_days": null,
+      "status": "changed_then_agrees",
+      "verdict": "real_change"
+    }
+  ],
+  "late_lags": [
+    {
+      "model_name": "GPT-4-0314",
+      "obs_date": "2023-03-14",
+      "api_id": "gpt-4-0314",
+      "lag_days": 14
+    },
+    {
+      "model_name": "Claude-3-Haiku",
+      "obs_date": "2024-03-04",
+      "api_id": "claude-3-haiku-20240307",
+      "lag_days": 10
+    },
+    {
+      "model_name": "Gemini-1.5-Flash-2024-05",
+      "obs_date": "2024-05-10",
+      "api_id": "gemini-1.5-flash-001",
+      "lag_days": 128
+    },
+    {
+      "model_name": "Gemini-1.5-Flash-2024-09",
+      "obs_date": "2024-09-24",
+      "api_id": "gemini-1.5-flash-002",
+      "lag_days": 2
+    },
+    {
+      "model_name": "Mistral-Large-2-2024-11",
+      "obs_date": "2024-11-18",
+      "api_id": "mistral-large-2411",
+      "lag_days": 50
+    },
+    {
+      "model_name": "Gemini 2.0 Flash",
+      "obs_date": "2025-02-05",
+      "api_id": "gemini-2.0-flash-001",
+      "lag_days": 2
+    }
+  ],
+  "key_conflicts": [
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-09-24"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-09-25"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-09-26"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-09-27"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-09-29"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-09-30"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-01"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-02"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-03"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-04"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-06"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-07"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-08"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-09"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-10"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-11"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-12"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-13"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-16"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-17"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-18"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-20"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-21"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-22"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-23"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-24"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-25"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-26"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-28"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-29"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-10-31"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-01"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-03"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-04"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-05"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-06"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-07"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-08"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-09"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-10"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-11"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-12"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-13"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-14"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-15"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-16"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-18"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-19"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-20"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-21"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-22"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-24"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-25"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-26"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-27"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-11-28"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-01"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-02"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-03"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-04"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-05"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-06"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-07"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-08"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-09"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-10"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-11"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-12"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-14"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-15"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-16"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-17"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-18"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-19"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-22"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-23"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-25"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2025-12-28"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-01"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-02"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-03"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-05"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-06"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-07"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-08"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-09"
+    },
+    {
+      "model_name": "DeepSeek-V3",
+      "obs_date": "2024-12-26",
+      "api_id": "deepseek-chat",
+      "date": "2026-01-12"
+    }
+  ],
+  "listing_lag": [
+    {
+      "canonical_model_id": "claude-fable-5",
+      "listed_at": "2026-06-10",
+      "epoch_publication_date": "2026-06-09",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "claude-fable-5-1",
+      "listed_at": "2026-09-01",
+      "epoch_publication_date": "2026-09-01",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-opus-4-5-20251101",
+      "listed_at": "2025-11-24",
+      "epoch_publication_date": "2025-11-24",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-opus-4-6",
+      "listed_at": "2026-02-05",
+      "epoch_publication_date": "2026-02-05",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-opus-4-7",
+      "listed_at": "2026-04-16",
+      "epoch_publication_date": "2026-04-16",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-opus-4-8",
+      "listed_at": "2026-05-29",
+      "epoch_publication_date": "2026-05-28",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "claude-opus-5",
+      "listed_at": "2026-07-24",
+      "epoch_publication_date": "2026-07-24",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-opus-5-5",
+      "listed_at": "2026-09-22",
+      "epoch_publication_date": "2026-09-22",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-sonnet-4-5-20250929",
+      "listed_at": "2025-09-29",
+      "epoch_publication_date": "2025-09-29",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-sonnet-4-6",
+      "listed_at": "2026-02-17",
+      "epoch_publication_date": "2026-02-17",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-sonnet-5",
+      "listed_at": "2026-06-30",
+      "epoch_publication_date": "2026-06-30",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "claude-sonnet-5-5",
+      "listed_at": "2026-09-28",
+      "epoch_publication_date": "2026-09-28",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5-2025-08-07",
+      "listed_at": "2025-08-07",
+      "epoch_publication_date": "2025-08-07",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5-mini-2025-08-07",
+      "listed_at": "2025-08-07",
+      "epoch_publication_date": "2025-08-07",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5-nano-2025-08-07",
+      "listed_at": "2025-08-07",
+      "epoch_publication_date": "2025-08-07",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5.1-2025-11-13",
+      "listed_at": "2025-11-13",
+      "epoch_publication_date": "2025-11-13",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5.2-2025-12-11",
+      "listed_at": "2025-12-11",
+      "epoch_publication_date": "2025-12-11",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5.4-2026-03-05",
+      "listed_at": "2026-03-05",
+      "epoch_publication_date": "2026-03-05",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5.4-mini-2026-03-17",
+      "listed_at": "2026-04-26",
+      "epoch_publication_date": "2026-03-17",
+      "lag_days": 40
+    },
+    {
+      "canonical_model_id": "gpt-5.5-2026-04-23",
+      "listed_at": "2026-04-24",
+      "epoch_publication_date": "2026-04-23",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "gpt-5.6-luna",
+      "listed_at": "2026-07-09",
+      "epoch_publication_date": "2026-07-09",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5.6-sol",
+      "listed_at": "2026-07-09",
+      "epoch_publication_date": "2026-07-09",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-5.6-terra",
+      "listed_at": "2026-07-09",
+      "epoch_publication_date": "2026-07-09",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-6-astra",
+      "listed_at": "2026-09-03",
+      "epoch_publication_date": "2026-09-03",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gpt-6.1-sol",
+      "listed_at": "2026-09-29",
+      "epoch_publication_date": "2026-09-29",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gemini-2.5-flash",
+      "listed_at": "2025-06-19",
+      "epoch_publication_date": "2025-04-17",
+      "lag_days": 63
+    },
+    {
+      "canonical_model_id": "gemini-2.5-pro",
+      "listed_at": "2025-06-18",
+      "epoch_publication_date": "2025-06-05",
+      "lag_days": 13
+    },
+    {
+      "canonical_model_id": "gemini-3.5-flash",
+      "listed_at": "2026-05-19",
+      "epoch_publication_date": "2026-05-19",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gemini-3.5-flash-lite",
+      "listed_at": "2026-07-22",
+      "epoch_publication_date": "2026-07-21",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "gemini-3.6-flash",
+      "listed_at": "2026-07-22",
+      "epoch_publication_date": "2026-07-21",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "gemini-3.7-flash",
+      "listed_at": "2026-08-13",
+      "epoch_publication_date": "2026-08-13",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gemini-3.8-flash",
+      "listed_at": "2026-09-03",
+      "epoch_publication_date": "2026-09-02",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "gemini-4-argon",
+      "listed_at": "2026-10-13",
+      "epoch_publication_date": "2026-10-13",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "gemini-4-carbon",
+      "listed_at": "2026-11-10",
+      "epoch_publication_date": "2026-11-10",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "grok-4.5",
+      "listed_at": "2026-07-09",
+      "epoch_publication_date": "2026-07-08",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "grok-4.6",
+      "listed_at": "2026-08-16",
+      "epoch_publication_date": "2026-08-12",
+      "lag_days": 4
+    },
+    {
+      "canonical_model_id": "kimi-k2.6",
+      "listed_at": "2026-04-23",
+      "epoch_publication_date": "2026-04-20",
+      "lag_days": 3
+    },
+    {
+      "canonical_model_id": "kimi-k3",
+      "listed_at": "2026-08-21",
+      "epoch_publication_date": "2026-07-16",
+      "lag_days": 36
+    },
+    {
+      "canonical_model_id": "kimi-k3.1-pro",
+      "listed_at": "2026-10-28",
+      "epoch_publication_date": "2026-10-23",
+      "lag_days": 5
+    },
+    {
+      "canonical_model_id": "mistral-large-2512",
+      "listed_at": "2025-12-05",
+      "epoch_publication_date": "2025-12-02",
+      "lag_days": 3
+    },
+    {
+      "canonical_model_id": "mistral-large-4",
+      "listed_at": "2026-10-07",
+      "epoch_publication_date": "2026-10-06",
+      "lag_days": 1
+    },
+    {
+      "canonical_model_id": "mistral-medium-3-5",
+      "listed_at": "2026-06-21",
+      "epoch_publication_date": "2026-04-29",
+      "lag_days": 53
+    },
+    {
+      "canonical_model_id": "o1-mini-2024-09-12",
+      "listed_at": "2024-09-12",
+      "epoch_publication_date": "2024-09-12",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "o1-preview-2024-09-12",
+      "listed_at": "2024-09-12",
+      "epoch_publication_date": "2024-09-12",
+      "lag_days": 0
+    },
+    {
+      "canonical_model_id": "o3-mini-2025-01-31",
+      "listed_at": "2025-01-31",
+      "epoch_publication_date": "2025-01-31",
+      "lag_days": 0
+    }
+  ],
+  "spot_check": {
+    "status": "ok",
+    "n_matched": 79,
+    "n_mismatch": 68,
+    "n_theirs_zero": 0,
+    "rows": [
+      {
+        "model_key": "claude-opus-4-6",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-4-5",
+        "metric": "in_per_mtok",
+        "ours": 1.0,
+        "theirs": 1.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-5-5",
+        "metric": "in_per_mtok",
+        "ours": 0.1,
+        "theirs": 0.1,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.7-flash",
+        "metric": "in_per_mtok",
+        "ours": 0.75,
+        "theirs": 0.375,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.8-flash",
+        "metric": "in_per_mtok",
+        "ours": 0.75,
+        "theirs": 0.375,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "kimi-k3",
+        "metric": "in_per_mtok",
+        "ours": 3.0,
+        "theirs": 3.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-pro",
+        "metric": "in_per_mtok",
+        "ours": 30.0,
+        "theirs": 30.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-2024-08-06",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.5-flash",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-7",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-fable-5-1",
+        "metric": "in_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-6-luna",
+        "metric": "in_per_mtok",
+        "ours": 0.1,
+        "theirs": 0.05,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "o3-pro",
+        "metric": "in_per_mtok",
+        "ours": 20.0,
+        "theirs": 20.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-omni-1.2-flash",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 1.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-fable-5",
+        "metric": "in_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.6-flash",
+        "metric": "in_per_mtok",
+        "ours": 0.75,
+        "theirs": 0.375,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.3-codex",
+        "metric": "in_per_mtok",
+        "ours": 1.75,
+        "theirs": 1.75,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5-pro",
+        "metric": "in_per_mtok",
+        "ours": 15.0,
+        "theirs": 15.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-2.5-flash-lite",
+        "metric": "in_per_mtok",
+        "ours": 0.1,
+        "theirs": 0.05,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-4o",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.75,
+        "theirs": 0.375,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3-flash-preview",
+        "metric": "in_per_mtok",
+        "ours": 0.5,
+        "theirs": 0.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.25,
+        "theirs": 0.125,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "codestral-2508",
+        "metric": "in_per_mtok",
+        "ours": 0.3,
+        "theirs": 0.3,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "o3",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "kimi-k2.6",
+        "metric": "in_per_mtok",
+        "ours": 0.95,
+        "theirs": 0.95,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-audio-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.6,
+        "theirs": 0.6,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.1-flash-lite-preview",
+        "metric": "in_per_mtok",
+        "ours": 0.25,
+        "theirs": 0.125,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.5-flash-lite",
+        "metric": "in_per_mtok",
+        "ours": 0.3,
+        "theirs": 0.15,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.7",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-2.5-pro",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 0.625,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.1-pro-preview-customtools",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-build-0.1",
+        "metric": "in_per_mtok",
+        "ours": 1.0,
+        "theirs": 1.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.5",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.1-pro-preview",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.20",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 1.25,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-4-argon",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-5-5",
+        "metric": "in_per_mtok",
+        "ours": 4.0,
+        "theirs": 4.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-5",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "glm-5-2",
+        "metric": "in_per_mtok",
+        "ours": 1.4,
+        "theirs": 1.54,
+        "pct_diff": -0.09090909090909098
+      },
+      {
+        "model_key": "mistral-medium-3",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.4,
+        "pct_diff": 2.75
+      },
+      {
+        "model_key": "gpt-5-nano",
+        "metric": "in_per_mtok",
+        "ours": 0.05,
+        "theirs": 0.025,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6-sol",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-5",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-4-5",
+        "metric": "in_per_mtok",
+        "ours": 3.0,
+        "theirs": 3.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-6.1-terra",
+        "metric": "in_per_mtok",
+        "ours": 1.0,
+        "theirs": 0.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 1.25,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-sol",
+        "metric": "in_per_mtok",
+        "ours": 4.0,
+        "theirs": 2.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-4.1",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-5-5",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-4-6",
+        "metric": "in_per_mtok",
+        "ours": 3.0,
+        "theirs": 3.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-terra",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-8",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "kimi-k2.7-code",
+        "metric": "in_per_mtok",
+        "ours": 0.95,
+        "theirs": 0.95,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.5",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 2.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.1-flash-lite",
+        "metric": "in_per_mtok",
+        "ours": 0.25,
+        "theirs": 0.125,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-2.5-flash",
+        "metric": "in_per_mtok",
+        "ours": 0.3,
+        "theirs": 0.15,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.20-multi-agent",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 1.25,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-audio",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-opus-4-5",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.6",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-mini-2024-07-18",
+        "metric": "in_per_mtok",
+        "ours": 0.15,
+        "theirs": 0.15,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-4-hydrogen",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.3",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 1.25,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.2-pro",
+        "metric": "in_per_mtok",
+        "ours": 21.0,
+        "theirs": 21.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4.1-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.4,
+        "theirs": 0.4,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-nano",
+        "metric": "in_per_mtok",
+        "ours": 0.2,
+        "theirs": 0.1,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-4o-2024-11-20",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-luna",
+        "metric": "in_per_mtok",
+        "ours": 0.2,
+        "theirs": 0.1,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.1",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 0.625,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.5-pro",
+        "metric": "in_per_mtok",
+        "ours": 30.0,
+        "theirs": 15.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6-astra",
+        "metric": "in_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-fable-5-2",
+        "metric": "in_per_mtok",
+        "ours": 8.0,
+        "theirs": 8.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.2",
+        "metric": "in_per_mtok",
+        "ours": 1.75,
+        "theirs": 0.875,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-4-carbon",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.4",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 1.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6.1-sol",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-omni-1.1-flash",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 1.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.15,
+        "theirs": 0.15,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-opus-4-6",
+        "metric": "out_per_mtok",
+        "ours": 25.0,
+        "theirs": 25.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-4-5",
+        "metric": "out_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-5-5",
+        "metric": "out_per_mtok",
+        "ours": 0.5,
+        "theirs": 0.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.7-flash",
+        "metric": "out_per_mtok",
+        "ours": 3.75,
+        "theirs": 1.875,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.8-flash",
+        "metric": "out_per_mtok",
+        "ours": 3.75,
+        "theirs": 1.875,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "kimi-k3",
+        "metric": "out_per_mtok",
+        "ours": 15.0,
+        "theirs": 15.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-pro",
+        "metric": "out_per_mtok",
+        "ours": 180.0,
+        "theirs": 180.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-2024-08-06",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.5-flash",
+        "metric": "out_per_mtok",
+        "ours": 9.0,
+        "theirs": 4.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-7",
+        "metric": "out_per_mtok",
+        "ours": 25.0,
+        "theirs": 25.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-fable-5-1",
+        "metric": "out_per_mtok",
+        "ours": 50.0,
+        "theirs": 50.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-6-luna",
+        "metric": "out_per_mtok",
+        "ours": 0.5,
+        "theirs": 0.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "o3-pro",
+        "metric": "out_per_mtok",
+        "ours": 80.0,
+        "theirs": 80.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-omni-1.2-flash",
+        "metric": "out_per_mtok",
+        "ours": 9.0,
+        "theirs": 9.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-fable-5",
+        "metric": "out_per_mtok",
+        "ours": 50.0,
+        "theirs": 50.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.6-flash",
+        "metric": "out_per_mtok",
+        "ours": 3.75,
+        "theirs": 1.875,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.3-codex",
+        "metric": "out_per_mtok",
+        "ours": 14.0,
+        "theirs": 14.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5-pro",
+        "metric": "out_per_mtok",
+        "ours": 120.0,
+        "theirs": 120.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-2.5-flash-lite",
+        "metric": "out_per_mtok",
+        "ours": 0.4,
+        "theirs": 0.2,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-4o",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-mini",
+        "metric": "out_per_mtok",
+        "ours": 4.5,
+        "theirs": 2.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3-flash-preview",
+        "metric": "out_per_mtok",
+        "ours": 3.0,
+        "theirs": 1.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5-mini",
+        "metric": "out_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "codestral-2508",
+        "metric": "out_per_mtok",
+        "ours": 0.9,
+        "theirs": 0.9,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "o3",
+        "metric": "out_per_mtok",
+        "ours": 8.0,
+        "theirs": 8.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "kimi-k2.6",
+        "metric": "out_per_mtok",
+        "ours": 4.0,
+        "theirs": 4.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-audio-mini",
+        "metric": "out_per_mtok",
+        "ours": 2.4,
+        "theirs": 2.4,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.1-flash-lite-preview",
+        "metric": "out_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.5-flash-lite",
+        "metric": "out_per_mtok",
+        "ours": 2.5,
+        "theirs": 1.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.7",
+        "metric": "out_per_mtok",
+        "ours": 6.0,
+        "theirs": 6.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-2.5-pro",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.1-pro-preview-customtools",
+        "metric": "out_per_mtok",
+        "ours": 12.0,
+        "theirs": 12.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-build-0.1",
+        "metric": "out_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.5",
+        "metric": "out_per_mtok",
+        "ours": 6.0,
+        "theirs": 6.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.1-pro-preview",
+        "metric": "out_per_mtok",
+        "ours": 12.0,
+        "theirs": 6.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.20",
+        "metric": "out_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-4-argon",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-5-5",
+        "metric": "out_per_mtok",
+        "ours": 20.0,
+        "theirs": 20.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-5",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "glm-5-2",
+        "metric": "out_per_mtok",
+        "ours": 4.4,
+        "theirs": 4.84,
+        "pct_diff": -0.09090909090909081
+      },
+      {
+        "model_key": "mistral-medium-3",
+        "metric": "out_per_mtok",
+        "ours": 7.5,
+        "theirs": 2.0,
+        "pct_diff": 2.75
+      },
+      {
+        "model_key": "gpt-5-nano",
+        "metric": "out_per_mtok",
+        "ours": 0.4,
+        "theirs": 0.2,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6-sol",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-5",
+        "metric": "out_per_mtok",
+        "ours": 25.0,
+        "theirs": 25.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-4-5",
+        "metric": "out_per_mtok",
+        "ours": 15.0,
+        "theirs": 15.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-6.1-terra",
+        "metric": "out_per_mtok",
+        "ours": 5.0,
+        "theirs": 2.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-sol",
+        "metric": "out_per_mtok",
+        "ours": 20.0,
+        "theirs": 10.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-4.1",
+        "metric": "out_per_mtok",
+        "ours": 8.0,
+        "theirs": 8.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-5-5",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-sonnet-4-6",
+        "metric": "out_per_mtok",
+        "ours": 15.0,
+        "theirs": 15.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-terra",
+        "metric": "out_per_mtok",
+        "ours": 12.0,
+        "theirs": 6.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-8",
+        "metric": "out_per_mtok",
+        "ours": 25.0,
+        "theirs": 25.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "kimi-k2.7-code",
+        "metric": "out_per_mtok",
+        "ours": 4.0,
+        "theirs": 4.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.5",
+        "metric": "out_per_mtok",
+        "ours": 30.0,
+        "theirs": 15.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-3.1-flash-lite",
+        "metric": "out_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-2.5-flash",
+        "metric": "out_per_mtok",
+        "ours": 2.5,
+        "theirs": 1.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.20-multi-agent",
+        "metric": "out_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-audio",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-opus-4-5",
+        "metric": "out_per_mtok",
+        "ours": 25.0,
+        "theirs": 25.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.6",
+        "metric": "out_per_mtok",
+        "ours": 6.0,
+        "theirs": 6.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-mini-2024-07-18",
+        "metric": "out_per_mtok",
+        "ours": 0.6,
+        "theirs": 0.6,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-4-hydrogen",
+        "metric": "out_per_mtok",
+        "ours": 7.5,
+        "theirs": 3.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.3",
+        "metric": "out_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.2-pro",
+        "metric": "out_per_mtok",
+        "ours": 168.0,
+        "theirs": 168.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4.1-mini",
+        "metric": "out_per_mtok",
+        "ours": 1.6,
+        "theirs": 1.6,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-nano",
+        "metric": "out_per_mtok",
+        "ours": 1.25,
+        "theirs": 0.625,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-4o-2024-11-20",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-luna",
+        "metric": "out_per_mtok",
+        "ours": 1.2,
+        "theirs": 0.6,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.1",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.5-pro",
+        "metric": "out_per_mtok",
+        "ours": 180.0,
+        "theirs": 90.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6-astra",
+        "metric": "out_per_mtok",
+        "ours": 50.0,
+        "theirs": 25.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-fable-5-2",
+        "metric": "out_per_mtok",
+        "ours": 40.0,
+        "theirs": 40.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.2",
+        "metric": "out_per_mtok",
+        "ours": 14.0,
+        "theirs": 7.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-4-carbon",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.4",
+        "metric": "out_per_mtok",
+        "ours": 15.0,
+        "theirs": 7.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6.1-sol",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-omni-1.1-flash",
+        "metric": "out_per_mtok",
+        "ours": 9.0,
+        "theirs": 9.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-mini",
+        "metric": "out_per_mtok",
+        "ours": 0.6,
+        "theirs": 0.6,
+        "pct_diff": 0.0
+      }
+    ]
+  }
+}
