@@ -8,7 +8,7 @@ toc: false
 ```js
 import * as Plot from "npm:@observablehq/plot";
 import {StepChart, rows} from "./components/StepChart.js";
-import {HeadlineStat, pct} from "./components/HeadlineStat.js";
+import {HeadlineStat, pct, lagAfter} from "./components/HeadlineStat.js";
 const H = await FileAttachment("data/headline.json").json();
 const M = await FileAttachment("data/methods.json").json();
 const E = await FileAttachment("data/epoch_check.json").json();
@@ -30,7 +30,7 @@ const link = (u) => (u ? html`<a href=${u}>source</a>` : "–");
 <p class="muted" data-testid="scope-label">Scope: dataset measurement · Validation: failed</p>
 
 ```js
-display(HeadlineStat([`${pct(H.share_cut_365)} cut within 365 days (95% CI ${pct(H.ci_low)}–${pct(H.ci_high)}, n=${H.n}, median commit lag ${H.commit_lag_median_days} days)`], {testid: "measurement-stat"}));
+display(HeadlineStat([`${pct(H.share_cut_365)} cut within 365 days (95% CI ${pct(H.ci_low)}–${pct(H.ci_high)}, n=${H.n}, median commit lag ${lagAfter(H.commit_lag_median_days)})`], {testid: "measurement-stat"}));
 display(html`<p class="takeaway">About ${Math.round(H.share_cut_365 * 10)} in 10 top-tier models had a list-price cut recorded within a year of listing; ${H.n_data_fix} of the ${H.n_audited} recorded first cuts could not be verified on a provider page.</p>`);
 ```
 
@@ -45,7 +45,7 @@ const xMax = Math.max(...obs.map((p) => p.x));
 const yMax = Math.max(...obs.map((p) => p.hi), ...ver.map((p) => p.hi)) * 1.1;
 const tipFor = (name) => (d) => `${name}\nday ${d.x}: ${pct(d.y)} cut`;
 const kmChart = StepChart({
-  width, marginRight: 110,
+  width, marginRight: width < 560 ? 12 : 110,
   lines: [
     {data: obs, stroke: "var(--accent)", band: {y1: "lo", y2: "hi"}, tip: tipFor("All recorded cuts")},
     {data: ver, stroke: "var(--muted)", dash: "6 4", tip: tipFor("Verified-only")}
@@ -54,8 +54,10 @@ const kmChart = StepChart({
     Plot.ruleX([365], {stroke: "var(--ink-2)", strokeOpacity: 0.6}),
     Plot.text([{x: 365, y: yMax}], {x: "x", y: "y", text: () => "365 days", textAnchor: "start", dx: 4, dy: 8, fill: "var(--ink-2)"}),
     Plot.ruleX(ticks, {x: "x", y1: (d) => d.y - 0.012, y2: (d) => d.y + 0.012, stroke: "var(--accent)", strokeWidth: 1.5}),
-    Plot.text([{x: xMax, y: obs.at(-1).y, t: "All recorded cuts"}], {x: "x", y: "y", text: "t", textAnchor: "start", dx: 6, fill: "var(--accent)"}),
-    Plot.text([{x: xMax, y: ver.at(-1).y, t: "Verified-only"}], {x: "x", y: "y", text: "t", textAnchor: "start", dx: 6, dy: 12, fill: "var(--ink-2)"})
+    // direct labels need the right margin; below 560 px the legend under the chart carries identity
+    ...(width < 560 ? [] : [
+      Plot.text([{x: xMax, y: obs.at(-1).y, t: "All recorded cuts"}], {x: "x", y: "y", text: "t", textAnchor: "start", dx: 6, fill: "var(--ink-2)"}),
+      Plot.text([{x: xMax, y: ver.at(-1).y, t: "Verified-only"}], {x: "x", y: "y", text: "t", textAnchor: "start", dx: 6, dy: 12, fill: "var(--ink-2)"})])
   ],
   xLabel: "Days since listing", yLabel: "Share cut (%)", yTickFormat: (v) => `${(v * 100).toFixed(0)}%`,
   yDomain: [0, yMax],

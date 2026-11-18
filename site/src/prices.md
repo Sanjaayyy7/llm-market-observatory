@@ -67,10 +67,10 @@ const cutRows = cuts.map((c) => {
   const a = auditKey.get(`${c.canonical_model_id}|${+c.change_ts}`);
   return {model: c.canonical_model_id, provider: providerOf.get(c.canonical_model_id), date: day(c.change_ts),
     "from → to (USD/1M)": `${usd(c.prev_blended)} → ${usd(c.blended)}`, depth: pct(-c.pct),
-    audit: a?.verdict ?? "not audited", "lag days": a?.lag_days ?? null, source: a?.source_url ?? null};
+    audit: a?.verdict ?? "not audited", "days after announcement": a?.lag_days == null ? null : -a.lag_days, source: a?.source_url ?? null};
 }).sort((a, b) => a.date.localeCompare(b.date));
 const link = (u) => (u ? html`<a href=${u}>source</a>` : "–");
-display(Inputs.table(cutRows, {format: {source: link, "lag days": (v) => v ?? "–"}, layout: "auto"}));
+display(Inputs.table(cutRows, {format: {source: link, "days after announcement": (v) => v ?? "–"}, layout: "auto"}));
 ```
 
 ## Corrections (not counted as cuts)

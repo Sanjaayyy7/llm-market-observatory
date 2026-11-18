@@ -4,7 +4,7 @@ toc: false
 ---
 
 ```js
-import {HeadlineStat, pct} from "./components/HeadlineStat.js";
+import {HeadlineStat, pct, lagAfter} from "./components/HeadlineStat.js";
 import {DataStamp} from "./components/DataStamp.js";
 import {CaveatNote} from "./components/CaveatNote.js";
 const headline = await FileAttachment("data/headline.json").json();
@@ -20,7 +20,7 @@ const numberLine = headline.validation === "failed"
       {text: "See Methods", href: "./methods#validation"}
     ], {testid: "headline"})
   : HeadlineStat([
-      `${pct(headline.share_cut_365)} cut within 365 days (95% CI ${pct(headline.ci_low)}–${pct(headline.ci_high)}, n=${headline.n}, median commit lag ${headline.commit_lag_median_days} days)`
+      `${pct(headline.share_cut_365)} cut within 365 days (95% CI ${pct(headline.ci_low)}–${pct(headline.ci_high)}, n=${headline.n}, median commit lag ${lagAfter(headline.commit_lag_median_days)})`
       + (headline.method === "exact" ? ": too few cuts for a curve" : "")
     ], {testid: "headline"});
 display(numberLine);
