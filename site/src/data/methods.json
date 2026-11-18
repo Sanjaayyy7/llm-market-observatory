@@ -8,5 +8,8 @@
   },
   "unranked_count": 7,
   "replay_days": 646,
+  "tokencanopy_sources": [
+    "openrouter"
+  ],
   "replay_error_days": 0
 }

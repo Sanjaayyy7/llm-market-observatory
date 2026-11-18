@@ -1,0 +1,12 @@
+{
+  "name": "llm-market-observatory-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "OBSERVABLE_TELEMETRY_DISABLE=true observable build",
+    "dev": "OBSERVABLE_TELEMETRY_DISABLE=true observable preview"
+  },
+  "dependencies": {
+    "@observablehq/framework": "1.13.4"
+  }
+}

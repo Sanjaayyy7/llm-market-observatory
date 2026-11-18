@@ -30,3 +30,8 @@ drill-check:
 
 export:
 	uv run python -m analysis.export
+
+site:
+	cd site && npm ci && npm run build
+
+all: fetch build analyze export site

@@ -47,8 +47,15 @@ def build_wh(path, *, approved_bad=False, drop_source=None):
               "('m2','2024-02-01 00:00:00+00'),('m3','2024-01-05 00:00:00+00')")
     c.execute("create table mart_top_tier_screen(canonical_model_id varchar, is_unranked boolean)")
     c.execute("insert into mart_top_tier_screen values ('m1',true),('m2',false)")
+    c.execute("create table seed_crosswalk_uncovered(model_name varchar, reason_code varchar, evidence_url varchar)")
+    c.execute("create table int_crosswalk_coverage(model_name varchar, provider varchar, closed boolean,"
+              " covered boolean)")
+    c.execute("create table seed_epoch_mismatch_audit(model_name varchar, obs_date date, verdict varchar,"
+              " source_url varchar)")
+    c.execute("create table stg_tokencanopy__prices(platform varchar)")
+    c.execute("insert into stg_tokencanopy__prices values ('OpenAI')")
     for t in PASSTHROUGH:
-        if t not in ("mart_launch_price_survival", "mart_top_tier_screen"):
+        if t not in ("mart_launch_price_survival", "mart_top_tier_screen", "int_crosswalk_coverage"):
             c.execute(f"create table {t}(x integer)")
     c.close()
 
@@ -65,6 +72,10 @@ def build_raw(d):
     (d / "litellm").mkdir(parents=True)
     duckdb.sql(f"copy (select date '2024-01-01' as snapshot_date where false) to '{d}/litellm/_replay_errors.parquet'"
                " (format parquet)")
+    tc = d / "tokencanopy/run_date=2024-02-01"
+    tc.mkdir(parents=True)
+    duckdb.sql(f"copy (select 'OpenAI' as platform, 'openrouter' as source union all select 'Azure', 'azure')"
+               f" to '{tc}/part.parquet' (format parquet)")
     return d
 
 
@@ -100,6 +111,7 @@ def test_stamp_has_all_sources(tmp_path):
     assert lag == 10  # last_listed 01-01, next snapshot 01-20, reroute 01-10
     m = json.loads((out / "methods.json").read_text())
     assert m["outcome_counts"] == {"cut": 1, "still_listed": 1, "ended": 1}
+    assert m["tokencanopy_sources"] == ["openrouter"]
     assert m["replay_days"] == 3 and m["replay_error_days"] == 0 and m["unranked_count"] == 1
     wh = tmp_path / "wh2.duckdb"
     build_wh(wh, drop_source="pypi")

@@ -19,7 +19,19 @@ PARQUETS = {
     "price_changes": "fct_price_change", "cut_audit": "mart_cut_audit", "models": "dim_model",
     "top_tier_screen": "mart_top_tier_screen", "coverage": "int_crosswalk_coverage",
     "event_panel": "mart_event_study_panel", "freshness": "source_freshness",
+    "epoch_audit": "seed_epoch_mismatch_audit",
 }
+UNCOVERED_SQL = """
+select c.model_name, c.provider, c.closed, s.reason_code, s.evidence_url
+from int_crosswalk_coverage c left join seed_crosswalk_uncovered s using (model_name)
+where not c.covered order by c.model_name
+"""
+TOKENCANOPY_SOURCES_SQL = """
+select distinct source from read_parquet(?, hive_partitioning = true)
+where run_date = (select max(run_date) from read_parquet(?, hive_partitioning = true))
+  and platform in (select distinct platform from stg_tokencanopy__prices)
+order by source
+"""
 UNAPPROVED_SQL = """
 select 'seed_model_crosswalk:' || source || ':' || source_key from seed_model_crosswalk
  where match_method = 'manual' and coalesce(trim(approved_by), '') = ''
@@ -74,6 +86,7 @@ def _stamp(c) -> Stamp:
 
 
 def _methods(c, exports: Path, raw: Path) -> dict:
+    tc = str(raw / "tokencanopy/*/part.parquet")
     errs = raw / "litellm/_replay_errors.parquet"
     if not errs.exists():
         raise FileNotFoundError(f"{errs} (run make fetch)")
@@ -85,6 +98,7 @@ def _methods(c, exports: Path, raw: Path) -> dict:
         "outcome_counts": {"cut": code.count(1), "still_listed": code.count(0), "ended": code.count(2)},
         "unranked_count": one("select count(*) from mart_top_tier_screen where is_unranked"),
         "replay_days": one("select count(distinct snapshot_date) from stg_litellm__snapshots"),
+        "tokencanopy_sources": [r[0] for r in c.execute(TOKENCANOPY_SOURCES_SQL, [tc, tc]).fetchall()],
         "replay_error_days": one("select count(distinct snapshot_date) from read_parquet(?)", str(errs)),
     }
 
@@ -111,6 +125,7 @@ def export_site(warehouse: Path, out: Path, *, exports: Path = ROOT / "exports",
         for name, rel in PARQUETS.items():
             c.execute(f"copy (select * from {rel}) to '{out / name}.parquet' (format parquet)")
         c.execute(f"copy ({REROUTE_SQL}) to '{out / 'reroute_lag.parquet'}' (format parquet)")
+        c.execute(f"copy ({UNCOVERED_SQL}) to '{out / 'uncovered.parquet'}' (format parquet)")
         (out / "methods.json").write_text(json.dumps(methods, indent=2))
         return stamp
     finally:

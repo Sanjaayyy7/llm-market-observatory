@@ -149,3 +149,18 @@ seeds:
       - name: verdict
         data_tests:
           - accepted_values: {arguments: {values: [epoch_non_list_price, real_change, panel_error]}}
+  - name: seed_crosswalk_uncovered
+    config:
+      column_types:
+        model_name: varchar
+        reason_code: varchar
+        evidence_url: varchar
+    columns:
+      - name: model_name
+        data_tests: [unique, not_null]
+      - name: reason_code
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [no_first_party_key, alias_only, candidate_key_unverified, variant_of_mapped]}}
+      - name: evidence_url
+        data_tests: [not_null]
