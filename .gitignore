@@ -10,3 +10,5 @@ dbt/logs/
 __pycache__/
 site/test-results/
 site/playwright-report/
+docs/sessions/
+.claude/worktrees/
