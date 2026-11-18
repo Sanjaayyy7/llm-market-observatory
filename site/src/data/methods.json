@@ -1,13 +1,13 @@
 {
-  "aj_cut_365": 0.09312502049864901,
-  "km_cut_365": 0.0953508084597916,
+  "aj_cut_365": 0.09300951570994696,
+  "km_cut_365": 0.09521624811596607,
   "outcome_counts": {
     "cut": 9,
-    "still_listed": 59,
-    "ended": 37
+    "still_listed": 57,
+    "ended": 39
   },
   "unranked_count": 7,
-  "replay_days": 646,
+  "replay_days": 648,
   "tokencanopy_sources": [
     "openrouter"
   ],

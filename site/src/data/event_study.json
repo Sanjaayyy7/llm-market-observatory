@@ -27,7 +27,7 @@
       ],
       "ratio": 1.1677646308735616,
       "incomplete_window": false,
-      "placebo_share_le": 0.41,
+      "placebo_share_le": 0.42,
       "control_ratio": 1.0172914748907576
     },
     {
@@ -66,7 +66,7 @@
       ],
       "ratio": 1.1070767989916597,
       "incomplete_window": false,
-      "placebo_share_le": 0.46,
+      "placebo_share_le": 0.47,
       "control_ratio": 1.1127161638598624
     },
     {
@@ -95,7 +95,7 @@
       ],
       "ratio": 0.8560852416411312,
       "incomplete_window": false,
-      "placebo_share_le": 0.26,
+      "placebo_share_le": 0.27,
       "control_ratio": 0.8313318466895097
     },
     {
@@ -108,7 +108,7 @@
       ],
       "ratio": 0.972603775550971,
       "incomplete_window": false,
-      "placebo_share_le": 0.15
+      "placebo_share_le": 0.17
     },
     {
       "series": "B",
@@ -120,7 +120,7 @@
       ],
       "ratio": 1.1070767989916597,
       "incomplete_window": false,
-      "placebo_share_le": 0.46
+      "placebo_share_le": 0.47
     },
     {
       "series": "B",
