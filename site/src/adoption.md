@@ -18,7 +18,8 @@ const eventPaths = panel.filter((d) => d.sdk_group !== "control");
 const comparable = study.events.filter((d) => d.ratio != null && d.placebo_share_le != null);
 const dateBasis = {A: "LiteLLM record", B: "Provider announcement"};
 const ratio = (value) => value == null ? "—" : `${value.toFixed(2)}×`;
-const eventLabel = (d) => `${d.sdk_group} · ${d.event_date} · ${dateBasis[d.series]}`;
+const afterPrereg = (d) => d.after_prereg ? " · after prereg" : "";
+const eventLabel = (d) => `${d.sdk_group} · ${d.event_date} · ${dateBasis[d.series]}${afterPrereg(d)}`;
 const prereg = `https://github.com/Sanjaayyy7/llm-market-observatory/commit/${study.prereg_commit}`;
 const definition = (value) => html`<a href="./methods#adoption">${value}</a>`;
 ```
@@ -52,7 +53,7 @@ const event = view(Inputs.select(comparable, {label: "Compare cut event", format
 if (event) {
   const pool = placebos.filter((d) => d.sdk_group === event.sdk_group && d.ratio != null);
   display(PlaceboHist(pool, event, eventLabel(event), width));
-  display(html`<p>Cut-window ratio <strong>${definition(ratio(event.ratio))}</strong>. ${definition(pct(event.placebo_share_le))} of placebo ratios were at or below it.</p>`);
+  display(html`<p data-testid="placebo-selected">Cut-window ratio <strong>${definition(ratio(event.ratio))}</strong>. ${definition(pct(event.placebo_share_le))} of placebo ratios were at or below it.</p>`);
 } else {
   display(html`<p>No cut event has both a complete window and a placebo pool.</p>`);
 }
@@ -68,7 +69,7 @@ if (event) {
 display(html`<table class="adoption-events" tabindex="0" aria-label="SDK download ratios by cut event">
   <thead><tr>${["SDK", "Date", "Date source", "Models", "Post/pre", "Placebos at or below", "requests control"].map((label) => html`<th scope="col">${label}</th>`)}</tr></thead>
   <tbody>${study.events.map((d) => html`<tr>
-    <td>${d.sdk_group}</td><td>${d.event_date}</td><td>${dateBasis[d.series]}</td><td>${d.members.join(", ")}</td>
+    <td>${d.sdk_group}</td><td>${d.event_date}${afterPrereg(d)}</td><td>${dateBasis[d.series]}</td><td>${d.members.join(", ")}</td>
     <td>${d.incomplete_window ? "Incomplete window" : definition(ratio(d.ratio))}</td>
     <td>${d.placebo_share_le == null ? "—" : definition(pct(d.placebo_share_le))}</td>
     <td>${d.control_ratio == null ? "—" : definition(ratio(d.control_ratio))}</td>
@@ -80,7 +81,7 @@ display(html`<table class="adoption-events" tabindex="0" aria-label="SDK downloa
 const undated = scoredCuts.filter((d) => d.announced_date == null).length;
 const anthropicCut = scoredCuts.find((d) => d.canonical_model_id === "claude-3-5-haiku-20241022" && d.lag_days < 0);
 const missed = study.verified_missed_cuts.map((d) => `${d.model} (${d.date})`).join(", ");
-display(html`<p class="caveat" data-testid="adoption-limits">${definition(`${undated} of ${scoredCuts.length}`)} recorded first cuts in the audit lack a dated provider announcement. ${anthropicCut ? html`LiteLLM recorded the ${anthropicCut.canonical_model_id} cut ${definition(lagAfter(anthropicCut.lag_days))}. ` : ""}There is no window for the ${definition(study.verified_missed_cuts.length)} verified cuts LiteLLM missed: ${missed}.</p>`);
+display(html`<p class="caveat" data-testid="adoption-limits">${definition(`${undated} of ${scoredCuts.length}`)} recorded first cuts in the audit lack a dated provider announcement. ${anthropicCut ? html`LiteLLM recorded the ${anthropicCut.canonical_model_id} cut ${definition(lagAfter(anthropicCut.lag_days))}. ` : "The pre-registered Anthropic lag is missing from the audit data. "}There is no window for the ${definition(study.verified_missed_cuts.length)} verified cuts LiteLLM missed: ${missed}.</p>`);
 ```
 
 <p class="caveat">Cuts apply to individual models. Downloads cover provider SDKs and include CI and mirror traffic. These comparisons do not establish that price changes caused any download changes. <a href="./methods#adoption">Read the definitions and limits.</a></p>

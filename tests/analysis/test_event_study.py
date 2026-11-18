@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from analysis.event_study import (
     FROZEN_EVENTS,
+    after_prereg,
     event_windows,
     matches_prereg,
     placebo_ratios,
@@ -97,3 +98,12 @@ def test_placebo_share_is_none_without_a_ratio():
     assert placebo_share(float("nan"), pool) is None
     assert placebo_share(1.0, pd.Series([], dtype=float)) is None
     assert placebo_share(1.0, pool) == 0.5
+
+
+def test_after_prereg_labels_only_events_with_a_new_cut():
+    frozen = list(FROZEN_EVENTS)
+    new = ("new-model", "openai", "2026-11-10", None)
+    assert not after_prereg([frozen[0][0]], frozen)
+    assert after_prereg(["new-model"], [*frozen, new])
+    assert not after_prereg([frozen[0][0]], [*frozen, new])
+    assert after_prereg(["mistral-large-2402"], [("mistral-large-2402", "mistral", "2024-06-01", None)])

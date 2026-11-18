@@ -62,9 +62,17 @@ def verdict_line(k_a: int) -> str:
     return f"Descriptive only: n={k_a} events; inference not built in v1.0."
 
 
+def _row_key(m, g, a, b) -> tuple:
+    return (m, g, str(a), None if b is None else str(b))
+
+
 def matches_prereg(rows) -> bool:
-    got = {(m, g, str(a), None if b is None else str(b)) for m, g, a, b in rows}
-    return got == set(FROZEN_EVENTS)
+    return {_row_key(*r) for r in rows} == set(FROZEN_EVENTS)
+
+
+def after_prereg(members: list[str], rows) -> bool:
+    """Prereg §2: an event is labelled "after prereg" when any member's cut row is not in the frozen table."""
+    return any(_row_key(*r) not in set(FROZEN_EVENTS) for r in rows if r[0] in members)
 
 
 def _ratio(pre: pd.Series, post: pd.Series):
@@ -184,7 +192,8 @@ def main(db: Path = ROOT / "data/warehouse.duckdb", out: Path = ROOT / "exports"
         pool = placebo.loc[placebo["sdk_group"] == r.sdk_group, "ratio"].dropna().astype(float)
         share = placebo_share(r.ratio, pool)
         events.append({"series": r.series, "event_id": r.event_id, "event_date": r.event_date,
-                       "sdk_group": r.sdk_group, "members": members.get(r.event_id, []), "ratio": r.ratio,
+                       "sdk_group": r.sdk_group, "members": members.get(r.event_id, []),
+                       "after_prereg": after_prereg(members.get(r.event_id, []), cut_rows), "ratio": r.ratio,
                        "incomplete_window": r.incomplete_window, "placebo_share_le": share,
                        **({"control_ratio": control.get(r.event_id)} if r.series == "A" else {})})
     k_a = sum(e["series"] == "A" for e in events)

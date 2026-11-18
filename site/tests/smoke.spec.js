@@ -84,9 +84,11 @@ test("adoption: renders the exported verdict, paths and matched placebo", async 
   await expect(hist).toHaveAttribute("aria-label", new RegExp(`${event.sdk_group}.*${RegExp.escape(event.ratio.toFixed(2))}×`));
   await expect(hist.locator('line[aria-label="Selected cut ratio"]')).toHaveCount(1);
   expect(await hist.evaluate((chart) => chart.scale("x").domain)).not.toEqual(firstDomain);
-  await expect(page.getByRole("link", {name: `${event.ratio.toFixed(2)}×`, exact: true}).first()).toHaveAttribute("href", "./methods#adoption");
+  await expect(page.getByTestId("placebo-selected").getByRole("link", {name: `${event.ratio.toFixed(2)}×`, exact: true})).toHaveAttribute("href", "./methods#adoption");
   for (const cut of study.verified_missed_cuts) {
     await expect(page.getByTestId("adoption-limits")).toContainText(`${cut.model} (${cut.date})`);
   }
+  await expect(page.getByTestId("adoption-limits")).toContainText("LiteLLM recorded the claude-3-5-haiku-20241022 cut");
+  await expect(page.locator("tbody tr", {hasText: "after prereg"})).toHaveCount(study.events.filter((e) => e.after_prereg).length);
   await page.screenshot({path: `test-results/adoption-${info.project.name}.png`, fullPage: true});
 });
