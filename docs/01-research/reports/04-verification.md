@@ -394,7 +394,7 @@ The table compares how the same model is named in each source. Prices are USD pe
 | Small trackers (mohamadkhani/llm-leaders, LLMPodium SDKs, Potowai/improved-system) | Elo × current OpenRouter price | No | Various | Toy-scale |
 | LMArena itself | Leaderboard plus the `full` split history | Yes | CC-BY-4.0 | Quality only |
 
-**What the portfolio project can still own**
+**What this project can still own**
 
 1. A **governed, reproducible daily price panel back to 2023** rebuilt from LiteLLM git history. Nobody publishes this as a dataset: Epoch and AA show charts, and tokencanopy only goes back to 2026-09.
 2. **Adoption joined to price and quality.** Daily PyPI SDK downloads (ClickPy) plus OpenRouter token share, studied with event-study or diff-in-diff around price cuts and new-model launches. Epoch says outright that it does not do this ("no user stays permanently on the cost frontier").

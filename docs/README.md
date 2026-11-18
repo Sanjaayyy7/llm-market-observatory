@@ -8,15 +8,15 @@ Codex reads `AGENTS.md` (root) and the repo skills in `.agents/skills/` (`ponyta
 ## How this folder is organized
 
 - **Numbered folders (`00-` … `05-`)** are project phases, in the order they happened. Each one holds that phase's record. The spec (03) and the plan (05) can still get versioned revisions; each doc keeps its own change log.
-- **Unnumbered files at this level** are living documents that stay current. Right now that is only [STATUS.md](STATUS.md). The build adds more here (`DECISIONS.md`, `DATA.md`, `AI_USAGE.md`, `prereg/`, `drills/`). Their paths are fixed by the build plan and its tests, so they don't go in a numbered folder.
+- **Unnumbered files at this level** are living documents that stay current. Right now that is only [STATUS.md](STATUS.md). The build adds more here (`DECISIONS.md`, `DATA.md`, `prereg/`). Their paths are fixed by the build plan and its tests, so they don't go in a numbered folder.
 - **`sessions/`** holds the raw Claude Code session logs. They are local only and gitignored, because they contain machine paths and working notes.
 
 ## Timeline
 
 | # | Date | Phase | Outcome | Folder | Commits |
 |---|---|---|---|---|---|
-| 00 | 2026-11-10 | Charter | Goal, target roles, milestones M0–M6, Gemini spend guardrails | [00-charter/](00-charter/) | written before the repo existed; copied in 2026-11-16 |
-| 01 | 2026-11-10 | Research | 4 research reports condensed into one brief with evidence IDs E1–E31 and risks R1–R12 | [01-research/](01-research/) | `8c9bbe5` |
+| 00 | 2026-11-10 | Charter | Goal, milestones M0–M6, Gemini spend guardrails | [00-charter/](00-charter/) | written before the repo existed; copied in 2026-11-16 |
+| 01 | 2026-11-10 | Research | 4 research reports condensed into one brief with evidence IDs E4–E31 and risks R2–R12 | [01-research/](01-research/) | `8c9bbe5` |
 | 02 | 2026-11-10 | Council | 5 lens memos, blind peer review and rank aggregation. Chair verdict: **go-with-changes**, gates G0–G10 | [02-council/](02-council/) | `8c9bbe5` `e2c73a3` `22ccc1e` |
 | 03 | 2026-11-11 → 11-15 | Spec | PRD + design v1, then v1.1 (builder check and user decisions), then v1.2 (after the spike) | [03-spec/](03-spec/) | `4b9b9c5` `f3ab78b` `b3de42c` |
 | 04 | 2026-11-15 | Feasibility spike | LiteLLM replay works. About 10% of top-tier models cut their list price within 365 days. The event study is below its power floor | [04-feasibility-spike/](04-feasibility-spike/) | `b3de42c` |
@@ -34,10 +34,9 @@ docs/
 ├── 00-charter/
 │   └── 2026-11-10-grand-plan.md       original plan: validate → spec → build
 ├── 01-research/
-│   ├── research-brief.md              the brief the council read (E1–E31, R1–R12)
+│   ├── research-brief.md              the brief the council read (E4–E31, R2–R12)
 │   └── reports/                       raw research-agent reports behind the brief
-│       ├── 01-hiring-bar.md           hiring expectations and portfolio signals
-│       ├── 02-landscape-datasets.md   portfolio-project landscape and candidate datasets
+│       ├── 02-landscape-datasets.md   project landscape and candidate datasets
 │       ├── 03-method-and-stack.md     Bloom council method and the $0 analytics stack
 │       └── 04-verification.md         live endpoint checks of open factual questions
 ├── 02-council/                        read in number order: that's the process order

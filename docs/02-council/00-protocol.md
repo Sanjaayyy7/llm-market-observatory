@@ -1,6 +1,6 @@
 # Council Protocol (Bloom-style, run manually)
 
-**Purpose:** attack the idea before users (hiring managers) do. This file is the audit trail: "we ran it through council" refers to this exact process.
+**Purpose:** attack the idea before users do. This file is the audit trail: "we ran it through council" refers to this exact process.
 
 ## Inputs
 - Decision question + idea: `../01-research/research-brief.md` (the only document each advisor sees).
@@ -14,7 +14,7 @@ Five lenses (from Bloom). Each runs as a separate subagent; models are mixed to 
 | Contrarian | Find the strongest reasons this fails | opus |
 | First principles | Rebuild the answer from the goal + constraints, ignoring the proposed design | fable |
 | Expansionist | Find the biggest upside the plan is under-reaching for | sonnet |
-| Outsider | Read as a FAANG / AI-startup hiring manager skimming a new-grad portfolio | opus |
+| Outsider | Read as a non-expert skimming the project cold | opus |
 | Executor | Make it shippable: sequence, cut list, failure points under usage limits | sonnet |
 
 **Memo format** (at most 400 words): Position · 3 strongest arguments (cite E-/R-IDs) · Key risk · What would change my mind · Recommendation (build as-is / build with changes / pivot B / pivot C), with concrete scope.

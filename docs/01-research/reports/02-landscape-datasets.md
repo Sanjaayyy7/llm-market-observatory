@@ -1,6 +1,6 @@
 <!-- Raw research-agent report, captured verbatim 2026-11-10. Source of E-IDs in ../research-brief.md -->
 
-# Analytics engineering portfolio projects: landscape and datasets (as of 2026-11-10)
+# Analytics engineering projects: landscape and datasets (as of 2026-11-10)
 
 "acc." means I accessed the page on 2026-11-10. Saturation ratings are my judgment. They rest on rough proxies: Kaggle download counts, GitHub repo-search counts, and existing products built on the data.
 
@@ -56,7 +56,7 @@ What the list shows: almost every project uses a static snapshot. Only the TfL p
 - In 2025 Kaggle ran 68 competitions, 34 of them community-hosted. Jane Street's market forecasting drew the most teams, 3,700+ ([ML Contests](https://mlcontests.com/state-of-machine-learning-competitions-2025), figures as of 2026-02-02).
 - 2026 competitions include ARC Prize 2026, BirdCLEF+ 2026, CSIRO Image2Biomass, and Enveda CASMI 2026 ([search summary](https://www.refontelearning.com/blog/best-kaggle-competitions-for-beginners-2026), acc.). All are modeling contests, not analytics engineering work.
 
-**Other portfolio lists reuse the same data:**
+**Other project lists reuse the same data:**
 - Dataquest (updated 2026-03-03) uses Kaggle Hacker News posts, a FiveThirtyEight Star Wars survey, Kickstarter, Adventure Works, and Gapminder ([Dataquest](https://www.dataquest.io/blog/data-analyst-projects-for-beginners/)).
 - Maven's Data Playground has 68 datasets, including Spotify Top 100, Airbnb listings, NYC Taxi Trips, Northwind, and pizza sales ([Maven](https://mavenanalytics.io/data-playground), acc.).
 - The DataTalksClub Zoomcamp (46.8k stars) builds a dbt project called `taxi_rides_ny` in its analytics engineering module ([repo](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/04-analytics-engineering), acc.).
@@ -71,7 +71,6 @@ What the list shows: almost every project uses a static snapshot. Only the TfL p
 - **Airbnb, IMDB/TMDB, Spotify top songs:** one-off scrapes from 2017–2023, too small to need incremental models.
 - **NYC taxi:** the data is excellent, but it is the default teaching dataset.
 
-Caveat: claims that "recruiters dislike X" come from opinion pieces, not surveys ([Statology](https://www.statology.org/what-titanic-iris-and-house-prices-say-about-your-portfolio/), acc.).
 
 ## 3. Candidate datasets
 
@@ -98,9 +97,9 @@ Caveat: claims that "recruiters dislike X" come from opinion pieces, not surveys
 | **Reddit API** | — | — | Self-service access closed Nov 2025; new tokens need approval ([r/redditdev mirror](https://r.datuan.dev/r/redditdev/s/gquSJqMgrM), 2025-11-11) | Gated | — | Avoid |
 | **GitHub Innovation Graph** (added) | Activity by economy since 2020 | Quarterly | CC0 ([repo](https://github.com/github/innovationgraph)) | Free | Developer growth by country | Low |
 
-## 4. Praised portfolio projects and what made them stand out
+## 4. Praised public projects and what made them stand out
 
-"Praised" here means stars, Hacker News points, press coverage, or an official listing. None of these sources reports a hiring outcome.
+"Praised" here means stars, Hacker News points, press coverage, or an official listing.
 
 1. **Todd Schneider, NYC taxi** (2015-11-17, updated 2016 and 2018).
    - It answers sharp, specific questions, such as "the median trip leaving Midtown headed for JFK Airport between 4 and 5 PM takes 64 minutes!" ([post](https://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/)).
@@ -118,9 +117,8 @@ Caveat: claims that "recruiters dislike X" come from opinion pieces, not surveys
    - "State of the Art of Coding Models, According to HN Commenters" got 168 points and 87 comments (2026-05-02). Commenters said it defined "state of the art" as "popular," noted fewer than 300 mentions in total, and called the chart unreadable ([HN](https://hn.algolia.com/api/v1/items/47990708)).
    - "Arena AI Model ELO History" got 70 points (2026-05-14). The main critique was that Elo is relative, so a falling score doesn't prove a model got worse ([HN](https://hn.algolia.com/api/v1/items/48130711)).
 
-**Two public yardsticks for what reviewers look for:**
+**A public yardstick for what reviewers look for:**
 - The DataTalksClub Zoomcamp rubric scores problem description, cloud and IaC, orchestration, warehouse partitioning "with explanation," dbt, dashboard, and reproducibility ([rubric](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/projects/README.md), acc.).
-- The DataTalksClub podcast wiki says a strong project "starts with a repeated business question and ends with a trusted analytical surface." It warns against "KPI screenshots without source caveats" ([podwiki](https://datatalksclub.github.io/podwiki/wiki/analytics-engineering-portfolio-projects/), acc.).
 
 **What the standouts share:** one surprising, specific number; a single command to rebuild everything; an artifact that keeps refreshing; written metric definitions and caveats; and a check against ground truth. Every critique of the weaker projects was about whether the metric meant what it claimed.
 
@@ -135,7 +133,7 @@ Caveat: claims that "recruiters dislike X" come from opinion pieces, not surveys
    - Questions: does star growth predict downloads? Which repos are flagged by StarScout-style anomaly rules? How fast are AI SDKs being adopted?
 3. **XBRL "as-reported vs as-restated" warehouse.**
    - Combine the nightly SEC `companyfacts` file, the real-time submissions API, and the quarterly financial statement data sets.
-   - Build point-in-time snapshots to measure restatements and filing lag. This shows real modeling depth, and few portfolio projects do it.
+   - Build point-in-time snapshots to measure restatements and filing lag. This shows real modeling depth, and few public projects do it.
 4. **2026 midterms: money vs attention.**
    - Join the FEC 2025–26 cycle data (daily to weekly) with hourly Wikipedia pageviews for candidates. Election day was 2026-11-03.
    - Keep contributor names out of anything public, given the FEC's commercial-use rule.
@@ -145,7 +143,6 @@ Caveat: claims that "recruiters dislike X" come from opinion pieces, not surveys
 
 ## Where evidence is thin
 
-- **Recruiter preferences:** no surveys exist; the claims are opinion pieces. The "praise" in section 4 is stars, points, and press, not hiring results.
 - **Unverified freshness:** HN's BigQuery table, and the update cadence of LMArena's history dataset.
 - **Sizes not from the owners:** GH Archive's size is a third-party estimate; PyPI's BigQuery table size is unknown; the hub-stats README doesn't say how the data is collected.
 - **License gaps:**

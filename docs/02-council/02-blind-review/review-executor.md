@@ -7,16 +7,16 @@ Strength: Real gate sequence (pinned stack E28, measured freshness, crosswalk be
 Weakness: Over the 400-word cap, so the cut order and keep/add lists earn no credit; no budget for Claude usage windows per gate.
 
 **B**
-Strength: Narrowest scope with a defensible core (LiteLLM SCD2 panel, E20) and a cold-walkthrough test.
-Weakness: No build order or cut order, and no tooling pins; "Elo was the first critique" overstates E7, which names it as one example.
+Strength: Narrowest scope with a defensible core (LiteLLM SCD2 panel, E20).
+Weakness: No build order or cut order, and no tooling pins; "Elo was the first critique" overstates the evidence, which names it as one example.
 
 **C**
 Strength: Static, precomputed agent eval keeps Gemini spend capped and nothing expiring (R7, R12).
-Weakness: Over the cap, so its content gets no credit; it keeps nearly everything and adds a dataset release plus a post. "Most new-grad portfolios cannot show this" has no brief support, and there is no cut order.
+Weakness: Over the cap, so its content gets no credit; it keeps nearly everything and adds a dataset release plus a post. There is no cut order.
 
 **D**
 Strength: Ordered gates where a failed gate stops scope, including an event-date audit against provider announcements (E20 commit-time caveat).
-Weakness: "No donor pool" for synthetic control is inference, not in the brief; "Analyst and DE postings treat AI as preferred" generalizes from one posting (E2); no tooling pins or Gemini cap.
+Weakness: "No donor pool" for synthetic control is inference, not in the brief; no tooling pins or Gemini cap.
 
 **E**
 Strength: Explicit order (crosswalk gate, panel, Epoch check, metrics, dashboard, event study, eval harness) with the agent UI cut and an offline capped harness kept.

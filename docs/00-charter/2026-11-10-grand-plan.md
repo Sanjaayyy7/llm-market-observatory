@@ -1,21 +1,20 @@
 # Grand Plan: LLM Market Observatory (validate -> spec -> build)
 
 ## Context
-New grad (UC Davis), background in AI engineering + LLM evals, wants ONE portfolio project, built entirely with AI (Claude Code primarily), that signals strongly for **product-facing data roles** at FAANG + top AI startups in late 2026, flexing across:
-- Data / Product Analyst
-- Data Engineer, analytics flavor (Meta "DE, Product Analytics" style)
-- Product Data Scientist
+ONE public data product, built entirely with AI (Claude Code primarily), for analysts tracking LLM API list prices, developers choosing providers, and researchers, spanning:
+- Analyst work: price vs quality, decision memo
+- Analytics data engineering: governed marts, tests, freshness
+- Causal analysis of adoption
 
 Validation must mirror Bloom (bloom-beta.com): **Research -> Debate (council) -> Ship (PRD + design.md)**, evidence-first, auditable trail. Deadline: end of this week (Sun 2026-11-15).
 
 ## User decisions
 - Lead idea: **LLM Market Observatory**. Pivot options for council: (B) Arena preference lab, (C) synthetic AI-app analytics + A/B.
-- Roles: all three combined, max versatility.
 - LLM API: user's **Gemini API credits** (real money). Must be worth it, working, accurate, error-free.
 - Effort: all-in, all day, Claude Code only. **No hour/time estimates anywhere.** Binding constraint = Claude usage limits (5-hr session + weekly).
 
 ## My calls (flagged so user can override)
-- $0 tooling apart from Gemini; nothing that expires before recruiters look. Local-first + one public GitHub repo at `~/projects/llm-market-observatory/`.
+- $0 tooling apart from Gemini; nothing that expires after publication. Local-first + one public GitHub repo at `~/projects/llm-market-observatory/`.
 - Council memos split across opus / sonnet / fable subagents for model diversity (Bloom uses lenses; Karpathy uses models; we get both).
 - Skipped a separate Plan-agent pass: the council *is* the adversarial review, and it saves usage.
 - PRD = what/why with evidence; `design.md` = architecture, data model, metric definitions, plus dashboard visual/UX direction (Bloom's design.md scope).
@@ -24,19 +23,14 @@ Validation must mirror Bloom (bloom-beta.com): **Research -> Debate (council) ->
 Daily-refreshing warehouse answering: **"What does model quality cost, how fast is it falling, and does it move developer adoption?"**
 - **Analyst:** price per Arena-Elo point by tier, open vs closed gap, launch -> price-cut lag. Dashboard + decision memo with caveats (Elo is relative).
 - **DE:** ingestion -> staging -> marts with declared grain, SCD2 price dimension, incremental facts, dbt tests/unit tests/contracts, freshness SLA, CI + daily cron, one-command rebuild.
-- **Product DS:** event study / synthetic control. Do launches and price cuts lift PyPI downloads of provider SDKs (anthropic, openai, google-genai, mistralai)? Caveat: CI-download noise.
+- **Causal:** event study / synthetic control. Do launches and price cuts lift PyPI downloads of provider SDKs (anthropic, openai, google-genai, mistralai)? Caveat: CI-download noise.
 - **AI-native (user's edge):** "ask the observatory" agent over the MetricFlow semantic layer, plus an eval suite (gold answers from `mf query`). Compares semantic-layer vs raw text-to-SQL accuracy and builds a failure taxonomy.
 - **Sources** (verify in M0): LMArena leaderboard history (CC BY), Epoch AI models (CC BY), PyPI downloads (CC BY 4.0; ClickPy or BigQuery sandbox, no billing), HF hub-stats (apache-2.0), price history candidate LiteLLM price JSON + git history (MIT, VERIFY). Avoid OpenRouter as primary (terms).
 - **Stack** (design.md locks it): Python + uv, DuckDB pinned 1.5.x (2.0 compat with dbt-duckdb unverified), dbt-core 1.12 + dbt-duckdb, MetricFlow local, GitHub Actions (CI + cron), static dashboard on GitHub Pages (Evidence Core vs Observable Framework, decided by spike), Gemini for the agent.
 
 ## Evidence base (research done 2026-11-10; becomes E-IDs in the brief)
-- **E1** Shared core across roles (42 postings): SQL, modeling, one-definition metrics. Product DS: experimentation 11/12, causal 8/12, LLM evals 4/12.
-- **E2** Meta DE PA wants SLAs, logging, cost tradeoffs.
-- **E3** Anthropic wants synthetic controls and "semantic layers for data agents". Snowflake wants SQL-accuracy evals. Google/Microsoft/Figma/Apple want LLM evals and AI product metrics.
 - **E4** dbt State of AE 2026: 72% prioritize AI coding vs 24% AI testing; 71% fear hallucinated numbers.
-- **E5** AI-built portfolios: the concern is authenticity. Karat: 62% ban AI in interviews. Anthropic: no Claude in interviews.
 - **E6** Overdone topics: Titanic, Netflix, Superstore, Airbnb, Spotify, NYC taxi. DataCamp's list is all static snapshots.
-- **E7** Standouts share: surprising specific number, one-command rebuild, refreshing artifact, metric defs + caveats, ground-truth check.
 - **E8** Licensing per source (see Sources above).
 - **E9** dbt v2 GA 2026-09-16; dbt-core 1.12.6 Apache; MetricFlow Apache.
 - **E10** Traps: DuckDB 2.0 file compat, Elementary 0.23.3 malware (pin >=0.23.4), BigQuery sandbox no DML.
@@ -51,12 +45,12 @@ Daily-refreshing warehouse answering: **"What does model quality cost, how fast 
    - First verify the open items: LiteLLM license/history, ClickPy access, Arena history schema/cadence, Epoch CSV, Gemini current models/pricing/free tier (ai.google.dev).
 2. **Council** `docs/validation/council/`.
    - Decision question: "Build the Observatory as scoped this week with full AI assistance, or pivot to B/C? What scope survives?"
-   - 5 lens memos in parallel, <=400 words each: Contrarian, First principles, Expansionist, Outsider (FAANG hiring manager), Executor. Format: position, 3 args, key risk, what changes my mind, recommendation.
+   - 5 lens memos in parallel, <=400 words each: Contrarian, First principles, Expansionist, Outsider (non-expert reader), Executor. Format: position, 3 args, key risk, what changes my mind, recommendation.
    - Shuffle and relabel A-E; keep the map private in `map.json`.
    - 5 blind reviews: per-memo strengths/weaknesses, blind spots, `FINAL RANKING`, support/mixed/reject. Self-rank dropped before averaging.
    - Chair verdict: go/pivot/no-go, agreement, divergence, missing, next actions, confidence.
 3. **Ship.**
-   - `docs/PRD.md`: problem + evidence, users (hiring manager, recruiter, interviewer), explicit cuts, requirements each citing an E-ID, success metrics, risks.
+   - `docs/PRD.md`: problem + evidence, users (analysts, developers choosing providers, researchers), explicit cuts, requirements each citing an E-ID, success metrics, risks.
    - `docs/design.md`: architecture, data model + grain, metric definitions, eval design, Gemini guardrails, dashboard visual/UX direction, what's left to the builder.
    - Builder-check subagent reads it, then one round of "theirs" questions goes to the user.
 4. **HARD GATE:** user approves `design.md`. Then superpowers:writing-plans -> `docs/plans/` build plan with TDD tasks.
@@ -67,10 +61,7 @@ Daily-refreshing warehouse answering: **"What does model quality cost, how fast 
 - **M3** MetricFlow metrics, descriptive analyses, causal analysis (event study first; synthetic control if the council keeps it).
 - **M4** Static dashboard on GitHub Pages + daily refresh cron.
 - **M5** Agent + eval suite (Gemini, guarded; see below).
-- **M6** Defense kit:
-  - `README.md` (one surprising number up top), `DECISIONS.md`, `AI_USAGE.md`, decision memo.
-  - Grilling session (mattpocock-skills:grilling).
-  - Hand-rewrite of the core SQL without AI.
+- **M6** Docs kit: `README.md` (one surprising number up top), `DECISIONS.md`, decision memo.
 
 **Cut order if usage limits bite** (council may reorder): synthetic control -> HF source -> dashboard polish -> daily cron (keep manual refresh). The core slice M1-M3 + M5 evals + M6 is never cut.
 
@@ -100,5 +91,4 @@ Daily-refreshing warehouse answering: **"What does model quality cost, how fast 
   - Smoke test passes before the batch.
   - Ledger total stays at or under the agreed cap.
   - Results table reports accuracy with failure examples.
-- Defense: user explains each `DECISIONS.md` entry in the grilling session and rewrites the core mart SQL without AI.
 - **Outward actions need explicit user OK at the time:** creating or pushing the public GitHub repo (GitHub MCP is down; use the `gh` CLI), and the first paid Gemini call.

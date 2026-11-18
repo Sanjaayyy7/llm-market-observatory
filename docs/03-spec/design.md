@@ -17,14 +17,13 @@
   - Event = each top-tier model's first cut, clustered per SDK group (PRD §8).
   - Eval arm B queries the same marts as arm A (§13).
 - **User decisions:**
-  - Drills batched at the end.
   - The user approves the model list plus judgment matches.
   - No OpenRouter key, so the rankings source is dropped.
   - Gemini free tier only.
   - Public repo, Pages and weekly refresh approved.
 
 ## 0. Intent in one paragraph
-A new grad with an AI-evals background needs one project that a FAANG or AI-startup hiring team reads as real Product Analyst + DE + Product DS work, and that the candidate can defend without AI.
+This is a public data product for analysts tracking LLM API list prices, developers choosing providers, and researchers.
 The project rebuilds a **governed history of LLM API list prices since 2023** from LiteLLM's git history. It answers **how long top-tier models keep their launch price**, then tests honestly, under pre-registration, **whether the first cut moves developer adoption**.
 Everything is built by AI, verified by tests, and stated with its limits.
 
@@ -60,7 +59,7 @@ llm-market-observatory/
   evals/                   # questions.yaml, harness.py, scorer.py, cache/, ledger.csv
   site/                    # Observable Framework app (src/*.md, data/*.parquet)
   tests/                   # pytest: ingest, analysis, evals
-  docs/                    # STATUS, DECISIONS, AI_USAGE, DATA, prereg/, drills/; phase history 00-charter/ … 05-build-plan/ (see docs/README.md)
+  docs/                    # STATUS, DECISIONS, DATA, prereg/; phase history 00-charter/ … 05-build-plan/ (see docs/README.md)
   .github/workflows/       # ci.yml, refresh.yml, pages.yml
 ```
 
@@ -112,7 +111,7 @@ It also verifies that GitHub disables scheduled workflows on idle public repos (
 7. **Incremental:** `data/cache/replay_state.json` stores the last processed sha. A run replays only newer days.
 8. **Determinism:** write sorted rows; `replay_hash` = sha256 over the sorted partition files. **G3 requires two clean runs to produce the same hash.**
 
-**SCD2 in dbt** (`dim_model_price`, gaps-and-islands SQL — the hand-written drill target):
+**SCD2 in dbt** (`dim_model_price`, gaps-and-islands SQL):
 1. `stg_litellm__snapshots`: one row per `(snapshot_date, model_key)`, filtered to `mode in ('chat','completion','responses')`. A null `mode` takes the key's next non-null mode; a key never given a mode is kept. *(v1.2, spike: the v1.1 filter dropped the whole 2023-09-06 snapshot, where all 19 keys have null mode, and `responses`-only models such as `gpt-5.4` and `gpt-5.2-pro`.)* *(v1.2.1, G3b mini-council: the filter is per row. A null mode fills from the next non-null mode, else the previous one. A key reclassified out of scope leaves the set there; 41 keys on 2026-11-16, all realtime, image or TTS. Judging scope by a key's latest mode was rejected: it erased `gemini/gemini-1.5-flash` and its real 2024-09-10 cut after a 2026-03 relabel to `embedding`.)*
 2. `int_price_versions`:
    - Compute `price_sig = (input, output)`.
@@ -142,7 +141,7 @@ It also verifies that GitHub disables scheduled workflows on idle public repos (
    - Epoch's HF developer id.
    - Manual matches for closed models.
 2. **Approval (user decision v1.1):**
-   - The candidate approves every row of `seed_models` (the canonical list) and every `match_method = manual` row, by setting `approved_by`.
+   - The owner approves every row of `seed_models` (the canonical list) and every `match_method = manual` row, by setting `approved_by`.
    - `exact` and `hf_id` rows are approved by tests: string or ID equality, plus the coverage tests.
 3. Dev builds may run on draft rows.
 4. The export step (and therefore Pages and the README numbers) refuses to run while any required row is unapproved.
@@ -188,7 +187,7 @@ If coverage fails: panel-only scope. The headline is restricted to the mapped se
 | `source_freshness` | source × run_ts | rows, max_date, sla_days, is_stale |
 
 **Event-date audit (G4):**
-- Sample: 20 cuts stratified by provider *(my call)*. For each, Claude finds the provider's announcement (changelog or pricing page) and records its URL. The candidate spot-checks.
+- Sample: 20 cuts stratified by provider *(my call)*. For each, Claude finds the provider's announcement (changelog or pricing page) and records its URL. The owner spot-checks.
 - Output: the commit-lag distribution `±d` in the headline.
 
 ## 8. Metric definitions (one definition each; README + site "Methods" page)
@@ -209,7 +208,6 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
 
 1. **Survival (G6):**
    - lifelines `KaplanMeierFitter` on `mart_launch_price_survival`, producing the median, IQR and n.
-   - **Drill check:** a hand-written SQL version of the headline inputs (listed_at, first_cut_at, censored) must equal the mart row for row.
    - Sensitivity checks reported, not headlined: all models vs top-tier; cut thresholds of 5% and 20%.
 2. **Epoch check (G5)**. *Superseded 2026-11-16 by DECISIONS "G5 replan" (plan Task 8): we reproduce Epoch's 42×/yr from their own data and check our prices against theirs observation by observation. The trend band below is kept for history.* *Builder-check resolution, my call:* replicate the method that matches ours.
    - **Not** "The plunging price of thought" (13×/yr). That paper uses transcript costs, not list prices.
@@ -308,18 +306,13 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
    - A 429 gets at most 2 retries with backoff. After that, stop and resume later from the cache.
 8. **Ledger:** `evals/ledger.csv` with ts, model_id, arm, question_id, in/out tokens, est_cost_usd, cache_hit.
 9. **Key:** `GEMINI_API_KEY` in env / `.env` (gitignored). It is never logged, and gitleaks runs in CI.
-10. **Disclosure:** free-tier prompts may be used for training (E27). The questions are about public data, and this is stated in AI_USAGE.md.
+10. **Disclosure:** free-tier prompts may be used for training (E27). The questions are about public data, and this is stated in DATA.md.
 
 **Honest bar:** the harness is verified correct. LLM accuracy is *measured*, not promised.
 
-## 14. Defensibility artifacts
+## 14. Documentation artifacts
 - **DECISIONS.md:** `choice | rejected alternative | why | E-ID`. Seeded with the council's cuts and every *(my call)* in this doc.
-- **AI_USAGE.md:** what each AI wrote, what was rejected or changed, how it was verified (tests and gates).
 - **DATA.md:** sources, licenses, attribution text, what is republished (only derived marts and Parquet exports).
-- **Drills (batched at the end, user decision v1.1):** `docs/drills/<slice>.md`, one per slice, written by the candidate without AI: its grain, one test it relies on, one failure mode.
-  - They also hand-write the SCD2 and headline SQL in `docs/drills/sql/`, and `make drill-check` diffs the results against the models.
-  - Drills never block merges. They block the **v1.0 release tag** and the candidate sharing the link.
-  - Claude prepares a drill sheet per slice, with questions only and no answers, as each slice merges.
 
 ## 15. Working protocol under usage limits
 - `docs/STATUS.md` is updated at the end of every session: done, next, blockers, resume prompt.
@@ -330,7 +323,7 @@ MetricFlow semantic models mirror these for G10 only. If G10 is cut, the definit
   1. G2: approve the crosswalk.
   2. G7: OK to create the repo and enable Pages, already approved in principle; Claude confirms before the first push.
   3. G10: the no-billing Gemini key and the pre-run check *(deferred with G10, v1.2)*.
-  4. Release: the drills.
+  4. Release: the owner approves pushing the `v1.0` tag.
 - The order of work is the gate order G0 → G9 (G10 deferred, v1.2).
 
 ## 16. Left to the builder

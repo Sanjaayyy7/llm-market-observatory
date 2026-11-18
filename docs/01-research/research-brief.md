@@ -1,55 +1,39 @@
 # Research Brief: LLM Market Observatory
 
 **Stage:** 01 Research (Bloom-style). **Date:** 2026-11-10. **Status:** v1, verification pass appended below.
-**Raw reports:** `reports/01-hiring-bar.md`, `reports/02-landscape-datasets.md`, `reports/03-method-and-stack.md`, `reports/04-verification.md`.
+**Raw reports:** `reports/02-landscape-datasets.md`, `reports/03-method-and-stack.md`, `reports/04-verification.md`.
 
 ## Decision question
-Should a new-grad AI-engineering/evals candidate targeting **Product Analyst, Data Engineer (analytics), and Product Data Scientist** roles at FAANG and top AI startups build the **LLM Market Observatory** this week, fully AI-assisted? Or pivot to (B) Arena preference lab or (C) synthetic AI-app analytics + A/B? What scope survives?
+Should the **LLM Market Observatory** be built this week, fully AI-assisted, as a public data product for analysts, developers choosing providers and researchers? Or pivot to (B) Arena preference lab or (C) synthetic AI-app analytics + A/B? What scope survives?
 
-## Candidate and constraints
-- **Candidate:** new grad (UC Davis), background in AI engineering and LLM evals, aiming for product-facing data roles. One project must flex across Product Analyst, DE (analytics), and Product DS.
+## Constraints
 - **Deadline:** end of this week, Sun 2026-11-15.
-- **Build mode:** the entire project is implemented, tested, and documented by AI (Claude Code primarily). The candidate works on it full-time. The binding constraint is Claude usage limits (5-hour session windows plus a weekly cap), not the candidate's hours. Plans state order and gates, never hour estimates.
-- **Budget:** $0 tooling. The one exception is the candidate's own Gemini API credits, which are real money: every call must be worth it, verified, and capped.
-- **Output:** a public GitHub repo plus a static dashboard. Nothing may expire before recruiters look.
+- **Build mode:** the entire project is implemented, tested, and documented by AI (Claude Code primarily). The binding constraint is Claude usage limits (5-hour session windows plus a weekly cap), not working hours. Plans state order and gates, never hour estimates.
+- **Budget:** $0 tooling. The one exception is the owner's own Gemini API credits, which are real money: every call must be worth it, verified, and capped.
+- **Output:** a public GitHub repo plus a static dashboard. Nothing may expire after publication.
 
 ## The idea under test
 A daily-refreshing warehouse that answers: **"What does LLM quality cost, how fast is it falling, and does it move developer adoption?"**
 - **Analyst slice:** price per Arena-Elo point by tier, open vs closed gap, lag from launch to first price cut. Dashboard plus decision memo.
 - **DE slice:** ingestion -> staging -> marts with declared grain, an SCD2 price dimension, incremental facts, tests and contracts, freshness SLA, CI plus daily cron.
-- **Product DS slice:** event study or synthetic control. Do model launches and price cuts lift PyPI downloads of provider SDKs?
+- **Causal slice:** event study or synthetic control. Do model launches and price cuts lift PyPI downloads of provider SDKs?
 - **AI-native slice:** an "ask the observatory" agent over a MetricFlow semantic layer, plus an eval suite comparing semantic-layer access with raw text-to-SQL.
 
 ## Evidence table
 Confidence: H = primary source, read directly. M = mirror, vendor-run survey, or hand tally. L = secondary or opinion.
 
-### Hiring signals
+### Practitioner surveys
 
 | ID | Claim | Source | Date | Conf |
 |---|---|---|---|---|
-| E1 | Across 42 postings, all four role flavors share SQL, data modeling and one-definition metrics. Product DS postings: experimentation 11/12, causal 8/12, LLM/AI 8/12 (evals 4/12). | `reports/01-hiring-bar.md` (42 postings, tallied by hand, ±1) | 2025-26 | M |
-| E2 | Meta DE Product Analytics asks for SQL/ETL/modeling, owning SLAs, logging frameworks and "cost-benefit tradeoffs". AI appears only as a preferred skill. | https://jobfound.org/job/meta-is-hiring-for-data-engineer-product-analytics-united-states-remote-usa-3-november-2026 | 2026-11-03 | M |
-| E3a | Anthropic Recruiting Analytics DE asks for dimensional models with SCDs, dbt and "semantic layers for data agents". | https://job-boards.greenhouse.io/anthropic/jobs/5424111008 | 2026-09-17 | H |
-| E3b | Anthropic DS Product asks for experiments and synthetic controls, plus defining core metrics. | https://job-boards.greenhouse.io/anthropic/jobs/5182605008 | 2026-08-24 | H |
-| E3c | Snowflake Staff Analyst wants work built "AI-first", a verified query library and SQL-accuracy evals. | https://careers.wing.vc/companies/snowflake/jobs/75596844-staff-analyst-finance-analytics-ai | ~2026-Q1 | M |
-| E3d | Google DS Search AI asks for auto-rater evaluations and "LLM-based evaluation and causal inference". | https://jobs.anitab.org/companies/google-2-6e248a84-5b9b-4601-aff7-7c2e9e285b9c/jobs/98500058-data-scientist-product-search-ai-experiences | 2026-10-30 | M |
 | E4 | dbt State of AE 2026 (n=363): 72% prioritize AI-assisted coding vs 24% AI testing/observability. 71% fear hallucinated or incorrect data reaching stakeholders. | https://www.getdbt.com/blog/new-dbt-labs-report-finds-ai-driven-acceleration-is-outpacing-trust-and-governance | 2026-04-14 | M (vendor) |
-| E5a | 29% of US hiring managers have received AI-generated portfolio projects, and 86% expect verification to get harder. The concern is authenticity, not AI use. | https://resumegenius.com/blog/job-hunting/ai-impact-on-hiring-2026 | 2026-07-14 | L |
-| E5b | 62% of engineering leaders prohibit AI in technical interviews. | https://karat.com/engineering-interview-trends-2026/ | 2026-01-07 | M |
-| E5c | Anthropic: complete interviews without Claude unless told otherwise. | https://www.anthropic.com/candidate-ai-guidance | 2025-07-10 | H |
-| E13 | Practical Data survey (n=1,101): Kimball-style modeling 27.8%, self-managed Airflow 22.9%, 82% use AI daily. | https://joereis.github.io/practical_data_data_eng_survey | 2026-02 | M |
 | E14 | Stack Overflow 2025: 84% use or plan to use AI, 46% distrust its accuracy, 66% cite "almost right" answers. | https://survey.stackoverflow.co/2025/ai | 2025 | H |
-| E16 | In an agency survey of 41 hiring managers, AI-skill interviews use live sessions (46%), review tasks (27%), work walkthroughs (15%) and AI-allowed take-homes with a debrief (10%). | https://www.hirewithnear.com/insights/how-to-interview-developers-for-ai-skills | 2026-10-16 | L |
-| E17 | OpenAI Core Experimentation asks for CUPED, sequential testing, SRM detection and heterogeneous treatment effects. | https://jobs.glynncapital.com/companies/openai/jobs/78766751-data-scientist-core-experimentation | 2025-26 | M |
-| E18 | Airbnb Senior Staff DE asks for trusted metrics, on-call for owned datasets and measuring AI unit economics. | https://careers.airbnb.com/positions/8224032 | 2026-11-10 | H |
-| E19 | Perplexity AE asks for data contracts, tests, warehouse cost management and an "AI-readable" warehouse. | https://jobs.accel.com/companies/perplexity-2/jobs/68367031-member-of-data-staff-analytics-engineer | 2026-02 | M |
 
-### Portfolio landscape
+### Project landscape
 
 | ID | Claim | Source | Date | Conf |
 |---|---|---|---|---|
 | E6 | Oversaturated topics: Titanic (107k GitHub repos), Superstore (38k), Netflix (25k), NYC taxi (12.6k). All 30 DataCamp projects use static snapshots with no tests or modeling layer. | https://www.datacamp.com/blog/data-analytics-projects-all-levels ; https://api.github.com/search/repositories?q=titanic | 2026-02-27 / 2026-11-10 | H (counts) |
-| E7 | Praised projects share: one surprising specific number, one-command rebuild, a refreshing artifact, written metric definitions and caveats, a ground-truth check. Weak AI-topic Show HNs were criticized because their metrics didn't mean what they claimed (e.g. "Elo is relative"). | https://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/ ; https://duckdb.org/2022/10/12/modern-data-stack-in-a-box ; https://hn.algolia.com/api/v1/items/48130711 ; https://datatalksclub.github.io/podwiki/wiki/analytics-engineering-portfolio-projects/ | various | M (inference) |
 
 ### Data sources and licensing
 
@@ -95,25 +79,23 @@ Source: `reports/04-verification.md` §10, all accessed 2026-11-10. The gap is *
 2. **Adoption joined to price and quality**, studied causally around price cuts and launches.
 3. A **semantic layer plus an evaluated question-answering agent** over those metrics. No competitor has either.
 
-**Implication:** "how fast is quality-adjusted price falling" is not novel (Epoch owns it). It becomes a **ground-truth check**: reproduce Epoch's number (E7 pattern). The centerpiece shifts to **adoption response**.
+**Implication:** "how fast is quality-adjusted price falling" is not novel (Epoch owns it). It becomes a **ground-truth check**: reproduce Epoch's number. The centerpiece shifts to **adoption response**.
 
 ## Risks
 | ID | Risk | Why it matters | Early mitigation idea |
 |---|---|---|---|
-| R1 | Authenticity / defensibility of a fully AI-built project | E5a-c: interviewers probe without AI | DECISIONS.md, AI_USAGE.md, grilling drill, hand-rewrite of core SQL |
 | R2 | Entity resolution: model names differ across sources | Wrong joins break every metric | Curated mapping seed + uniqueness/coverage tests |
 | R3 | Competitor overlap on price-vs-quality charts | Weakens the "surprising number" | Differentiate on adoption/causal angle + evaluated agent |
-| R4 | Weak causal identification: downloads are noisy (CI), launches cluster | Product DS reviewers will attack it | Pre-register method, placebo tests, honest null results |
+| R4 | Weak causal identification: downloads are noisy (CI), launches cluster | Reviewers will attack it | Pre-register method, placebo tests, honest null results |
 | R5 | Licensing / terms | Public repo republishes data | Use CC BY / Apache / MIT sources only, with attribution |
-| R6 | Scope vs Claude usage limits | Unfinished project = no signal | Milestones, cut order, STATUS.md handoff |
+| R6 | Scope vs Claude usage limits | Unfinished project = nothing to use | Milestones, cut order, STATUS.md handoff |
 | R7 | Gemini spend and accuracy | Real money; the user wants zero waste | Offline-first harness, cache, caps, smoke test, ledger |
 | R8 | Tool churn (DuckDB 2.0, dbt v2) | Version mismatch breaks the build | Pin versions; verify compatibility first |
-| R9 | Misreading Arena Elo (relative, category-dependent) | E7: the main critique of trackers | Use within-snapshot ranks/percentiles, documented caveats |
+| R9 | Misreading Arena Elo (relative, category-dependent) | The main critique of trackers | Use within-snapshot ranks/percentiles, documented caveats |
 | R10 | Source cadence unknown (Arena history) | "Daily refresh" could be a lie | Measure actual freshness; SLA set to the real cadence |
 
 ## Not verified (as of v1)
 See the verification pass below. Also unverified:
-- How hiring managers value this specific project type: no primary source exists.
 - Stripe and Ramp live postings.
 - Meta's official DE prep pages.
 

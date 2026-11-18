@@ -34,7 +34,7 @@
 
 ### Reusable manual council template (my synthesis of both)
 
-1. **Frame (main agent).** Write one decision question, a scope boundary and any hard constraints. For your project: "Which $0 stack and scope maximize hiring signal in 7 days?"
+1. **Frame (main agent).** Write one decision question, a scope boundary and any hard constraints. For your project: "Which $0 stack and scope best serve the product in 7 days?"
 2. **Research sprint (one subagent).** Produce `research-brief.md` with these sections:
    - Question
    - Evidence table (claim | URL | date | confidence)
@@ -47,7 +47,7 @@
      - Contrarian: why this fails.
      - First principles: rebuild from constraints.
      - Expansionist: bigger upside.
-     - Outsider: a hiring manager's or non-expert's read.
+     - Outsider: a non-expert's read.
      - Executor: the day-by-day plan and what to cut.
    - Memo format (at most 400 words): Position · 3 strongest arguments · Key risk · What would change my mind · Recommendation.
 4. **Anonymize (main agent).** Shuffle the memos, relabel them A–E, and keep the mapping private.
@@ -97,36 +97,36 @@
 
 ### Stack comparison table
 
-Setup times are my estimates for a solo developer who already knows SQL and Python. Hiring-signal ratings are evidence where a source is cited, otherwise my judgment (J).
+Setup times are my estimates for a solo developer who already knows SQL and Python.
 
-| Tool | What it does | Version · license (date) | $0 limits | Setup (est.) | 2026 hiring signal |
-|---|---|---|---|---|---|
-| dbt v1 / dbt v2 | SQL transforms, tests, docs | dbt-core 1.12.6, Apache ([PyPI](https://pypi.org/project/dbt-core/), 2026-10-14). `dbt` 2.0.11, proprietary but free ([PyPI](https://pypi.org/project/dbt/), 2026-11-03). DuckDB adapter is GA in v2, CLI only ([upgrade doc](https://docs.getdbt.com/docs/dbt-versions/dbt-upgrade/upgrading-to-v2), 2026-10-29) | Free locally | 1–2 h | High: dbt in 24% of 6,877 DE postings ([DEV](https://dev.to/gnana_6392e836fd500a957dc/data-engineer-skills-companies-want-in-2026-6877-posting-analysis-44p9), May 2026). Mentioning v2 signals you are current (J) |
-| SQLMesh | dbt alternative with plan/apply | 0.236.4, Apache, Linux Foundation (2026-10-22) | Free | 2–4 h | Low–medium (J) |
-| DuckDB | Embedded OLAP engine | 2.0.0, MIT ([PyPI](https://pypi.org/project/duckdb/), 2026-10-21) | Free | 0.5 h | Medium (J) |
-| dbt-duckdb | dbt adapter, supports MotherDuck | 1.11.1, Apache ([PyPI](https://pypi.org/project/dbt-duckdb/), 2026-10-26) | Free | Included above | n/a |
-| MotherDuck Lite | Hosted DuckDB | n/a | 10 GB, 10 h Pulse compute a month, 3 users ([pricing](https://motherduck.com/product/pricing/), accessed 2026-11-10) | 0.5 h | Low–medium (J) |
-| BigQuery sandbox | Google's warehouse | n/a | 10 GiB lifetime storage, 1 TiB of queries a month, 60-day table expiry, **no DML or streaming**, no card needed ([docs](https://docs.cloud.google.com/bigquery/docs/sandbox), accessed 2026-11-10) | 1 h | Medium (J) |
-| Snowflake trial | Warehouse | n/a | 30 days or $400, whichever comes first, then suspended ([docs](https://docs.snowflake.com/en/user-guide/admin-trial-account)) | 1 h | High: 31% of DE postings (DEV, May 2026). But the trial expires before recruiters look (J) |
-| Databricks Free Edition | Lakehouse | n/a | Serverless only, one 2X-Small SQL warehouse, 5 concurrent tasks, no commercial use ([docs](https://docs.databricks.com/aws/en/getting-started/free-edition-limitations), 2026-10-18) | 1–2 h | High: 29% of DE postings (DEV) |
-| Dagster | Asset orchestration | 1.13.29, Apache ([PyPI](https://pypi.org/project/dagster/), 2026-11-05) | Open source free. Dagster+ Solo $10/mo with 30-day trial ([pricing](https://dagster.io/pricing)) | 3–5 h | Medium (J) |
-| Airflow 3 | DAG orchestration | 3.4.0, Apache ([PyPI](https://pypi.org/project/apache-airflow/), 2026-11-06) | Free locally | 4–8 h | High: 29% of DE postings (DEV). Job ads ask for "Airflow 3.x" ([Wellfound](https://wellfound.com/jobs/4329192-analytics-engineer)) |
-| Prefect | Python orchestration | 3.9.2, Apache ([PyPI](https://pypi.org/project/prefect/), 2026-11-06) | Hobby: 2 seats, 5 deployments, 7-day history, 500 serverless minutes ([pricing](https://www.prefect.io/pricing)) | 2–3 h | Low–medium (J) |
-| dlt | Python ingestion | 1.32.0, Apache ([PyPI](https://pypi.org/project/dlt/), 2026-10-29) | Library is free. dltHub is paid ([pricing](https://dlthub.com/pricing)) | 1–3 h | Medium (J) |
-| MetricFlow | Semantic layer engine | Apache 2.0 from v0.209 | `mf` CLI is free locally. APIs need a paid plan (docs, 2026-09-10) | 2–4 h | Medium–high. Supported by the text-to-SQL benchmark below |
-| Cube | Semantic layer | Backend Apache, client MIT ([GitHub](https://github.com/cube-js/cube)) | Cloud Free: 5 workbooks, 1,000 requests a day ([pricing](https://cube.dev/pricing)) | 3–5 h | Medium (J) |
-| Evidence Core | BI as code | MIT, launched 2026-08-26 | Self-host. Docs conflict: static site vs Docker-only ([index](https://docs.evidence.dev) vs [self-host](https://docs.evidence.dev/self-host.md)) | 2–4 h | Medium (J) |
-| Rill | Local BI on DuckDB | v0.91.1, Apache ([releases](https://github.com/rilldata/rill/releases), "03 Nov") | Developer free locally. Cloud is paid with a $250 credit ([pricing](https://www.rilldata.com/pricing)) | 1 h | Low (J) |
-| Lightdash | BI on dbt | Open-source core | Self-host only. Cloud Pro $3,000/mo, 21-day trial ([pricing](https://www.lightdash.com/pricing)) | 3–6 h | Medium (J) |
-| Streamlit | Python app layer | Apache | Community Cloud: about 2.7 GB memory, sleeps after 12 h idle. Limits dated Feb 2024 ([docs](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app)) | 1–2 h | Medium (J) |
-| Observable Framework | Static data apps | v1.13.4 | Free hosting on GitHub Pages | 2–4 h | Low (J) |
-| dbt data and unit tests | Logic and data quality tests | Unit tests from v1.8 ([docs](https://docs.getdbt.com/docs/build/unit-tests), 2026-09-14) | Free | 1–2 h | High (J) |
-| Elementary | dbt observability | CLI 0.26.1 ([releases](https://github.com/elementary-data/elementary/releases)) | Open source free | 1–2 h | Medium (J) |
-| Soda Core 4 | Checks and contracts | ELv2, 2026-01 | Free for internal use | 2 h | Low–medium (J) |
-| GX Core | Expectations | 1.24.1 ([changelog](https://docs.greatexpectations.io/docs/changelog), 2026-10-22) | Free | 3–5 h | Medium, falling (J) |
-| ODCS + datacontract-cli | Data contracts | ODCS v3.2.0 (2026-09-08, per [BARC](https://barc.com/de/odcs-3-2-data-contract-standard/)). CLI MIT ([comparison](https://cli.datacontract.com/comparison)) | Free | 1–2 h | Medium. On the Thoughtworks Radar ([Radar](https://www.thoughtworks.com/radar/languages-and-frameworks/open-data-contract-standard-odcs)) |
-| GitHub Actions | CI | n/a | Standard runners free on public repos. Private repos on the Free plan get $12 of compute a month ([docs](https://docs.github.com/en/billing/concepts/product-billing/github-actions)) | 1–2 h | High (J) |
-| dbt MCP server | Agent access to dbt | Apache ([GitHub](https://github.com/dbt-labs/dbt-mcp)) | Self-hosted works "with or without a dbt platform account". `text_to_sql` and the Semantic Layer APIs need the platform ([docs](https://docs.getdbt.com/docs/dbt-ai/about-mcp), 2026-11-05) | 1 h | High (J): it was a dbt Summit 2026 headline |
+| Tool | What it does | Version · license (date) | $0 limits | Setup (est.) |
+|---|---|---|---|---|
+| dbt v1 / dbt v2 | SQL transforms, tests, docs | dbt-core 1.12.6, Apache ([PyPI](https://pypi.org/project/dbt-core/), 2026-10-14). `dbt` 2.0.11, proprietary but free ([PyPI](https://pypi.org/project/dbt/), 2026-11-03). DuckDB adapter is GA in v2, CLI only ([upgrade doc](https://docs.getdbt.com/docs/dbt-versions/dbt-upgrade/upgrading-to-v2), 2026-10-29) | Free locally | 1–2 h |
+| SQLMesh | dbt alternative with plan/apply | 0.236.4, Apache, Linux Foundation (2026-10-22) | Free | 2–4 h |
+| DuckDB | Embedded OLAP engine | 2.0.0, MIT ([PyPI](https://pypi.org/project/duckdb/), 2026-10-21) | Free | 0.5 h |
+| dbt-duckdb | dbt adapter, supports MotherDuck | 1.11.1, Apache ([PyPI](https://pypi.org/project/dbt-duckdb/), 2026-10-26) | Free | Included above |
+| MotherDuck Lite | Hosted DuckDB | n/a | 10 GB, 10 h Pulse compute a month, 3 users ([pricing](https://motherduck.com/product/pricing/), accessed 2026-11-10) | 0.5 h |
+| BigQuery sandbox | Google's warehouse | n/a | 10 GiB lifetime storage, 1 TiB of queries a month, 60-day table expiry, **no DML or streaming**, no card needed ([docs](https://docs.cloud.google.com/bigquery/docs/sandbox), accessed 2026-11-10) | 1 h |
+| Snowflake trial | Warehouse | n/a | 30 days or $400, whichever comes first, then suspended ([docs](https://docs.snowflake.com/en/user-guide/admin-trial-account)) | 1 h |
+| Databricks Free Edition | Lakehouse | n/a | Serverless only, one 2X-Small SQL warehouse, 5 concurrent tasks, no commercial use ([docs](https://docs.databricks.com/aws/en/getting-started/free-edition-limitations), 2026-10-18) | 1–2 h |
+| Dagster | Asset orchestration | 1.13.29, Apache ([PyPI](https://pypi.org/project/dagster/), 2026-11-05) | Open source free. Dagster+ Solo $10/mo with 30-day trial ([pricing](https://dagster.io/pricing)) | 3–5 h |
+| Airflow 3 | DAG orchestration | 3.4.0, Apache ([PyPI](https://pypi.org/project/apache-airflow/), 2026-11-06) | Free locally | 4–8 h |
+| Prefect | Python orchestration | 3.9.2, Apache ([PyPI](https://pypi.org/project/prefect/), 2026-11-06) | Hobby: 2 seats, 5 deployments, 7-day history, 500 serverless minutes ([pricing](https://www.prefect.io/pricing)) | 2–3 h |
+| dlt | Python ingestion | 1.32.0, Apache ([PyPI](https://pypi.org/project/dlt/), 2026-10-29) | Library is free. dltHub is paid ([pricing](https://dlthub.com/pricing)) | 1–3 h |
+| MetricFlow | Semantic layer engine | Apache 2.0 from v0.209 | `mf` CLI is free locally. APIs need a paid plan (docs, 2026-09-10) | 2–4 h |
+| Cube | Semantic layer | Backend Apache, client MIT ([GitHub](https://github.com/cube-js/cube)) | Cloud Free: 5 workbooks, 1,000 requests a day ([pricing](https://cube.dev/pricing)) | 3–5 h |
+| Evidence Core | BI as code | MIT, launched 2026-08-26 | Self-host. Docs conflict: static site vs Docker-only ([index](https://docs.evidence.dev) vs [self-host](https://docs.evidence.dev/self-host.md)) | 2–4 h |
+| Rill | Local BI on DuckDB | v0.91.1, Apache ([releases](https://github.com/rilldata/rill/releases), "03 Nov") | Developer free locally. Cloud is paid with a $250 credit ([pricing](https://www.rilldata.com/pricing)) | 1 h |
+| Lightdash | BI on dbt | Open-source core | Self-host only. Cloud Pro $3,000/mo, 21-day trial ([pricing](https://www.lightdash.com/pricing)) | 3–6 h |
+| Streamlit | Python app layer | Apache | Community Cloud: about 2.7 GB memory, sleeps after 12 h idle. Limits dated Feb 2024 ([docs](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app)) | 1–2 h |
+| Observable Framework | Static data apps | v1.13.4 | Free hosting on GitHub Pages | 2–4 h |
+| dbt data and unit tests | Logic and data quality tests | Unit tests from v1.8 ([docs](https://docs.getdbt.com/docs/build/unit-tests), 2026-09-14) | Free | 1–2 h |
+| Elementary | dbt observability | CLI 0.26.1 ([releases](https://github.com/elementary-data/elementary/releases)) | Open source free | 1–2 h |
+| Soda Core 4 | Checks and contracts | ELv2, 2026-01 | Free for internal use | 2 h |
+| GX Core | Expectations | 1.24.1 ([changelog](https://docs.greatexpectations.io/docs/changelog), 2026-10-22) | Free | 3–5 h |
+| ODCS + datacontract-cli | Data contracts | ODCS v3.2.0 (2026-09-08, per [BARC](https://barc.com/de/odcs-3-2-data-contract-standard/)). CLI MIT ([comparison](https://cli.datacontract.com/comparison)) | Free | 1–2 h |
+| GitHub Actions | CI | n/a | Standard runners free on public repos. Private repos on the Free plan get $12 of compute a month ([docs](https://docs.github.com/en/billing/concepts/product-billing/github-actions)) | 1–2 h |
+| dbt MCP server | Agent access to dbt | Apache ([GitHub](https://github.com/dbt-labs/dbt-mcp)) | Self-hosted works "with or without a dbt platform account". `text_to_sql` and the Semantic Layer APIs need the platform ([docs](https://docs.getdbt.com/docs/dbt-ai/about-mcp), 2026-11-05) | 1 h |
 
 ### AI in analytics: evidence
 
@@ -140,7 +140,6 @@ Setup times are my estimates for a solo developer who already knows SQL and Pyth
   - 72% prioritize AI-assisted coding.
   - 71% worry about hallucinated outputs.
   - Only 24% prioritize AI-assisted pipeline management.
-  - This gap is a portfolio angle: an analytics agent shipped *with* evals.
 
 ### Recommended $0 one-week stack (two alternatives)
 
@@ -158,12 +157,12 @@ Setup times are my estimates for a solo developer who already knows SQL and Pyth
   - Day 5: CI and contracts.
   - Day 6: app layer.
   - Day 7: agent, evals and README.
-- Mention the dbt v2 migration in the README; that is the 2026 signal.
+- Mention the dbt v2 migration in the README.
 
 **B. Cloud-warehouse signal**
 
 - **Pipeline:** dlt → MotherDuck Lite (pin `duckdb<2`) or BigQuery sandbox → dbt.
-- **Orchestration:** Airflow 3.4 run locally. Show the DAG in a screenshot and the README, because job ads name Airflow 3.x.
+- **Orchestration:** Airflow 3.4 run locally. Show the DAG in a screenshot and the README.
 - **Quality:** Elementary report (≥0.23.4).
 - **App and CI:** Streamlit, GitHub Actions.
 - **BigQuery caveat (inference):** BigQuery sandbox has no DML, so dbt incremental merges and snapshots likely fail. Use table and view materializations only.
@@ -172,7 +171,6 @@ Setup times are my estimates for a solo developer who already knows SQL and Pyth
 ## Where evidence is thin
 
 - **Bloom:** no published templates for the brief, PRD or design.md sections. No lens prompts and no sample memos or verdicts. The council behavior cannot be tested without beta access.
-- **Hiring signal:** the posting percentages come from one blog analysis, read only at search-snippet level. Nothing quantifies demand for semantic layers, contracts or BI-as-code tools. Ratings marked (J) are my judgment.
 - **dbt v2 licensing conflict:** press coverage says both editions are Apache 2.0, but the docs say `dbt` is proprietary. The PyPI classifier still says "4 - Beta" despite the GA announcement.
 - **Unconfirmed points:**
   - Evidence Core: static hosting vs Docker-only.
