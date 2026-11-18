@@ -41,14 +41,16 @@
 - **`60818f9`, test harness.** The Codex Adoption test clicked the clean URL `./adoption`, which the stdlib test server 404s (Codex used in-memory routes). It now asserts the href and loads `adoption.html`.
 - **`ddfacc3`, live data.** Replay 648 days; same 105 models and 9 cuts; KM 9.522%.
 - **`7bcf6dc`, `bd767d2`, review fixes.** Independent Opus review: 0 BLOCK, 5 WARN, 4 fixed, 1 logged below.
+- **`2d1603f` (builder, Sonnet), `5c026ab`.** WARN 2 closed: the placebo chart label states its pool (n, min, max) and the test checks it against `placebo.parquet`. Negative control re-run by the co-founder: filter `!==` → fails, restored → passes.
+- **Live-site check.** The full Playwright suite against the live Pages URL: 45 passed.
 - **Publish (owner S1).** Pushed `bc69e71..9c51754`; CI and Pages green. First `refresh.yml` run green; bot commit `a1e77d6` and its Pages run green. Weekly runs need no further approval; a run that fails stops before commit and dispatch.
 
 ## Debt (not blocking)
-- Adoption smoke test checks that the placebo x-domain changes between groups, not that it equals the selected group's range (review WARN 2; the filter is one equality at `site/src/adoption.md:54`).
 
 - The order of `epoch_check.json` `spot_check` rows comes from an unordered `select distinct` (`analysis/epoch_check.py:283`, closed G5 code). It churns bytes, not content.
 - 11 build-time `npm audit` findings, all accepted (DECISIONS 2026-11-18).
-- 2 NumPy DeprecationWarnings in `tests/analysis/test_event_study.py`. The 80% coverage tool has not been run.
+- Scheduled refresh: GitHub disables a public repo's schedule after 60 days without "repository activity" and does not define the term. Weekly bot data commits are the only activity; whether they count is UNVERIFIED. The Methods page shows the stamp age; recover with `gh workflow enable refresh.yml`. No keepalive (DECISIONS 2026-11-18).
+- 2 NumPy DeprecationWarnings in `tests/analysis/test_event_study.py`. Coverage (2026-11-18, `uv run --with pytest-cov`, not a project dependency): 83% of `analysis/` + `ingest/`; lowest `event_study.py` 66% (`main()` runs only in `make analyze`).
 - Earlier audit: incremental replay does not restore missing historical partitions; freshness checks the fetch time, not the age of the last fetch.
 
 ## Pitfalls (do not repeat them)
