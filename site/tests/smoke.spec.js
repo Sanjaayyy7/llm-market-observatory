@@ -62,7 +62,9 @@ test("methods: km-chart is a labelled svg", async ({page}) => {
 test("adoption: renders the exported verdict, paths and matched placebo", async ({page}, info) => {
   const study = JSON.parse(readFileSync(new URL("../src/data/event_study.json", import.meta.url), "utf8"));
   await page.goto("index.html");
-  await page.getByRole("main").getByRole("link", {name: "Adoption", exact: true}).click({timeout: 5000});
+  // Pages serves the clean URL; the stdlib test server does not, so assert the link and load the built file.
+  await expect(page.getByRole("main").getByRole("link", {name: "Adoption", exact: true})).toHaveAttribute("href", "./adoption");
+  await page.goto("adoption.html");
   await expect(page.getByTestId("adoption-verdict")).toHaveText(study.verdict);
   await expect(page.getByRole("link", {name: "Pre-registration"})).toHaveAttribute("href", `https://github.com/Sanjaayyy7/llm-market-observatory/commit/${study.prereg_commit}`);
 
