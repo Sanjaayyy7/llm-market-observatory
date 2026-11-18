@@ -78,3 +78,15 @@ models:
       - {name: downloads, data_tests: [not_null]}
     data_tests:
       - unique: {arguments: {column_name: "(event_id || '|' || sdk_group || '|' || rel_day)"}}
+  - name: fct_arena_rank
+    columns:
+      - {name: canonical_model_id, data_tests: [not_null]}
+      - {name: publish_date, data_tests: [not_null]}
+      - {name: rank, data_tests: [not_null]}
+      - {name: rank_percentile, data_tests: [not_null]}
+      - {name: method_era, data_tests: [not_null]}
+    data_tests:
+      - unique: {arguments: {column_name: "(canonical_model_id || '|' || publish_date)"}}
+  - name: source_freshness
+    columns:
+      - {name: source, data_tests: [unique, not_null]}

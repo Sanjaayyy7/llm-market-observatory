@@ -34,6 +34,3 @@ models:
       - {name: model_slug, data_tests: [not_null]}
     data_tests:
       - unique: {arguments: {column_name: "(run_date || '|' || platform || '|' || model_slug)"}}
-  - name: source_freshness
-    columns:
-      - {name: source, data_tests: [unique, not_null]}
