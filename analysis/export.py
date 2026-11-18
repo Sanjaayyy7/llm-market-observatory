@@ -122,10 +122,11 @@ def export_site(warehouse: Path, out: Path, *, exports: Path = ROOT / "exports",
             "litellm_sha7": stamp.litellm_sha7, "run_ts": stamp.run_ts.isoformat()}, indent=2))
         for f in COPIED:
             shutil.copy2(exports / f, out / f)
-        for name, rel in PARQUETS.items():
-            c.execute(f"copy (select * from {rel}) to '{out / name}.parquet' (format parquet)")
-        c.execute(f"copy ({REROUTE_SQL}) to '{out / 'reroute_lag.parquet'}' (format parquet)")
-        c.execute(f"copy ({UNCOVERED_SQL}) to '{out / 'uncovered.parquet'}' (format parquet)")
+        # order by all: a rebuilt warehouse may scan rows in another order; committed Parquet must not churn
+        queries = {**{name: f"select * from {rel}" for name, rel in PARQUETS.items()},
+                   "reroute_lag": REROUTE_SQL, "uncovered": UNCOVERED_SQL}
+        for name, q in queries.items():
+            c.execute(f"copy (select * from ({q}) order by all) to '{out / name}.parquet' (format parquet)")
         (out / "methods.json").write_text(json.dumps(methods, indent=2))
         return stamp
     finally:

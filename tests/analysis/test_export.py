@@ -80,6 +80,7 @@ def build_raw(d):
 
 
 def run(tmp_path, **kw):
+    tmp_path.mkdir(parents=True, exist_ok=True)
     wh = tmp_path / "wh.duckdb"
     build_wh(wh, **kw)
     out = tmp_path / "out"
@@ -132,3 +133,17 @@ def test_cut_incidence_equals_one_minus_km_without_competing_events():
     c = np.array([1, 1, 0, 1, 0, 1, 0, 1, 0])
     km = KaplanMeierFitter().fit(d, c)
     assert cut_incidence_365(d, c) == pytest.approx(1 - km.survival_function_.loc[:365].iloc[-1, 0], abs=1e-9)
+
+
+def test_export_bytes_do_not_depend_on_warehouse_row_order(tmp_path):
+    # A rebuilt warehouse can return the same rows in another order; the committed Parquet must not churn.
+    _, out_a = run(tmp_path / "a")
+    wh = tmp_path / "b.duckdb"
+    build_wh(wh)
+    c = duckdb.connect(str(wh))
+    c.execute("create or replace table mart_launch_price_survival as "
+              "select * from mart_launch_price_survival order by canonical_model_id desc")
+    c.close()
+    out_b = tmp_path / "out_b"
+    export_site(wh, out_b, exports=build_exports(tmp_path / "ex_b"), raw=build_raw(tmp_path / "raw_b"))
+    assert (out_a / "survival.parquet").read_bytes() == (out_b / "survival.parquet").read_bytes()
