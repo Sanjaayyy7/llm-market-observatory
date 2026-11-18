@@ -22,9 +22,14 @@ const defaultModel = pricedIds.find((id) => cutIds.has(id));
 const providers = [...new Set(pricedIds.map((id) => providerOf.get(id)))].sort();
 const usd = (x) => `$${x.toFixed(2)}`;
 const day = (d) => d.toISOString().slice(0, 10);
+const AUDIT_LABEL = {announced: "dated announcement", real_undated: "real cut, undated", unannounced: "changed, never announced",
+  no_evidence: "no provider evidence", reroute: "reroute, not a cut"};
+const auditKey = new Map(audit.map((a) => [`${a.canonical_model_id}|${+a.observed_ts}`, a]));
+const auditOf = (c) => auditKey.get(`${c.canonical_model_id}|${+c.change_ts}`);
+const auditLabel = (a) => (a ? AUDIT_LABEL[a.verdict] ?? a.verdict : "not audited");
 ```
 
-<p class="takeaway" data-testid="takeaway">${cutIds.size} of ${pricedIds.length} priced models had a recorded list-price cut; the rest had no recorded cut (corrections, listed below, are not cuts).</p>
+<p class="takeaway" data-testid="takeaway">${cutIds.size} of ${pricedIds.length} priced models had a recorded list-price cut (a drop of 10% or more in LiteLLM's price file); the audit column below shows whether a provider confirmed each one. Corrections, listed below, are not cuts.</p>
 
 ```js
 const provider = view(Inputs.select(providers, {label: "Provider", value: providerOf.get(defaultModel)}));
@@ -52,7 +57,7 @@ const chart = StepChart({
   ariaLabel: `Step chart of the blended list price of ${model}, ${series.length} daily points, ${myCuts.length} recorded cut${myCuts.length === 1 ? "" : "s"}.`
 });
 chart.setAttribute("data-testid", "price-chart");
-display(html`<p class="takeaway">${model}: ${myCuts.length ? `list price cut ${myCuts.length} time${myCuts.length === 1 ? "" : "s"}, ${myCuts.map((c) => `${pct(-c.pct)} on ${day(c.change_ts)}`).join("; ")}.` : "no recorded list-price cut."}</p>`);
+display(html`<p class="takeaway">${model}: ${myCuts.length ? `LiteLLM recorded ${myCuts.length} list-price cut${myCuts.length === 1 ? "" : "s"}: ${myCuts.map((c) => `${pct(-c.pct)} on ${day(c.change_ts)} (audit: ${auditLabel(auditOf(c))})`).join("; ")}.` : "no recorded list-price cut."}</p>`);
 display(chart);
 ```
 
@@ -61,13 +66,11 @@ display(chart);
 ## All recorded cuts
 
 ```js
-const auditKey = new Map(audit.map((a) => [`${a.canonical_model_id}|${+a.observed_ts}`, a]));
-const matched = cuts.filter((c) => auditKey.has(`${c.canonical_model_id}|${+c.change_ts}`)).length;
 const cutRows = cuts.map((c) => {
-  const a = auditKey.get(`${c.canonical_model_id}|${+c.change_ts}`);
+  const a = auditOf(c);
   return {model: c.canonical_model_id, provider: providerOf.get(c.canonical_model_id), date: day(c.change_ts),
     "from → to (USD/1M)": `${usd(c.prev_blended)} → ${usd(c.blended)}`, depth: pct(-c.pct),
-    audit: a?.verdict ?? "not audited", "days after announcement": a?.lag_days == null ? null : -a.lag_days, source: a?.source_url ?? null};
+    audit: auditLabel(a), "days after announcement": a?.lag_days == null ? null : -a.lag_days, source: a?.source_url ?? null};
 }).sort((a, b) => a.date.localeCompare(b.date));
 const link = (u) => (u ? html`<a href=${u}>source</a>` : "–");
 display(Inputs.table(cutRows, {format: {source: link, "days after announcement": (v) => v ?? "–"}, layout: "auto"}));

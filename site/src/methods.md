@@ -31,7 +31,7 @@ const link = (u) => (u ? html`<a href=${u}>source</a>` : "–");
 
 ```js
 display(HeadlineStat([`${pct(H.share_cut_365)} cut within 365 days (95% CI ${pct(H.ci_low)}–${pct(H.ci_high)}, n=${H.n}, median commit lag ${lagAfter(H.commit_lag_median_days)})`], {testid: "measurement-stat"}));
-display(html`<p class="takeaway">About ${Math.round(H.share_cut_365 * 10)} in 10 top-tier models had a list-price cut recorded within a year of listing; ${H.n_data_fix} of the ${H.n_audited} recorded first cuts could not be verified on a provider page.</p>`);
+display(html`<p class="takeaway">About ${Math.round(H.share_cut_365 * 10)} in 10 top-tier models had a list-price cut recorded within a year of listing; ${H.n_data_fix} of the ${H.n_audited} recorded first cuts have no dated statement on a provider page.</p>`);
 ```
 
 ```js
@@ -75,12 +75,12 @@ display(html`<div class="legend" data-testid="km-legend">
 
 ```js
 const V = H.verified_only;
-display(html`<p>Verified-only lower bound: ${pct(V.share_cut_365)} (95% CI ${pct(V.ci_low)}–${pct(V.ci_high)}, ${V.events} cuts). A cut that no provider page confirms counts as no change.</p>
+display(html`<p>Verified-only lower bound: ${pct(V.share_cut_365)} (95% CI ${pct(V.ci_low)}–${pct(V.ci_high)}, ${V.events} cuts). A cut without a dated provider statement counts as no change.</p>
 <p>Audit: ${H.n_data_fix} of ${H.n_audited} recorded first cuts are data fixes (no dated statement on the provider's domain).</p>
 <p>Kaplan–Meier treats a delisting or reroute as non-informative censoring, but a retirement can stand in for a cut. Of ${H.n} models, ${M.outcome_counts.still_listed} are still listed, ${M.outcome_counts.ended} ended by delisting or reroute, and ${M.outcome_counts.cut} were cut. Aalen–Johansen cut incidence at 365 days is ${(M.aj_cut_365 * 100).toFixed(2)}%, against 1 − KM ${(M.km_cut_365 * 100).toFixed(2)}%.</p>
 <p>A pinned model ID that its provider documents as now serving another model is censored at that date and never scored as a cut.</p>`);
 const top = [...reroute].sort((a, b) => b.lag_days - a.lag_days)[0];
-display(html`<p>LiteLLM can keep a retired model listed long after its provider retires it: ${top.canonical_model_id} stayed listed ${top.lag_days} days past its ${day(top.reroute_date)} reroute. Exposure ends at LiteLLM's delisting, so that extra cut-free time biases this share down.</p>`);
+display(html`<p>LiteLLM can keep a retired model listed long after its provider retires it: ${top.canonical_model_id} was delisted ${top.lag_days} days after its ${day(top.reroute_date)} reroute. Exposure ends at LiteLLM's delisting, so that extra cut-free time biases this share down.</p>`);
 display(Inputs.table(reroute.map((r) => ({model: r.canonical_model_id, "reroute date": day(r.reroute_date), "last listed": day(r.last_listed),
   "LiteLLM delisted": day(r.litellm_delisted), "lag days": r.lag_days, evidence: r.evidence_url})), {format: {evidence: link}, layout: "auto"}));
 ```
@@ -170,7 +170,7 @@ The audit compares the dates recorded in LiteLLM with dated provider announcemen
 | Model | Grain (one row per) | Notes |
 |---|---|---|
 | `stg_litellm__snapshots` | snapshot_date × model_key | from replay |
-| `stg_arena__leaderboard` | snapshot_date × arena_model × category | text configs; rank recomputed within snapshot |
+| `stg_arena__leaderboard` | config × publish_date × model_name × category | text configs; rank recomputed within each publish date |
 | `stg_epoch__models` | epoch model | metadata for the crosswalk |
 | `stg_epoch__gpqa_candidates` | model_name × obs_date | Epoch's GPQA-Diamond price observations (validation only) |
 | `stg_tokencanopy__prices` | run_date × platform × model_slug | spot-check only |
@@ -179,7 +179,7 @@ The audit compares the dates recorded in LiteLLM with dated provider announcemen
 | `dim_model_price` | model_key × valid_from | SCD2: one version per price change |
 | `fct_model_price_daily` | canonical_model_id × date | first-party, standard tier, blended 3:1; date spine from listing to delist/today |
 | `fct_price_change` | canonical_model_id × change_ts | pct change, `is_cut` (≥10%), `is_correction` |
-| `fct_arena_rank` | canonical_model_id × snapshot_date | rank, rank_percentile, method_era (Arena changed its ranking method in Jan-2024, May-2025 and Jul-2025) |
+| `fct_arena_rank` | canonical_model_id × publish_date | rank, rank_percentile, method_era (Arena changed its ranking method in Jan-2024, May-2025 and Jul-2025) |
 | `mart_launch_price_survival` | top-tier canonical_model_id | listed_at, first_cut_at, days_at_launch_price, censored |
 | `int_crosswalk_coverage` | in-scope Arena model name | covered or not |
 | `int_model_exposure` | priced canonical_model_id | listed_at, end_ts |
@@ -187,7 +187,7 @@ The audit compares the dates recorded in LiteLLM with dated provider announcemen
 | `mart_cut_audit` | audited cut | observed_ts, announced_date, lag_days, source_url (seed `seed_cut_audit.csv`) |
 | `fct_sdk_downloads_daily` | sdk_group × date | Google SDKs summed |
 | `mart_event_study_panel` | series × event_id × sdk_group × rel_day | built only after the pre-registration commit |
-| `source_freshness` | source × run_ts | rows, max_date, sla_days, is_stale |
+| `source_freshness` | source | run_ts, rows, max_date, sla_days, is_stale |
 
 **Event-date audit:** every recorded first cut is checked against the provider's own domain for a dated announcement (seed `seed_cut_audit.csv`, evidence URL per row). A cut with no such statement is a data fix.
 
@@ -195,13 +195,12 @@ The audit compares the dates recorded in LiteLLM with dated provider announcemen
 
 | Metric | Definition |
 |---|---|
-| `blended_price_per_mtok` | `(3·input + 1·output)/4 × 1e6`, first-party standard tier |
+| `blended_per_mtok` | `(3·input + 1·output)/4 × 1e6`, first-party standard tier |
 | `days_at_launch_price` | first_cut_at − listed_at (days); censored at the data end, at the final delisting (the model's last version is delisted and no later version exists; a temporary absence does not censor), or at a provider-documented reroute |
-| `share_cut_within_365d` | Kaplan–Meier 1 − S(365) over top-tier models, published here as a dataset measurement of cuts recorded in LiteLLM's price file, not as a market estimate |
+| `share_cut_365` | Kaplan–Meier 1 − S(365) over top-tier models, published here as a dataset measurement of cuts recorded in LiteLLM's price file, not as a market estimate |
 | `km_median_days_at_launch_price` | Kaplan–Meier median; not reached in this data, because fewer than half of the models had a recorded cut |
 | `cut_depth_pct` | price drop at the first cut |
-| `commit_lag_days` | announced − observed, over audited cuts; this site shows its negative, the days LiteLLM recorded a cut after the provider announced it |
-| `sdk_downloads_7d` | trailing 7-day sum of downloads, per SDK group |
+| `lag_days` | announced − observed, per audited cut (`mart_cut_audit`); the headline reports its median. This site shows its negative, the days LiteLLM recorded a cut after the provider announced it |
 
 </section>
 
