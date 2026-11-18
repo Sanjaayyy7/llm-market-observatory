@@ -5,7 +5,7 @@
     401.44
   ],
   "epoch_n": 6,
-  "reproduced_factor": 42.018998836824075,
+  "reproduced_factor": 42.018998836929896,
   "n_candidates": 36,
   "n_in_scope": 30,
   "n_compared": 27,
@@ -1495,101 +1495,10 @@
     "n_theirs_zero": 0,
     "rows": [
       {
-        "model_key": "claude-opus-4-6",
+        "model_key": "claude-sonnet-4-5",
         "metric": "in_per_mtok",
-        "ours": 5.0,
-        "theirs": 5.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "claude-haiku-4-5",
-        "metric": "in_per_mtok",
-        "ours": 1.0,
-        "theirs": 1.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3.7-flash",
-        "metric": "in_per_mtok",
-        "ours": 0.75,
-        "theirs": 0.375,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "claude-haiku-5-5",
-        "metric": "in_per_mtok",
-        "ours": 0.1,
-        "theirs": 0.1,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3.6-flash",
-        "metric": "in_per_mtok",
-        "ours": 0.75,
-        "theirs": 0.375,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "claude-fable-5",
-        "metric": "in_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.3-codex",
-        "metric": "in_per_mtok",
-        "ours": 1.75,
-        "theirs": 1.75,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-omni-1.2-flash",
-        "metric": "in_per_mtok",
-        "ours": 1.5,
-        "theirs": 1.5,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-2.5-flash-lite",
-        "metric": "in_per_mtok",
-        "ours": 0.1,
-        "theirs": 0.05,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-3.5-flash",
-        "metric": "in_per_mtok",
-        "ours": 1.5,
-        "theirs": 0.75,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5-pro",
-        "metric": "in_per_mtok",
-        "ours": 15.0,
-        "theirs": 15.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-4o",
-        "metric": "in_per_mtok",
-        "ours": 2.5,
-        "theirs": 2.5,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.4-pro",
-        "metric": "in_per_mtok",
-        "ours": 30.0,
-        "theirs": 30.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-4o-2024-08-06",
-        "metric": "in_per_mtok",
-        "ours": 2.5,
-        "theirs": 2.5,
+        "ours": 3.0,
+        "theirs": 3.0,
         "pct_diff": 0.0
       },
       {
@@ -1600,60 +1509,39 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "kimi-k3",
+        "model_key": "grok-4.5",
         "metric": "in_per_mtok",
-        "ours": 3.0,
-        "theirs": 3.0,
+        "ours": 2.0,
+        "theirs": 2.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-6-luna",
+        "model_key": "mistral-medium-3",
         "metric": "in_per_mtok",
-        "ours": 0.1,
-        "theirs": 0.05,
+        "ours": 1.5,
+        "theirs": 0.44,
+        "pct_diff": 2.409090909090909
+      },
+      {
+        "model_key": "gemini-2.5-pro",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 0.625,
         "pct_diff": 1.0
       },
       {
-        "model_key": "claude-fable-5-1",
+        "model_key": "gpt-5-nano",
         "metric": "in_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
-        "pct_diff": 0.0
+        "ours": 0.05,
+        "theirs": 0.025,
+        "pct_diff": 1.0
       },
       {
-        "model_key": "o3-pro",
-        "metric": "in_per_mtok",
-        "ours": 20.0,
-        "theirs": 20.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "claude-opus-4-7",
-        "metric": "in_per_mtok",
-        "ours": 5.0,
-        "theirs": 5.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.6-terra",
+        "model_key": "gemini-3.1-pro-preview",
         "metric": "in_per_mtok",
         "ours": 2.0,
         "theirs": 1.0,
         "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-3.5-flash-lite",
-        "metric": "in_per_mtok",
-        "ours": 0.3,
-        "theirs": 0.15,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "claude-opus-4-8",
-        "metric": "in_per_mtok",
-        "ours": 5.0,
-        "theirs": 5.0,
-        "pct_diff": 0.0
       },
       {
         "model_key": "gemini-3.1-pro-preview-customtools",
@@ -1663,24 +1551,24 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "kimi-k2.7-code",
+        "model_key": "grok-build-0.1",
         "metric": "in_per_mtok",
-        "ours": 0.95,
-        "theirs": 0.95,
+        "ours": 1.0,
+        "theirs": 1.0,
         "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.5",
-        "metric": "in_per_mtok",
-        "ours": 5.0,
-        "theirs": 2.5,
-        "pct_diff": 1.0
       },
       {
         "model_key": "claude-opus-5-5",
         "metric": "in_per_mtok",
         "ours": 4.0,
         "theirs": 4.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.20",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 1.25,
         "pct_diff": 0.0
       },
       {
@@ -1691,10 +1579,10 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "grok-4.20",
+        "model_key": "glm-5-2",
         "metric": "in_per_mtok",
-        "ours": 1.25,
-        "theirs": 1.25,
+        "ours": 1.4,
+        "theirs": 1.4,
         "pct_diff": 0.0
       },
       {
@@ -1703,132 +1591,6 @@
         "ours": 2.0,
         "theirs": 2.0,
         "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3.1-pro-preview",
-        "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 1.0,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-2.5-pro",
-        "metric": "in_per_mtok",
-        "ours": 1.25,
-        "theirs": 0.625,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "mistral-medium-3",
-        "metric": "in_per_mtok",
-        "ours": 1.5,
-        "theirs": 0.44,
-        "pct_diff": 2.409090909090909
-      },
-      {
-        "model_key": "glm-5-2",
-        "metric": "in_per_mtok",
-        "ours": 1.4,
-        "theirs": 1.4,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-4o-2024-11-20",
-        "metric": "in_per_mtok",
-        "ours": 2.5,
-        "theirs": 2.5,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.6-luna",
-        "metric": "in_per_mtok",
-        "ours": 0.2,
-        "theirs": 0.1,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5.4-nano",
-        "metric": "in_per_mtok",
-        "ours": 0.2,
-        "theirs": 0.1,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-3.1-flash-lite-preview",
-        "metric": "in_per_mtok",
-        "ours": 0.25,
-        "theirs": 0.125,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5.1",
-        "metric": "in_per_mtok",
-        "ours": 1.25,
-        "theirs": 0.625,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "codestral-2508",
-        "metric": "in_per_mtok",
-        "ours": 0.3,
-        "theirs": 0.3,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5-mini",
-        "metric": "in_per_mtok",
-        "ours": 0.25,
-        "theirs": 0.125,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5.4-mini",
-        "metric": "in_per_mtok",
-        "ours": 0.75,
-        "theirs": 0.375,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-audio-mini",
-        "metric": "in_per_mtok",
-        "ours": 0.6,
-        "theirs": 0.6,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3-flash-preview",
-        "metric": "in_per_mtok",
-        "ours": 0.5,
-        "theirs": 0.25,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "o3",
-        "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 2.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "kimi-k2.6",
-        "metric": "in_per_mtok",
-        "ours": 0.95,
-        "theirs": 0.95,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-6.2-astra",
-        "metric": "in_per_mtok",
-        "ours": 8.0,
-        "theirs": 8.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5-nano",
-        "metric": "in_per_mtok",
-        "ours": 0.05,
-        "theirs": 0.025,
-        "pct_diff": 1.0
       },
       {
         "model_key": "gpt-6-sol",
@@ -1845,24 +1607,311 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "claude-sonnet-4-5",
+        "model_key": "grok-4.7",
         "metric": "in_per_mtok",
-        "ours": 3.0,
-        "theirs": 3.0,
+        "ours": 2.0,
+        "theirs": 2.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gemini-3.1-flash-lite",
+        "model_key": "gemini-3.5-flash-lite",
+        "metric": "in_per_mtok",
+        "ours": 0.3,
+        "theirs": 0.15,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-audio-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.6,
+        "theirs": 0.6,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.7-flash",
+        "metric": "in_per_mtok",
+        "ours": 0.75,
+        "theirs": 0.375,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "o3",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "o3-pro",
+        "metric": "in_per_mtok",
+        "ours": 20.0,
+        "theirs": 20.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5-pro",
+        "metric": "in_per_mtok",
+        "ours": 15.0,
+        "theirs": 15.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-opus-4-7",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.1-flash-lite-preview",
         "metric": "in_per_mtok",
         "ours": 0.25,
         "theirs": 0.125,
         "pct_diff": 1.0
       },
       {
-        "model_key": "gpt-4.1-mini",
+        "model_key": "gpt-6.2-astra",
         "metric": "in_per_mtok",
-        "ours": 0.4,
-        "theirs": 0.4,
+        "ours": 8.0,
+        "theirs": 8.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.6-flash",
+        "metric": "in_per_mtok",
+        "ours": 0.75,
+        "theirs": 0.375,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-6",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.5-flash",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6-luna",
+        "metric": "in_per_mtok",
+        "ours": 0.1,
+        "theirs": 0.05,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-2.5-flash-lite",
+        "metric": "in_per_mtok",
+        "ours": 0.1,
+        "theirs": 0.05,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.4-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.75,
+        "theirs": 0.375,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "kimi-k3",
+        "metric": "in_per_mtok",
+        "ours": 3.0,
+        "theirs": 3.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-omni-1.2-flash",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 1.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-fable-5",
+        "metric": "in_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-fable-5-1",
+        "metric": "in_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-4-5",
+        "metric": "in_per_mtok",
+        "ours": 1.0,
+        "theirs": 1.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-5-5",
+        "metric": "in_per_mtok",
+        "ours": 0.1,
+        "theirs": 0.1,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-2024-08-06",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.3-codex",
+        "metric": "in_per_mtok",
+        "ours": 1.75,
+        "theirs": 1.75,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3-flash-preview",
+        "metric": "in_per_mtok",
+        "ours": 0.5,
+        "theirs": 0.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.25,
+        "theirs": 0.125,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "kimi-k2.6",
+        "metric": "in_per_mtok",
+        "ours": 0.95,
+        "theirs": 0.95,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-pro",
+        "metric": "in_per_mtok",
+        "ours": 30.0,
+        "theirs": 30.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "codestral-2508",
+        "metric": "in_per_mtok",
+        "ours": 0.3,
+        "theirs": 0.3,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-luna",
+        "metric": "in_per_mtok",
+        "ours": 0.2,
+        "theirs": 0.1,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.5",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 2.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.1",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 0.625,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-8",
+        "metric": "in_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.2-pro",
+        "metric": "in_per_mtok",
+        "ours": 21.0,
+        "theirs": 21.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-4-carbon",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.4",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 1.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.4-nano",
+        "metric": "in_per_mtok",
+        "ours": 0.2,
+        "theirs": 0.1,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-omni-1.1-flash",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 1.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-2024-11-20",
+        "metric": "in_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.6",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-terra",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6.1-sol",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-4o-mini-2024-07-18",
+        "metric": "in_per_mtok",
+        "ours": 0.15,
+        "theirs": 0.15,
         "pct_diff": 0.0
       },
       {
@@ -1871,6 +1920,48 @@
         "ours": 0.3,
         "theirs": 0.15,
         "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.3",
+        "metric": "in_per_mtok",
+        "ours": 1.25,
+        "theirs": 1.25,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-4-hydrogen",
+        "metric": "in_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "kimi-k2.7-code",
+        "metric": "in_per_mtok",
+        "ours": 0.95,
+        "theirs": 0.95,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-mini",
+        "metric": "in_per_mtok",
+        "ours": 0.15,
+        "theirs": 0.15,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-sol",
+        "metric": "in_per_mtok",
+        "ours": 4.0,
+        "theirs": 2.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-sonnet-4-6",
+        "metric": "in_per_mtok",
+        "ours": 3.0,
+        "theirs": 3.0,
+        "pct_diff": 0.0
       },
       {
         "model_key": "claude-opus-4-5",
@@ -1887,10 +1978,17 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "grok-4.20-multi-agent",
+        "model_key": "gpt-5.2",
         "metric": "in_per_mtok",
-        "ours": 1.25,
-        "theirs": 1.25,
+        "ours": 1.75,
+        "theirs": 0.875,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-sonnet-5-5",
+        "metric": "in_per_mtok",
+        "ours": 2.0,
+        "theirs": 2.0,
         "pct_diff": 0.0
       },
       {
@@ -1901,94 +1999,24 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "gemini-omni-1.1-flash",
-        "metric": "in_per_mtok",
-        "ours": 1.5,
-        "theirs": 1.5,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-6.1-sol",
-        "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 1.0,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5.4",
-        "metric": "in_per_mtok",
-        "ours": 2.5,
-        "theirs": 1.25,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-4-carbon",
-        "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 1.0,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-4o-mini",
-        "metric": "in_per_mtok",
-        "ours": 0.15,
-        "theirs": 0.15,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-4o-mini-2024-07-18",
-        "metric": "in_per_mtok",
-        "ours": 0.15,
-        "theirs": 0.15,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-4-hydrogen",
-        "metric": "in_per_mtok",
-        "ours": 1.5,
-        "theirs": 0.75,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "grok-4.6",
-        "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 2.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "grok-4.3",
+        "model_key": "gpt-5",
         "metric": "in_per_mtok",
         "ours": 1.25,
         "theirs": 1.25,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-5.2-pro",
+        "model_key": "gemini-3.1-flash-lite",
         "metric": "in_per_mtok",
-        "ours": 21.0,
-        "theirs": 21.0,
-        "pct_diff": 0.0
+        "ours": 0.25,
+        "theirs": 0.125,
+        "pct_diff": 1.0
       },
       {
-        "model_key": "grok-4.7",
+        "model_key": "claude-fable-5-2",
         "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 2.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "grok-4.5",
-        "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 2.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "grok-build-0.1",
-        "metric": "in_per_mtok",
-        "ours": 1.0,
-        "theirs": 1.0,
+        "ours": 8.0,
+        "theirs": 8.0,
         "pct_diff": 0.0
       },
       {
@@ -2006,20 +2034,6 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "claude-fable-5-2",
-        "metric": "in_per_mtok",
-        "ours": 8.0,
-        "theirs": 8.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.2",
-        "metric": "in_per_mtok",
-        "ours": 1.75,
-        "theirs": 0.875,
-        "pct_diff": 1.0
-      },
-      {
         "model_key": "gpt-6.1-terra",
         "metric": "in_per_mtok",
         "ours": 1.0,
@@ -2027,25 +2041,18 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "gpt-5",
+        "model_key": "grok-4.20-multi-agent",
         "metric": "in_per_mtok",
         "ours": 1.25,
         "theirs": 1.25,
         "pct_diff": 0.0
       },
       {
-        "model_key": "claude-sonnet-4-6",
+        "model_key": "gpt-4.1-mini",
         "metric": "in_per_mtok",
-        "ours": 3.0,
-        "theirs": 3.0,
+        "ours": 0.4,
+        "theirs": 0.4,
         "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.6-sol",
-        "metric": "in_per_mtok",
-        "ours": 4.0,
-        "theirs": 2.0,
-        "pct_diff": 1.0
       },
       {
         "model_key": "gpt-4.1",
@@ -2055,108 +2062,10 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "claude-sonnet-5-5",
-        "metric": "in_per_mtok",
-        "ours": 2.0,
-        "theirs": 2.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "claude-opus-4-6",
+        "model_key": "claude-sonnet-4-5",
         "metric": "out_per_mtok",
-        "ours": 25.0,
-        "theirs": 25.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "claude-haiku-4-5",
-        "metric": "out_per_mtok",
-        "ours": 5.0,
-        "theirs": 5.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3.7-flash",
-        "metric": "out_per_mtok",
-        "ours": 3.75,
-        "theirs": 1.875,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "claude-haiku-5-5",
-        "metric": "out_per_mtok",
-        "ours": 0.5,
-        "theirs": 0.5,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3.6-flash",
-        "metric": "out_per_mtok",
-        "ours": 3.75,
-        "theirs": 1.875,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "claude-fable-5",
-        "metric": "out_per_mtok",
-        "ours": 50.0,
-        "theirs": 50.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.3-codex",
-        "metric": "out_per_mtok",
-        "ours": 14.0,
-        "theirs": 14.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-omni-1.2-flash",
-        "metric": "out_per_mtok",
-        "ours": 9.0,
-        "theirs": 9.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-2.5-flash-lite",
-        "metric": "out_per_mtok",
-        "ours": 0.4,
-        "theirs": 0.2,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-3.5-flash",
-        "metric": "out_per_mtok",
-        "ours": 9.0,
-        "theirs": 4.5,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5-pro",
-        "metric": "out_per_mtok",
-        "ours": 120.0,
-        "theirs": 120.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-4o",
-        "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.4-pro",
-        "metric": "out_per_mtok",
-        "ours": 180.0,
-        "theirs": 180.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-4o-2024-08-06",
-        "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
+        "ours": 15.0,
+        "theirs": 15.0,
         "pct_diff": 0.0
       },
       {
@@ -2167,60 +2076,39 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "kimi-k3",
+        "model_key": "grok-4.5",
         "metric": "out_per_mtok",
-        "ours": 15.0,
-        "theirs": 15.0,
+        "ours": 6.0,
+        "theirs": 6.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-6-luna",
+        "model_key": "mistral-medium-3",
         "metric": "out_per_mtok",
-        "ours": 0.5,
-        "theirs": 0.25,
+        "ours": 7.5,
+        "theirs": 2.2,
+        "pct_diff": 2.4090909090909087
+      },
+      {
+        "model_key": "gemini-2.5-pro",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
         "pct_diff": 1.0
       },
       {
-        "model_key": "claude-fable-5-1",
+        "model_key": "gpt-5-nano",
         "metric": "out_per_mtok",
-        "ours": 50.0,
-        "theirs": 50.0,
-        "pct_diff": 0.0
+        "ours": 0.4,
+        "theirs": 0.2,
+        "pct_diff": 1.0
       },
       {
-        "model_key": "o3-pro",
-        "metric": "out_per_mtok",
-        "ours": 80.0,
-        "theirs": 80.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "claude-opus-4-7",
-        "metric": "out_per_mtok",
-        "ours": 25.0,
-        "theirs": 25.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.6-terra",
+        "model_key": "gemini-3.1-pro-preview",
         "metric": "out_per_mtok",
         "ours": 12.0,
         "theirs": 6.0,
         "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-3.5-flash-lite",
-        "metric": "out_per_mtok",
-        "ours": 2.5,
-        "theirs": 1.25,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "claude-opus-4-8",
-        "metric": "out_per_mtok",
-        "ours": 25.0,
-        "theirs": 25.0,
-        "pct_diff": 0.0
       },
       {
         "model_key": "gemini-3.1-pro-preview-customtools",
@@ -2230,24 +2118,24 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "kimi-k2.7-code",
+        "model_key": "grok-build-0.1",
         "metric": "out_per_mtok",
-        "ours": 4.0,
-        "theirs": 4.0,
+        "ours": 2.0,
+        "theirs": 2.0,
         "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.5",
-        "metric": "out_per_mtok",
-        "ours": 30.0,
-        "theirs": 15.0,
-        "pct_diff": 1.0
       },
       {
         "model_key": "claude-opus-5-5",
         "metric": "out_per_mtok",
         "ours": 20.0,
         "theirs": 20.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.20",
+        "metric": "out_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
         "pct_diff": 0.0
       },
       {
@@ -2258,10 +2146,10 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "grok-4.20",
+        "model_key": "glm-5-2",
         "metric": "out_per_mtok",
-        "ours": 2.5,
-        "theirs": 2.5,
+        "ours": 4.4,
+        "theirs": 4.4,
         "pct_diff": 0.0
       },
       {
@@ -2270,132 +2158,6 @@
         "ours": 10.0,
         "theirs": 10.0,
         "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3.1-pro-preview",
-        "metric": "out_per_mtok",
-        "ours": 12.0,
-        "theirs": 6.0,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-2.5-pro",
-        "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 5.0,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "mistral-medium-3",
-        "metric": "out_per_mtok",
-        "ours": 7.5,
-        "theirs": 2.2,
-        "pct_diff": 2.4090909090909087
-      },
-      {
-        "model_key": "glm-5-2",
-        "metric": "out_per_mtok",
-        "ours": 4.4,
-        "theirs": 4.4,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-4o-2024-11-20",
-        "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.6-luna",
-        "metric": "out_per_mtok",
-        "ours": 1.2,
-        "theirs": 0.6,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5.4-nano",
-        "metric": "out_per_mtok",
-        "ours": 1.25,
-        "theirs": 0.625,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gemini-3.1-flash-lite-preview",
-        "metric": "out_per_mtok",
-        "ours": 1.5,
-        "theirs": 0.75,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5.1",
-        "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 5.0,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "codestral-2508",
-        "metric": "out_per_mtok",
-        "ours": 0.9,
-        "theirs": 0.9,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5-mini",
-        "metric": "out_per_mtok",
-        "ours": 2.0,
-        "theirs": 1.0,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-5.4-mini",
-        "metric": "out_per_mtok",
-        "ours": 4.5,
-        "theirs": 2.25,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-audio-mini",
-        "metric": "out_per_mtok",
-        "ours": 2.4,
-        "theirs": 2.4,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-3-flash-preview",
-        "metric": "out_per_mtok",
-        "ours": 3.0,
-        "theirs": 1.5,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "o3",
-        "metric": "out_per_mtok",
-        "ours": 8.0,
-        "theirs": 8.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "kimi-k2.6",
-        "metric": "out_per_mtok",
-        "ours": 4.0,
-        "theirs": 4.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-6.2-astra",
-        "metric": "out_per_mtok",
-        "ours": 40.0,
-        "theirs": 40.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5-nano",
-        "metric": "out_per_mtok",
-        "ours": 0.4,
-        "theirs": 0.2,
-        "pct_diff": 1.0
       },
       {
         "model_key": "gpt-6-sol",
@@ -2412,70 +2174,252 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "claude-sonnet-4-5",
+        "model_key": "grok-4.7",
         "metric": "out_per_mtok",
-        "ours": 15.0,
-        "theirs": 15.0,
+        "ours": 6.0,
+        "theirs": 6.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gemini-3.1-flash-lite",
-        "metric": "out_per_mtok",
-        "ours": 1.5,
-        "theirs": 0.75,
-        "pct_diff": 1.0
-      },
-      {
-        "model_key": "gpt-4.1-mini",
-        "metric": "out_per_mtok",
-        "ours": 1.6,
-        "theirs": 1.6,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gemini-2.5-flash",
+        "model_key": "gemini-3.5-flash-lite",
         "metric": "out_per_mtok",
         "ours": 2.5,
         "theirs": 1.25,
         "pct_diff": 1.0
       },
       {
-        "model_key": "claude-opus-4-5",
+        "model_key": "gpt-audio-mini",
+        "metric": "out_per_mtok",
+        "ours": 2.4,
+        "theirs": 2.4,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.7-flash",
+        "metric": "out_per_mtok",
+        "ours": 3.75,
+        "theirs": 1.875,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "o3",
+        "metric": "out_per_mtok",
+        "ours": 8.0,
+        "theirs": 8.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "o3-pro",
+        "metric": "out_per_mtok",
+        "ours": 80.0,
+        "theirs": 80.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5-pro",
+        "metric": "out_per_mtok",
+        "ours": 120.0,
+        "theirs": 120.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-opus-4-7",
         "metric": "out_per_mtok",
         "ours": 25.0,
         "theirs": 25.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-audio",
+        "model_key": "gemini-3.1-flash-lite-preview",
         "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6.2-astra",
+        "metric": "out_per_mtok",
+        "ours": 40.0,
+        "theirs": 40.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "grok-4.20-multi-agent",
+        "model_key": "gemini-3.6-flash",
         "metric": "out_per_mtok",
-        "ours": 2.5,
-        "theirs": 2.5,
+        "ours": 3.75,
+        "theirs": 1.875,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-6",
+        "metric": "out_per_mtok",
+        "ours": 25.0,
+        "theirs": 25.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-6.2-sol",
+        "model_key": "gemini-3.5-flash",
         "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
+        "ours": 9.0,
+        "theirs": 4.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6-luna",
+        "metric": "out_per_mtok",
+        "ours": 0.5,
+        "theirs": 0.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-2.5-flash-lite",
+        "metric": "out_per_mtok",
+        "ours": 0.4,
+        "theirs": 0.2,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.4-mini",
+        "metric": "out_per_mtok",
+        "ours": 4.5,
+        "theirs": 2.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "kimi-k3",
+        "metric": "out_per_mtok",
+        "ours": 15.0,
+        "theirs": 15.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gemini-omni-1.1-flash",
+        "model_key": "gemini-omni-1.2-flash",
         "metric": "out_per_mtok",
         "ours": 9.0,
         "theirs": 9.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-6.1-sol",
+        "model_key": "claude-fable-5",
+        "metric": "out_per_mtok",
+        "ours": 50.0,
+        "theirs": 50.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-fable-5-1",
+        "metric": "out_per_mtok",
+        "ours": 50.0,
+        "theirs": 50.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-4-5",
+        "metric": "out_per_mtok",
+        "ours": 5.0,
+        "theirs": 5.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "claude-haiku-5-5",
+        "metric": "out_per_mtok",
+        "ours": 0.5,
+        "theirs": 0.5,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-2024-08-06",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.3-codex",
+        "metric": "out_per_mtok",
+        "ours": 14.0,
+        "theirs": 14.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3-flash-preview",
+        "metric": "out_per_mtok",
+        "ours": 3.0,
+        "theirs": 1.5,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5-mini",
+        "metric": "out_per_mtok",
+        "ours": 2.0,
+        "theirs": 1.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "kimi-k2.6",
+        "metric": "out_per_mtok",
+        "ours": 4.0,
+        "theirs": 4.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.4-pro",
+        "metric": "out_per_mtok",
+        "ours": 180.0,
+        "theirs": 180.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "codestral-2508",
+        "metric": "out_per_mtok",
+        "ours": 0.9,
+        "theirs": 0.9,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-luna",
+        "metric": "out_per_mtok",
+        "ours": 1.2,
+        "theirs": 0.6,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.5",
+        "metric": "out_per_mtok",
+        "ours": 30.0,
+        "theirs": 15.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-5.1",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 5.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-opus-4-8",
+        "metric": "out_per_mtok",
+        "ours": 25.0,
+        "theirs": 25.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.2-pro",
+        "metric": "out_per_mtok",
+        "ours": 168.0,
+        "theirs": 168.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-4-carbon",
         "metric": "out_per_mtok",
         "ours": 10.0,
         "theirs": 5.0,
@@ -2489,24 +2433,66 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "gemini-4-carbon",
+        "model_key": "gpt-5.4-nano",
+        "metric": "out_per_mtok",
+        "ours": 1.25,
+        "theirs": 0.625,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gemini-omni-1.1-flash",
+        "metric": "out_per_mtok",
+        "ours": 9.0,
+        "theirs": 9.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-4o-2024-11-20",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "grok-4.6",
+        "metric": "out_per_mtok",
+        "ours": 6.0,
+        "theirs": 6.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5.6-terra",
+        "metric": "out_per_mtok",
+        "ours": 12.0,
+        "theirs": 6.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "gpt-6.1-sol",
         "metric": "out_per_mtok",
         "ours": 10.0,
         "theirs": 5.0,
         "pct_diff": 1.0
       },
       {
-        "model_key": "gpt-4o-mini",
+        "model_key": "gpt-4o-mini-2024-07-18",
         "metric": "out_per_mtok",
         "ours": 0.6,
         "theirs": 0.6,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-4o-mini-2024-07-18",
+        "model_key": "gemini-2.5-flash",
         "metric": "out_per_mtok",
-        "ours": 0.6,
-        "theirs": 0.6,
+        "ours": 2.5,
+        "theirs": 1.25,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "grok-4.3",
+        "metric": "out_per_mtok",
+        "ours": 2.5,
+        "theirs": 2.5,
         "pct_diff": 0.0
       },
       {
@@ -2517,45 +2503,87 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "grok-4.6",
+        "model_key": "kimi-k2.7-code",
         "metric": "out_per_mtok",
-        "ours": 6.0,
-        "theirs": 6.0,
+        "ours": 4.0,
+        "theirs": 4.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "grok-4.3",
+        "model_key": "gpt-4o-mini",
         "metric": "out_per_mtok",
-        "ours": 2.5,
-        "theirs": 2.5,
+        "ours": 0.6,
+        "theirs": 0.6,
         "pct_diff": 0.0
       },
       {
-        "model_key": "gpt-5.2-pro",
+        "model_key": "gpt-5.6-sol",
         "metric": "out_per_mtok",
-        "ours": 168.0,
-        "theirs": 168.0,
+        "ours": 20.0,
+        "theirs": 10.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-sonnet-4-6",
+        "metric": "out_per_mtok",
+        "ours": 15.0,
+        "theirs": 15.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "grok-4.7",
+        "model_key": "claude-opus-4-5",
         "metric": "out_per_mtok",
-        "ours": 6.0,
-        "theirs": 6.0,
+        "ours": 25.0,
+        "theirs": 25.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "grok-4.5",
+        "model_key": "gpt-audio",
         "metric": "out_per_mtok",
-        "ours": 6.0,
-        "theirs": 6.0,
+        "ours": 10.0,
+        "theirs": 10.0,
         "pct_diff": 0.0
       },
       {
-        "model_key": "grok-build-0.1",
+        "model_key": "gpt-5.2",
         "metric": "out_per_mtok",
-        "ours": 2.0,
-        "theirs": 2.0,
+        "ours": 14.0,
+        "theirs": 7.0,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-sonnet-5-5",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-6.2-sol",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gpt-5",
+        "metric": "out_per_mtok",
+        "ours": 10.0,
+        "theirs": 10.0,
+        "pct_diff": 0.0
+      },
+      {
+        "model_key": "gemini-3.1-flash-lite",
+        "metric": "out_per_mtok",
+        "ours": 1.5,
+        "theirs": 0.75,
+        "pct_diff": 1.0
+      },
+      {
+        "model_key": "claude-fable-5-2",
+        "metric": "out_per_mtok",
+        "ours": 40.0,
+        "theirs": 40.0,
         "pct_diff": 0.0
       },
       {
@@ -2573,20 +2601,6 @@
         "pct_diff": 0.0
       },
       {
-        "model_key": "claude-fable-5-2",
-        "metric": "out_per_mtok",
-        "ours": 40.0,
-        "theirs": 40.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.2",
-        "metric": "out_per_mtok",
-        "ours": 14.0,
-        "theirs": 7.0,
-        "pct_diff": 1.0
-      },
-      {
         "model_key": "gpt-6.1-terra",
         "metric": "out_per_mtok",
         "ours": 5.0,
@@ -2594,38 +2608,24 @@
         "pct_diff": 1.0
       },
       {
-        "model_key": "gpt-5",
+        "model_key": "grok-4.20-multi-agent",
         "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
+        "ours": 2.5,
+        "theirs": 2.5,
         "pct_diff": 0.0
       },
       {
-        "model_key": "claude-sonnet-4-6",
+        "model_key": "gpt-4.1-mini",
         "metric": "out_per_mtok",
-        "ours": 15.0,
-        "theirs": 15.0,
+        "ours": 1.6,
+        "theirs": 1.6,
         "pct_diff": 0.0
-      },
-      {
-        "model_key": "gpt-5.6-sol",
-        "metric": "out_per_mtok",
-        "ours": 20.0,
-        "theirs": 10.0,
-        "pct_diff": 1.0
       },
       {
         "model_key": "gpt-4.1",
         "metric": "out_per_mtok",
         "ours": 8.0,
         "theirs": 8.0,
-        "pct_diff": 0.0
-      },
-      {
-        "model_key": "claude-sonnet-5-5",
-        "metric": "out_per_mtok",
-        "ours": 10.0,
-        "theirs": 10.0,
         "pct_diff": 0.0
       }
     ]
