@@ -68,3 +68,22 @@ def test_drill_check_detects_row_diff(wh, tmp_path, strict, capsys):
     short = FULL_HEADLINE.rstrip(";") + " where canonical_model_id = 'a'"
     assert main(wh, drills(tmp_path, headline=short), strict=strict) == 1
     assert "headline" in capsys.readouterr().out
+
+
+# ---- G6 review round 1 (reviewer WARNs 2, 6) ----
+
+@pytest.mark.parametrize("extra", [
+    " union all select 'c', '2024-01-01'::timestamptz, null, 3, true",   # a row the mart lacks
+    (" union all select canonical_model_id, listed_at, first_cut_at, days_at_launch_price, censored"
+     " from mart_launch_price_survival where canonical_model_id = 'a'"),  # an exact duplicate of a mart row
+])
+@pytest.mark.parametrize("strict", [False, True])
+def test_drill_check_detects_extra_and_duplicate_rows(wh, tmp_path, extra, strict):
+    sql = FULL_HEADLINE.rstrip(";") + extra
+    assert main(wh, drills(tmp_path, headline=sql, scd2=FULL_SCD2), strict=strict) == 1
+
+
+@pytest.mark.parametrize("tail", ["\n-- drill done by hand\n", ";\n-- done\n", ";"])
+def test_drill_sql_may_end_with_a_comment(wh, tmp_path, tail):
+    sql = FULL_HEADLINE.rstrip(";") + tail
+    assert main(wh, drills(tmp_path, headline=sql, scd2=FULL_SCD2), strict=True) == 0

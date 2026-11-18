@@ -182,3 +182,41 @@ def test_main_self_check_fails_when_mart_disagrees(tmp_path):
                         ("c", None, 366, True), ("d", None, 366, True)])
     with pytest.raises(AssertionError):
         main(db=tmp_path / "w.duckdb", out=tmp_path / "exports")
+
+
+# ---- G6 review round 1 (reviewer WARNs 1, 3, 4, 5) ----
+
+def test_km_reads_last_point_at_or_before_365_not_nearest():
+    # timeline points 300 and 370: 370 is nearer to 365, but S must be read at 300
+    r = fit_km(frame([100, 200, 300, 370] + [500] * 6, [1, 1, 1, 1] + [0] * 6))
+    assert r.method == "km"
+    assert r.share_cut_365 == pytest.approx(0.30)
+
+
+def test_exact_path_boundary_is_three_events():
+    assert fit_km(frame([10, 20, 30, 400], [1, 1, 1, 0])).method == "km"
+    assert fit_km(frame([10, 20, 400, 400], [1, 1, 0, 0])).method == "exact"
+
+
+def test_sensitivity_columns_are_r4_only():
+    s = sensitivity(sens_exposure(), changes([("m0", ts("2024-02-01"), -0.5, False)]))
+    assert list(s.columns) == ["population", "threshold", "n", "events", "share_cut_365", "ci_low", "ci_high",
+                               "method"]
+
+
+def _no_nan(token):
+    raise ValueError(f"invalid JSON constant {token}")
+
+
+def test_headline_json_is_strict_json_when_medians_differ(tmp_path):
+    # top-tier cells: no median; 'all' cells: e is cut early -> any per-cell median would mix None and a float
+    build_db(tmp_path / "w.duckdb", [("a", 3, False, True), ("b", None, True, True)])
+    main(db=tmp_path / "w.duckdb", out=tmp_path / "exports")
+    json.loads((tmp_path / "exports/headline.json").read_text(), parse_constant=_no_nan)
+
+
+def test_non_scored_audit_rows_are_ignored(tmp_path):
+    build_db(tmp_path / "w.duckdb", [("a", 3, False, True), ("b", None, True, True), ("z", 9, True, False)])
+    h = main(db=tmp_path / "w.duckdb", out=tmp_path / "exports")
+    assert (h["n_audited"], h["n_data_fix"], h["audit_data_fix_rate"]) == (2, 1, 0.5)
+    assert h["verified_only"]["events"] == 1

@@ -18,7 +18,9 @@ TARGETS = {
 
 
 def _diff_counts(con, sql: str, table: str, cols: str) -> tuple[int, int]:
-    drill, target = f"({sql.strip().rstrip(';')})", f"(select {cols} from {table})"
+    # run the file as written (trailing ';' or comments are fine), then compare as a registered relation
+    con.register("drill_result", con.sql(sql).df())
+    drill, target = "(select * from drill_result)", f"(select {cols} from {table})"
     extra = con.execute(f"select count(*) from ({drill} except all {target})").fetchone()[0]
     missing = con.execute(f"select count(*) from ({target} except all {drill})").fetchone()[0]
     return extra, missing

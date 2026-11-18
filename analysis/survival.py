@@ -80,7 +80,9 @@ def sensitivity(exposure: pd.DataFrame, changes: pd.DataFrame) -> pd.DataFrame:
     for population, top_only in (("top_tier", True), ("all", False)):
         for threshold in THRESHOLDS:
             df = con.execute(_SENS_SQL, [threshold, top_only]).df()
-            rows.append({"population": population, "threshold": threshold, **fit_km(df)._asdict()})
+            fit = fit_km(df)._asdict()
+            fit.pop("median_days")  # R4 columns only; a None/float mix would serialize as NaN
+            rows.append({"population": population, "threshold": threshold, **fit})
     con.close()
     return pd.DataFrame(rows)
 
