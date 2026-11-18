@@ -42,7 +42,7 @@ Claude Code, 2026-11-17. **G6 is closed** (KM as a dataset measurement, Methods 
 - G5's kill was re-verified at the owner's request and stands (DECISIONS "G5 kill re-verified").
 - G8–9 Steps 1–3 are done on main (prereg `67fcfb6`, then the panel and analysis). Steps 4–5 need the G7 site.
 - Next action: G7 (plan Task 10), starting with its Step 0 owner batch.
-- G7 waits on the owner's P3 batch: `nvm alias default 24` (v24.20.0 is already installed under nvm) and `brew install gitleaks`. Chromium 1234 is already cached for Playwright.
+- G7: run Node through `~/.nvm/versions/node/v24.20.0/bin` on PATH and pin `@playwright/test` 1.62.x, which uses the cached chromium 1234 (DECISIONS "G7 toolchain"). The only P3 left is `brew install gitleaks`, at Step 5, before the push.
 
 Prior audit findings (not repaired by the audit): incremental replay does not
 restore missing historical partitions when its directory and checkpoint remain;

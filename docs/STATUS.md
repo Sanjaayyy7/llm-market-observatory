@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-17 · **Now:** G7 (plan Task 10) after the owner's P3 batch (Node 24 default, gitleaks). G8–9 Steps 1–3 are on main: prereg `67fcfb6`, panel, analysis, 6 events, descriptive. Steps 4–5 (Adoption page, `make all`) follow G7 · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-17 · **Now:** G7 (plan Task 10). Steps 1–4 need no owner action (DECISIONS "G7 toolchain"); `brew install gitleaks` (P3) is needed at Step 5. G8–9 Steps 1–3 are on main: prereg `67fcfb6`, panel, analysis, 6 events, descriptive. Steps 4–5 (Adoption page, `make all`) follow G7 · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Active assistant:** Claude Code, acting as cofounder (no Codex writer active). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
