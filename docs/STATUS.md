@@ -6,7 +6,7 @@
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
 ## Done
-- [x] Research sprint → `docs/01-research/research-brief.md` (E1–E31, R1–R12)
+- [x] Research sprint → `docs/01-research/research-brief.md` (E4–E31, R2–R12)
 - [x] Council → `docs/02-council/04-chair-verdict.md` (go-with-changes)
 - [x] PRD + design v1.1 (builder check, user decisions)
 - [x] Feasibility spike → `docs/04-feasibility-spike/feasibility-spike.md`. Replay works; ~10% of top-tier models cut their price within 365 days; the event study is below its power floor

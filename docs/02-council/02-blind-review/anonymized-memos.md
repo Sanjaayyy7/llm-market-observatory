@@ -3,7 +3,7 @@ Order shuffled; identities withheld. Word cap was 400; do not credit content bey
 
 ---
 
-# Memo A  (527 words)
+# Memo A  (510 words)
 
 ## Position
 
@@ -58,7 +58,7 @@ A noisy PyPI outcome (E24) combined with crosswalk gaps produces a null or a mud
 
 ---
 
-# Memo B  (397 words)
+# Memo B  (349 words)
 
 ## Position
 
@@ -91,7 +91,7 @@ Unexplained caveats. A reader who cannot tell the grain of the price fact, why S
 
 ---
 
-# Memo C  (483 words)
+# Memo C  (440 words)
 
 ## Position
 
@@ -134,7 +134,7 @@ Reaching for a public dataset and a causal claim on top of a thin, noisy proxy (
 
 ---
 
-# Memo D  (398 words)
+# Memo D  (287 words)
 
 ## Position
 
@@ -164,7 +164,7 @@ A polished, shallow repo loses trust at the first question such as "why is this 
 
 ---
 
-# Memo E  (397 words)
+# Memo E  (326 words)
 
 ## Position
 Starting from what users of the data need, the Observatory is the right vehicle, but only if the governed price panel and its metric definitions are the centerpiece and the causal and agent slices shrink to small, defensible claims.
