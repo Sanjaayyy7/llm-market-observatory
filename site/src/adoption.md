@@ -78,9 +78,9 @@ display(html`<table class="adoption-events" tabindex="0" aria-label="SDK downloa
 
 ```js
 const undated = scoredCuts.filter((d) => d.announced_date == null).length;
-const longestLag = scoredCuts.filter((d) => d.lag_days < 0).sort((a, b) => a.lag_days - b.lag_days)[0];
+const anthropicCut = scoredCuts.find((d) => d.canonical_model_id === "claude-3-5-haiku-20241022" && d.lag_days < 0);
 const missed = study.verified_missed_cuts.map((d) => `${d.model} (${d.date})`).join(", ");
-display(html`<p class="caveat" data-testid="adoption-limits">${definition(`${undated} of ${scoredCuts.length}`)} recorded cuts lack a dated provider announcement. ${longestLag ? html`LiteLLM recorded the ${longestLag.canonical_model_id} cut ${definition(lagAfter(longestLag.lag_days))}. ` : ""}There is no window for the ${definition(study.verified_missed_cuts.length)} verified cuts LiteLLM missed: ${missed}.</p>`);
+display(html`<p class="caveat" data-testid="adoption-limits">${definition(`${undated} of ${scoredCuts.length}`)} recorded first cuts in the audit lack a dated provider announcement. ${anthropicCut ? html`LiteLLM recorded the ${anthropicCut.canonical_model_id} cut ${definition(lagAfter(anthropicCut.lag_days))}. ` : ""}There is no window for the ${definition(study.verified_missed_cuts.length)} verified cuts LiteLLM missed: ${missed}.</p>`);
 ```
 
 <p class="caveat">Cuts apply to individual models. Downloads cover provider SDKs and include CI and mirror traffic. These comparisons do not establish that price changes caused any download changes. <a href="./methods#adoption">Read the definitions and limits.</a></p>
