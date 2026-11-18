@@ -1,0 +1,81 @@
+model_name,reason_code,evidence_url
+DeepSeek-R1 (0528),alias_only,https://api-docs.deepseek.com/updates
+DeepSeek-V3.2-Exp (Thinking),alias_only,https://api-docs.deepseek.com/updates
+DeepSeek-V4-Pro Preview (High),variant_of_mapped,https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset
+DeepSeek-V4.1-Flash-20260910 (Max),no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Grok 3 Preview (02-24),candidate_key_unverified,https://github.com/BerriAI/litellm/blob/707c7493cfce501fa9da5f17fc3580e68310d947/model_prices_and_context_window.json
+Grok 4.1,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Grok 4.1 (Thinking),no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Grok 4.20 Beta 1,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Kimi K2.5 (Thinking),candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Qwen3.5-397B-A17B,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Qwen3.5-Max-Preview,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Qwen3.6-Max-Preview,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Qwen3.6-Plus,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Qwen3.7-Max-Preview,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+Qwen3.8-27B,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+deepseek-coder-v2,alias_only,https://api-docs.deepseek.com/updates
+deepseek-r1-0528,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v2.5,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v2.5-1210,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3-0324,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3.1,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3.1-terminus,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3.1-terminus-thinking,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3.1-thinking,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3.2-exp,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3.2-exp-thinking,alias_only,https://api-docs.deepseek.com/updates
+deepseek-v3.2-thinking,variant_of_mapped,https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset
+deepseek-v4-flash-high-preview,variant_of_mapped,https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset
+deepseek-v4-pro-high-20260813,variant_of_mapped,https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset
+deepseek-v4-pro-high-preview,variant_of_mapped,https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset
+deepseek-v4.1-flash-max,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+gemini-advanced-0514,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+gemma-2-27b-it,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+gemma-2-9b-it,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+gemma-3-12b-it,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+gemma-3-4b-it,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+gemma-3n-e4b-it,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+gpt-5.5-instant,variant_of_mapped,https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset
+gpt-oss-120b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+grok-2-2024-08-13,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/6e569ee0c7a5a6487e7261d7e388bc112e6bb10f/model_prices_and_context_window.json
+grok-2-mini-2024-08-13,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/6e569ee0c7a5a6487e7261d7e388bc112e6bb10f/model_prices_and_context_window.json
+grok-3-mini-high,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/707c7493cfce501fa9da5f17fc3580e68310d947/model_prices_and_context_window.json
+grok-3-preview-02-24,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/707c7493cfce501fa9da5f17fc3580e68310d947/model_prices_and_context_window.json
+grok-4-fast-chat,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/707c7493cfce501fa9da5f17fc3580e68310d947/model_prices_and_context_window.json
+grok-4.1,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+grok-4.1-thinking,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+grok-4.20-beta1,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+kimi-k2.5-instant,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+kimi-k2.5-thinking,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+mistral-small-2506,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/707c7493cfce501fa9da5f17fc3580e68310d947/model_prices_and_context_window.json
+palm-2,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/8c1563183619046d93e44dd221e7045ecf3a47ef/model_prices_and_context_window.json
+qwen-max-0919,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen1.5-110b-chat,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen1.5-14b-chat,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen1.5-32b-chat,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen1.5-72b-chat,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen2-72b-instruct,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen2.5-72b-instruct,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen2.5-coder-32b-instruct,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen2.5-max,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen2.5-plus-1127,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-235b-a22b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-235b-a22b-instruct-2507,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-235b-a22b-no-thinking,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-235b-a22b-thinking-2507,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-30b-a3b-instruct-2507,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-32b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-coder-480b-a35b-instruct,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3-max-2025-09-23,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.5-122b-a10b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.5-27b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.5-35b-a3b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.5-397b-a17b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.5-flash,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.5-max-preview,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.6-max-preview,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.6-plus,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.7-max-preview,candidate_key_unverified,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwen3.8-27b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
+qwq-32b,no_first_party_key,https://github.com/BerriAI/litellm/blob/ea987e785690b8066087896c9bed447b1cadaf00/model_prices_and_context_window.json
