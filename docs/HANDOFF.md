@@ -2,9 +2,9 @@
 
 ## Current ownership (2026-11-18)
 
-- **Next writer: Codex**, acting as co-founder. Claude Code handed over after closing G7 and publishing it (owner S1, 2026-11-18).
-- Checkout: `/Users/sanjaym/Projects/llm-market-observatory`. Branch: `main`. Codex gate branches are `codex/gN-<slug>`.
-- **Claude Code checkpoint:** the latest commit titled `docs: record Claude Code checkpoint for the Codex handoff`. Local `main` may be ahead of `origin/main`; pushing is owner gate S1. Everything after it belongs to Codex.
+- **Current writer: Codex**, acting as co-founder. Claude Code handed over after publishing G7 (owner S1, 2026-11-18).
+- Checkout: `/Users/sanjaym/Projects/llm-market-observatory`. Adoption is on `codex/g9-adoption`.
+- **Claude Code checkpoint:** `d403154`. The owner approved pushing `c011cd0` and `d403154` only. That push failed because the terminal could not resolve `github.com`. Everything after `d403154` belongs to Codex.
   Review range on return: `git log --format='%h %(trailers:key=Agent,valueonly) %s' <checkpoint>..HEAD`.
 - Never run Codex and Claude Code writers on this checkout or `data/warehouse.duckdb` at the same time.
 
@@ -22,14 +22,15 @@
 
 ## Next actions for Codex, in order
 
-1. **Verify the publish.** `gh run list --limit 5`: ci and pages should be green. `curl -sI https://sanjaayyy7.github.io/llm-market-observatory/` should return 200. If a run failed, read it with `gh run view <id> --log-failed`. Fix on a `codex/` branch. Pushing the fix is owner gate S1.
-2. **G8–9 Steps 4–5** (plan Task 11, `grep -n '^### Task 11'`):
-   - `site/src/adoption.md`, `site/src/components/EventLines.js` and `PlaceboHist.js` (design §12 item 3);
-   - add the page to `site/observablehq.config.js` and to `site/tests/smoke.spec.js`;
-   - `make all`, then `grep -c "Descriptive only: n=" site/dist/adoption.html` → `1`.
-   Data is already exported: `event_panel.parquet`, `placebo.parquet`, `event_study.json`. Then write the drill `docs/drills/g8-g9-adoption.md` and close the gate.
-3. **Task 12, weekly refresh:** `.github/workflows/refresh.yml` (cron `0 6 * * 1` plus `workflow_dispatch`). Pushing it and the first `gh workflow run refresh.yml` are owner gate S1.
-4. **Release R:** `make drill-check STRICT=1` must exit 0. The owner answers every `docs/drills/*.md` **without AI** (A1); you may quiz, never draft answers. The tag push is S1.
+1. **G8–9 closeout:** rerun `make all` where the approved sources are reachable, then `grep -c "Descriptive only: n=" site/dist/adoption.html` → `1`. Recheck the date-basis counts and audit any new top-tier first cuts before publishing. Fast-forward local `main` once the gate holds. A push beyond `d403154` requires S1 approval.
+2. **Task 12, weekly refresh:** `.github/workflows/refresh.yml` (cron `0 6 * * 1` plus `workflow_dispatch`). Pushing it and the first `gh workflow run refresh.yml` are owner gate S1.
+3. **Release R:** `make drill-check STRICT=1` must exit 0. The owner answers the drills **without AI** (A1). The tag push is S1.
+
+## Codex change record
+
+- **G7 live check.** `gh run list --limit 5` and run details returned `success` for CI `44314513004` and Pages `44314512900` at `bc69e71`. Pages returned `HTTP/2 200`. Both repo skill files were found and loaded. Codex `/skills` remains unverified because the local TUI and app server failed with `Operation not permitted`.
+- **Task 11 Steps 4–5.** `6daee7d`, `8b3b351` and this checkpoint cover the Adoption page, Plot components, navigation and smoke checks, missed-cut metadata in the event export, and `docs/drills/g8-g9-adoption.md`. From cached inputs, `make build analyze export site` passed with dbt `PASS=202 WARN=1`, six primary and three announcement-date events, and `matches_prereg=true`. Expected verdict grep `1`, actual `1`. Playwright `45 passed` at 1280/375 px and in dark mode via an in-memory route to the built files. Negative control: removing the first-cut rule failed with expected `1`, actual `0`. Restored: pass. `make ci`: ruff clean, 125 passed, dbt `PASS=197`. Scoped independent review cleared the disclosure and link findings. The placebo browser test checks that changing groups changes the chart domain. It does not compare every bin to the Parquet.
+- **Open.** `make all` stopped before the build at LiteLLM Git fetch, exit `128` (DNS), so G8–9 is still open. `make drill-check` exited `0`; `make drill-check STRICT=1` exited `2` with pending answers, as expected for A1.
 
 ## Debt (not blocking)
 

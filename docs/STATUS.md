@@ -1,8 +1,8 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-18 · **Now:** G7 is published (owner S1 2026-11-18): repo `Sanjaayyy7/llm-market-observatory` and https://sanjaayyy7.github.io/llm-market-observatory/. The first ci and pages runs are green, and the live pages render with 0 console errors. **Handed to Codex** (see HANDOFF). Next: G8–9 Steps 4–5 (Adoption page, `make all`), then Task 12 · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-18 · **Now:** G7 is live (CI and Pages succeeded, site HTTP 200). Task 11 Adoption page and drill are committed on `codex/g9-adoption`. Cached build, verdict count and Playwright passed. G8–9 closeout waits for a network-enabled `make all`. Task 12 workflow is next.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
-**Active assistant:** Claude Code, acting as cofounder (no Codex writer active). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
+**Active assistant:** Codex, acting as co-founder. See [HANDOFF.md](HANDOFF.md) for evidence and the resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
 ## Done
@@ -60,7 +60,7 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G6 | 9 | KM as a dataset measurement (Methods only) | `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; `headline.json` has `scope = "dataset_measurement"` and `validation = "failed"`; reviewer pass | design §18 G6 (fewer than 3 cuts → exact) | done: 1 − S(365) = 9.54% (95% CI 5.06–17.59%), n=105, 9 events, `scope = dataset_measurement`, `validation = failed`; verified-only 5.14% (5 events); audit data-fix rate 4/9 |
 | G5b (v1.1) | — | Pre-registered census of provider-announced list-price changes for a frozen headline set | A recall bar fixed before our series is read; this is the only route to a market headline | — | later (after R) |
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | done (merged locally): export tests 6 passed; Playwright 33 passed at 1280/375/dark, axe contrast 0; gitleaks 8.30.1 clean (100+ commits); security review + Opus review (1 BLOCK, 4 SHOULD, all resolved; re-review clean). published 2026-11-18 (S1), ci + pages green |
-| G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` prints the "Descriptive only" verdict line | kill: <8 events → descriptive | in progress: Steps 1–3 done (prereg `67fcfb6` precedes the code; k_a = 6, k_b = 3, `matches_prereg`); Steps 4–5 wait for G7 |
+| G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` succeeds and the built page has one verdict line | kill: <8 events → descriptive | Adoption and drill committed locally. Cached build: `k_a=6`, `k_b=3`, `matches_prereg=true`; verdict count `1`; 45 browser checks passed. Live `make all` blocked at LiteLLM DNS. |
 | — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit | **S1: push** | todo |
 | R | — | v1.0 release | `make drill-check STRICT=1` exits 0; tag | **A1: owner writes the drills without AI. S1: tag push** | todo |
 
