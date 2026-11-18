@@ -41,6 +41,7 @@
 - **`60818f9`, test harness.** The Codex Adoption test clicked the clean URL `./adoption`, which the stdlib test server 404s (Codex used in-memory routes). It now asserts the href and loads `adoption.html`.
 - **`ddfacc3`, live data.** Replay 648 days; same 105 models and 9 cuts; KM 9.522%.
 - **`7bcf6dc`, `bd767d2`, review fixes.** Independent Opus review: 0 BLOCK, 5 WARN, 4 fixed, 1 logged below.
+- **Publish (owner S1).** Pushed `bc69e71..9c51754`; CI and Pages green. First `refresh.yml` run green; bot commit `a1e77d6` and its Pages run green. Weekly runs need no further approval; a run that fails stops before commit and dispatch.
 
 ## Debt (not blocking)
 - Adoption smoke test checks that the placebo x-domain changes between groups, not that it equals the selected group's range (review WARN 2; the filter is one equality at `site/src/adoption.md:54`).

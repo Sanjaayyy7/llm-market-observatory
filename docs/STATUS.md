@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-18 · **Now:** G8–9 is closed on a live `make all` (Claude Code, `g9-closeout`, fast-forwarded into local `main`). Task 12 and the release wait at owner gates: **S1** to push `main` and dispatch the first `refresh.yml` run, then **A1** (drill answers without AI) and **S1** for the tag.
+**Updated:** 2026-11-18 · **Now:** G8–9 and Task 12 are closed and live (`main` pushed at `9c51754`, first refresh green with bot stamp commit `a1e77d6`). Next is the release: **A1**, the owner writes the drill answers without AI until `make drill-check STRICT=1` exits 0, then **S1** to push the `v1.0` tag.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Next assistant:** Claude Code’s `cofounder` agent, resuming from the tip of `codex/g12-refresh`. See [HANDOFF.md](HANDOFF.md) for the Codex report, approval scope and exact verification steps.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
@@ -66,7 +66,7 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G5b (v1.1) | — | Pre-registered census of provider-announced list-price changes for a frozen headline set | A recall bar fixed before our series is read; this is the only route to a market headline | — | later (after R) |
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | done (merged locally): export tests 6 passed; Playwright 33 passed at 1280/375/dark, axe contrast 0; gitleaks 8.30.1 clean (100+ commits); security review + Opus review (1 BLOCK, 4 SHOULD, all resolved; re-review clean). published 2026-11-18 (S1), ci + pages green |
 | G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` succeeds and the built page has one verdict line | kill: <8 events → descriptive | done: live `make all` exit 0, dev `PASS=204 WARN=1`; verdict count `1`; `k_a=6`, `k_b=3`, `matches_prereg=true`; Playwright 45 passed; Opus review 0 BLOCK, 4 of 5 WARN fixed, 1 logged as debt |
-| — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit and a successful Pages run | **S1: push and first dispatch** | Workflow committed; review fixed the bot commit trailer (`bd767d2`). Pins verified live (cache v5.0.4, setup-uv v10.3.3 SHA, checkout and setup-node v7); `main` unprotected; default token `read`. Hosted run pending S1. |
+| — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit and a successful Pages run | **S1: push and first dispatch** | done 2026-11-18: owner S1 approved push + dispatch. CI `44326301780` and Pages `44326301523` green at `9c51754`; refresh `44326536988` green (cold cache, `make all` on the runner), bot commit `a1e77d6` (`Agent: refresh-workflow`, new `run_ts`, LiteLLM `c030ffb`), dispatched Pages `44326837429` green. Headline and event keys unchanged; live verdict count 1 |
 | R | — | v1.0 release | `make drill-check STRICT=1` exits 0; tag | **A1: owner writes the drills without AI. S1: tag push** | todo |
 
 ## C1 checklist
@@ -77,7 +77,8 @@ Closed 2026-11-16 in plan v1.1 (`30d6f0b`, plus council fixes in `89be1be`). Eac
 - G0 P3 is done: the owner approved it, and `uv python install 3.12` installed 3.12.12 arm64. uv also linked `~/.local/bin/python3.12`, which now comes before the broken x86 `/usr/local/bin/python3.12` on PATH.
 - G7 P3 is done: the owner approved `brew install gitleaks` (8.30.1), no Node default change, cached chromium.
 - G7 S1 is done 2026-11-18: the repo was created, main pushed and Pages enabled (Actions). Author-email ruling 1a: keep the history; new commits use the GitHub noreply address.
-- Next S1: any further push, `refresh.yml`'s first dispatch (Task 12), and the release tag.
+- Task 12 S1 is done 2026-11-18: the owner approved pushing `main` (13 commits) and the first `refresh.yml` dispatch.
+- Next S1: any further push and the release tag.
 - G2 is delegated to the co-founder (evidence test); the owner gets an FYI.
 - Release: the owner writes the drills without AI.
 
