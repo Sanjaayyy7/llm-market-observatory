@@ -277,6 +277,20 @@ unit_tests:
       rows:
         - {model: m1, organization: o, publication_date: "2026-01-01", model_accessibility: API, open_model_weights: "no"}
 
+  - name: test_epoch_repeats_collapse_conflicts_drop
+    model: stg_epoch__models
+    given:
+      - input: source('raw', 'epoch')
+        format: sql
+        rows: |
+            select cast('dup' as varchar) as model, cast('o' as varchar) as organization, cast('2026-01-01' as date) as publication_date, cast('API' as varchar) as model_accessibility, cast('no' as varchar) as open_model_weights, cast('2026-11-16' as date) as run_date union all
+            select 'dup', 'o', cast('2026-01-01' as date), 'API', 'no', cast('2026-11-16' as date) union all
+            select 'conflict', 'o', cast('2026-01-01' as date), 'API', 'no', cast('2026-11-16' as date) union all
+            select 'conflict', 'o', cast('2026-02-01' as date), 'API', 'no', cast('2026-11-16' as date)
+    expect:
+      rows:
+        - {model: dup, organization: o, publication_date: "2026-01-01", model_accessibility: API, open_model_weights: "no"}
+
   - name: test_tokencanopy_first_party_pivot_dedupe
     model: stg_tokencanopy__prices
     given:
