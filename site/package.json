@@ -4,9 +4,14 @@
   "type": "module",
   "scripts": {
     "build": "OBSERVABLE_TELEMETRY_DISABLE=true observable build",
-    "dev": "OBSERVABLE_TELEMETRY_DISABLE=true observable preview"
+    "dev": "OBSERVABLE_TELEMETRY_DISABLE=true observable preview",
+    "test": "playwright test"
   },
   "dependencies": {
     "@observablehq/framework": "1.13.4"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.62.1"
   }
 }

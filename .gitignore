@@ -8,3 +8,5 @@ dbt/target/
 dbt/logs/
 .venv/
 __pycache__/
+site/test-results/
+site/playwright-report/
