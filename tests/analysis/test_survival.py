@@ -1,6 +1,6 @@
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import duckdb
@@ -21,7 +21,7 @@ def frame(durations, events):
 
 
 def ts(s):
-    return datetime.fromisoformat(s).replace(tzinfo=timezone.utc)
+    return datetime.fromisoformat(s).replace(tzinfo=UTC)
 
 
 def test_share_365_simple():
@@ -50,7 +50,7 @@ def test_exact_counts_only_events_within_365():
 
 def test_censoring_respected():
     cut = fit_km(frame([50, 60, 70, 80], [1, 1, 1, 1]))
-    cens = fit_km(frame([50, 60, 70, 80], [1, 0, 1, 1]))
+    cens = fit_km(frame([50, 60, 70, 80], [1, 1, 1, 0]))
     assert cut.share_cut_365 == 1.0
     assert cens.share_cut_365 < 1.0
     assert cens.events == 3
