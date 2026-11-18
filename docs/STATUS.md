@@ -2,7 +2,7 @@
 
 **Updated:** 2026-11-18 · **Now:** G7 is live (CI and Pages succeeded, site HTTP 200). Adoption, its drill and Task 12 weekly refresh are committed locally on `codex/g12-refresh`. G8–9 closeout waits for a network-enabled `make all`. Task 12 waits for owner S1 approval to publish and dispatch, then a green run with a new stamp.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
-**Active assistant:** Codex, acting as co-founder. See [HANDOFF.md](HANDOFF.md) for evidence and the resume action.
+**Next assistant:** Claude Code’s `cofounder` agent, resuming from the tip of `codex/g12-refresh`. See [HANDOFF.md](HANDOFF.md) for the Codex report, approval scope and exact verification steps.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
 ## Done
