@@ -3,6 +3,7 @@ export default {
   title: "LLM Market Observatory",
   root: "src",
   style: "style.css",
+  globalStylesheets: [], // drop the default Google Fonts link (dist/config.js:185): system fonts only, no third-party request
   pages: [
     {name: "Home", path: "/index"},
     {name: "Price explorer", path: "/prices"},
