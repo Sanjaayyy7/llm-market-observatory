@@ -143,7 +143,7 @@ display(html`<details><summary>All ${uncovered.length} uncovered names</summary>
 const sc = E.spot_check.rows;
 const nDiff = sc.filter((r) => Math.abs(r.pct_diff) > 0.01).length;
 const n2x = sc.filter((r) => Math.abs(r.pct_diff - 1) < 1e-9).length;
-display(html`<p>LiteLLM replay: ${M.replay_days} daily snapshots from 2023-09-06; ${M.replay_error_days} days had an unparseable price file.</p>
+display(html`<p>LiteLLM replay: ${M.replay_days} snapshot days (UTC days with at least one commit to the price file) since 2023-09-06; ${M.replay_error_days} days had an unparseable price file.</p>
 <p>tokencanopy spot-check: tokencanopy's rows for first-party platforms come from its ${M.tokencanopy_sources.join(", ")} feed, not from provider pages. ${nDiff} of ${sc.length} price fields differ from ours, ${n2x} of them by exactly 2×. We treat this as a check on that feed, not on our panel.</p>`);
 ```
 
@@ -177,7 +177,7 @@ The audit compares the dates recorded in LiteLLM with dated provider announcemen
 | `stg_pypi__downloads` | date × project | |
 | `dim_model` | canonical_model_id | from seeds |
 | `dim_model_price` | model_key × valid_from | SCD2: one version per price change |
-| `fct_model_price_daily` | canonical_model_id × date | first-party, standard tier, blended 3:1; date spine from listing to delist/today |
+| `fct_model_price_daily` | canonical_model_id × snapshot day | first-party, standard tier, blended 3:1; one row per LiteLLM snapshot day (a UTC day with at least one commit to the price file) while listed |
 | `fct_price_change` | canonical_model_id × change_ts | pct change, `is_cut` (≥10%), `is_correction` |
 | `fct_arena_rank` | canonical_model_id × publish_date | rank, rank_percentile, method_era (Arena changed its ranking method in Jan-2024, May-2025 and Jul-2025) |
 | `mart_launch_price_survival` | top-tier canonical_model_id | listed_at, first_cut_at, days_at_launch_price, censored |

@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this dataset or code, please cite it as below, and credit the upstream sources listed in docs/DATA.md."
+type: software
+title: "LLM Market Observatory"
+abstract: >-
+  A governed, tested history of first-party LLM API list prices, rebuilt day by day from
+  the git history of LiteLLM's public price file since 2023-09-06, with a labelled
+  Kaplan-Meier measurement of recorded price cuts, a pre-registered validation against
+  Epoch AI, and a descriptive SDK-adoption view.
+authors:
+  - given-names: Sanjay
+    family-names: M
+repository-code: "https://github.com/Sanjaayyy7/llm-market-observatory"
+url: "https://sanjaayyy7.github.io/llm-market-observatory/"
+license: MIT
+keywords:
+  - llm
+  - api pricing
+  - dbt
+  - duckdb
+  - survival analysis
+  - open data
