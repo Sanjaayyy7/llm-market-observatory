@@ -1,0 +1,11 @@
+#!/bin/sh
+# Every commit names the assistant that made it, so a later session can review the other's work
+# (AGENTS.md "Attribution"). Filter with: git log --format='%h %(trailers:key=Agent,valueonly) %s'
+if ! grep -qE '^Agent: (Codex|Claude Code|Human)$' "$1"; then
+  echo "commit-msg: add a trailer line 'Agent: Codex', 'Agent: Claude Code' or 'Agent: Human' (AGENTS.md)." >&2
+  exit 1
+fi
+if grep -qE '^Agent: Codex$' "$1" && ! grep -qE '^Model: .+' "$1"; then
+  echo "commit-msg: Codex commits also need 'Model: <model id>' (AGENTS.md)." >&2
+  exit 1
+fi

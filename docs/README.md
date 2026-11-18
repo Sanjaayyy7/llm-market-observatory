@@ -3,6 +3,7 @@
 Everything written so far, in the order it happened. Start with [STATUS.md](STATUS.md) for where things stand now.
 
 [HANDOFF.md](HANDOFF.md) is the shared Codex/Claude checkpoint: assistant attribution, commits, checks, unresolved findings, and the exact next action. Both assistants use the same specification and branch.
+Codex reads `AGENTS.md` (root) and the repo skills in `.agents/skills/` (`ponytail`, `cofounder-gate`). Claude Code reads `CLAUDE.md` and `.claude/agents/`. `.githooks/commit-msg` enforces the `Agent:` commit trailer for both.
 
 ## How this folder is organized
 
