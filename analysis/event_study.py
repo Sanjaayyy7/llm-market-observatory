@@ -111,6 +111,13 @@ def placebo_ratios(downloads: pd.DataFrame, n: int = N_PLACEBO, seed: int = SEED
     return out
 
 
+def placebo_share(ratio, pool: pd.Series) -> float | None:
+    """Share of placebo ratios <= the event ratio; None when there is no ratio (NaN or None) or no pool."""
+    if ratio is None or pd.isna(ratio) or pool.empty:
+        return None
+    return float((pool <= ratio).mean())
+
+
 def _clean(o):
     if isinstance(o, dict):
         return {str(k): _clean(v) for k, v in o.items()}
@@ -172,7 +179,7 @@ def main(db: Path = ROOT / "data/warehouse.duckdb", out: Path = ROOT / "exports"
     events = []
     for r in own.itertuples():
         pool = placebo.loc[placebo["sdk_group"] == r.sdk_group, "ratio"].dropna().astype(float)
-        share = None if r.ratio is None or pool.empty else float((pool <= r.ratio).mean())
+        share = placebo_share(r.ratio, pool)
         events.append({"series": r.series, "event_id": r.event_id, "event_date": r.event_date,
                        "sdk_group": r.sdk_group, "members": members.get(r.event_id, []), "ratio": r.ratio,
                        "incomplete_window": r.incomplete_window, "placebo_share_le": share,

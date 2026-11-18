@@ -87,3 +87,13 @@ def test_json_is_strict():
 
     text = to_strict_json({"a": float("nan"), "b": np.float64("nan"), "c": [1.5, None], "d": np.int64(3)})
     assert json.loads(text, parse_constant=boom) == {"a": None, "b": None, "c": [1.5, None], "d": 3}
+
+
+def test_placebo_share_is_none_without_a_ratio():
+    # G8 co-founder review: an incomplete window's ratio arrives as NaN and must not score 0.0
+    from analysis.event_study import placebo_share
+    pool = pd.Series([0.5, 1.5])
+    assert placebo_share(None, pool) is None
+    assert placebo_share(float("nan"), pool) is None
+    assert placebo_share(1.0, pd.Series([], dtype=float)) is None
+    assert placebo_share(1.0, pool) == 0.5
