@@ -23,7 +23,7 @@ ci:
 	uv run ruff check . && uv run pytest -q && cd dbt && uv run dbt build --target ci
 
 analyze:
-	uv run python -m analysis.epoch_check && uv run python -m analysis.survival
+	uv run python -m analysis.epoch_check && uv run python -m analysis.survival && uv run python -m analysis.event_study
 
 drill-check:
 	uv run python -m analysis.drill_check $(if $(STRICT),--strict)

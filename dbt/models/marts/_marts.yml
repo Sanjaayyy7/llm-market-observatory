@@ -58,3 +58,23 @@ models:
       - {name: is_data_fix, data_tests: [not_null]}
       - {name: verdict, data_tests: [not_null]}
       - {name: is_scored_event, data_tests: [not_null]}
+  - name: fct_sdk_downloads_daily
+    description: Daily PyPI downloads per SDK group (google sums both packages; control is requests), zero-filled from the group's earliest member date to the last data date.
+    columns:
+      - {name: sdk_group, data_tests: [not_null]}
+      - {name: date, data_tests: [not_null]}
+      - {name: downloads, data_tests: [not_null]}
+    data_tests:
+      - unique: {arguments: {column_name: "(sdk_group || '|' || date)"}}
+  - name: mart_event_study_panel
+    description: G8 descriptive panel, rel_day -28..+28 per anchored-cluster event (series A observed, B verified) for the event's own SDK group and, for series A, the requests control. norm is downloads over the pre-window (-28..-1) mean, null when the pre window is incomplete or its mean is 0.
+    columns:
+      - {name: series, data_tests: [not_null]}
+      - {name: event_id, data_tests: [not_null]}
+      - {name: event_date, data_tests: [not_null]}
+      - {name: sdk_group, data_tests: [not_null]}
+      - {name: rel_day, data_tests: [not_null]}
+      - {name: date, data_tests: [not_null]}
+      - {name: downloads, data_tests: [not_null]}
+    data_tests:
+      - unique: {arguments: {column_name: "(event_id || '|' || sdk_group || '|' || rel_day)"}}
