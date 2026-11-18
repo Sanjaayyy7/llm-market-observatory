@@ -30,7 +30,7 @@ the design or plan line ranges, a diff file (`git diff BASE..HEAD -- <paths> > r
 Never include your own reasoning. Resolve every BLOCK. Each fix round ends with a scoped re-review of the fix diff.
 
 ## 6. Close
-`make ci` green. Update `docs/STATUS.md` (Roadmap row and `Now:`) and the Codex change record in `docs/HANDOFF.md`. Add `docs/DECISIONS.md` rows, with `(Codex)` in the last column. Write `docs/drills/<slice>.md` with questions only (grain, one test it relies on, one failure mode), each answered `Answer: _pending_`. Put the gate evidence in the last commit's body. Then `git switch main && git merge --ff-only codex/gN-<slug>`.
+`make ci` green. Update `docs/STATUS.md` (Roadmap row and `Now:`) and the Codex change record in `docs/HANDOFF.md`. Add `docs/DECISIONS.md` rows, with `(Codex)` in the last column. Put the gate evidence in the last commit's body. Then `git switch main && git merge --ff-only codex/gN-<slug>`.
 
 ## Speed without losing quality (lessons from G0–G7)
 1. Pre-verify facts (pins, tags, URLs, live data) before implementing. Rework from wrong assumptions cost more than any build step.

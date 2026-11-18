@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-18 · **Now:** G8–9 and Task 12 are closed and live (`main` pushed at `9c51754`, first refresh green with bot stamp commit `a1e77d6`). Next is the release: **A1**, the owner writes the drill answers without AI until `make drill-check STRICT=1` exits 0, then **S1** to push the `v1.0` tag.
+**Updated:** 2026-11-18 · **Now:** G8–9 and Task 12 are closed and live (`main` pushed at `9c51754`, first refresh green with bot stamp commit `a1e77d6`). Next is the release: **S1**, the owner approves pushing the `v1.0` tag.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Next assistant:** Claude Code’s `cofounder` agent, resuming from the tip of `codex/g12-refresh`. See [HANDOFF.md](HANDOFF.md) for the Codex report, approval scope and exact verification steps.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
@@ -14,14 +14,14 @@
 - [x] Docs reorganized into chronological phase folders (2026-11-16, `22408f2`)
 - [x] C0: co-founder hired. Agents, project settings, CLAUDE.md, this roadmap (2026-11-16)
 - [x] C1: plan v1.1. Checklist 1–16 closed, mini-council resolved, 11 DECISIONS rows added (2026-11-16)
-- [x] G0: scaffold, pins, CI skeleton (2026-11-16). `uv sync --frozen && make test && make ci` → `1 passed`, dbt `PASS=4`; negative control failed then passed; drills in `docs/drills/g0-scaffold.md`
-- [x] G3a: deterministic LiteLLM replay of `main`'s first-parent history (2026-11-16). Two fresh full replays → equal `replay_hash` `b7eff1c8…d6fe` (also equal to the builder's runs and an independent scratch replay); 646 days from 2023-09-06, 0 error days; `make ci` → 22 passed, `PASS=4`; drills in `docs/drills/g3a-litellm-replay.md`
-- [x] G1: source fetchers + probes (2026-11-17 UTC). `make probe` → one probe row per source with rows > 0 (arena 2,417,362; epoch 3,716; pypi 8,926; tokencanopy 17,291; litellm 1,040,435 from G3a); `make fetch` → a `part.parquet` in all five `data/raw/<source>/`; `make ci` → 29 passed, `PASS=7`; drills in `docs/drills/g1-fetchers.md`
-- [x] G3b: staging + SCD2 `dim_model_price` (2026-11-17). Hand-worked golden (`f97f7ce`, 16 rows) matches; `make ci` → 29 passed, dbt `PASS=58`; fresh dev build `PASS=58`; dev `dim_model_price` 6,270 rows / 5,128 keys, `gpt-4` $3→$30/M at 2023-09-18 22:10:45Z; no source stale; negative controls (naive `valid_to`, PyPI `sum`→`max`) failed then passed; reviewer pass, 2 fix rounds; drills in `docs/drills/g3b-staging-scd2.md`
-- [x] G2: crosswalk, aliases, Arena rank (2026-11-17). 138 canonical models and 477 crosswalk rows; every one of the 229 manual rows has a provider-doc URL and `approved_by = cofounder`. Closed coverage 180/211 = 85.3% (≥80%, §18 kill not tripped). Overall 218/303 = 71.9%: the pre-set 90% bar FAILED; it is a warn and is disclosed (mini-council, DECISIONS). Top-tier 111 (≥30). Opus reviewer: 7 BLOCK → all fixed, re-review clean. Negative controls: an approved row with an off-domain or missing URL → `crosswalk_manual_evidence` FAIL 2, then PASS; closed threshold at 0.90 → FAIL, then PASS. `make ci` green. Drills in `docs/drills/g2-crosswalk.md`
+- [x] G0: scaffold, pins, CI skeleton (2026-11-16). `uv sync --frozen && make test && make ci` → `1 passed`, dbt `PASS=4`; negative control failed then passed
+- [x] G3a: deterministic LiteLLM replay of `main`'s first-parent history (2026-11-16). Two fresh full replays → equal `replay_hash` `b7eff1c8…d6fe` (also equal to the builder's runs and an independent scratch replay); 646 days from 2023-09-06, 0 error days; `make ci` → 22 passed, `PASS=4`
+- [x] G1: source fetchers + probes (2026-11-17 UTC). `make probe` → one probe row per source with rows > 0 (arena 2,417,362; epoch 3,716; pypi 8,926; tokencanopy 17,291; litellm 1,040,435 from G3a); `make fetch` → a `part.parquet` in all five `data/raw/<source>/`; `make ci` → 29 passed, `PASS=7`
+- [x] G3b: staging + SCD2 `dim_model_price` (2026-11-17). Hand-worked golden (`f97f7ce`, 16 rows) matches; `make ci` → 29 passed, dbt `PASS=58`; fresh dev build `PASS=58`; dev `dim_model_price` 6,270 rows / 5,128 keys, `gpt-4` $3→$30/M at 2023-09-18 22:10:45Z; no source stale; negative controls (naive `valid_to`, PyPI `sum`→`max`) failed then passed; reviewer pass, 2 fix rounds
+- [x] G2: crosswalk, aliases, Arena rank (2026-11-17). 138 canonical models and 477 crosswalk rows; every one of the 229 manual rows has a provider-doc URL and `approved_by = cofounder`. Closed coverage 180/211 = 85.3% (≥80%, §18 kill not tripped). Overall 218/303 = 71.9%: the pre-set 90% bar FAILED; it is a warn and is disclosed (mini-council, DECISIONS). Top-tier 111 (≥30). Opus reviewer: 7 BLOCK → all fixed, re-review clean. Negative controls: an approved row with an off-domain or missing URL → `crosswalk_manual_evidence` FAIL 2, then PASS; closed threshold at 0.90 → FAIL, then PASS. `make ci` green.
 - [x] G3b risk close-out (2026-11-17). Mode-rule mini-council: per-row scope kept, `delisted` redefined, Task 6 guard + final-delisting censoring added (design §5/§8 v1.2.1); Epoch ISO date parse; dead `raw_root()` macro removed. `make ci` → 30 passed, `PASS=58`
-- [x] Task 6: price facts + survival mart, with the S3 crosswalk top-up and the S8 reroute ruling (2026-11-17). `make ci` → ruff clean, 45 passed, dbt ci `PASS=133`; `make build` → `PASS=135 WARN=1` (`crosswalk_coverage_overall`, disclosed). Screen 124 canonicals: 105 top-tier (≥30, §18 kill not tripped), 7 unranked, 6 never priced; survival 105 rows, 11 first cuts, 10 within 365 days (spike ≈9), 94 censored. An independent co-founder SQL re-derivation matches the top-tier set and the 12 real cuts exactly. Negative controls: reroute censor removed → `reroute_cut_is_censored_not_scored` FAIL 1, then PASS; S3 off-domain URL → `crosswalk_manual_evidence` ERROR, then PASS; screen fix removed → `screen_counts_never_priced_and_unranked` ERROR. S8 mini-council (A′), S3 reviewer pass (no findings). Drills in `docs/drills/t6-survival-mart.md`
-- [x] G4: cut-date audit (2026-11-17). Kill tripped (7/12 data fixes) → council (3 Opus lenses) tightened the correction rules, fixed the S8 xAI seed gap → re-audit once: 4/9 scored events = 44% → fallback (observed headline with the audit rate, verified-only KM as a lower bound). Announced-cut lag median −1 day. `make ci` PASS=156, `make build` PASS=160 WARN=1. Red/green on both new correction tests. Drills in `docs/drills/g4-cut-audit.md`
+- [x] Task 6: price facts + survival mart, with the S3 crosswalk top-up and the S8 reroute ruling (2026-11-17). `make ci` → ruff clean, 45 passed, dbt ci `PASS=133`; `make build` → `PASS=135 WARN=1` (`crosswalk_coverage_overall`, disclosed). Screen 124 canonicals: 105 top-tier (≥30, §18 kill not tripped), 7 unranked, 6 never priced; survival 105 rows, 11 first cuts, 10 within 365 days (spike ≈9), 94 censored. An independent co-founder SQL re-derivation matches the top-tier set and the 12 real cuts exactly. Negative controls: reroute censor removed → `reroute_cut_is_censored_not_scored` FAIL 1, then PASS; S3 off-domain URL → `crosswalk_manual_evidence` ERROR, then PASS; screen fix removed → `screen_counts_never_priced_and_unranked` ERROR. S8 mini-council (A′), S3 reviewer pass (no findings).
+- [x] G4: cut-date audit (2026-11-17). Kill tripped (7/12 data fixes) → council (3 Opus lenses) tightened the correction rules, fixed the S8 xAI seed gap → re-audit once: 4/9 scored events = 44% → fallback (observed headline with the audit rate, verified-only KM as a lower bound). Announced-cut lag median −1 day. `make ci` PASS=156, `make build` PASS=160 WARN=1. Red/green on both new correction tests.
 - [x] G5: Epoch ground-truth check (2026-11-17). **Kill tripped.**
   - Prereg `bd9ea16` was committed alone, after the mini-council plus an evidence reviewer resolved the comparison base (`c525b10`).
   - Result: `reproduced_factor` 42.0190 (Epoch 42.02); 27/30 compared (12 agree, 6 agree_late, 3 changed_then_agrees, 6 mismatch, 3 not_in_panel); `spot_check` ok.
@@ -29,22 +29,21 @@
   - Kill council (3 Opus lenses): no market headline in v1.0; the KM ships as a labelled dataset measurement on Methods.
   - Negative control: a planted `changed_then_agrees` removal → `test_changed_then_agrees_needs_audit` FAIL, reverted → pass.
   - `make ci`: ruff clean, 78 passed, dbt ci `PASS=167`; dev build `PASS=171 WARN=1`.
-  - Drills in `docs/drills/g5-epoch-check.md`.
 
 - [x] G6: KM as a dataset measurement (2026-11-17). Methods only; no market headline (G5 kill).
   - Hand-worked golden `b0da139` (S(365) = 693/1600; Greenwood log-log) matches `fit_km` within 1e-6; lifelines 0.30.3 and statsmodels 0.15.0 agree to 1e-15.
   - Reroute sweep across 9 first-party providers: 1 new row (`gemini-3-pro-preview` → 3.1, 2026-03-09); mart effect 1 row, 308 → 111 days.
   - Exposure CTEs moved into macro `exposure_ctes()` (`155b346`); mart identical before and after (`EXCEPT ALL` both ways = 0).
   - `make analyze`: 9.54% (5.06–17.59%), n=105, 9 events, median undefined; verified-only 5.14%; data-fix rate 4/9; commit lag median −1 d. Independent statsmodels + SQL re-derivation matches. Aalen–Johansen 9.31% (competing-risk gap 0.23 pp). Sensitivity flat at 5/10/20% (every recorded drop ≥ 20%).
-  - Negative control: CI bounds flipped → `test_fit_km_matches_golden` FAIL, reverted → pass. `make drill-check` → pending line, exit 0; STRICT → exit 1.
+  - Negative control: CI bounds flipped → `test_fit_km_matches_golden` FAIL, reverted → pass.
   - G5 kill re-verified at the owner's request: LiteLLM itself never recorded the cuts (replay = local clone = GitHub).
-  - Opus reviewer: 0 BLOCK, 6 WARN, all fixed (NaN in sensitivity JSON, drill SQL ending in a comment, 4 test gaps); 5 mutants each red on the new tests.
-  - `make ci`: ruff clean, 110 passed, dbt ci `PASS=173`; dev `PASS=177 WARN=1`; a clean clone passes `make ci`. Drills in `docs/drills/g6-km-dataset.md`.
+  - Opus reviewer: 0 BLOCK, 6 WARN, all fixed (NaN in sensitivity JSON, 4 test gaps); 5 mutants each red on the new tests.
+  - `make ci`: ruff clean, 110 passed, dbt ci `PASS=173`; dev `PASS=177 WARN=1`; a clean clone passes `make ci`.
 - [x] G8–9: descriptive adoption view (2026-11-18). Built by Codex (`6daee7d`, `8b3b351`); closed by Claude Code on a live `make all`.
   - The first live `make all` failed: Epoch's 2026-11-18 data repeats Magistral Small 1.1 and lists Magistral Medium 1.1 with two dates, so `unique_stg_epoch__models_model` → FAIL 2. Fix `fdf1c8a`: exact copies collapse, conflicting models drop, and the new `epoch_crosswalked_model_conflicts` errors if a dropped model is crosswalked. Negative control: a planted crosswalk row → FAIL 1, reverted → PASS.
   - Live `make all` exit 0, dev `PASS=204 WARN=1`. `grep -c "Descriptive only: n=" site/dist/adoption.html` → `1`; `k_a=6`, `k_b=3`, `matches_prereg=true`. Same 105 top-tier models and 9 first cuts; KM 9.535% → 9.522% (two Gemini 2.5 listings ended).
   - Opus review of the Codex range: 0 BLOCK, 5 WARN. 4 fixed (`7bcf6dc`, `bd767d2`: per-event "after prereg" label, visible Anthropic-lag fallback, scoped ratio assertion, refresh bot trailer); 1 logged as test debt (HANDOFF).
-  - `make ci`: ruff clean, 126 passed, dbt ci `PASS=199`. Playwright 45 passed (clean-URL test fix `60818f9`). gitleaks clean. Drills in `docs/drills/g8-g9-adoption.md`.
+  - `make ci`: ruff clean, 126 passed, dbt ci `PASS=199`. Playwright 45 passed (clean-URL test fix `60818f9`). gitleaks clean.
 
 ## Roadmap
 
@@ -67,7 +66,7 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | done (merged locally): export tests 6 passed; Playwright 33 passed at 1280/375/dark, axe contrast 0; gitleaks 8.30.1 clean (100+ commits); security review + Opus review (1 BLOCK, 4 SHOULD, all resolved; re-review clean). published 2026-11-18 (S1), ci + pages green |
 | G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` succeeds and the built page has one verdict line | kill: <8 events → descriptive | done: live `make all` exit 0, dev `PASS=204 WARN=1`; verdict count `1`; `k_a=6`, `k_b=3`, `matches_prereg=true`; Playwright 45 passed; Opus review 0 BLOCK, 4 of 5 WARN fixed, 1 logged as debt |
 | — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit and a successful Pages run | **S1: push and first dispatch** | done 2026-11-18: owner S1 approved push + dispatch. CI `44326301780` and Pages `44326301523` green at `9c51754`; refresh `44326536988` green (cold cache, `make all` on the runner), bot commit `a1e77d6` (`Agent: refresh-workflow`, new `run_ts`, LiteLLM `c030ffb`), dispatched Pages `44326837429` green. Headline and event keys unchanged; live verdict count 1 |
-| R | — | v1.0 release | `make drill-check STRICT=1` exits 0; tag | **A1: owner writes the drills without AI. S1: tag push** | todo |
+| R | — | v1.0 release | The owner approves the `v1.0` tag push | **S1: tag push** | todo |
 
 ## C1 checklist
 
@@ -80,7 +79,6 @@ Closed 2026-11-16 in plan v1.1 (`30d6f0b`, plus council fixes in `89be1be`). Eac
 - Task 12 S1 is done 2026-11-18: the owner approved pushing `main` (13 commits) and the first `refresh.yml` dispatch.
 - Next S1: any further push and the release tag.
 - G2 is delegated to the co-founder (evidence test); the owner gets an FYI.
-- Release: the owner writes the drills without AI.
 
 ## Resume
 Open Claude Code or Codex in this repo. Read `AGENTS.md` and `HANDOFF.md`, check Git state, then continue with the `Now:` stage. Use one writer at a time. In Claude Code after `/clear`, type `go` if it does not start on its own (whether `initialPrompt` re-fires after `/clear` is UNVERIFIED).

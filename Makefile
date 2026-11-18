@@ -1,4 +1,4 @@
-.PHONY: test build ci fetch probe analyze drill-check export site all
+.PHONY: test build ci fetch probe analyze export site all
 
 test:
 	uv run pytest -q
@@ -24,9 +24,6 @@ ci:
 
 analyze:
 	uv run python -m analysis.epoch_check && uv run python -m analysis.survival && uv run python -m analysis.event_study
-
-drill-check:
-	uv run python -m analysis.drill_check $(if $(STRICT),--strict)
 
 export:
 	uv run python -m analysis.export

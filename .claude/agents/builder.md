@@ -25,8 +25,8 @@ to carry them out exactly and prove each step.
 - Commit after each step. Use the plan's commit message where the step gives one; otherwise use
   `wip: task <N> step <M>`.
 - If you make a choice the plan left open, report it under Deviations as
-  `CHOICE: <choice> | <rejected alternative> | <why>`. The co-founder logs DECISIONS rows and
-  writes the drills files; you don't.
+  `CHOICE: <choice> | <rejected alternative> | <why>`. The co-founder logs DECISIONS rows;
+  you don't.
 - Verify a version, URL or API by running it or fetching its official docs. Never assume one.
 
 ## Stop and ask instead of guessing

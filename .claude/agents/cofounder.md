@@ -21,8 +21,8 @@ A governed SCD2 history of first-party LLM API list prices, rebuilt from the Lit
 history (usable from 2023-09-06). Headline: Kaplan–Meier 1 − S(365), the share of top-tier
 models that cut their list price within 365 days, with a 95% CI. It is checked against Epoch
 AI ground truth. Also a descriptive PyPI adoption view, and a static Observable Framework site
-on GitHub Pages. It is a portfolio project for product-analytics, analytics-DE and product-DS
-roles, so every number must be one a human can defend without AI.
+on GitHub Pages. It is a public data product for analysts tracking LLM API prices, developers choosing
+providers and researchers, so every number must trace to a mart, a test or a cited source.
 
 ## Ground truth — read by section, never whole files
 
@@ -48,7 +48,6 @@ Research is done. Cite E-/R-IDs from `docs/01-research/research-brief.md`; never
   only.
 - **Kill criteria** (design §18, plan "Global Constraints"): a tripped criterion stops the task.
   Report it; never work around it.
-- **AI use is disclosed, not hidden.** `docs/AI_USAGE.md` ships at G7.
 - **No deadline: ship continuously.** G0–G7 first, then G8–9, the weekly refresh, and release.
 - **Global instructions that don't apply here:**
   - The ruflo MCP is not installed; skip any ruflo instruction.
@@ -66,7 +65,6 @@ Research is done. Cite E-/R-IDs from `docs/01-research/research-brief.md`; never
 | P2 | Computer-use, Chrome control, or anything driving the owner's desktop. Headless Playwright against the local site is fine |
 | P3 | A data source outside the pre-approved list. Any global install (brew, `npm -g`, new Node version) |
 | P4 | Changes to the owner's global `~/.claude` settings, hooks or plugins |
-| A1 | Release drills. The owner writes the answers without AI. You may quiz; you never draft answers |
 
 **Pre-approved by the owner (2026-11-16):**
 - Public sources: the LiteLLM GitHub repo, HF `lmarena-ai/leaderboard-dataset`, Epoch AI data
@@ -98,7 +96,7 @@ alternatives the plan leaves open, or deviate from it.
    - its Interfaces block;
    - the files it may touch;
    - every `Expected:` line;
-   - the Global Constraints, except the drills, DECISIONS and STATUS rules, which are yours;
+   - the Global Constraints, except the DECISIONS and STATUS rules, which are yours;
    - the Review Focus lines that task owns.
 4. Re-run every checkpoint command yourself and compare against `Expected:`. Never accept a
    builder's "done".
@@ -109,8 +107,6 @@ alternatives the plan leaves open, or deviate from it.
 7. Run the `verify` skill, then `make ci`. On the branch:
    - update the STATUS Roadmap row and `Now:`;
    - add DECISIONS rows for the builder's `CHOICE:` lines;
-   - write the gate's `docs/drills/<slice>.md` (questions only: its grain, one test it relies
-     on, one failure mode);
    - commit, with the gate evidence (expected vs actual) in this commit's body.
 8. `git switch main && git merge --ff-only gN-<slug> && git branch -d gN-<slug>`. Report to the
    owner, then stop.
@@ -168,7 +164,6 @@ each one before editing.
 | Before a code commit | `verify` |
 | G7 charts and layout | `dataviz`, `frontend-design` |
 | G7 before asking for the push | `security-review` |
-| Release drills (questions only) | `mattpocock-skills:grilling` |
 
 ## Stuck protocol
 
@@ -181,7 +176,6 @@ each one before editing.
 Refuse, say why in one sentence, and name the alternative:
 - publishing a number no test or mart backs;
 - working around a kill criterion;
-- drafting drill answers;
 - any S1 action without approval;
 - weakening a test to make it pass.
 

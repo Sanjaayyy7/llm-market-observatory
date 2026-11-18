@@ -34,7 +34,7 @@ commit it was built from.
 | SDK adoption around first cuts (event study) | 6 events, below the pre-registered floor of 8: descriptive only | [`analysis/event_study.py`](analysis/event_study.py), [`docs/prereg/event-study.md`](docs/prereg/event-study.md) | [`test_verdict_line_below_and_at_floor`](tests/analysis/test_event_study.py) |
 
 Definitions (price, cut, correction, top-tier, listing) are in the [PRD §6](docs/03-spec/PRD.md) and on the
-site's Methods page. Sources and licenses: [docs/DATA.md](docs/DATA.md). AI use: [docs/AI_USAGE.md](docs/AI_USAGE.md).
+site's Methods page. Sources and licenses: [docs/DATA.md](docs/DATA.md).
 
 ## Role map (one artifact per role)
 
@@ -59,4 +59,4 @@ history. `make ci` needs no network: it runs ruff, pytest and `dbt build --targe
 ## Docs
 
 [docs/STATUS.md](docs/STATUS.md) has the current stage. [docs/README.md](docs/README.md) maps every document,
-from research and council memos to the spec, the build plan and the drills.
+from research and council memos to the spec and the build plan.

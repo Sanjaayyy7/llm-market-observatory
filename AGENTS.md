@@ -28,7 +28,7 @@ S1: `gh repo create`, any `git push`, enabling Pages, pushing a tag, posting any
 S3: creating or reading secrets. P1: reading or writing outside this repo (except the session scratchpad).
 P3: global installs or new data sources outside the pre-approved list (LiteLLM repo, HF
 `lmarena-ai/leaderboard-dataset`, Epoch AI and `epoch-research`, ClickPy `play`, tokencanopy, PyPI/npm
-indexes, official provider pricing and changelog pages). A1: release drills, which the owner answers without AI.
+indexes, official provider pricing and changelog pages).
 Everything else is yours to decide. Log the choice in `docs/DECISIONS.md`.
 
 ## Standing rules

@@ -222,6 +222,6 @@ display(Inputs.table(freshness.map((f) => ({source: f.source, run_ts: f.run_ts.t
 
 ## Sources
 
-Sources and licenses are listed in docs/DATA.md in this project's repository. AI use is disclosed in docs/AI_USAGE.md.
+Sources and licenses are listed in docs/DATA.md in this project's repository.
 
 </section>
