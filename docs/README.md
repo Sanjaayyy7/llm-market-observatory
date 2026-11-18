@@ -8,8 +8,8 @@ Codex reads `AGENTS.md` (root) and the repo skills in `.agents/skills/` (`ponyta
 ## How this folder is organized
 
 - **Numbered folders (`00-` … `05-`)** are project phases, in the order they happened. Each one holds that phase's record. The spec (03) and the plan (05) can still get versioned revisions; each doc keeps its own change log.
-- **Unnumbered files at this level** are living documents that stay current. Right now that is only [STATUS.md](STATUS.md). The build adds more here (`DECISIONS.md`, `DATA.md`, `prereg/`). Their paths are fixed by the build plan and its tests, so they don't go in a numbered folder.
-- **`sessions/`** holds the raw Claude Code session logs. They are local only and gitignored, because they contain machine paths and working notes.
+- **Unnumbered files at this level** are living documents that stay current: [STATUS.md](STATUS.md), [HANDOFF.md](HANDOFF.md), [DECISIONS.md](DECISIONS.md), [DATA.md](DATA.md) and [prereg/](prereg/). Their paths are fixed by the build plan and its tests, so they don't go in a numbered folder.
+- Raw assistant session logs stay local and gitignored, because they contain machine paths and working notes.
 
 ## Timeline
 
@@ -21,7 +21,7 @@ Codex reads `AGENTS.md` (root) and the repo skills in `.agents/skills/` (`ponyta
 | 03 | 2026-11-11 → 11-15 | Spec | PRD + design v1, then v1.1 (builder check and user decisions), then v1.2 (after the spike) | [03-spec/](03-spec/) | `4b9b9c5` `f3ab78b` `b3de42c` |
 | 04 | 2026-11-15 | Feasibility spike | LiteLLM replay works. About 10% of top-tier models cut their list price within 365 days. The event study is below its power floor | [04-feasibility-spike/](04-feasibility-spike/) | `b3de42c` |
 | 05 | 2026-11-15 | Build plan | 12 TDD tasks, gates G0 → G9 plus the weekly refresh | [05-build-plan/](05-build-plan/) | `37d6b38` |
-| 06 | next | Build | Not started. Code goes at the repo root (`ingest/`, `dbt/`, `analysis/`, `site/`) | — | — |
+| 06 | 2026-11-16 → 11-18 | Build | Gates G0–G9 and the weekly refresh closed; the site is live at <https://sanjaayyy7.github.io/llm-market-observatory/>. Code lives at the repo root (`ingest/`, `dbt/`, `analysis/`, `site/`) | — | [STATUS.md](STATUS.md) |
 
 The spike (04) ran after spec v1.1 and fed spec v1.2, which is why 03 spans two dates.
 
@@ -31,6 +31,12 @@ The spike (04) ran after spec v1.1 and fed spec v1.2, which is why 03 spans two 
 docs/
 ├── README.md                          this index
 ├── STATUS.md                          living: done, next, blockers, resume prompt
+├── HANDOFF.md                         living: shared checkpoint between coding assistants
+├── DECISIONS.md                       living: every open choice and deviation, with evidence
+├── DATA.md                            living: sources, licenses, pinning
+├── prereg/                            pre-registrations, each committed before its outcome was read
+│   ├── epoch-check.md                 validation against Epoch AI (G5)
+│   └── event-study.md                 descriptive SDK-adoption event study (G8)
 ├── 00-charter/
 │   └── 2026-11-10-grand-plan.md       original plan: validate → spec → build
 ├── 01-research/
@@ -64,15 +70,15 @@ docs/
 │       └── models.csv                 527 model keys: first and last listed, launch price
 ├── 05-build-plan/
 │   └── 2026-11-15-v1-ship-line.md     12 tasks, global constraints, hard stops
-└── sessions/                          gitignored; *-llmobs-m0/m1 are the full handoffs
 ```
 
 ## Reading paths
 
+- **Use or cite the data:** [root README](../README.md) → [DATA.md](DATA.md) → the site's Methods page
 - **Catch up fast:** [STATUS.md](STATUS.md) → [PRD](03-spec/PRD.md) → [build plan](05-build-plan/2026-11-15-v1-ship-line.md)
 - **Audit why it's built this way:** [charter](00-charter/2026-11-10-grand-plan.md) → [brief](01-research/research-brief.md) → [chair verdict](02-council/04-chair-verdict.md) → [design](03-spec/design.md) → [spike](04-feasibility-spike/feasibility-spike.md)
 - **Check a number:** find its E-ID in the brief, then the matching section in `01-research/reports/`.
 
 ## Old paths
 
-These files moved on 2026-11-16 (`docs/validation/…` and `docs/plans/…` became the numbered folders). The charter and the session logs are verbatim copies, so they still use the old paths. `git log --follow <file>` traces any file's history across the move.
+These files moved on 2026-11-16 (`docs/validation/…` and `docs/plans/…` became the numbered folders). The charter is a verbatim copy, so it still uses the old paths. `git log --follow <file>` traces any file's history across the move.

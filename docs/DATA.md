@@ -33,3 +33,9 @@ approver (`test_export_refuses_unapproved_crosswalk`).
 
 No paid API, no scraped pages beyond the cited provider pages, and no LLM calls anywhere in the
 data pipeline, CI or the site.
+
+## License of this repository
+
+This project's own code and documentation are released under the [MIT License](../LICENSE). Data
+republished from the sources above, including the exports in `site/src/data/`, keeps each source's
+license and attribution terms as listed in the table; credit the sources when you reuse it.
