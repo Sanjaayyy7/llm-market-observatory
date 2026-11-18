@@ -2,6 +2,7 @@ import {test, expect} from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import {readFileSync} from "node:fs";
 import {execFileSync} from "node:child_process";
+import {fileURLToPath} from "node:url";
 
 const pages = ["index.html", "prices.html", "adoption.html", "methods.html"];
 
@@ -85,7 +86,7 @@ test("adoption: renders the exported verdict, paths and matched placebo", async 
   await expect(hist.locator('line[aria-label="Selected cut ratio"]')).toHaveCount(1);
   // Node has no parquet reader in this project, so the expected pool summary comes from duckdb via Python.
   const script = "import sys, json, duckdb; n, lo, hi = duckdb.connect().execute('select count(*), min(ratio), max(ratio) from read_parquet(?) where sdk_group = ? and ratio is not null', [sys.argv[1], sys.argv[2]]).fetchone(); print(json.dumps([n, lo, hi]))";
-  const parquet = new URL("../src/data/placebo.parquet", import.meta.url).pathname;
+  const parquet = fileURLToPath(new URL("../src/data/placebo.parquet", import.meta.url));
   const [n, lo, hi] = JSON.parse(execFileSync("uv", ["run", "python", "-c", script, parquet, event.sdk_group], {encoding: "utf8"}));
   await expect(hist).toHaveAttribute("aria-label", new RegExp(RegExp.escape(`${n} placebo dates from ${lo.toFixed(2)}× to ${hi.toFixed(2)}×`)));
   await expect(page.getByTestId("placebo-selected").getByRole("link", {name: `${event.ratio.toFixed(2)}×`, exact: true})).toHaveAttribute("href", "./methods#adoption");
