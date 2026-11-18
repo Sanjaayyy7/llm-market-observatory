@@ -55,6 +55,8 @@ Claude Code, 2026-11-17/18. **G6 is closed** (KM as a dataset measurement, Metho
 - G5's kill was re-verified at the owner's request and stands (DECISIONS "G5 kill re-verified").
 - G8–9 Steps 1–3 are done on main: prereg `67fcfb6`, then the panel and analysis; `k_a = 6`, `k_b = 3`. Steps 4–5 need the G7 site.
 
+**G7 progress, 2026-11-18 (session 2):** branch `g7-site` (unmerged) holds Steps 1–4 and the README: `analysis/export.py` (+ `methods.json`, `reroute_lag`, `uncovered`, `epoch_audit`), co-founder seed `seed_crosswalk_uncovered`, `site/` (Framework 1.13.4, Playwright 1.62.1, axe 4.14.0), `docs/DATA.md`, `docs/AI_USAGE.md`, pages.yml. Evidence and rulings: DECISIONS rows dated 2026-11-18 and the SDD ledger `.superpowers/sdd/2026-11-15-v1-ship-line/progress.md`. Resume: `git switch g7-site`, `make build`, then Step 5 once the owner has run `brew install gitleaks`. Pitfall: never leave uncommitted work in the tree while a builder runs; a builder reverted an uncommitted README as "churn".
+
 **Next action: G7, plan Task 10** (`grep -n '^### Task 10' docs/05-build-plan/2026-11-15-v1-ship-line.md`).
 1. Orient and rebuild:
    - `git switch -c g7-site`;
