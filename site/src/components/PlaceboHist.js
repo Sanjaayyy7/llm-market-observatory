@@ -1,9 +1,11 @@
 import * as Plot from "npm:@observablehq/plot";
 
 export function PlaceboHist(pool, event, label, width) {
+  const ratios = pool.map((d) => d.ratio);
+  const summary = `${pool.length} placebo dates from ${Math.min(...ratios).toFixed(2)}× to ${Math.max(...ratios).toFixed(2)}×`;
   const chart = Plot.plot({
     width, height: 270, marginLeft: 48, marginRight: 18,
-    ariaLabel: `Placebo ratios for ${label}. The vertical line marks the cut-window ratio of ${event.ratio.toFixed(2)}×.`,
+    ariaLabel: `Placebo ratios for ${label}. The vertical line marks the cut-window ratio of ${event.ratio.toFixed(2)}×. ${summary}.`,
     style: {background: "transparent", color: "var(--ink-2)"},
     x: {label: "Post / pre download ratio"}, y: {label: "Placebo dates", grid: true},
     marks: [
