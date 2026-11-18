@@ -4,9 +4,9 @@
 
 - Assistant: **Claude Code**, acting as cofounder, resumed 2026-11-17 after Codex handoff `b41285b` (no Codex writer active).
 - Checkout: `/Users/sanjaym/Projects/llm-market-observatory`.
-- Branch: `g5-epoch-check`.
+- Branch: `main` after each gate merge (gate branches `gN-<slug>`).
 - Claude Code checkpoint: `3a3d5f5d7d8fcbabfcfe82718fec2c2c11b30b46`.
-- Current task: G5 / plan Task 8. Resume at Step 0; no G5 analysis has run.
+- Current task: see STATUS `Now:` and "Next action" below.
 - Earlier implementation belongs to Claude Code. The preceding Codex audit made
   no tracked changes. Codex implementation starts after the checkpoint above.
 
@@ -38,12 +38,10 @@ unfinished changes. This avoids maintaining a second, stale file inventory.
 
 ## Next action and known limits
 
-Claude Code, 2026-11-17. **G5 is closed: the kill tripped.**
-- Commits: prereg `bd9ea16`; builder `5346cb1`..`6912a00`; audit plus kill `244222a`; council ruling and STATUS in the gate commit.
-- Result: `passed: false`, with 4 of 19 headline rows panel errors. LiteLLM missed Google's 2024-10-01 Gemini 1.5 Pro cut and Mistral's 2024-09-17 Large 2 cut.
-- Ruling (DECISIONS "G5 kill action"): no market headline in v1.0. The KM ships as a labelled dataset measurement on Methods only.
-
-Next action: G6 (plan Task 9). Before dispatch, run the reroute sweep (Task 9 note 2). Then build the KM with `scope = "dataset_measurement"` and `validation = "failed"` (note 3).
+Claude Code, 2026-11-17. **G6 is closed** (KM as a dataset measurement, Methods only). See STATUS "Done" for the evidence.
+- G5's kill was re-verified at the owner's request and stands (DECISIONS "G5 kill re-verified").
+- Next action: commit the G8 prereg (`docs/prereg/event-study.md`) **alone**, then Task 11 Steps 2–3 (dbt panels, `analysis/event_study.py`, tests). Task 11 Step 4 (`make all`, the Adoption page) waits for G7.
+- G7 waits on the owner's P3 batch: `nvm alias default 24` (v24.20.0 is already installed under nvm) and `brew install gitleaks`. Chromium 1234 is already cached for Playwright.
 
 Prior audit findings (not repaired by the audit): incremental replay does not
 restore missing historical partitions when its directory and checkpoint remain;

@@ -1,8 +1,8 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-17 · **Now:** G6 Task 9 KM, built as a dataset measurement shown on Methods only. G5 failed and its kill applies: no market headline in v1.0 (plan Task 9 note 3). Before G6: the reroute sweep (plan Task 9 note 2) · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-17 · **Now:** G8 prereg (plan Task 11 Step 1, docs-only), then Task 11 Steps 2–3 (analysis half; the Adoption page waits for the G7 site). G7 waits on the owner's P3 batch (Node 24 default, gitleaks). G6 closed as a dataset measurement (Methods only) · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
-**Active assistant:** Claude Code, on `g5-epoch-check` (resumed after Codex handoff `b41285b`). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
+**Active assistant:** Claude Code, acting as cofounder (no Codex writer active). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
 
 ## Done
@@ -31,6 +31,16 @@
   - `make ci`: ruff clean, 78 passed, dbt ci `PASS=167`; dev build `PASS=171 WARN=1`.
   - Drills in `docs/drills/g5-epoch-check.md`.
 
+- [x] G6: KM as a dataset measurement (2026-11-17). Methods only; no market headline (G5 kill).
+  - Hand-worked golden `b0da139` (S(365) = 693/1600; Greenwood log-log) matches `fit_km` within 1e-6; lifelines 0.30.3 and statsmodels 0.15.0 agree to 1e-15.
+  - Reroute sweep across 9 first-party providers: 1 new row (`gemini-3-pro-preview` → 3.1, 2026-03-09); mart effect 1 row, 308 → 111 days.
+  - Exposure CTEs moved into macro `exposure_ctes()` (`155b346`); mart identical before and after (`EXCEPT ALL` both ways = 0).
+  - `make analyze`: 9.54% (5.06–17.59%), n=105, 9 events, median undefined; verified-only 5.14%; data-fix rate 4/9; commit lag median −1 d. Independent statsmodels + SQL re-derivation matches. Aalen–Johansen 9.31% (competing-risk gap 0.23 pp). Sensitivity flat at 5/10/20% (every recorded drop ≥ 20%).
+  - Negative control: CI bounds flipped → `test_fit_km_matches_golden` FAIL, reverted → pass. `make drill-check` → pending line, exit 0; STRICT → exit 1.
+  - G5 kill re-verified at the owner's request: LiteLLM itself never recorded the cuts (replay = local clone = GitHub).
+  - Opus reviewer: 0 BLOCK, 6 WARN, all fixed (NaN in sensitivity JSON, drill SQL ending in a comment, 4 test gaps); 5 mutants each red on the new tests.
+  - `make ci`: ruff clean, 110 passed, dbt ci `PASS=173`; dev `PASS=177 WARN=1`; a clean clone passes `make ci`. Drills in `docs/drills/g6-km-dataset.md`.
+
 ## Roadmap
 
 Each row closes only when its checkpoint holds. Gate evidence goes in the body of the gate's last commit (the STATUS update, made on the branch before the fast-forward merge).
@@ -47,7 +57,7 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | — | 6 | Price facts + survival mart | `dbt build --target dev` passes; ~9 real first cuts | — | done (top-tier 105; 10 real first cuts ≤365 d; S3 + S8 closed) |
 | G4 | 7 | 20-cut audit (runs alone) | `mart_cut_audit` passes | kill: >25% data fixes → re-audit once | done with fallback (kill 7/12 → council → re-audit 4/9 → observed headline + audit rate + verified-only bound) |
 | G5 | 8 | Epoch check | `reproduced_factor` = 42.02 ± 0.01 and `passed` (dated price agreement; DECISIONS "G5 replan") | G5 fails after one diagnosis → "validation pending" + mini-council replan | done: **kill tripped**. Factor 42.0190; `passed: false`, 4/19 headline panel errors → council → no market headline in v1.0 (DECISIONS "G5 kill action") |
-| G6 | 9 | KM as a dataset measurement (Methods only) | `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; `headline.json` has `scope = "dataset_measurement"` and `validation = "failed"`; reviewer pass | design §18 G6 (fewer than 3 cuts → exact) | todo |
+| G6 | 9 | KM as a dataset measurement (Methods only) | `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; `headline.json` has `scope = "dataset_measurement"` and `validation = "failed"`; reviewer pass | design §18 G6 (fewer than 3 cuts → exact) | done: 1 − S(365) = 9.54% (95% CI 5.06–17.59%), n=105, 9 events, `scope = dataset_measurement`, `validation = failed`; verified-only 5.14% (5 events); audit data-fix rate 4/9 |
 | G5b (v1.1) | — | Pre-registered census of provider-announced list-price changes for a frozen headline set | A recall bar fixed before our series is read; this is the only route to a market headline | — | later (after R) |
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | todo |
 | G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` prints the "Descriptive only" verdict line | kill: <8 events → descriptive | todo |
