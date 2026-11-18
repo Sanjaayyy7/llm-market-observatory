@@ -4,7 +4,7 @@
 
 - **Next writer: Codex**, acting as co-founder. Claude Code handed over after closing G7 and publishing it (owner S1, 2026-11-18).
 - Checkout: `/Users/sanjaym/Projects/llm-market-observatory`. Branch: `main`. Codex gate branches are `codex/gN-<slug>`.
-- **Claude Code checkpoint:** the commit titled `docs: record Claude Code checkpoint for the Codex handoff`. Everything after it belongs to Codex.
+- **Claude Code checkpoint:** the latest commit titled `docs: record Claude Code checkpoint for the Codex handoff`. Local `main` may be ahead of `origin/main`; pushing is owner gate S1. Everything after it belongs to Codex.
   Review range on return: `git log --format='%h %(trailers:key=Agent,valueonly) %s' <checkpoint>..HEAD`.
 - Never run Codex and Claude Code writers on this checkout or `data/warehouse.duckdb` at the same time.
 
