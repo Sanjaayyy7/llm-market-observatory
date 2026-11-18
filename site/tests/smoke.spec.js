@@ -1,7 +1,8 @@
 import {test, expect} from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import {readFileSync} from "node:fs";
 
-const pages = ["index.html", "prices.html", "methods.html"];
+const pages = ["index.html", "prices.html", "adoption.html", "methods.html"];
 
 for (const page of pages) {
   test.describe(page, () => {
@@ -56,4 +57,34 @@ test("methods: km-chart is a labelled svg", async ({page}) => {
   // Plot returns the <svg> itself with the testid, or a figure wrapping it
   expect(await chart.evaluate((el) => el.matches("svg") || el.querySelector("svg") !== null)).toBe(true);
   expect(((await chart.getAttribute("aria-label")) ?? "").trim()).not.toBe("");
+});
+
+test("adoption: renders the exported verdict, paths and matched placebo", async ({page}, info) => {
+  const study = JSON.parse(readFileSync(new URL("../src/data/event_study.json", import.meta.url), "utf8"));
+  await page.goto("index.html");
+  await page.getByRole("main").getByRole("link", {name: "Adoption", exact: true}).click({timeout: 5000});
+  await expect(page.getByTestId("adoption-verdict")).toHaveText(study.verdict);
+  await expect(page.getByRole("link", {name: "Pre-registration"})).toHaveAttribute("href", `https://github.com/Sanjaayyy7/llm-market-observatory/commit/${study.prereg_commit}`);
+
+  const paths = page.getByTestId("event-paths");
+  await expect(paths.locator('line[aria-label="First cut"]')).toHaveCount(1);
+  await expect(paths.locator('path[aria-label$="date path"]')).toHaveCount(study.events.length);
+  await expect(page.locator("tbody tr")).toHaveCount(study.events.length);
+
+  const events = study.events.filter((event) => event.ratio != null && event.placebo_share_le != null);
+  const hist = page.getByTestId("placebo-histogram");
+  const index = events.findLastIndex((event) => event.sdk_group !== events[0].sdk_group);
+  const event = events[index];
+  const picker = page.getByLabel("Compare cut event");
+  await expect(picker.locator("option")).toHaveCount(events.length);
+  const firstDomain = await hist.evaluate((chart) => chart.scale("x").domain);
+  await picker.selectOption({index});
+  await expect(hist).toHaveAttribute("aria-label", new RegExp(`${event.sdk_group}.*${RegExp.escape(event.ratio.toFixed(2))}×`));
+  await expect(hist.locator('line[aria-label="Selected cut ratio"]')).toHaveCount(1);
+  expect(await hist.evaluate((chart) => chart.scale("x").domain)).not.toEqual(firstDomain);
+  await expect(page.getByRole("link", {name: `${event.ratio.toFixed(2)}×`, exact: true}).first()).toHaveAttribute("href", "./methods#adoption");
+  for (const cut of study.verified_missed_cuts) {
+    await expect(page.getByTestId("adoption-limits")).toContainText(`${cut.model} (${cut.date})`);
+  }
+  await page.screenshot({path: `test-results/adoption-${info.project.name}.png`, fullPage: true});
 });

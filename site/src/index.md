@@ -28,4 +28,4 @@ display(DataStamp(stamp));
 display(CaveatNote("Prices are first-party list prices as recorded in LiteLLM's public price file, not provider announcements. Read the limits on", "./methods"));
 ```
 
-<nav class="links"><a href="./prices">Price explorer</a> <a href="./methods">Methods &amp; data</a></nav>
+<nav class="links"><a href="./prices">Price explorer</a> <a href="./adoption">Adoption</a> <a href="./methods">Methods &amp; data</a></nav>

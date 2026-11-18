@@ -7,6 +7,7 @@ export default {
   pages: [
     {name: "Home", path: "/index"},
     {name: "Price explorer", path: "/prices"},
+    {name: "Adoption", path: "/adoption"},
     {name: "Methods & data", path: "/methods"}
   ],
   sidebar: false,

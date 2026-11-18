@@ -153,6 +153,18 @@ display(html`<p>LiteLLM replay: ${M.replay_days} daily snapshots from 2023-09-06
 
 ## Definitions
 
+<section id="adoption">
+
+### SDK downloads around price cuts
+
+Events cluster nearby model price cuts within each provider’s SDK group and use the earliest cut as the event date. The primary events use dates recorded by LiteLLM. The alternate events use dated provider announcements. The site reports how many events each series contains and treats the comparisons as descriptive.
+
+Each path divides daily SDK downloads by the mean before the event. The post/pre ratio compares the mean after the event with the pre-event mean using windows with equal weekday counts. The placebo share counts same-SDK placebo ratios at or below the event ratio. The `requests` control uses the primary event dates. Download counts include all installer types.
+
+The audit compares the dates recorded in LiteLLM with dated provider announcements. Verified cuts that LiteLLM missed have no event window and are excluded from placebo sampling. See the [validation against Epoch AI](#validation) for the evidence.
+
+</section>
+
 ### Data model (grain declared, each enforced by a uniqueness test)
 
 | Model | Grain (one row per) | Notes |

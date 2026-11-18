@@ -4,6 +4,18 @@
   "verdict": "Descriptive only: n=6 events, below the pre-registered floor of 8.",
   "matches_prereg": true,
   "prereg_commit": "67fcfb6f799b5dbaae13ce1e234e8709ac8e6b9e",
+  "verified_missed_cuts": [
+    {
+      "sdk_group": "mistral",
+      "model": "Mistral Large 2",
+      "date": "2024-09-17"
+    },
+    {
+      "sdk_group": "google",
+      "model": "Gemini 1.5 Pro",
+      "date": "2024-10-01"
+    }
+  ],
   "events": [
     {
       "series": "A",

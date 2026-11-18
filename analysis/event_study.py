@@ -20,7 +20,10 @@ FLOOR = 8
 CONTROL = "control"
 GROUP_ORDER = ("openai", "anthropic", "google", "mistral", "cohere", "xai")
 # Provider-verified cuts LiteLLM missed (DECISIONS 2026-11-17 "G5 kill re-verified"); excluded from placebo pools.
-G5_VERIFIED_MISSED = {"mistral": ["2024-09-17"], "google": ["2024-10-01"]}
+G5_VERIFIED_MISSED = (
+    {"sdk_group": "mistral", "model": "Mistral Large 2", "date": "2024-09-17"},
+    {"sdk_group": "google", "model": "Gemini 1.5 Pro", "date": "2024-10-01"},
+)
 # prereg §2 frozen event rows: (canonical_model_id, sdk_group, a_date, b_date | None)
 FROZEN_EVENTS = (
     ("mistral-large-2402", "mistral", "2024-05-31", None),
@@ -166,7 +169,7 @@ def main(db: Path = ROOT / "data/warehouse.duckdb", out: Path = ROOT / "exports"
     windows = event_windows(panel)
     own = windows[windows["sdk_group"] != CONTROL]
     excl = [(g, str(d)[:10]) for g, d in zip(own["sdk_group"], own["event_date"], strict=True)]
-    excl += [(g, d) for g, ds in G5_VERIFIED_MISSED.items() for d in ds]
+    excl += [(cut["sdk_group"], cut["date"]) for cut in G5_VERIFIED_MISSED]
     con.register("excl_raw", pd.DataFrame(excl, columns=["sdk_group", "d"]))
     con.execute("create temp table excl as select sdk_group, d::date as d from excl_raw")
     drawers = set(own.loc[own["series"] == "A", "sdk_group"])
@@ -187,7 +190,7 @@ def main(db: Path = ROOT / "data/warehouse.duckdb", out: Path = ROOT / "exports"
     k_a = sum(e["series"] == "A" for e in events)
     result = {"k_a": k_a, "k_b": len(events) - k_a, "verdict": verdict_line(k_a),
               "matches_prereg": matches_prereg(cut_rows),
-              "prereg_commit": _prereg_commit(), "events": events}
+              "prereg_commit": _prereg_commit(), "verified_missed_cuts": list(G5_VERIFIED_MISSED), "events": events}
     out.mkdir(parents=True, exist_ok=True)
     (out / "event_study.json").write_text(to_strict_json(result))
     placebo.to_parquet(out / "placebo.parquet", index=False)

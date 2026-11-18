@@ -36,7 +36,10 @@ a { color: var(--accent); }
 .legend { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.875rem; margin: 0.25rem 0; }
 .legend svg { vertical-align: middle; margin-right: 0.25rem; }
 table { display: block; max-width: 100%; overflow-x: auto; font-variant-numeric: tabular-nums; }
+.adoption-events :is(th, td) { padding-inline-end: 0.75rem; white-space: nowrap; }
+.adoption-table-hint { display: none; }
 svg text { font-variant-numeric: tabular-nums; }
 nav.links { display: flex; gap: 1.5rem; margin: 1.5rem 0; }
 details summary { cursor: pointer; margin: 0.5rem 0; }
 @media (max-width: 640px) { h1 { font-size: 1.6rem; } .headline { font-size: 1.2rem; } }
+@media (max-width: 640px) { .adoption-table-hint { display: block; } }
