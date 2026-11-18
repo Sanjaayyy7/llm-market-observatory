@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-17 · **Now:** G8 prereg (plan Task 11 Step 1, docs-only), then Task 11 Steps 2–3 (analysis half; the Adoption page waits for the G7 site). G7 waits on the owner's P3 batch (Node 24 default, gitleaks). G6 closed as a dataset measurement (Methods only) · **Deadline:** none. Ship continuously, G0–G7 first.
+**Updated:** 2026-11-17 · **Now:** G7 (plan Task 10) after the owner's P3 batch (Node 24 default, gitleaks). G8–9 Steps 1–3 are on main: prereg `67fcfb6`, panel, analysis, 6 events, descriptive. Steps 4–5 (Adoption page, `make all`) follow G7 · **Deadline:** none. Ship continuously, G0–G7 first.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Active assistant:** Claude Code, acting as cofounder (no Codex writer active). See [HANDOFF.md](HANDOFF.md) for attribution, verification, and the exact resume action.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
@@ -60,7 +60,7 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G6 | 9 | KM as a dataset measurement (Methods only) | `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; `headline.json` has `scope = "dataset_measurement"` and `validation = "failed"`; reviewer pass | design §18 G6 (fewer than 3 cuts → exact) | done: 1 − S(365) = 9.54% (95% CI 5.06–17.59%), n=105, 9 events, `scope = dataset_measurement`, `validation = failed`; verified-only 5.14% (5 events); audit data-fix rate 4/9 |
 | G5b (v1.1) | — | Pre-registered census of provider-announced list-price changes for a frozen headline set | A recall bar fixed before our series is read; this is the only route to a market headline | — | later (after R) |
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | todo |
-| G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` prints the "Descriptive only" verdict line | kill: <8 events → descriptive | todo |
+| G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` prints the "Descriptive only" verdict line | kill: <8 events → descriptive | in progress: Steps 1–3 done (prereg `67fcfb6` precedes the code; k_a = 6, k_b = 3, `matches_prereg`); Steps 4–5 wait for G7 |
 | — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit | **S1: push** | todo |
 | R | — | v1.0 release | `make drill-check STRICT=1` exits 0; tag | **A1: owner writes the drills without AI. S1: tag push** | todo |
 

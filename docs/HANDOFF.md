@@ -40,7 +40,8 @@ unfinished changes. This avoids maintaining a second, stale file inventory.
 
 Claude Code, 2026-11-17. **G6 is closed** (KM as a dataset measurement, Methods only). See STATUS "Done" for the evidence.
 - G5's kill was re-verified at the owner's request and stands (DECISIONS "G5 kill re-verified").
-- Next action: commit the G8 prereg (`docs/prereg/event-study.md`) **alone**, then Task 11 Steps 2–3 (dbt panels, `analysis/event_study.py`, tests). Task 11 Step 4 (`make all`, the Adoption page) waits for G7.
+- G8–9 Steps 1–3 are done on main (prereg `67fcfb6`, then the panel and analysis). Steps 4–5 need the G7 site.
+- Next action: G7 (plan Task 10), starting with its Step 0 owner batch.
 - G7 waits on the owner's P3 batch: `nvm alias default 24` (v24.20.0 is already installed under nvm) and `brew install gitleaks`. Chromium 1234 is already cached for Playwright.
 
 Prior audit findings (not repaired by the audit): incremental replay does not
