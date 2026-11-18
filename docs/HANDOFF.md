@@ -50,7 +50,7 @@
 - The order of `epoch_check.json` `spot_check` rows comes from an unordered `select distinct` (`analysis/epoch_check.py:283`, closed G5 code). It churns bytes, not content.
 - 11 build-time `npm audit` findings, all accepted (DECISIONS 2026-11-18).
 - Scheduled refresh: GitHub disables a public repo's schedule after 60 days without "repository activity" and does not define the term. Weekly bot data commits are the only activity; whether they count is UNVERIFIED. The Methods page shows the stamp age; recover with `gh workflow enable refresh.yml`. No keepalive (DECISIONS 2026-11-18).
-- 2 NumPy DeprecationWarnings in `tests/analysis/test_event_study.py`. Coverage (2026-11-18, `uv run --with pytest-cov`, not a project dependency): 83% of `analysis/` + `ingest/`; lowest `event_study.py` 66% (`main()` runs only in `make analyze`).
+- 2 NumPy DeprecationWarnings in `tests/analysis/test_event_study.py`. Coverage (2026-11-18, `uv run --with pytest-cov`, not a project dependency): 85% of `analysis/` + `ingest/` after the `_members` and `listing_lag` tests; the rest is entry points, network loaders and one-line edge branches.
 - Earlier audit: incremental replay does not restore missing historical partitions; freshness checks the fetch time, not the age of the last fetch.
 
 ## Pitfalls (do not repeat them)

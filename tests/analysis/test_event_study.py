@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from analysis.event_study import (
     FROZEN_EVENTS,
+    _members,
     after_prereg,
     event_windows,
     matches_prereg,
@@ -107,3 +108,15 @@ def test_after_prereg_labels_only_events_with_a_new_cut():
     assert after_prereg(["new-model"], [*frozen, new])
     assert not after_prereg([frozen[0][0]], [*frozen, new])
     assert after_prereg(["mistral-large-2402"], [("mistral-large-2402", "mistral", "2024-06-01", None)])
+
+
+def test_members_join_the_latest_event_on_or_before_each_cut():
+    # m2 falls inside oa1's cluster; m3 anchors oa2; m0 predates every event; m1 also anchors the B series.
+    windows = pd.DataFrame({"series": ["A", "A", "A", "B"], "event_id": ["oa1", "oa2", "ga1", "ob1"],
+                            "event_date": ["2024-01-10", "2024-03-01", "2024-01-15", "2024-01-12"],
+                            "sdk_group": ["openai", "openai", "google", "openai"]})
+    cuts = pd.DataFrame({"canonical_model_id": ["m1", "m2", "m3", "g1", "m0"],
+                         "sdk_group": ["openai", "openai", "openai", "google", "openai"],
+                         "a_date": ["2024-01-10", "2024-01-20", "2024-03-01", "2024-01-15", "2024-01-05"],
+                         "b_date": ["2024-01-12", None, None, None, None]})
+    assert _members(cuts, windows) == {"oa1": ["m1", "m2"], "oa2": ["m3"], "ga1": ["g1"], "ob1": ["m1"]}

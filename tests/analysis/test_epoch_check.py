@@ -15,6 +15,7 @@ from analysis.epoch_check import (
     evaluate,
     frozen_headline,
     level_spot_check,
+    listing_lag,
     our_series,
     price_agreement,
 )
@@ -310,3 +311,21 @@ def test_spot_check_empty_status():
 
 def test_frozen_headline_from_prereg():
     assert len(frozen_headline()) == 19
+
+
+def test_listing_lag_uses_epoch_rows_utc_dates_and_skips_undated():
+    # c maps "Model A" from LiteLLM, not Epoch; d has no Epoch date; a lists at 04:30 UTC on Jan 4.
+    xwalk = pd.DataFrame({"source": ["epoch", "epoch", "litellm", "epoch"],
+                          "source_key": ["Model A", "Model B", "Model A", "Model D"],
+                          "canonical_model_id": ["a", "b", "c", "d"]})
+    epoch_models = pd.DataFrame({"model": ["Model A", "Model B", "Model D"],
+                                 "publication_date": [date(2024, 1, 1), date(2024, 3, 10), None]})
+    mart = pd.DataFrame({"canonical_model_id": ["a", "b", "c", "d"],
+                         "listed_at": ["2024-01-03T23:30:00-05:00", "2024-03-01T00:00:00+00:00",
+                                       "2024-01-02T00:00:00+00:00", "2024-01-02T00:00:00+00:00"]})
+    assert listing_lag(mart, epoch_models, xwalk).to_dict("records") == [
+        {"canonical_model_id": "a", "listed_at": date(2024, 1, 4),
+         "epoch_publication_date": date(2024, 1, 1), "lag_days": 3},
+        {"canonical_model_id": "b", "listed_at": date(2024, 3, 1),
+         "epoch_publication_date": date(2024, 3, 10), "lag_days": -9},
+    ]
