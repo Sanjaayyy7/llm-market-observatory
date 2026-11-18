@@ -14,3 +14,10 @@ models:
     columns:
       - {name: model_name, data_tests: [unique, not_null]}
       - {name: covered, data_tests: [not_null]}
+  - name: int_model_exposure
+    description: One row per priced canonical model with its exposure window, ending at the final delisting, a reroute or the run date. Read by mart_launch_price_survival and the G6 sensitivity.
+    columns:
+      - {name: canonical_model_id, data_tests: [unique, not_null]}
+      - {name: listed_at, data_tests: [not_null]}
+      - {name: is_top_tier, data_tests: [not_null]}
+      - {name: end_ts, data_tests: [not_null]}
