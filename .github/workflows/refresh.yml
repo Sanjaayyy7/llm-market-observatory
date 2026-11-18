@@ -43,7 +43,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git -c user.name='github-actions[bot]' \
                 -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
-                commit -m 'data: refresh site exports' -m $'Agent: Codex\nModel: gpt-6.2-sol'
+                commit -m 'data: refresh site exports' -m 'Agent: refresh-workflow'
             gh auth setup-git --hostname github.com --force
             git push origin HEAD:refs/heads/main
           fi
