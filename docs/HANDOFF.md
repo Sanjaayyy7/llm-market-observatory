@@ -45,6 +45,10 @@
 - **Live-site check.** The full Playwright suite against the live Pages URL: 45 passed.
 - **Publish (owner S1).** Pushed `bc69e71..9c51754`; CI and Pages green. First `refresh.yml` run green; bot commit `a1e77d6` and its Pages run green. Weekly runs need no further approval; a run that fails stops before commit and dispatch.
 
+- **Live-site content audit (2026-11-18).** Every page, control, chart tooltip and link of the live site checked: all 118 models, all 8 Adoption events and about 30 recomputed numbers match the data. Six wording/definition issues fixed (`56e86a0`).
+- **Owner ruling: public data product.** Drills, the drill check and `docs/AI_USAGE.md` removed; planning docs stripped of hiring framing (`3204c79`, `4fdde83`, `9013633`).
+- **Repository hardening.** MIT `LICENSE` and project metadata; `fct_arena_rank` and `source_freshness` moved to `marts/`; `make help` (default goal) and `make site-test`; CI now runs the Playwright suite (first hosted run pending); README rewritten as the entry point; docs index brought up to date.
+
 ## Debt (not blocking)
 
 - The order of `epoch_check.json` `spot_check` rows comes from an unordered `select distinct` (`analysis/epoch_check.py:283`, closed G5 code). It churns bytes, not content.

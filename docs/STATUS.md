@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-18 · **Now:** G8–9 and Task 12 are closed and live (`main` pushed at `9c51754`, first refresh green with bot stamp commit `a1e77d6`). Next is the release: **S1**, the owner approves pushing the `v1.0` tag.
+**Updated:** 2026-11-18 · **Now:** G8–9 and Task 12 are closed and live (`main` pushed at `9c51754`, first refresh green with bot stamp commit `a1e77d6`). Since then: a full live-site content audit (six fixes), the public-data-product cleanup and repository hardening (MIT license, `make help`, CI browser tests, README). Next is the release: **S1**, the owner approves pushing the `v1.0` tag.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Next assistant:** Claude Code’s `cofounder` agent, resuming from the tip of `codex/g12-refresh`. See [HANDOFF.md](HANDOFF.md) for the Codex report, approval scope and exact verification steps.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
