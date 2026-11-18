@@ -1,0 +1,6 @@
+{
+  "share_cut_365": 0.566875,
+  "ci_low": 0.27285934312844173,
+  "ci_high": 0.8888895365351741,
+  "_worked": "Product-limit by hand on km_small.csv: S(365) = 11/12 * 9/10 * 7/8 * 4/5 * 3/4 = 693/1600 (event and censoring tied at 365: the censored row is at risk at 365). Greenwood V = sum d/(n(n-d)) = 4709/27720. CI = Greenwood exponential ('log-log'), alpha 0.05: S^exp(+-z*sqrt(V)/|ln S|), bounds flipped for 1-S. Formula per lifelines KaplanMeierFitter docs (fetched 2026-11-17); lifelines 0.30.3 and statsmodels 0.15.0 SurvfuncRight agree to 1e-15."
+}
