@@ -1,6 +1,6 @@
 # STATUS — LLM Market Observatory
 
-**Updated:** 2026-11-18 · **Now:** G7 is live (CI and Pages succeeded, site HTTP 200). Adoption, its drill and Task 12 weekly refresh are committed locally on `codex/g12-refresh`. G8–9 closeout waits for a network-enabled `make all`. Task 12 waits for owner S1 approval to publish and dispatch, then a green run with a new stamp.
+**Updated:** 2026-11-18 · **Now:** G8–9 is closed on a live `make all` (Claude Code, `g9-closeout`, fast-forwarded into local `main`). Task 12 and the release wait at owner gates: **S1** to push `main` and dispatch the first `refresh.yml` run, then **A1** (drill answers without AI) and **S1** for the tag.
 **Owner:** the `cofounder` agent (`.claude/agents/cofounder.md`). The human owner is involved only at the owner gates marked **bold** below.
 **Next assistant:** Claude Code’s `cofounder` agent, resuming from the tip of `codex/g12-refresh`. See [HANDOFF.md](HANDOFF.md) for the Codex report, approval scope and exact verification steps.
 **Grand plan:** `docs/00-charter/2026-11-10-grand-plan.md` · **Decisions:** `docs/DECISIONS.md`
@@ -40,6 +40,11 @@
   - G5 kill re-verified at the owner's request: LiteLLM itself never recorded the cuts (replay = local clone = GitHub).
   - Opus reviewer: 0 BLOCK, 6 WARN, all fixed (NaN in sensitivity JSON, drill SQL ending in a comment, 4 test gaps); 5 mutants each red on the new tests.
   - `make ci`: ruff clean, 110 passed, dbt ci `PASS=173`; dev `PASS=177 WARN=1`; a clean clone passes `make ci`. Drills in `docs/drills/g6-km-dataset.md`.
+- [x] G8–9: descriptive adoption view (2026-11-18). Built by Codex (`6daee7d`, `8b3b351`); closed by Claude Code on a live `make all`.
+  - The first live `make all` failed: Epoch's 2026-11-18 data repeats Magistral Small 1.1 and lists Magistral Medium 1.1 with two dates, so `unique_stg_epoch__models_model` → FAIL 2. Fix `fdf1c8a`: exact copies collapse, conflicting models drop, and the new `epoch_crosswalked_model_conflicts` errors if a dropped model is crosswalked. Negative control: a planted crosswalk row → FAIL 1, reverted → PASS.
+  - Live `make all` exit 0, dev `PASS=204 WARN=1`. `grep -c "Descriptive only: n=" site/dist/adoption.html` → `1`; `k_a=6`, `k_b=3`, `matches_prereg=true`. Same 105 top-tier models and 9 first cuts; KM 9.535% → 9.522% (two Gemini 2.5 listings ended).
+  - Opus review of the Codex range: 0 BLOCK, 5 WARN. 4 fixed (`7bcf6dc`, `bd767d2`: per-event "after prereg" label, visible Anthropic-lag fallback, scoped ratio assertion, refresh bot trailer); 1 logged as test debt (HANDOFF).
+  - `make ci`: ruff clean, 126 passed, dbt ci `PASS=199`. Playwright 45 passed (clean-URL test fix `60818f9`). gitleaks clean. Drills in `docs/drills/g8-g9-adoption.md`.
 
 ## Roadmap
 
@@ -60,8 +65,8 @@ Each row closes only when its checkpoint holds. Gate evidence goes in the body o
 | G6 | 9 | KM as a dataset measurement (Methods only) | `fit_km` matches the hand-worked KM golden, and lifelines and statsmodels agree; `headline.json` has `scope = "dataset_measurement"` and `validation = "failed"`; reviewer pass | design §18 G6 (fewer than 3 cuts → exact) | done: 1 − S(365) = 9.54% (95% CI 5.06–17.59%), n=105, 9 events, `scope = dataset_measurement`, `validation = failed`; verified-only 5.14% (5 events); audit data-fix rate 4/9 |
 | G5b (v1.1) | — | Pre-registered census of provider-announced list-price changes for a frozen headline set | A recall bar fixed before our series is read; this is the only route to a market headline | — | later (after R) |
 | G7 | 10 | Exports, site, docs, Pages | Export test passes. Playwright at 1280 and 375 px passes. gitleaks clean. `security-review` + reviewer pass | **P3: Node 24 default, gitleaks, Playwright browser (if not cached). S1: owner approves `gh repo create`, first push and Pages** | done (merged locally): export tests 6 passed; Playwright 33 passed at 1280/375/dark, axe contrast 0; gitleaks 8.30.1 clean (100+ commits); security review + Opus review (1 BLOCK, 4 SHOULD, all resolved; re-review clean). published 2026-11-18 (S1), ci + pages green |
-| G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` succeeds and the built page has one verdict line | kill: <8 events → descriptive | Adoption and drill committed locally. Cached build: `k_a=6`, `k_b=3`, `matches_prereg=true`; verdict count `1`; 45 browser checks passed. Live `make all` blocked at LiteLLM DNS. |
-| — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit and a successful Pages run | **S1: push and first dispatch** | Workflow committed locally. YAML and Bash checks passed. Simulated build and push failures blocked dispatch. Hosted run pending. |
+| G8–9 | 11 | Descriptive adoption view | Prereg commit precedes the code; `make all` succeeds and the built page has one verdict line | kill: <8 events → descriptive | done: live `make all` exit 0, dev `PASS=204 WARN=1`; verdict count `1`; `k_a=6`, `k_b=3`, `matches_prereg=true`; Playwright 45 passed; Opus review 0 BLOCK, 4 of 5 WARN fixed, 1 logged as debt |
+| — | 12 | Weekly refresh | `gh workflow run refresh.yml` green, with a new stamp commit and a successful Pages run | **S1: push and first dispatch** | Workflow committed; review fixed the bot commit trailer (`bd767d2`). Pins verified live (cache v5.0.4, setup-uv v10.3.3 SHA, checkout and setup-node v7); `main` unprotected; default token `read`. Hosted run pending S1. |
 | R | — | v1.0 release | `make drill-check STRICT=1` exits 0; tag | **A1: owner writes the drills without AI. S1: tag push** | todo |
 
 ## C1 checklist

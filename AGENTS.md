@@ -16,6 +16,7 @@ gates and approvals apply.
 - `git config core.hooksPath .githooks` is set in this checkout. Every commit message needs the trailer
   `Agent: Codex` or `Agent: Claude Code` (or `Agent: Human`). Codex commits also need `Model: <model id>`.
   `.githooks/commit-msg` rejects a commit without them.
+- Weekly data commits from `.github/workflows/refresh.yml` carry `Agent: refresh-workflow`. They are made on the runner, where the hook does not run.
 - Codex works on branches named `codex/gN-<slug>`; Claude Code uses `gN-<slug>`.
 - `docs/DECISIONS.md` rows written by Codex end their last column with `(Codex)`.
 - At each checkpoint, update the "Codex change record" in `docs/HANDOFF.md`: commits, paths, checks and open findings.

@@ -2,8 +2,7 @@
 
 ## Current ownership (2026-11-18)
 
-- **Next writer: Claude Code**, using the repo’s `cofounder` agent when the owner opens it. Codex is handing back the verified G7 deployment, local Adoption page and local refresh workflow.
-- Resume at the tip of `codex/g12-refresh` in `/Users/sanjaym/Projects/llm-market-observatory`. It includes `codex/g9-adoption` at `ff2b3a1` and the refresh implementation at `78330de`. The checkout was clean at handoff.
+- **Writer: Claude Code** (resumed 2026-11-18 at `b8c64b6`). G8–9 closed on `g9-closeout`, fast-forwarded into local `main`. See the Claude Code change record below.
 - **Incoming Claude Code checkpoint:** `d403154`. Local `main` is at that commit and remains two commits ahead of `origin/main`. The owner approved pushing `c011cd0` and `d403154`. The terminal could not resolve `github.com`, and GitHub returned `404` for `d403154` on recheck. Approval is still scoped to those two commits.
 - The range `d403154..codex/g12-refresh` contains the Codex work. Each commit carries `Agent: Codex` and `Model: gpt-6.2-sol`.
 - Never run Codex and Claude Code writers on this checkout or `data/warehouse.duckdb` at the same time.
@@ -35,7 +34,16 @@
 - **`78330de`, Task 12.** Added `.github/workflows/refresh.yml` for Monday at 06:00 UTC and manual runs. It restores the LiteLLM and raw-input caches, runs `make all`, commits changed site data, and dispatches Pages. Independent review tightened ref-scoped concurrency and disabled persisted checkout credentials. YAML and Bash checks passed. A changed stamp yielded one commit and one mocked dispatch. No data changes yielded zero commits and one mocked dispatch. Simulated build and push failures each yielded zero dispatches. Hosted execution, cache restore, branch protection and whether bot commits keep the schedule active remain unverified. GitHub compares concurrency groups case-insensitively. The layout assumes no case-only alias of `main`.
 - **Final co-founder recheck and handoff.** Retried `make all` and the approved docs-only push. LiteLLM Git fetch and the docs push both failed at DNS with Git exit `128`. A subsequent cached `make build` again returned `PASS=202 WARN=1 ERROR=0`. The co-founder’s read-only review checked hosted alternatives. Published CI and Pages build the site. Neither runs `make all` on the local branch. Gitleaks found no leaks in the four implementation and checkpoint commits before this handoff. Attempted remote writes were limited to the approved docs push. This handoff commit updates only HANDOFF and STATUS.
 
+## Claude Code change record (2026-11-18 resume)
+
+- **Review on return.** `d403154..b8c64b6`: all 5 commits carry `Agent: Codex` and `Model: gpt-6.2-sol`. `origin/main` was still `bc69e71`; no tags. No push or tag happened beyond the recorded approval.
+- **`fdf1c8a`, Epoch duplicates.** The live fetch broke `unique_stg_epoch__models_model` (Magistral Small 1.1 repeated; Magistral Medium 1.1 with two dates). Staging now collapses copies and drops conflicts; `epoch_crosswalked_model_conflicts` errors if a dropped model is crosswalked.
+- **`60818f9`, test harness.** The Codex Adoption test clicked the clean URL `./adoption`, which the stdlib test server 404s (Codex used in-memory routes). It now asserts the href and loads `adoption.html`.
+- **`ddfacc3`, live data.** Replay 648 days; same 105 models and 9 cuts; KM 9.522%.
+- **`7bcf6dc`, `bd767d2`, review fixes.** Independent Opus review: 0 BLOCK, 5 WARN, 4 fixed, 1 logged below.
+
 ## Debt (not blocking)
+- Adoption smoke test checks that the placebo x-domain changes between groups, not that it equals the selected group's range (review WARN 2; the filter is one equality at `site/src/adoption.md:54`).
 
 - The order of `epoch_check.json` `spot_check` rows comes from an unordered `select distinct` (`analysis/epoch_check.py:283`, closed G5 code). It churns bytes, not content.
 - 11 build-time `npm audit` findings, all accepted (DECISIONS 2026-11-18).
